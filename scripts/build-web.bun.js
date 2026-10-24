@@ -1,8 +1,130 @@
 import fs from "fs";
 import path from "path";
+import { marked } from "marked";
 
 const BASE_DIR = path.resolve("aif-c01-study-guide");
-const data = JSON.parse(fs.readFileSync(path.join(BASE_DIR, "data.json"), "utf8"));
+
+function cleanMath(text) {
+  return text
+    .replace(/\$\\rightarrow\$/g, " &rarr; ")
+    .replace(/\\rightarrow/g, " &rarr; ")
+    .replace(/\$\\le\s*(\d+)\$/g, " &le; $1 ")
+    .replace(/\$([^\$]+)\$/g, (m, expr) => {
+      const cleaned = expr.replace(/\\text\{([^}]+)\}/g, "$1").replace(/\\rightarrow/g, "&rarr;");
+      return `<code class="math-tag">${cleaned}</code>`;
+    });
+}
+
+function parseDomainFile(filename) {
+  const content = fs.readFileSync(path.join(BASE_DIR, filename), "utf8");
+  const domainId = parseInt(filename.match(/domain-(\d+)/)[1]);
+  const titleMatch = content.match(/^# (.*)/m);
+  const title = titleMatch ? titleMatch[1] : filename;
+
+  // Extract Theory (Phần 1)
+  const p1Match = content.match(/## Phần 1: Trọng tâm lý thuyết & Decision Trees([\s\S]*?)(?=## Phần 2:)/);
+  const theoryHtml = p1Match ? marked.parse(cleanMath(p1Match[1])) : "";
+
+  // Extract STE Table (Phần 2)
+  const steTerms = [];
+  const lines = content.split("\n");
+  let inTable = false;
+  lines.forEach(line => {
+    if (line.includes("| Term") || line.includes("| Thuật ngữ")) inTable = true;
+    else if (inTable && line.startsWith("|") && !line.includes("---")) {
+      const parts = line.split("|").map(p => p.trim());
+      if (parts.length >= 5) {
+        steTerms.push({
+          term: parts[1].replace(/\*\*/g, ""),
+          definition: parts[2],
+          keywords: parts[3],
+          note: parts[4]
+        });
+      }
+    } else if (inTable && line.trim() === "") {
+      inTable = false;
+    }
+  });
+
+  // Extract Questions (Phần 3)
+  const questions = [];
+  const qBlocks = content.split(/### Question \d+/);
+  qBlocks.slice(1).forEach((block, qIdx) => {
+    const qNum = qIdx + 1;
+    const stemAndOpts = block.split(/\*\*Đáp án đúng:\*\*/);
+    const stemRaw = stemAndOpts[0].trim();
+    
+    const optionLines = [];
+    const stemLines = [];
+    stemRaw.split("\n").forEach(l => {
+      const trimmed = l.trim();
+      if (/^[-*]\s+[A-E]\./.test(trimmed)) {
+        optionLines.push(trimmed.replace(/^[-*]\s+/, ""));
+      } else if (optionLines.length === 0 && trimmed.length > 0) {
+        stemLines.push(trimmed);
+      }
+    });
+
+    const isMultiple = /choose two|select two|choose three/i.test(stemRaw);
+    let answerPart = stemAndOpts[1] || "";
+    const answerMatch = answerPart.match(/^\s*\*?\*?(.*?)\*?\*?\s*\n/);
+    const correctAnswer = answerMatch ? answerMatch[1].trim() : "";
+    const reasonMatch = answerPart.match(/\*\*Lý do chọn.*?\*\*([\s\S]*?)(?=\*\*Phân tích|\*\*Cảnh báo|$)/i);
+    const reason = reasonMatch ? reasonMatch[1].trim() : "";
+    const distractorMatch = answerPart.match(/\*\*Phân tích.*?\*\*([\s\S]*?)(?=\*\*Cảnh báo|$)/i);
+    const distractor = distractorMatch ? distractorMatch[1].trim() : "";
+    const trapMatch = answerPart.match(/\*\*Cảnh báo.*?\*\*([\s\S]*?)(?=---|###|$)/i);
+    const trap = trapMatch ? trapMatch[1].trim() : "";
+
+    questions.push({
+      id: `d${domainId}-q${qNum}`,
+      domainId,
+      number: qNum,
+      isMultiple,
+      stem: stemLines.join(" "),
+      options: optionLines.map(opt => {
+        const key = opt.slice(0, 1);
+        const text = opt.slice(3).trim();
+        return { key, text };
+      }),
+      correctAnswer,
+      reason,
+      distractor,
+      trap
+    });
+  });
+
+  return { domainId, title, theoryHtml, steTerms, questions };
+}
+
+const domains = [1, 2, 3, 4, 5].map(id => {
+  const file = fs.readdirSync(BASE_DIR).find(f => f.startsWith(`domain-${id}`));
+  return parseDomainFile(file);
+});
+
+// Parse Decision Matrix from README
+const readme = fs.readFileSync(path.join(BASE_DIR, "README.md"), "utf8");
+const matrixRows = [];
+const rLines = readme.split("\n");
+let inMatrix = false;
+rLines.forEach(l => {
+  if (l.includes("| Yêu cầu tình huống trong đề thi |")) inMatrix = true;
+  else if (inMatrix && l.startsWith("|") && !l.includes("---")) {
+    const parts = l.split("|").map(p => p.trim());
+    if (parts.length >= 4) {
+      matrixRows.push({
+        scenario: parts[1],
+        service: parts[2].replace(/\*\*/g, ""),
+        trap: parts[3]
+      });
+    }
+  } else if (inMatrix && l.trim() === "") {
+    inMatrix = false;
+  }
+});
+
+const data = { domains, decisionMatrix: matrixRows };
+fs.writeFileSync(path.join(BASE_DIR, "data.json"), JSON.stringify(data, null, 2));
 
 // Define Concept Graph Nodes & Edges
 const graphData = {
@@ -738,6 +860,237 @@ const htmlContent = `<!DOCTYPE html>
       color: #e2e8f0;
     }
     .matrix-table tr:hover td { background: #162238; }
+    
+    /* Topic Study Styles */
+    .topic-domain-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .topic-domain-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .topic-domain-btn:hover {
+      background: #1b263b;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+    .topic-domain-btn.active {
+      background: linear-gradient(145deg, #162544, #121d33);
+      border-color: #00a4e4;
+      box-shadow: 0 4px 18px rgba(0, 164, 228, 0.22);
+    }
+    .topic-domain-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topic-domain-badge {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(0, 164, 228, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(0, 164, 228, 0.3);
+    }
+    .topic-domain-weight {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #fbbf24;
+    }
+    .topic-domain-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+
+    .topic-anchor-bar {
+      display: flex;
+      gap: 0.5rem;
+      background: #0d1522;
+      padding: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      position: sticky;
+      top: 75px;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+    }
+    .topic-anchor-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 0.95rem;
+      font-family: var(--font-sans);
+      font-size: 0.825rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .topic-anchor-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .topic-anchor-btn.active {
+      color: #38bdf8;
+      background: #1e293b;
+    }
+
+    .topic-domain-header {
+      background: linear-gradient(180deg, #131d31 0%, #0d1522 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .topic-domain-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .topic-section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 140px;
+    }
+    .topic-sec-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .topic-sec-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .topic-sec-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: #0284c7;
+      color: #fff;
+    }
+
+    /* Theory Content Markdown Styling */
+    .theory-content {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .theory-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .theory-content h3:first-child {
+      margin-top: 0;
+    }
+    .theory-content h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .theory-content p {
+      margin-bottom: 1rem;
+    }
+    .theory-content ul, .theory-content ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+    .theory-content li {
+      margin-bottom: 0.5rem;
+    }
+    .theory-content strong {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .theory-content hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .theory-content pre {
+      background: #080d18;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #38bdf8;
+      line-height: 1.5;
+    }
+    .theory-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: #0d1522;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .theory-content th {
+      background: #111a2e;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .theory-content td {
+      padding: 0.85rem 1rem;
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--border);
+      color: #e2e8f0;
+      vertical-align: top;
+    }
+    .theory-content tr:hover td {
+      background: #162238;
+    }
+    .math-tag {
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
     .service-tag {
       font-weight: 700;
       color: #38bdf8;
@@ -768,15 +1121,16 @@ const htmlContent = `<!DOCTYPE html>
         <span class="brand-badge">AIF-C01</span>
         <div>
           <div class="brand-title">AWS AI Practitioner Mastery Studio</div>
-          <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Khái niệm ASD-STE100 • Bản đồ liên kết động</div>
+          <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
         </div>
       </div>
 
       <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('graph')">🧭 Bản đồ Khái niệm</button>
+        <button class="tab-btn active" onclick="switchTab('topics')">📚 Ôn tập theo chủ đề</button>
         <button class="tab-btn" onclick="switchTab('quiz')">📝 Luyện đề 57 Câu</button>
+        <button class="tab-btn" onclick="switchTab('graph')">🧭 Bản đồ Khái niệm</button>
         <button class="tab-btn" onclick="switchTab('matrix')">⚡ Bảng Quyết định & Bẫy</button>
-        <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển ASD-STE100</button>
+        <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
       </nav>
 
       <div class="stats-pill">
@@ -798,8 +1152,68 @@ const htmlContent = `<!DOCTYPE html>
 
   <main class="main-content">
 
+    <!-- TAB: TOPIC-BASED STUDY (ÔN TẬP THEO CHỦ ĐỀ) -->
+    <section id="tab-topics" class="tab-panel active">
+      <!-- Domain Navigation Cards -->
+      <div class="topic-domain-nav">
+        <button class="topic-domain-btn active" onclick="switchTopicDomain(1)">
+          <div class="topic-domain-top">
+            <span class="topic-domain-badge">Domain 1</span>
+            <span class="topic-domain-weight">20%</span>
+          </div>
+          <div class="topic-domain-name">AI & Machine Learning Fundamentals</div>
+        </button>
+        <button class="topic-domain-btn" onclick="switchTopicDomain(2)">
+          <div class="topic-domain-top">
+            <span class="topic-domain-badge">Domain 2</span>
+            <span class="topic-domain-weight">24%</span>
+          </div>
+          <div class="topic-domain-name">Fundamentals of Generative AI</div>
+        </button>
+        <button class="topic-domain-btn" onclick="switchTopicDomain(3)">
+          <div class="topic-domain-top">
+            <span class="topic-domain-badge">Domain 3</span>
+            <span class="topic-domain-weight">28%</span>
+          </div>
+          <div class="topic-domain-name">Applications of Foundation Models</div>
+        </button>
+        <button class="topic-domain-btn" onclick="switchTopicDomain(4)">
+          <div class="topic-domain-top">
+            <span class="topic-domain-badge">Domain 4</span>
+            <span class="topic-domain-weight">14%</span>
+          </div>
+          <div class="topic-domain-name">Guidelines for Responsible AI</div>
+        </button>
+        <button class="topic-domain-btn" onclick="switchTopicDomain(5)">
+          <div class="topic-domain-top">
+            <span class="topic-domain-badge">Domain 5</span>
+            <span class="topic-domain-weight">14%</span>
+          </div>
+          <div class="topic-domain-name">Security, Compliance & Governance</div>
+        </button>
+      </div>
+
+      <!-- Quick Section Anchor Navigation for Active Domain -->
+      <div class="topic-anchor-bar">
+        <button class="topic-anchor-btn active" onclick="scrollToTopicSection('p1')">
+          <span>📌 Phần 1: Trọng tâm lý thuyết & Decision Trees</span>
+        </button>
+        <button class="topic-anchor-btn" onclick="scrollToTopicSection('p2')">
+          <span>📘 Phần 2: Bảng khái niệm thuật ngữ</span>
+        </button>
+        <button class="topic-anchor-btn" onclick="scrollToTopicSection('p3')">
+          <span>🎯 Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án</span>
+        </button>
+      </div>
+
+      <!-- Container where active domain content is rendered -->
+      <div id="topic-content-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
     <!-- TAB 1: CONCEPT GRAPH -->
-    <section id="tab-graph" class="tab-panel active">
+    <section id="tab-graph" class="tab-panel">
       <div class="graph-container">
         <div class="graph-header">
           <div>
@@ -912,16 +1326,16 @@ const htmlContent = `<!DOCTYPE html>
       </div>
     </section>
 
-    <!-- TAB 4: ASD-STE100 DICTIONARY -->
+    <!-- TAB 4: DICTIONARY -->
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
           <div>
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Khái Niệm Chuẩn ASD-STE100</h2>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi</h2>
             <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
           </div>
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <input type="text" id="ste-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm thuật ngữ, định nghĩa STE, từ khóa..." oninput="handleSTESearch(this.value)">
+            <input type="text" id="ste-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
             <span id="ste-count" class="q-badge" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">82 thuật ngữ</span>
           </div>
         </div>
@@ -939,7 +1353,7 @@ const htmlContent = `<!DOCTYPE html>
           <thead>
             <tr>
               <th style="width: 20%;">Thuật ngữ (Term)</th>
-              <th style="width: 36%;">ASD-STE100 Definition (English)</th>
+              <th style="width: 36%;">Định nghĩa tiếng Anh (Definition)</th>
               <th style="width: 22%;">Exam Trigger Keywords</th>
               <th style="width: 22%;">Chú giải thực tế (Tiếng Việt)</th>
             </tr>
@@ -959,6 +1373,7 @@ const htmlContent = `<!DOCTYPE html>
     const GRAPH_DATA = ${JSON.stringify(graphData)};
 
     // State
+    let currentTopicDomain = 1;
     let currentDomainFilter = 'all';
     let searchQuery = '';
     let quizMode = 'exam'; // 'exam' | 'study'
@@ -972,6 +1387,7 @@ const htmlContent = `<!DOCTYPE html>
 
     // Init App
     window.addEventListener('DOMContentLoaded', () => {
+      renderTopicDomain(currentTopicDomain);
       renderQuiz();
       renderDecisionMatrix();
       renderSTEDictionary();
@@ -986,6 +1402,151 @@ const htmlContent = `<!DOCTYPE html>
       if (targetBtn) targetBtn.classList.add('active');
       const panel = document.getElementById('tab-' + tabId);
       if (panel) panel.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Topic-Based Study Functions
+    function switchTopicDomain(domainId) {
+      currentTopicDomain = domainId;
+      document.querySelectorAll('.topic-domain-btn').forEach((btn, idx) => {
+        if (idx + 1 === domainId) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      renderTopicDomain(domainId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToTopicSection(secId) {
+      const el = document.getElementById('topic-sec-' + secId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.topic-anchor-btn').forEach(btn => {
+          if (btn.getAttribute('onclick').includes(secId)) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+      }
+    }
+
+    function renderTopicDomain(domainId) {
+      const d = APP_DATA.domains.find(item => item.domainId === domainId);
+      if (!d) return;
+
+      const container = document.getElementById('topic-content-container');
+      if (!container) return;
+
+      const weightMatch = d.title.match(/\\((\\d+%)\\)/);
+      const weightText = weightMatch ? weightMatch[1] : '';
+
+      // STE terms table rows
+      const steRows = d.steTerms.map(t => \`
+        <tr>
+          <td><strong style="color: #fff; font-size: 0.95rem;">\${t.term}</strong></td>
+          <td style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.85rem; line-height:1.5;">\${t.definition}</td>
+          <td style="color: #fbbf24; font-size: 0.85rem;">\${t.keywords}</td>
+          <td style="color: #cbd5e1; font-size: 0.85rem;">\${t.note}</td>
+        </tr>
+      \`).join('');
+
+      // Questions HTML
+      const questionsHtml = renderQuestionsListHtml(d.questions, 'topic');
+
+      container.innerHTML = \`
+        <div class="topic-domain-header">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.65rem; flex-wrap:wrap;">
+            <span class="brand-badge" style="background:#0284c7;">Domain \${d.domainId}</span>
+            <span class="q-type-tag">\${weightText} Trọng số bài thi</span>
+            <span class="q-domain-tag">\${d.questions.length} câu hỏi tình huống</span>
+            <span class="q-domain-tag" style="background:rgba(16,185,129,0.15); color:#34d399; border-color:rgba(16,185,129,0.3);">\${d.steTerms.length} thuật ngữ</span>
+          </div>
+          <h1 class="topic-domain-title">\${d.title}</h1>
+        </div>
+
+        <!-- PHẦN 1: TRỌNG TÂM LÝ THUYẾT -->
+        <div class="topic-section-card" id="topic-sec-p1">
+          <div class="topic-sec-header">
+            <div class="topic-sec-title">
+              <span class="topic-sec-num">Phần 1</span>
+              <span>Trọng tâm lý thuyết & Decision Trees</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              Kiến thức cốt lõi, sơ đồ phân cấp, ma trận quyết định và bảng đối chiếu các dịch vụ AWS.
+            </p>
+          </div>
+          <div class="theory-content">
+            \${d.theoryHtml}
+          </div>
+        </div>
+
+        <!-- PHẦN 2: BẢNG KHÁI NIỆM THUẬT NGỮ -->
+        <div class="topic-section-card" id="topic-sec-p2">
+          <div class="topic-sec-header">
+            <div class="topic-sec-title">
+              <span class="topic-sec-num" style="background:#059669;">Phần 2</span>
+              <span>Bảng khái niệm thuật ngữ (\${d.steTerms.length} thuật ngữ)</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              Định nghĩa tiếng Anh kỹ thuật đơn giản kèm từ khóa kích hoạt câu hỏi trong đề thi.
+            </p>
+          </div>
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Thuật ngữ (Term)</th>
+                <th style="width: 36%;">Định nghĩa tiếng Anh (Definition)</th>
+                <th style="width: 22%;">Exam Trigger Keywords</th>
+                <th style="width: 22%;">Chú giải thực tế (Tiếng Việt)</th>
+              </tr>
+            </thead>
+            <tbody>
+              \${steRows}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PHẦN 3: BỘ CÂU HỎI TÌNH HUỐNG -->
+        <div class="topic-section-card" id="topic-sec-p3">
+          <div class="topic-sec-header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div class="topic-sec-title">
+                <span class="topic-sec-num" style="background:#7c3aed;">Phần 3</span>
+                <span>Bộ câu hỏi tình huống & Phân tích đáp án (\${d.questions.length} câu)</span>
+              </div>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+                Tình huống thực tế sát đề thi AIF-C01. Bấm vào từng phương án để kiểm tra đúng/sai và xem phân tích bẫy 4 bước.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button class="action-btn" onclick="revealAllTopicQuestions(\${d.domainId})">
+                <span>👁️ Mở đáp án phần này</span>
+              </button>
+              <button class="action-btn" onclick="hideAllTopicQuestions(\${d.domainId})">
+                <span>🙈 Ẩn đáp án</span>
+              </button>
+            </div>
+          </div>
+          <div class="questions-grid">
+            \${questionsHtml}
+          </div>
+        </div>
+      \`;
+    }
+
+    function revealAllTopicQuestions(domainId) {
+      const d = APP_DATA.domains.find(item => item.domainId === domainId);
+      if (!d) return;
+      d.questions.forEach(q => revealedCards.add(q.id));
+      renderTopicDomain(domainId);
+      renderQuiz();
+      showToast(\`👁️ Đã mở đáp án cho tất cả câu hỏi Domain \${domainId}!\`);
+    }
+
+    function hideAllTopicQuestions(domainId) {
+      const d = APP_DATA.domains.find(item => item.domainId === domainId);
+      if (!d) return;
+      d.questions.forEach(q => revealedCards.delete(q.id));
+      renderTopicDomain(domainId);
+      renderQuiz();
+      showToast(\`🙈 Đã ẩn đáp án cho Domain \${domainId}!\`);
     }
 
     // Render Decision Matrix with search
@@ -1214,6 +1775,7 @@ const htmlContent = `<!DOCTYPE html>
         revealedCards.add(qId);
       }
       renderQuiz();
+      renderTopicDomain(currentTopicDomain);
     }
 
     function resetQuiz() {
@@ -1222,6 +1784,7 @@ const htmlContent = `<!DOCTYPE html>
       setQuizMode('exam');
       updateStats();
       renderQuiz();
+      renderTopicDomain(currentTopicDomain);
       showToast('🔄 Đã làm mới kết quả bài thi!');
     }
 
@@ -1266,6 +1829,7 @@ const htmlContent = `<!DOCTYPE html>
       
       updateStats();
       renderQuiz();
+      renderTopicDomain(currentTopicDomain);
     }
 
     function updateStats() {
@@ -1289,33 +1853,16 @@ const htmlContent = `<!DOCTYPE html>
       document.getElementById('stats-accuracy').textContent = pct + '%';
     }
 
-    // Render Quiz Cards
-    function renderQuiz() {
-      const container = document.getElementById('questions-container');
-      const allQs = getAllQuestions();
-
-      const filtered = allQs.filter(q => {
-        if (currentDomainFilter !== 'all' && q.domainId !== currentDomainFilter) return false;
-        if (searchQuery) {
-          const content = (q.stem + ' ' + q.reason + ' ' + q.options.map(o=>o.text).join(' ')).toLowerCase();
-          if (!content.includes(searchQuery)) return false;
-        }
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = \`<div style="text-align:center; padding:3rem; color:var(--text-dim);">Không tìm thấy câu hỏi nào phù hợp với từ khóa "\${searchQuery}".</div>\`;
-        return;
-      }
-
-      container.innerHTML = filtered.map((q, idx) => {
+    // Reusable Question Cards Renderer
+    function renderQuestionsListHtml(questions, prefix = '') {
+      return questions.map((q, idx) => {
         const userSel = userAnswers[q.id] || [];
         const isAttempted = userSel.length > 0;
         const correctLetters = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
         const isRevealedByCard = revealedCards.has(q.id);
         const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
 
-        const orderBadgeHtml = isShuffled
+        const orderBadgeHtml = (prefix === 'quiz' && isShuffled)
           ? \`<span class="q-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45);">Câu \${idx + 1}</span>
              <span class="q-badge" style="opacity: 0.75; font-size: 0.7rem;" title="Mã câu hỏi gốc trong giáo trình">Gốc: #D\${q.domainId}-Q\${q.number}</span>\`
           : \`<span class="q-badge">#D\${q.domainId}-Q\${q.number}</span>\`;
@@ -1341,7 +1888,7 @@ const htmlContent = `<!DOCTYPE html>
         }).join('');
 
         return \`
-          <div class="q-card" id="card-\${q.id}">
+          <div class="q-card" id="card-\${prefix ? prefix + '-' : ''}\${q.id}">
             <div class="q-meta">
               \${orderBadgeHtml}
               <span class="q-domain-tag">Domain \${q.domainId}</span>
@@ -1378,6 +1925,28 @@ const htmlContent = `<!DOCTYPE html>
           </div>
         \`;
       }).join('');
+    }
+
+    // Render Quiz Cards
+    function renderQuiz() {
+      const container = document.getElementById('questions-container');
+      const allQs = getAllQuestions();
+
+      const filtered = allQs.filter(q => {
+        if (currentDomainFilter !== 'all' && q.domainId !== currentDomainFilter) return false;
+        if (searchQuery) {
+          const content = (q.stem + ' ' + q.reason + ' ' + q.options.map(o=>o.text).join(' ')).toLowerCase();
+          if (!content.includes(searchQuery)) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = \`<div style="text-align:center; padding:3rem; color:var(--text-dim);">Không tìm thấy câu hỏi nào phù hợp với từ khóa "\${searchQuery}".</div>\`;
+        return;
+      }
+
+      container.innerHTML = renderQuestionsListHtml(filtered, 'quiz');
     }
 
     // Render Concept Graph
