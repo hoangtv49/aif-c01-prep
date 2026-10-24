@@ -284,6 +284,61 @@
       background: #1e293b;
     }
 
+    /* Action Buttons (Shuffle / Revert) */
+    .action-btn {
+      background: #162032;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 0.95rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .action-btn:hover {
+      color: #fff;
+      border-color: #3b82f6;
+      background: #1e293b;
+    }
+    .action-btn.shuffle-active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: #f59e0b;
+      color: #fbbf24;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+    }
+    .action-btn.shuffle-active:hover {
+      background: rgba(245, 158, 11, 0.25);
+    }
+
+    /* Toast Notification */
+    .quiz-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #3b82f6;
+      padding: 0.65rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quiz-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* Question Cards */
     .questions-grid {
       display: flex;
@@ -734,7 +789,13 @@
               <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
             </button>
           </div>
-          <button class="filter-chip" style="background:#1e293b;" onclick="resetQuiz()">Làm lại bài thi</button>
+          <button id="shuffle-btn" class="action-btn" onclick="shuffleQuestions()" title="Trộn ngẫu nhiên thứ tự các câu hỏi để thi thử">
+            <span>🔀 Trộn đề</span>
+          </button>
+          <button id="unshuffle-btn" class="action-btn" onclick="unshuffleQuestions()" style="display:none;" title="Khôi phục thứ tự chuẩn theo từng Domain">
+            <span>↩️ Thứ tự gốc</span>
+          </button>
+          <button class="filter-chip" style="background:#1e293b;" onclick="resetQuiz()" title="Xóa các đáp án đã chọn để làm lại">Làm lại bài thi</button>
         </div>
       </div>
 
@@ -798,6 +859,8 @@
     let currentDomainFilter = 'all';
     let searchQuery = '';
     let quizMode = 'exam'; // 'exam' | 'study'
+    let isShuffled = false;
+    let customQuestionOrder = null;
     const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
 
@@ -848,13 +911,84 @@
       `).join('');
     }
 
-    // Flatten all questions
+    // Flatten all questions with optional shuffle ordering
     function getAllQuestions() {
-      const list = [];
+      const originalList = [];
       APP_DATA.domains.forEach(d => {
-        d.questions.forEach(q => list.push(q));
+        d.questions.forEach(q => originalList.push(q));
       });
-      return list;
+
+      if (!isShuffled || !customQuestionOrder) {
+        return originalList;
+      }
+
+      const map = new Map(originalList.map(q => [q.id, q]));
+      const orderedList = [];
+      customQuestionOrder.forEach(id => {
+        if (map.has(id)) orderedList.push(map.get(id));
+      });
+      return orderedList;
+    }
+
+    // Shuffle Exam Logic
+    function shuffleQuestions() {
+      const allQs = [];
+      APP_DATA.domains.forEach(d => {
+        d.questions.forEach(q => allQs.push(q));
+      });
+
+      // Fisher-Yates shuffle
+      const shuffled = [...allQs];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      customQuestionOrder = shuffled.map(q => q.id);
+      isShuffled = true;
+      updateShuffleButtons();
+      renderQuiz();
+      showToast('🔀 Đã xáo trộn ngẫu nhiên thứ tự 57 câu hỏi!');
+    }
+
+    function unshuffleQuestions() {
+      isShuffled = false;
+      customQuestionOrder = null;
+      updateShuffleButtons();
+      renderQuiz();
+      showToast('↩️ Đã khôi phục thứ tự chuẩn theo Domain!');
+    }
+
+    function updateShuffleButtons() {
+      const shuffleBtn = document.getElementById('shuffle-btn');
+      const unshuffleBtn = document.getElementById('unshuffle-btn');
+      if (!shuffleBtn || !unshuffleBtn) return;
+
+      if (isShuffled) {
+        shuffleBtn.classList.add('shuffle-active');
+        shuffleBtn.innerHTML = '<span>🎲 Trộn lại</span>';
+        unshuffleBtn.style.display = 'flex';
+      } else {
+        shuffleBtn.classList.remove('shuffle-active');
+        shuffleBtn.innerHTML = '<span>🔀 Trộn đề</span>';
+        unshuffleBtn.style.display = 'none';
+      }
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('quiz-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'quiz-toast';
+        toast.className = 'quiz-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add('show');
+      if (window.toastTimeout) clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
     }
 
     // Filter Logic
@@ -906,6 +1040,7 @@
       setQuizMode('exam');
       updateStats();
       renderQuiz();
+      showToast('🔄 Đã làm mới kết quả bài thi!');
     }
 
     function formatMarkdown(text) {
@@ -991,12 +1126,17 @@
         return;
       }
 
-      container.innerHTML = filtered.map(q => {
+      container.innerHTML = filtered.map((q, idx) => {
         const userSel = userAnswers[q.id] || [];
         const isAttempted = userSel.length > 0;
         const correctLetters = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
         const isRevealedByCard = revealedCards.has(q.id);
         const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
+
+        const orderBadgeHtml = isShuffled
+          ? `<span class="q-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45);">Câu ${idx + 1}</span>
+             <span class="q-badge" style="opacity: 0.75; font-size: 0.7rem;" title="Mã câu hỏi gốc trong giáo trình">Gốc: #D${q.domainId}-Q${q.number}</span>`
+          : `<span class="q-badge">#D${q.domainId}-Q${q.number}</span>`;
 
         const optionsHtml = q.options.map(opt => {
           const isSelected = userSel.includes(opt.key);
@@ -1021,7 +1161,7 @@
         return `
           <div class="q-card" id="card-${q.id}">
             <div class="q-meta">
-              <span class="q-badge">#D${q.domainId}-Q${q.number}</span>
+              ${orderBadgeHtml}
               <span class="q-domain-tag">Domain ${q.domainId}</span>
               <span class="q-type-tag">${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
               <button class="q-toggle-btn" onclick="toggleCardExplanation('${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
