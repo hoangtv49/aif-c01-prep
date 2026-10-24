@@ -130,80 +130,80 @@ fs.writeFileSync(path.join(BASE_DIR, "data.json"), JSON.stringify(data, null, 2)
 const graphData = {
   nodes: [
     // --- ROW 1: SECURITY, STORAGE & NETWORK (y: 40) ---
-    { id: "macie", label: "Amazon Macie", domain: 5, group: "security", x: 120, y: 40, desc: "Tự động khám phá, phân loại và bảo vệ dữ liệu nhạy cảm PII lưu trữ trong Amazon S3 data lakes." },
-    { id: "s3", label: "Amazon S3 Data Lake", domain: 5, group: "storage", x: 340, y: 40, desc: "Kho lưu trữ đối tượng chứa tài liệu Knowledge Bases, dữ liệu huấn luyện ML, và audit logs." },
-    { id: "privatelink", label: "AWS PrivateLink (VPC Endpoints)", domain: 5, group: "security", x: 580, y: 40, desc: "Kết nối mạng riêng tư an toàn, đảm bảo lưu lượng gọi API Bedrock không bao giờ đi qua Internet công cộng." },
-    { id: "kms", label: "AWS KMS Encryption", domain: 5, group: "security", x: 820, y: 40, desc: "Mã hóa dữ liệu lưu trữ (Encryption at Rest) bằng Customer Managed Keys (CMKs) cho S3, Bedrock, EBS." },
-    { id: "waf", label: "AWS WAF", domain: 5, group: "security", x: 1040, y: 40, desc: "Tường lửa ứng dụng web lớp 7 bảo vệ AI endpoints khỏi DDoS và chặn bot làm cạn kiệt Bedrock tokens." },
+    { id: "macie", label: "Amazon Macie", domain: 5, group: "security", x: 120, y: 40, desc: "Tự động khám phá, phân loại và bảo vệ dữ liệu nhạy cảm PII lưu trữ trong Amazon S3 data lakes.", docSubtab: "p2", docKeyword: "Amazon Macie", docTitle: "Phần 2: Thuật ngữ Amazon Macie" },
+    { id: "s3", label: "Amazon S3 Data Lake", domain: 5, group: "storage", x: 340, y: 40, desc: "Kho lưu trữ đối tượng chứa tài liệu Knowledge Bases, dữ liệu huấn luyện ML, và audit logs.", docSubtab: "p1", docKeyword: "Bảo mật dữ liệu", docTitle: "Phần 1: Bảo mật dữ liệu & S3" },
+    { id: "privatelink", label: "AWS PrivateLink (VPC Endpoints)", domain: 5, group: "security", x: 580, y: 40, desc: "Kết nối mạng riêng tư an toàn, đảm bảo lưu lượng gọi API Bedrock không bao giờ đi qua Internet công cộng.", docSubtab: "p1", docKeyword: "PrivateLink", docTitle: "Phần 1: AWS PrivateLink & VPC" },
+    { id: "kms", label: "AWS KMS Encryption", domain: 5, group: "security", x: 820, y: 40, desc: "Mã hóa dữ liệu lưu trữ (Encryption at Rest) bằng Customer Managed Keys (CMKs) cho S3, Bedrock, EBS.", docSubtab: "p1", docKeyword: "KMS", docTitle: "Phần 1: Mã hóa AWS KMS" },
+    { id: "waf", label: "AWS WAF", domain: 5, group: "security", x: 1040, y: 40, desc: "Tường lửa ứng dụng web lớp 7 bảo vệ AI endpoints khỏi DDoS và chặn bot làm cạn kiệt Bedrock tokens.", docSubtab: "p3", docKeyword: "WAF", docTitle: "Phần 3: Câu hỏi tình huống AWS WAF" },
 
     // --- ROW 2: RAG, BEDROCK & AUTOMATION (y: 130 - 160) ---
-    { id: "rag", label: "RAG Architecture", domain: 2, group: "rag", x: 110, y: 140, desc: "Truy xuất thông tin thực tế từ bên ngoài đưa vào prompt, giúp LLM cập nhật tri thức mới mà không cần train lại." },
-    { id: "knowledge_bases", label: "Bedrock Knowledge Bases", domain: 3, group: "rag", x: 340, y: 140, desc: "Giải pháp RAG hoàn chỉnh tự động chunking, tạo vector embedding và truy xuất tài liệu từ S3." },
-    { id: "bedrock", label: "Amazon Bedrock", domain: 3, group: "platform", x: 580, y: 155, desc: "Dịch vụ Serverless cung cấp quyền truy cập các Foundation Models hàng đầu (Claude, Llama, Titan) qua 1 API duy nhất." },
-    { id: "bedrock_agents", label: "Bedrock Agents", domain: 3, group: "automation", x: 820, y: 140, desc: "Tác tử tự hành phân tích yêu cầu nhiều bước (ReAct), tự động lập kế hoạch và gọi API doanh nghiệp." },
-    { id: "openapi", label: "OpenAPI Schema", domain: 3, group: "automation", x: 1050, y: 115, desc: "Định dạng JSON/YAML chuẩn hóa mô tả API để Bedrock Action Groups hiểu tham số và thực thi." },
+    { id: "rag", label: "RAG Architecture", domain: 2, group: "rag", x: 110, y: 140, desc: "Truy xuất thông tin thực tế từ bên ngoài đưa vào prompt, giúp LLM cập nhật tri thức mới mà không cần train lại.", docSubtab: "p1", docKeyword: "RAG", docTitle: "Phần 1: Kiến trúc RAG" },
+    { id: "knowledge_bases", label: "Bedrock Knowledge Bases", domain: 3, group: "rag", x: 340, y: 140, desc: "Giải pháp RAG hoàn chỉnh tự động chunking, tạo vector embedding và truy xuất tài liệu từ S3.", docSubtab: "p1", docKeyword: "Knowledge Bases", docTitle: "Phần 1: Bedrock Knowledge Bases" },
+    { id: "bedrock", label: "Amazon Bedrock", domain: 3, group: "platform", x: 580, y: 155, desc: "Dịch vụ Serverless cung cấp quyền truy cập các Foundation Models hàng đầu (Claude, Llama, Titan) qua 1 API duy nhất.", docSubtab: "p1", docKeyword: "Amazon Bedrock", docTitle: "Phần 1: Nền tảng Amazon Bedrock" },
+    { id: "bedrock_agents", label: "Bedrock Agents", domain: 3, group: "automation", x: 820, y: 140, desc: "Tác tử tự hành phân tích yêu cầu nhiều bước (ReAct), tự động lập kế hoạch và gọi API doanh nghiệp.", docSubtab: "p1", docKeyword: "Bedrock Agents", docTitle: "Phần 1: Bedrock Agents" },
+    { id: "openapi", label: "OpenAPI Schema", domain: 3, group: "automation", x: 1050, y: 115, desc: "Định dạng JSON/YAML chuẩn hóa mô tả API để Bedrock Action Groups hiểu tham số và thực thi.", docSubtab: "p1", docKeyword: "OpenAPI", docTitle: "Phần 1: OpenAPI Schema" },
 
     // --- ROW 3: VECTOR DB, PARAMS, TRANSFORMERS, TUNING & LAMBDA (y: 220 - 250) ---
-    { id: "vector_db", label: "Vector DB (OpenSearch)", domain: 2, group: "rag", x: 110, y: 230, desc: "Lưu trữ vector embeddings nhiều chiều, hỗ trợ tìm kiếm ngữ nghĩa tương đồng (Semantic Search) tốc độ cao." },
-    { id: "inference_params", label: "Inference Params (Temp/Top-P)", domain: 2, group: "genai_foundations", x: 340, y: 230, desc: "Siêu tham số suy luận: Temperature, Top-P, Top-K điều khiển mức độ ngẫu nhiên vs xác định của LLM." },
-    { id: "transformer", label: "Transformer (Self-Attention)", domain: 2, group: "genai_foundations", x: 580, y: 230, desc: "Kiến trúc mạng nơ-ron xử lý song song với cơ chế Self-Attention; xương sống cốt lõi của các LLMs như Claude, Llama, Titan." },
-    { id: "fine_tuning", label: "PEFT / LoRA Fine-Tuning", domain: 3, group: "customization", x: 820, y: 230, desc: "Tinh chỉnh tham số mô hình hiệu quả; bắt buộc dùng Provisioned Throughput khi suy luận trên Bedrock." },
-    { id: "lambda", label: "AWS Lambda", domain: 3, group: "automation", x: 1050, y: 185, desc: "Thực thi mã serverless chạy nghiệp vụ API khi được Bedrock Agents kích hoạt." },
-    { id: "rlhf", label: "RLHF Alignment", domain: 3, group: "customization", x: 1050, y: 255, desc: "Học tăng cường từ phản hồi con người, sử dụng reward model để căn chỉnh mô hình hữu ích và an toàn." },
+    { id: "vector_db", label: "Vector DB (OpenSearch)", domain: 2, group: "rag", x: 110, y: 230, desc: "Lưu trữ vector embeddings nhiều chiều, hỗ trợ tìm kiếm ngữ nghĩa tương đồng (Semantic Search) tốc độ cao.", docSubtab: "p1", docKeyword: "Vector", docTitle: "Phần 1: Vector Database" },
+    { id: "inference_params", label: "Inference Params (Temp/Top-P)", domain: 2, group: "genai_foundations", x: 340, y: 230, desc: "Siêu tham số suy luận: Temperature, Top-P, Top-K điều khiển mức độ ngẫu nhiên vs xác định của LLM.", docSubtab: "p1", docKeyword: "Temperature", docTitle: "Phần 1: Siêu tham số suy luận" },
+    { id: "transformer", label: "Transformer (Self-Attention)", domain: 2, group: "genai_foundations", x: 580, y: 230, desc: "Kiến trúc mạng nơ-ron xử lý song song với cơ chế Self-Attention; xương sống cốt lõi của các LLMs như Claude, Llama, Titan.", docSubtab: "p1", docKeyword: "Transformer", docTitle: "Phần 1: Kiến trúc Transformer" },
+    { id: "fine_tuning", label: "PEFT / LoRA Fine-Tuning", domain: 3, group: "customization", x: 820, y: 230, desc: "Tinh chỉnh tham số mô hình hiệu quả; bắt buộc dùng Provisioned Throughput khi suy luận trên Bedrock.", docSubtab: "p1", docKeyword: "LoRA", docTitle: "Phần 1: PEFT / LoRA Fine-Tuning" },
+    { id: "lambda", label: "AWS Lambda", domain: 3, group: "automation", x: 1050, y: 185, desc: "Thực thi mã serverless chạy nghiệp vụ API khi được Bedrock Agents kích hoạt.", docSubtab: "p1", docKeyword: "Lambda", docTitle: "Phần 1: AWS Lambda trong Agents" },
+    { id: "rlhf", label: "RLHF Alignment", domain: 3, group: "customization", x: 1050, y: 255, desc: "Học tăng cường từ phản hồi con người, sử dụng reward model để căn chỉnh mô hình hữu ích và an toàn.", docSubtab: "p1", docKeyword: "RLHF", docTitle: "Phần 1: Căn chỉnh mô hình RLHF" },
 
     // --- ROW 4: SAFETY, DIFFUSION & EVALUATION (y: 310 - 330) ---
-    { id: "prompt_injection", label: "Prompt Injection Defense", domain: 5, group: "safety", x: 110, y: 330, desc: "Phòng thủ lỗ hổng OWASP LLM01: Chặn Direct Jailbreaks và Indirect Prompt Poisoning từ tài liệu RAG." },
-    { id: "diffusion", label: "Diffusion Models", domain: 2, group: "genai_foundations", x: 340, y: 320, desc: "Mô hình sinh ảnh dựa trên quá trình thêm nhiễu và học cách khử nhiễu ngược (Stable Diffusion, Titan Image)." },
-    { id: "bedrock_guardrails", label: "Bedrock Guardrails", domain: 4, group: "safety", x: 580, y: 315, desc: "Hàng rào an toàn cho LLM: Lọc nội dung độc hại, che giấu PII, chặn chủ đề cấm và phát hiện ảo giác." },
-    { id: "model_eval", label: "Bedrock Model Evaluation", domain: 3, group: "evaluation", x: 820, y: 320, desc: "Đánh giá và so sánh chất lượng mô hình bằng benchmark tự động hoặc đánh giá có sự tham gia của con người." },
-    { id: "eval_metrics", label: "BLEU vs ROUGE Metrics", domain: 3, group: "evaluation", x: 1050, y: 330, desc: "BLEU đo độ chuẩn xác (Precision) cho Dịch máy; ROUGE đo độ bao phủ (Recall) cho Tóm tắt văn bản." },
+    { id: "prompt_injection", label: "Prompt Injection Defense", domain: 5, group: "safety", x: 110, y: 330, desc: "Phòng thủ lỗ hổng OWASP LLM01: Chặn Direct Jailbreaks và Indirect Prompt Poisoning từ tài liệu RAG.", docSubtab: "p1", docKeyword: "Prompt Injection", docTitle: "Phần 1: OWASP Prompt Injection" },
+    { id: "diffusion", label: "Diffusion Models", domain: 2, group: "genai_foundations", x: 340, y: 320, desc: "Mô hình sinh ảnh dựa trên quá trình thêm nhiễu và học cách khử nhiễu ngược (Stable Diffusion, Titan Image).", docSubtab: "p1", docKeyword: "Diffusion", docTitle: "Phần 1: Diffusion Models" },
+    { id: "bedrock_guardrails", label: "Bedrock Guardrails", domain: 4, group: "safety", x: 580, y: 315, desc: "Hàng rào an toàn cho LLM: Lọc nội dung độc hại, che giấu PII, chặn chủ đề cấm và phát hiện ảo giác.", docSubtab: "p1", docKeyword: "Bedrock Guardrails", docTitle: "Phần 1: Bedrock Guardrails" },
+    { id: "model_eval", label: "Bedrock Model Evaluation", domain: 3, group: "evaluation", x: 820, y: 320, desc: "Đánh giá và so sánh chất lượng mô hình bằng benchmark tự động hoặc đánh giá có sự tham gia của con người.", docSubtab: "p1", docKeyword: "Model Evaluation", docTitle: "Phần 1: Đánh giá mô hình FM" },
+    { id: "eval_metrics", label: "BLEU vs ROUGE Metrics", domain: 3, group: "evaluation", x: 1050, y: 330, desc: "BLEU đo độ chuẩn xác (Precision) cho Dịch máy; ROUGE đo độ bao phủ (Recall) cho Tóm tắt văn bản.", docSubtab: "p1", docKeyword: "BLEU", docTitle: "Phần 1: BLEU & ROUGE Metrics" },
 
     // --- ROW 5: GUARDRAIL FILTERS & ENTERPRISE CHAT/SEARCH (y: 410 - 430) ---
-    { id: "pii_redaction", label: "PII Masking & Redaction", domain: 4, group: "safety", x: 120, y: 420, desc: "Tự động phát hiện và che giấu (mask) số thẻ tín dụng, CCCD/CMND, email trong prompt và output." },
-    { id: "denied_topics", label: "Denied Topics Policy", domain: 4, group: "safety", x: 350, y: 420, desc: "Định nghĩa quy tắc bằng ngôn ngữ tự nhiên cấm mô hình thảo luận các chủ đề nhạy cảm hoặc ngoài phạm vi." },
-    { id: "grounding_check", label: "Contextual Grounding", domain: 4, group: "safety", x: 580, y: 410, desc: "Kiểm tra mức độ bám sát tài liệu nguồn RAG (Grounding score) để phát hiện và ngăn chặn ảo giác." },
-    { id: "q_business", label: "Amazon Q Business", domain: 3, group: "enterprise", x: 820, y: 420, desc: "Trợ lý hội thoại doanh nghiệp kết nối hơn 40 kho dữ liệu nội bộ và tự động kế thừa phân quyền ACLs người dùng." },
-    { id: "q_developer", label: "Amazon Q Developer", domain: 3, group: "enterprise", x: 1050, y: 420, desc: "Trợ lý lập trình AI hỗ trợ viết code, quét lỗ hổng bảo mật và tự động nâng cấp mã nguồn trong IDE." },
+    { id: "pii_redaction", label: "PII Masking & Redaction", domain: 4, group: "safety", x: 120, y: 420, desc: "Tự động phát hiện và che giấu (mask) số thẻ tín dụng, CCCD/CMND, email trong prompt và output.", docSubtab: "p1", docKeyword: "PII Redaction", docTitle: "Phần 1: PII Masking & Redaction" },
+    { id: "denied_topics", label: "Denied Topics Policy", domain: 4, group: "safety", x: 350, y: 420, desc: "Định nghĩa quy tắc bằng ngôn ngữ tự nhiên cấm mô hình thảo luận các chủ đề nhạy cảm hoặc ngoài phạm vi.", docSubtab: "p1", docKeyword: "Denied Topics", docTitle: "Phần 1: Denied Topics Policy" },
+    { id: "grounding_check", label: "Contextual Grounding", domain: 4, group: "safety", x: 580, y: 410, desc: "Kiểm tra mức độ bám sát tài liệu nguồn RAG (Grounding score) để phát hiện và ngăn chặn ảo giác.", docSubtab: "p1", docKeyword: "Contextual Grounding", docTitle: "Phần 1: Contextual Grounding Check" },
+    { id: "q_business", label: "Amazon Q Business", domain: 3, group: "enterprise", x: 820, y: 420, desc: "Trợ lý hội thoại doanh nghiệp kết nối hơn 40 kho dữ liệu nội bộ và tự động kế thừa phân quyền ACLs người dùng.", docSubtab: "p1", docKeyword: "Q Business", docTitle: "Phần 1: Amazon Q Business" },
+    { id: "q_developer", label: "Amazon Q Developer", domain: 3, group: "enterprise", x: 1050, y: 420, desc: "Trợ lý lập trình AI hỗ trợ viết code, quét lỗ hổng bảo mật và tự động nâng cấp mã nguồn trong IDE.", docSubtab: "p1", docKeyword: "Q Developer", docTitle: "Phần 1: Amazon Q Developer" },
 
     // --- ROW 6: ML DATA PREP, JUMPSTART & AUDIT (y: 510 - 530) ---
-    { id: "data_wrangler", label: "SageMaker Data Wrangler", domain: 1, group: "ml", x: 120, y: 520, desc: "Công cụ trực quan chuẩn bị dữ liệu với hơn 300 phép biến đổi tích hợp cho bảng và hình ảnh." },
-    { id: "feature_store", label: "SageMaker Feature Store", domain: 1, group: "ml", x: 350, y: 520, desc: "Kho lưu trữ tập trung quản lý và tái sử dụng các đặc trưng (features) cho cả real-time inference và batch training." },
-    { id: "jumpstart", label: "SageMaker JumpStart", domain: 1, group: "ml", x: 580, y: 510, desc: "Thư viện mô hình pre-trained nguồn mở triển khai trên máy chủ EC2 ML chuyên dụng nằm trọn trong VPC khách hàng." },
-    { id: "kendra", label: "Amazon Kendra", domain: 3, group: "search", x: 820, y: 510, desc: "Công cụ tìm kiếm thông minh cho doanh nghiệp, trả về đoạn trích tài liệu chính xác nhất kèm liên kết nguồn gốc." },
-    { id: "audit_manager", label: "AWS Audit Manager", domain: 5, group: "compliance", x: 1050, y: 510, desc: "Tự động thu thập bằng chứng kỹ thuật liên tục trong tài khoản AWS để phục vụ kiểm toán các khung tuân thủ AI." },
+    { id: "data_wrangler", label: "SageMaker Data Wrangler", domain: 1, group: "ml", x: 120, y: 520, desc: "Công cụ trực quan chuẩn bị dữ liệu với hơn 300 phép biến đổi tích hợp cho bảng và hình ảnh.", docSubtab: "p1", docKeyword: "Data Wrangler", docTitle: "Phần 1: SageMaker Data Wrangler" },
+    { id: "feature_store", label: "SageMaker Feature Store", domain: 1, group: "ml", x: 350, y: 520, desc: "Kho lưu trữ tập trung quản lý và tái sử dụng các đặc trưng (features) cho cả real-time inference và batch training.", docSubtab: "p1", docKeyword: "Feature Store", docTitle: "Phần 1: SageMaker Feature Store" },
+    { id: "jumpstart", label: "SageMaker JumpStart", domain: 1, group: "ml", x: 580, y: 510, desc: "Thư viện mô hình pre-trained nguồn mở triển khai trên máy chủ EC2 ML chuyên dụng nằm trọn trong VPC khách hàng.", docSubtab: "p1", docKeyword: "JumpStart", docTitle: "Phần 1: SageMaker JumpStart" },
+    { id: "kendra", label: "Amazon Kendra", domain: 3, group: "search", x: 820, y: 510, desc: "Công cụ tìm kiếm thông minh cho doanh nghiệp, trả về đoạn trích tài liệu chính xác nhất kèm liên kết nguồn gốc.", docSubtab: "p1", docKeyword: "Kendra", docTitle: "Phần 1: Amazon Kendra" },
+    { id: "audit_manager", label: "AWS Audit Manager", domain: 5, group: "compliance", x: 1050, y: 510, desc: "Tự động thu thập bằng chứng kỹ thuật liên tục trong tài khoản AWS để phục vụ kiểm toán các khung tuân thủ AI.", docSubtab: "p1", docKeyword: "Audit Manager", docTitle: "Phần 1: AWS Audit Manager" },
 
     // --- ROW 7: SAGEMAKER CORE, AUTOPILOT & COMPLIANCE (y: 610 - 630) ---
-    { id: "ground_truth", label: "SageMaker Ground Truth", domain: 1, group: "ml", x: 120, y: 620, desc: "Dịch vụ gán nhãn dữ liệu chất lượng cao kết hợp học chủ động (active learning) và lực lượng lao động con người." },
-    { id: "sagemaker", label: "Amazon SageMaker AI", domain: 1, group: "ml", x: 350, y: 620, desc: "Nền tảng MLOps toàn diện để chuẩn bị dữ liệu, xây dựng, huấn luyện, tối ưu và triển khai các mô hình học máy." },
-    { id: "autopilot", label: "SageMaker Autopilot", domain: 1, group: "ml", x: 580, y: 610, desc: "Nền tảng AutoML tự động khám phá dữ liệu, lựa chọn thuật toán tối ưu và tinh chỉnh siêu tham số." },
-    { id: "config", label: "AWS Config", domain: 5, group: "compliance", x: 820, y: 610, desc: "Theo dõi lịch sử thay đổi cấu hình tài nguyên và cảnh báo sai lệch tuân thủ so với các quy tắc đặt ra." },
-    { id: "artifact", label: "AWS Artifact", domain: 5, group: "compliance", x: 1050, y: 600, desc: "Cổng thông tin tự phục vụ cho phép tải về các báo cáo kiểm toán tuân thủ (SOC 2, ISO, PCI DSS) của AWS." },
+    { id: "ground_truth", label: "SageMaker Ground Truth", domain: 1, group: "ml", x: 120, y: 620, desc: "Dịch vụ gán nhãn dữ liệu chất lượng cao kết hợp học chủ động (active learning) và lực lượng lao động con người.", docSubtab: "p1", docKeyword: "Ground Truth", docTitle: "Phần 1: SageMaker Ground Truth" },
+    { id: "sagemaker", label: "Amazon SageMaker AI", domain: 1, group: "ml", x: 350, y: 620, desc: "Nền tảng MLOps toàn diện để chuẩn bị dữ liệu, xây dựng, huấn luyện, tối ưu và triển khai các mô hình học máy.", docSubtab: "p1", docKeyword: "SageMaker", docTitle: "Phần 1: Amazon SageMaker AI" },
+    { id: "autopilot", label: "SageMaker Autopilot", domain: 1, group: "ml", x: 580, y: 610, desc: "Nền tảng AutoML tự động khám phá dữ liệu, lựa chọn thuật toán tối ưu và tinh chỉnh siêu tham số.", docSubtab: "p1", docKeyword: "Autopilot", docTitle: "Phần 1: SageMaker Autopilot" },
+    { id: "config", label: "AWS Config", domain: 5, group: "compliance", x: 820, y: 610, desc: "Theo dõi lịch sử thay đổi cấu hình tài nguyên và cảnh báo sai lệch tuân thủ so với các quy tắc đặt ra.", docSubtab: "p1", docKeyword: "Config", docTitle: "Phần 1: AWS Config" },
+    { id: "artifact", label: "AWS Artifact", domain: 5, group: "compliance", x: 1050, y: 600, desc: "Cổng thông tin tự phục vụ cho phép tải về các báo cáo kiểm toán tuân thủ (SOC 2, ISO, PCI DSS) của AWS.", docSubtab: "p1", docKeyword: "Artifact", docTitle: "Phần 1: AWS Artifact" },
 
     // --- ROW 8: MODEL REGISTRY, CLARIFY, A2I & MODEL CARDS (y: 700 - 720) ---
-    { id: "model_registry", label: "SageMaker Model Registry", domain: 1, group: "ml", x: 130, y: 710, desc: "Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata nguồn gốc trước khi triển khai lên Production." },
-    { id: "clarify", label: "SageMaker Clarify", domain: 4, group: "responsible", x: 360, y: 720, desc: "Đo lường thiên kiến trước/sau huấn luyện (DPPL, Disparate Impact) và giải thích quyết định bằng SHAP." },
-    { id: "a2i", label: "Amazon Augmented AI (A2I)", domain: 4, group: "responsible", x: 590, y: 710, desc: "Quy trình Human-in-the-Loop đưa con người vào đánh giá lại các dự đoán ML có độ tin cậy thấp." },
-    { id: "model_cards", label: "SageMaker Model Cards", domain: 4, group: "governance", x: 820, y: 710, desc: "Tài liệu quản trị chuẩn mực lưu trữ thông tin huấn luyện, tham số và kết quả đánh giá cho Custom Models." },
-    { id: "service_cards", label: "AWS AI Service Cards", domain: 4, group: "governance", x: 1050, y: 700, desc: "Tài liệu minh bạch do AWS công bố nêu rõ mục đích sử dụng, hạn chế kỹ thuật và nguyên tắc thiết kế dịch vụ AI." },
-    { id: "cloudtrail", label: "AWS CloudTrail", domain: 5, group: "compliance", x: 1050, y: 770, desc: "Ghi log toàn bộ lịch sử các lệnh gọi API trong tài khoản phục vụ truy vết điều tra an ninh." },
+    { id: "model_registry", label: "SageMaker Model Registry", domain: 1, group: "ml", x: 130, y: 710, desc: "Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata nguồn gốc trước khi triển khai lên Production.", docSubtab: "p1", docKeyword: "Model Registry", docTitle: "Phần 1: SageMaker Model Registry" },
+    { id: "clarify", label: "SageMaker Clarify", domain: 4, group: "responsible", x: 360, y: 720, desc: "Đo lường thiên kiến trước/sau huấn luyện (DPPL, Disparate Impact) và giải thích quyết định bằng SHAP.", docSubtab: "p1", docKeyword: "Clarify", docTitle: "Phần 1: SageMaker Clarify" },
+    { id: "a2i", label: "Amazon Augmented AI (A2I)", domain: 4, group: "responsible", x: 590, y: 710, desc: "Quy trình Human-in-the-Loop đưa con người vào đánh giá lại các dự đoán ML có độ tin cậy thấp.", docSubtab: "p1", docKeyword: "Augmented AI", docTitle: "Phần 1: Amazon Augmented AI (A2I)" },
+    { id: "model_cards", label: "SageMaker Model Cards", domain: 4, group: "governance", x: 820, y: 710, desc: "Tài liệu quản trị chuẩn mực lưu trữ thông tin huấn luyện, tham số và kết quả đánh giá cho Custom Models.", docSubtab: "p1", docKeyword: "Model Cards", docTitle: "Phần 1: SageMaker Model Cards" },
+    { id: "service_cards", label: "AWS AI Service Cards", domain: 4, group: "governance", x: 1050, y: 700, desc: "Tài liệu minh bạch do AWS công bố nêu rõ mục đích sử dụng, hạn chế kỹ thuật và nguyên tắc thiết kế dịch vụ AI.", docSubtab: "p1", docKeyword: "Service Cards", docTitle: "Phần 1: AWS AI Service Cards" },
+    { id: "cloudtrail", label: "AWS CloudTrail", domain: 5, group: "compliance", x: 1050, y: 770, desc: "Ghi log toàn bộ lịch sử các lệnh gọi API trong tài khoản phục vụ truy vết điều tra an ninh.", docSubtab: "p1", docKeyword: "CloudTrail", docTitle: "Phần 1: AWS CloudTrail" },
 
     // --- ROW 9: BIAS METRICS & SHAP EXPLAINABILITY (y: 810) ---
-    { id: "bias_detection", label: "Bias Metrics (DPPL / Impact)", domain: 4, group: "responsible", x: 230, y: 810, desc: "Lượng hóa sự mất cân bằng nhãn trước huấn luyện (DPPL) và tỷ lệ chấp thuận chênh lệch sau huấn luyện (Disparate Impact)." },
-    { id: "shap", label: "SHAP Explainability", domain: 4, group: "responsible", x: 490, y: 810, desc: "Giải thích cục bộ (từng dự đoán) và toàn cục (toàn bộ mô hình) thông qua giá trị phân bổ đặc trưng SHAP." },
+    { id: "bias_detection", label: "Bias Metrics (DPPL / Impact)", domain: 4, group: "responsible", x: 230, y: 810, desc: "Lượng hóa sự mất cân bằng nhãn trước huấn luyện (DPPL) và tỷ lệ chấp thuận chênh lệch sau huấn luyện (Disparate Impact).", docSubtab: "p1", docKeyword: "DPPL", docTitle: "Phần 1: Pre/Post-training Bias" },
+    { id: "shap", label: "SHAP Explainability", domain: 4, group: "responsible", x: 490, y: 810, desc: "Giải thích cục bộ (từng dự đoán) và toàn cục (toàn bộ mô hình) thông qua giá trị phân bổ đặc trưng SHAP.", docSubtab: "p1", docKeyword: "SHAP", docTitle: "Phần 1: SHAP Explainability" },
 
     // --- ROW 10: AWS CORE MANAGED AI SERVICES (y: 910) ---
-    { id: "rekognition", label: "Amazon Rekognition", domain: 1, group: "core_ai", x: 110, y: 910, desc: "Computer Vision: Nhận diện vật thể, khuôn mặt, chữ trong ảnh và kiểm duyệt nội dung nhạy cảm." },
-    { id: "textract", label: "Amazon Textract", domain: 1, group: "core_ai", x: 310, y: 910, desc: "OCR thông minh trích xuất văn bản có cấu trúc, bảng biểu (tables) và biểu mẫu (forms) từ tài liệu scan." },
-    { id: "comprehend", label: "Amazon Comprehend", domain: 1, group: "core_ai", x: 510, y: 910, desc: "Xử lý ngôn ngữ tự nhiên (NLP): Phân tích cảm xúc (sentiment), trích xuất thực thể và phát hiện thông tin PII." },
-    { id: "translate", label: "Amazon Translate", domain: 1, group: "core_ai", x: 710, y: 910, desc: "Dịch thuật máy móc thần kinh (Neural Machine Translation) đa ngôn ngữ chất lượng cao theo thời gian thực." },
-    { id: "transcribe", label: "Amazon Transcribe", domain: 1, group: "core_ai", x: 910, y: 910, desc: "Chuyển giọng nói thành văn bản (Speech-to-Text), phân biệt người nói (diarization) và phân tích cuộc gọi." },
-    { id: "polly", label: "Amazon Polly", domain: 1, group: "core_ai", x: 1090, y: 910, desc: "Chuyển văn bản thành giọng nói tự nhiên (Text-to-Speech) với giọng đọc sống động hỗ trợ SSML." },
+    { id: "rekognition", label: "Amazon Rekognition", domain: 1, group: "core_ai", x: 110, y: 910, desc: "Computer Vision: Nhận diện vật thể, khuôn mặt, chữ trong ảnh và kiểm duyệt nội dung nhạy cảm.", docSubtab: "p1", docKeyword: "Rekognition", docTitle: "Phần 1: Amazon Rekognition" },
+    { id: "textract", label: "Amazon Textract", domain: 1, group: "core_ai", x: 310, y: 910, desc: "OCR thông minh trích xuất văn bản có cấu trúc, bảng biểu (tables) và biểu mẫu (forms) từ tài liệu scan.", docSubtab: "p1", docKeyword: "Textract", docTitle: "Phần 1: Amazon Textract" },
+    { id: "comprehend", label: "Amazon Comprehend", domain: 1, group: "core_ai", x: 510, y: 910, desc: "Xử lý ngôn ngữ tự nhiên (NLP): Phân tích cảm xúc (sentiment), trích xuất thực thể và phát hiện thông tin PII.", docSubtab: "p1", docKeyword: "Comprehend", docTitle: "Phần 1: Amazon Comprehend" },
+    { id: "translate", label: "Amazon Translate", domain: 1, group: "core_ai", x: 710, y: 910, desc: "Dịch thuật máy móc thần kinh (Neural Machine Translation) đa ngôn ngữ chất lượng cao theo thời gian thực.", docSubtab: "p1", docKeyword: "Translate", docTitle: "Phần 1: Amazon Translate" },
+    { id: "transcribe", label: "Amazon Transcribe", domain: 1, group: "core_ai", x: 910, y: 910, desc: "Chuyển giọng nói thành văn bản (Speech-to-Text), phân biệt người nói (diarization) và phân tích cuộc gọi.", docSubtab: "p1", docKeyword: "Transcribe", docTitle: "Phần 1: Amazon Transcribe" },
+    { id: "polly", label: "Amazon Polly", domain: 1, group: "core_ai", x: 1090, y: 910, desc: "Chuyển văn bản thành giọng nói tự nhiên (Text-to-Speech) với giọng đọc sống động hỗ trợ SSML.", docSubtab: "p1", docKeyword: "Polly", docTitle: "Phần 1: Amazon Polly" },
 
     // --- ROW 11: SPECIALIZED AI MANAGED SERVICES (y: 1010) ---
-    { id: "lex", label: "Amazon Lex", domain: 1, group: "specialized_ai", x: 180, y: 1010, desc: "Xây dựng giao diện đàm thoại (Chatbot & Voicebot) theo kịch bản quy chuẩn dựa trên Intents, Utterances và Slots." },
-    { id: "personalize", label: "Amazon Personalize", domain: 1, group: "specialized_ai", x: 460, y: 1010, desc: "Công cụ gợi ý cá nhân hóa (recommendations) theo thời gian thực dựa trên lịch sử tương tác người dùng." },
-    { id: "forecast", label: "Amazon Forecast", domain: 1, group: "specialized_ai", x: 740, y: 1010, desc: "Dự báo chuỗi thời gian (time-series forecasting) kết hợp dữ liệu quá khứ và biến số ngoại cảnh (thời tiết, ngày lễ)." },
-    { id: "fraud_detector", label: "Amazon Fraud Detector", domain: 1, group: "specialized_ai", x: 1020, y: 1010, desc: "Tự động phát hiện các giao dịch gian lận trực tuyến và tính điểm rủi ro tài khoản giả mạo." }
+    { id: "lex", label: "Amazon Lex", domain: 1, group: "specialized_ai", x: 180, y: 1010, desc: "Xây dựng giao diện đàm thoại (Chatbot & Voicebot) theo kịch bản quy chuẩn dựa trên Intents, Utterances và Slots.", docSubtab: "p1", docKeyword: "Lex", docTitle: "Phần 1: Amazon Lex" },
+    { id: "personalize", label: "Amazon Personalize", domain: 1, group: "specialized_ai", x: 460, y: 1010, desc: "Công cụ gợi ý cá nhân hóa (recommendations) theo thời gian thực dựa trên lịch sử tương tác người dùng.", docSubtab: "p1", docKeyword: "Personalize", docTitle: "Phần 1: Amazon Personalize" },
+    { id: "forecast", label: "Amazon Forecast", domain: 1, group: "specialized_ai", x: 740, y: 1010, desc: "Dự báo chuỗi thời gian (time-series forecasting) kết hợp dữ liệu quá khứ và biến số ngoại cảnh (thời tiết, ngày lễ).", docSubtab: "p1", docKeyword: "Forecast", docTitle: "Phần 1: Amazon Forecast" },
+    { id: "fraud_detector", label: "Amazon Fraud Detector", domain: 1, group: "specialized_ai", x: 1020, y: 1010, desc: "Tự động phát hiện các giao dịch gian lận trực tuyến và tính điểm rủi ro tài khoản giả mạo.", docSubtab: "p1", docKeyword: "Fraud Detector", docTitle: "Phần 1: Amazon Fraud Detector" }
   ],
   edges: [
     // Bedrock Core & Integrations
@@ -978,11 +978,97 @@ const htmlContent = `<!DOCTYPE html>
     .graph-inspector.open {
       display: block;
     }
-    .inspector-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-    .inspector-desc { font-size: 0.875rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem; }
+    .inspector-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .inspector-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0; line-height: 1.3; flex: 1 1 auto; }
+    .inspect-doc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.6rem;
+      background: rgba(0, 164, 228, 0.15);
+      border: 1px solid rgba(0, 164, 228, 0.45);
+      border-radius: 7px;
+      color: #38bdf8;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .inspect-doc-btn:hover {
+      background: #00a4e4;
+      border-color: #00a4e4;
+      color: #ffffff;
+      box-shadow: 0 0 14px rgba(0, 164, 228, 0.5);
+      transform: translateY(-1px);
+    }
+    .inspect-doc-btn svg {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .inspect-doc-btn:hover svg {
+      transform: translate(1px, -1px);
+    }
+    .inspect-doc-callout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(14, 165, 233, 0.08);
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      margin-bottom: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .inspect-doc-callout:hover {
+      background: rgba(14, 165, 233, 0.2);
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+    .inspector-desc { font-size: 0.875rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.75rem; }
     .inspector-links-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #38bdf8; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
     .inspector-links { list-style: none; font-size: 0.825rem; color: #94a3b8; }
     .inspector-links li { margin-bottom: 0.35rem; }
+
+    /* Target Element Pulse Highlight when navigated from Graph */
+    @keyframes targetGlowPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 164, 228, 0.7);
+        outline: 2px solid #00a4e4;
+        background-color: rgba(0, 164, 228, 0.25);
+      }
+      50% {
+        box-shadow: 0 0 25px 8px rgba(0, 164, 228, 0.6);
+        outline: 2.5px solid #38bdf8;
+        background-color: rgba(0, 164, 228, 0.35);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 164, 228, 0);
+        outline: 2px solid transparent;
+        background-color: transparent;
+      }
+    }
+    .doc-target-highlight {
+      animation: targetGlowPulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+      border-radius: 8px !important;
+      outline-offset: 3px !important;
+      transition: all 0.3s ease;
+    }
+    .matrix-table tr.doc-target-highlight td {
+      background-color: rgba(0, 164, 228, 0.25) !important;
+      color: #ffffff !important;
+    }
 
     /* Responsive Table Container */
     .table-container {
@@ -1753,14 +1839,26 @@ const htmlContent = `<!DOCTYPE html>
         box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 164, 228, 0.25) !important;
         z-index: 1000 !important;
       }
+      .inspector-title-row {
+        gap: 0.4rem !important;
+        margin-bottom: 0.35rem !important;
+      }
       .inspector-title {
         font-size: 1.05rem !important;
-        margin-bottom: 0.35rem !important;
+        margin-bottom: 0 !important;
+      }
+      .inspect-doc-btn {
+        padding: 0.22rem 0.5rem !important;
+        font-size: 0.72rem !important;
+      }
+      .inspect-doc-callout {
+        padding: 0.35rem 0.6rem !important;
+        margin-bottom: 0.55rem !important;
       }
       .inspector-desc {
         font-size: 0.8rem !important;
         line-height: 1.45 !important;
-        margin-bottom: 0.65rem !important;
+        margin-bottom: 0.5rem !important;
       }
       .inspector-links-title {
         font-size: 0.72rem !important;
@@ -1953,8 +2051,25 @@ const htmlContent = `<!DOCTYPE html>
             <span id="inspect-domain" class="q-domain-tag">Domain 3</span>
             <button onclick="closeInspector()" style="background:rgba(255,255,255,0.08); border:none; color:#cbd5e1; cursor:pointer; width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:background 0.2s ease;">✕</button>
           </div>
-          <div id="inspect-title" class="inspector-title">Amazon Bedrock</div>
+          <div class="inspector-title-row">
+            <h3 id="inspect-title" class="inspector-title">Amazon Bedrock</h3>
+            <button id="inspect-doc-btn" class="inspect-doc-btn" onclick="goToTopicFromInspector()" title="Mở mục này trong Ôn tập theo chủ đề">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Xem tài liệu</span>
+            </button>
+          </div>
           <div id="inspect-desc" class="inspector-desc">Mô tả</div>
+          <div id="inspect-doc-callout" class="inspect-doc-callout" onclick="goToTopicFromInspector()" title="Bấm để chuyển tới màn Ôn tập theo chủ đề">
+            <div style="display:flex; align-items:center; gap:0.5rem; overflow:hidden;">
+              <span style="font-size:0.95rem; flex-shrink:0;">📖</span>
+              <span id="inspect-doc-text" style="font-size:0.78rem; font-weight:600; color:#38bdf8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Xem trong Ôn tập: Domain 3 • Lý thuyết</span>
+            </div>
+            <span style="font-size:0.85rem; color:#38bdf8; font-weight:700; flex-shrink:0; margin-left:0.5rem;">&rarr;</span>
+          </div>
           <div class="inspector-links-title">Các liên kết thi cốt lõi:</div>
           <ul id="inspect-links" class="inspector-links"></ul>
         </div>
@@ -3009,9 +3124,12 @@ const htmlContent = `<!DOCTYPE html>
       }
     }
 
+    let currentInspectedNodeId = null;
+
     function selectGraphNode(nodeId) {
       const node = GRAPH_DATA.nodes.find(n => n.id === nodeId);
       if (!node) return;
+      currentInspectedNodeId = nodeId;
 
       // Highlight active edges
       document.querySelectorAll('.graph-edge').forEach(edge => {
@@ -3040,6 +3158,15 @@ const htmlContent = `<!DOCTYPE html>
         document.getElementById('inspect-title').textContent = node.label;
         document.getElementById('inspect-desc').textContent = node.desc;
 
+        const docBtn = document.getElementById('inspect-doc-btn');
+        if (docBtn) {
+          docBtn.setAttribute('title', 'Xem chi tiết trong: Domain ' + node.domain + ' • ' + (node.docTitle || 'Tài liệu'));
+        }
+        const docText = document.getElementById('inspect-doc-text');
+        if (docText) {
+          docText.textContent = 'Xem trong Ôn tập: Domain ' + node.domain + ' • ' + (node.docTitle || 'Phần 1: Lý thuyết');
+        }
+
         // Find related links
         const relatedEdges = GRAPH_DATA.edges.filter(e => e.from === nodeId || e.to === nodeId);
         const linksUl = document.getElementById('inspect-links');
@@ -3057,6 +3184,116 @@ const htmlContent = `<!DOCTYPE html>
         inspector.classList.add('open');
         showToast('🧭 ' + node.label);
       }
+    }
+
+    function goToTopicFromInspector(nodeId) {
+      const id = nodeId || currentInspectedNodeId;
+      if (!id) return;
+      const node = GRAPH_DATA.nodes.find(n => n.id === id);
+      if (!node) return;
+
+      // 1. Switch to Topics tab
+      switchTab('topics');
+
+      // 2. Switch to Domain
+      switchTopicDomain(node.domain);
+
+      // 3. Switch subtab
+      const targetSubtab = node.docSubtab || 'p1';
+      switchTopicSubtab(targetSubtab);
+
+      // 4. Close inspector drawer
+      closeInspector();
+
+      // 5. Scroll and highlight target element
+      setTimeout(() => {
+        const keyword = (node.docKeyword || node.label.replace(/\\(.*?\\)/g, '')).trim();
+        const found = findDocTargetElement(keyword, targetSubtab);
+        if (found) {
+          scrollToElementWithStickyOffset(found);
+          found.classList.remove('doc-target-highlight');
+          void found.offsetWidth; // Force reflow
+          found.classList.add('doc-target-highlight');
+          setTimeout(() => {
+            found.classList.remove('doc-target-highlight');
+          }, 3200);
+        } else {
+          scrollToTopicSubtab(targetSubtab);
+        }
+        showToast('📖 Đã mở: ' + (node.docTitle || ('Domain ' + node.domain + ' • ' + node.label)));
+      }, 180);
+    }
+
+    function findDocTargetElement(keyword, subtab) {
+      const container = document.getElementById('topic-content-container');
+      if (!container) return null;
+      const lower = keyword.toLowerCase();
+
+      // If subtab is 'p2', search table rows
+      if (subtab === 'p2') {
+        const rows = container.querySelectorAll('#topic-sec-p2 tbody tr');
+        for (const r of rows) {
+          if (r.textContent.toLowerCase().includes(lower)) return r;
+        }
+      }
+
+      // If subtab is 'p3', search question cards
+      if (subtab === 'p3') {
+        const cards = container.querySelectorAll('#topic-sec-p3 .q-card');
+        for (const c of cards) {
+          if (c.textContent.toLowerCase().includes(lower)) return c;
+        }
+      }
+
+      // If subtab is 'p1', search headings, table rows, strongs, p, li in p1
+      const secP1 = document.getElementById('topic-sec-p1');
+      if (secP1) {
+        // Priority 1: Headings (h2, h3, h4, h5)
+        const headings = secP1.querySelectorAll('h2, h3, h4, h5');
+        for (const h of headings) {
+          if (h.textContent.toLowerCase().includes(lower)) return h;
+        }
+        // Priority 2: Table rows
+        const tableRows = secP1.querySelectorAll('tbody tr');
+        for (const tr of tableRows) {
+          if (tr.textContent.toLowerCase().includes(lower)) return tr;
+        }
+        // Priority 3: strong / b
+        const strongs = secP1.querySelectorAll('strong, b');
+        for (const s of strongs) {
+          if (s.textContent.toLowerCase().includes(lower)) {
+            return s.closest('li') || s.closest('p') || s;
+          }
+        }
+        // Priority 4: paragraph or list item
+        const blocks = secP1.querySelectorAll('p, li');
+        for (const b of blocks) {
+          if (b.textContent.toLowerCase().includes(lower)) return b;
+        }
+      }
+
+      // Fallback: search anywhere in container
+      const allEls = container.querySelectorAll('h3, h4, tbody tr, strong, p, li');
+      for (const el of allEls) {
+        if (el.textContent.toLowerCase().includes(lower)) {
+          return el.closest('tr') || el.closest('li') || el.closest('p') || el;
+        }
+      }
+
+      return document.getElementById('topic-sec-' + subtab);
+    }
+
+    function scrollToElementWithStickyOffset(targetEl) {
+      const headerEl = document.querySelector('.app-header');
+      const subtabsEl = document.getElementById('topic-subtabs');
+      const isMobile = window.innerWidth <= 768;
+      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 40 : 96);
+      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 68 : 45);
+      const totalStickyH = headerH + subtabsH + 18;
+
+      const rect = targetEl.getBoundingClientRect();
+      const targetY = rect.top + window.pageYOffset - totalStickyH;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
     }
 
     function closeInspector() {
