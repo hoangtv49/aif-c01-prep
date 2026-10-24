@@ -94,6 +94,13 @@
       border-radius: 10px;
       border: 1px solid var(--border);
       gap: 0.25rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
     }
     .tab-btn {
       background: transparent;
@@ -109,6 +116,8 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     .tab-btn:hover {
       color: var(--text);
@@ -634,14 +643,27 @@
     .inspector-links { list-style: none; font-size: 0.8rem; color: #94a3b8; }
     .inspector-links li { margin-bottom: 0.25rem; }
 
-    /* Decision Matrix Table */
+    /* Responsive Table Container */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin: 1.25rem 0;
+      background: var(--bg-card);
+    }
+    .table-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: #243047;
+      border-radius: 9999px;
+    }
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--bg-card);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+      min-width: 620px;
     }
     .matrix-table th {
       background: #0d1522;
@@ -650,11 +672,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       text-align: left;
-      padding: 1rem 1.25rem;
+      padding: 0.9rem 1.15rem;
       border-bottom: 1px solid var(--border);
     }
     .matrix-table td {
-      padding: 1rem 1.25rem;
+      padding: 0.9rem 1.15rem;
       font-size: 0.875rem;
       border-bottom: 1px solid var(--border);
       color: #e2e8f0;
@@ -861,6 +883,10 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
+      display: block;
+      overflow-x: auto;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
     }
     .theory-content th {
       background: #111a2e;
@@ -902,13 +928,148 @@
       font-size: 0.85rem;
     }
 
-    /* Responsive */
+    /* Comprehensive Mobile Responsive Styles */
     @media (max-width: 768px) {
-      .header-inner { flex-direction: column; align-items: flex-start; }
-      .nav-tabs { width: 100%; overflow-x: auto; }
-      .quiz-toolbar { flex-direction: column; align-items: stretch; }
-      .search-box { width: 100%; }
-      .graph-inspector { width: calc(100% - 4rem); left: 2rem; right: 2rem; }
+      .header-inner {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .brand {
+        justify-content: flex-start;
+      }
+      .brand-title {
+        font-size: 1.1rem;
+      }
+      .brand-subtitle {
+        font-size: 0.75rem;
+      }
+      .nav-tabs {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.25rem;
+        gap: 0.2rem;
+      }
+      .tab-btn {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.8rem;
+      }
+      .stats-pill {
+        width: 100%;
+        justify-content: space-between;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.775rem;
+      }
+      .main-content {
+        padding: 1rem 0.85rem 4rem;
+      }
+      .topic-domain-nav {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+      .topic-domain-btn {
+        padding: 0.85rem 1rem;
+      }
+      .topic-domain-header {
+        padding: 1.15rem 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .topic-domain-title {
+        font-size: 1.2rem;
+      }
+      .topic-anchor-bar {
+        top: 60px;
+        margin-bottom: 1.25rem;
+        padding: 0.4rem;
+      }
+      .topic-anchor-btn {
+        font-size: 0.775rem;
+        padding: 0.4rem 0.75rem;
+      }
+      .topic-section-card {
+        padding: 1.25rem 0.85rem;
+        margin-bottom: 1.5rem;
+      }
+      .topic-sec-title {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+      }
+      .quiz-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.85rem 1rem;
+        gap: 0.85rem;
+      }
+      .filter-group {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        padding-bottom: 0.35rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filter-group::-webkit-scrollbar { display: none; }
+      .filter-chip {
+        flex-shrink: 0;
+        font-size: 0.775rem;
+        padding: 0.35rem 0.65rem;
+      }
+      .search-box {
+        width: 100% !important;
+      }
+      .mode-switch-group {
+        width: 100%;
+      }
+      .mode-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.5rem 0.35rem;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+      .q-card {
+        padding: 1.15rem 0.85rem;
+      }
+      .q-stem {
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+      .option-item {
+        padding: 0.75rem 0.85rem;
+        gap: 0.65rem;
+      }
+      .opt-key {
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+      }
+      .opt-text {
+        font-size: 0.875rem;
+      }
+      .explanation-drawer {
+        padding: 1rem 0.85rem;
+      }
+      .graph-svg-wrapper {
+        height: 480px;
+      }
+      .graph-inspector {
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        width: auto;
+        max-height: 55vh;
+        overflow-y: auto;
+      }
+      .quiz-toast {
+        max-width: 90vw;
+        font-size: 0.775rem;
+        padding: 0.5rem 1rem;
+        white-space: normal;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -1111,18 +1272,20 @@
           </div>
         </div>
         
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th style="width: 48%;">Yêu cầu tình huống trong đề thi</th>
-              <th style="width: 26%;">Dịch vụ AWS Chính xác</th>
-              <th style="width: 26%;">Dịch vụ Bẫy (Không chọn)</th>
-            </tr>
-          </thead>
-          <tbody id="matrix-tbody">
-            <!-- Rendered via JS -->
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 48%; min-width: 260px;">Yêu cầu tình huống trong đề thi</th>
+                <th style="width: 26%; min-width: 170px;">Dịch vụ AWS Chính xác</th>
+                <th style="width: 26%; min-width: 190px;">Dịch vụ Bẫy (Không chọn)</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -1149,19 +1312,21 @@
           <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (16)</button>
         </div>
         
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th style="width: 20%;">Thuật ngữ (Term)</th>
-              <th style="width: 36%;">Định nghĩa tiếng Anh (Definition)</th>
-              <th style="width: 22%;">Exam Trigger Keywords</th>
-              <th style="width: 22%;">Chú giải thực tế (Tiếng Việt)</th>
-            </tr>
-          </thead>
-          <tbody id="ste-tbody">
-            <!-- Rendered via JS -->
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 20%; min-width: 150px;">Thuật ngữ (Term)</th>
+                <th style="width: 36%; min-width: 250px;">Định nghĩa tiếng Anh (Definition)</th>
+                <th style="width: 22%; min-width: 170px;">Exam Trigger Keywords</th>
+                <th style="width: 22%; min-width: 180px;">Chú giải thực tế (Tiếng Việt)</th>
+              </tr>
+            </thead>
+            <tbody id="ste-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -1288,19 +1453,21 @@
               Định nghĩa tiếng Anh kỹ thuật đơn giản kèm từ khóa kích hoạt câu hỏi trong đề thi.
             </p>
           </div>
-          <table class="matrix-table">
-            <thead>
-              <tr>
-                <th style="width: 20%;">Thuật ngữ (Term)</th>
-                <th style="width: 36%;">Định nghĩa tiếng Anh (Definition)</th>
-                <th style="width: 22%;">Exam Trigger Keywords</th>
-                <th style="width: 22%;">Chú giải thực tế (Tiếng Việt)</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${steRows}
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 20%; min-width: 150px;">Thuật ngữ (Term)</th>
+                  <th style="width: 36%; min-width: 250px;">Định nghĩa tiếng Anh (Definition)</th>
+                  <th style="width: 22%; min-width: 170px;">Exam Trigger Keywords</th>
+                  <th style="width: 22%; min-width: 180px;">Chú giải thực tế (Tiếng Việt)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${steRows}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- PHẦN 3: BỘ CÂU HỎI TÌNH HUỐNG -->
