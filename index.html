@@ -189,19 +189,148 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Quiz Header Toolbar */
-    .quiz-toolbar {
+    /* Quiz Header Toolbar & Controls */
+    .quiz-controls-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
       background: var(--bg-panel);
-      padding: 1rem 1.25rem;
+      padding: 0.85rem 1.25rem;
       border-radius: 12px;
       border: 1px solid var(--border);
+    }
+    .quiz-action-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
+
+    /* Smart Scroll-Aware Sticky Bar */
+    .smart-sticky-bar {
+      position: sticky;
+      top: var(--header-height, 96px);
+      z-index: 25;
+      background: rgba(13, 21, 34, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.55rem 0.85rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      will-change: transform;
+    }
+    .smart-sticky-bar.bar-hidden {
+      transform: translateY(-130%);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    /* Inner Layout of Quiz Sticky Bar */
+    .quiz-sticky-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .quiz-filters {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .quiz-sticky-right {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex: 1 1 320px;
+      max-width: 480px;
+    }
+
+    /* Search Input Box with Icon & Clear */
+    .search-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .search-input-box .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .search-box.sticky-search {
+      width: 100%;
+      height: 38px;
+      padding: 0.45rem 2rem 0.45rem 2.2rem;
+      background: #111a2e;
+      border: 1px solid #243047;
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .search-box.sticky-search:focus {
+      border-color: #38bdf8;
+      background: #152238;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+      outline: none;
+    }
+    .search-clear-btn {
+      position: absolute;
+      right: 0.5rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #cbd5e1;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+    .search-clear-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .palette-quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.75rem;
+      height: 38px;
+      background: #162032;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #38bdf8;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .palette-quick-btn:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
     .filter-group {
       display: flex;
       align-items: center;
@@ -1487,6 +1616,63 @@
         font-size: 1.1rem;
         flex-wrap: wrap;
       }
+      .quiz-controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.75rem;
+        gap: 0.65rem;
+        margin-bottom: 0.85rem;
+      }
+      .quiz-action-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+      }
+      .quiz-action-group .action-btn {
+        width: 100%;
+        padding: 0.45rem 0.2rem;
+        font-size: 0.725rem;
+        justify-content: center;
+        text-align: center;
+      }
+      .smart-sticky-bar {
+        top: var(--header-height, 42px) !important;
+        padding: 0.45rem 0.6rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+      }
+      .quiz-sticky-inner {
+        flex-direction: column;
+        gap: 0.45rem;
+        align-items: stretch;
+      }
+      .quiz-sticky-right {
+        max-width: none;
+        width: 100%;
+        gap: 0.45rem;
+      }
+      .palette-quick-btn {
+        padding: 0.4rem 0.6rem;
+        height: 36px;
+      }
+      .palette-quick-btn span {
+        font-size: 0.825rem;
+      }
+      .quiz-filters, .ste-filters {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        padding-bottom: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .quiz-filters::-webkit-scrollbar, .ste-filters::-webkit-scrollbar { display: none; }
+      .search-box.sticky-search {
+        height: 36px;
+        font-size: 0.825rem;
+      }
       .quiz-toolbar {
         flex-direction: column;
         align-items: stretch;
@@ -1822,39 +2008,52 @@
 
     <!-- TAB 2: EXAM PRACTICE SIMULATOR -->
     <section id="tab-quiz" class="tab-panel">
-      <!-- Toolbar -->
-      <div class="quiz-toolbar">
-        <div class="filter-group">
-          <button class="filter-chip active" onclick="filterDomain('all')">Tất cả (57)</button>
-          <button class="filter-chip" onclick="filterDomain(1)">D1: ML Basics (11)</button>
-          <button class="filter-chip" onclick="filterDomain(2)">D2: GenAI FMs (11)</button>
-          <button class="filter-chip" onclick="filterDomain(3)">D3: Applications (12)</button>
-          <button class="filter-chip" onclick="filterDomain(4)">D4: Responsible AI (11)</button>
-          <button class="filter-chip" onclick="filterDomain(5)">D5: Security (12)</button>
-        </div>
-
-        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-          <input type="text" id="quiz-search" class="search-box" placeholder="🔍 Tìm câu hỏi / từ khóa..." oninput="handleSearch(this.value)">
-          <div class="mode-switch-group">
-            <button id="mode-exam-btn" class="mode-btn active exam-mode" onclick="setQuizMode('exam')" title="Ẩn đáp án để bạn tự luyện tập">
-              <span class="mode-dot"></span>
-              <span>📝 Chế độ Thi (Ẩn đáp án)</span>
-            </button>
-            <button id="mode-study-btn" class="mode-btn study-mode" onclick="setQuizMode('study')" title="Mở sẵn tất cả đáp án và giải thích để ôn tập nhanh">
-              <span class="mode-dot"></span>
-              <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
-            </button>
-          </div>
-          <button id="toggle-palette-btn" class="action-btn" onclick="togglePalette()" title="Mở bảng lưới 57 câu hỏi để nhảy nhanh và lọc câu đúng/sai">
-            <span>🔢 Bảng câu hỏi</span>
+      <!-- Quiz Setup Controls (Top of Quiz, scrolls naturally) -->
+      <div class="quiz-controls-bar">
+        <div class="mode-switch-group">
+          <button id="mode-exam-btn" class="mode-btn active exam-mode" onclick="setQuizMode('exam')" title="Ẩn đáp án để bạn tự luyện tập">
+            <span class="mode-dot"></span>
+            <span>📝 Chế độ Thi (Ẩn đáp án)</span>
           </button>
+          <button id="mode-study-btn" class="mode-btn study-mode" onclick="setQuizMode('study')" title="Mở sẵn tất cả đáp án và giải thích để ôn tập nhanh">
+            <span class="mode-dot"></span>
+            <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
+          </button>
+        </div>
+        <div class="quiz-action-group">
           <button id="shuffle-btn" class="action-btn" onclick="shuffleQuestions()" title="Trộn ngẫu nhiên thứ tự các câu hỏi để thi thử">
             <span>🔀 Trộn đề</span>
           </button>
           <button id="unshuffle-btn" class="action-btn" onclick="unshuffleQuestions()" style="display:none;" title="Khôi phục thứ tự chuẩn theo từng Domain">
             <span>↩️ Thứ tự gốc</span>
           </button>
-          <button class="filter-chip" style="background:#1e293b;" onclick="resetQuiz()" title="Xóa các đáp án đã chọn để làm lại">Làm lại bài thi</button>
+          <button class="action-btn" onclick="resetQuiz()" title="Xóa các đáp án đã chọn để làm lại">
+            <span>🔄 Làm lại bài thi</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Smart Sticky Search & Domain Filters Bar -->
+      <div id="quiz-sticky-bar" class="smart-sticky-bar">
+        <div class="quiz-sticky-inner">
+          <div class="filter-group quiz-filters">
+            <button class="filter-chip active" onclick="filterDomain('all')">Tất cả (57)</button>
+            <button class="filter-chip" onclick="filterDomain(1)">D1: ML Basics (11)</button>
+            <button class="filter-chip" onclick="filterDomain(2)">D2: GenAI FMs (11)</button>
+            <button class="filter-chip" onclick="filterDomain(3)">D3: Applications (12)</button>
+            <button class="filter-chip" onclick="filterDomain(4)">D4: Responsible AI (11)</button>
+            <button class="filter-chip" onclick="filterDomain(5)">D5: Security (12)</button>
+          </div>
+          <div class="quiz-sticky-right">
+            <div class="search-input-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="quiz-search" class="search-box sticky-search" placeholder="Tìm câu hỏi, từ khóa, dịch vụ..." oninput="handleSearch(this.value)">
+              <button id="quiz-search-clear" class="search-clear-btn" onclick="clearQuizSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+            </div>
+            <button id="toggle-palette-btn" class="palette-quick-btn" onclick="togglePalette()" title="Mở bảng 57 câu hỏi để nhảy nhanh">
+              <span>🔢 Bảng câu hỏi</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1872,13 +2071,18 @@
     <!-- TAB 3: DECISION MATRIX & TRAPS -->
     <section id="tab-matrix" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <div class="table-header-bar">
-          <div>
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
-          </div>
+        <div class="matrix-title-header" style="margin-bottom: 1rem;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
+        </div>
+
+        <div id="matrix-sticky-bar" class="smart-sticky-bar">
           <div class="search-header-group">
-            <input type="text" id="matrix-search" class="search-box" placeholder="🔍 Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
+            <div class="search-input-box" style="flex:1;">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="matrix-search" class="search-box sticky-search" placeholder="Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
+              <button id="matrix-search-clear" class="search-clear-btn" onclick="clearMatrixSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+            </div>
             <span id="matrix-count" class="search-count-badge">25/25 kết quả</span>
           </div>
         </div>
@@ -1903,24 +2107,28 @@
     <!-- TAB 4: DICTIONARY -->
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <div class="table-header-bar">
-          <div>
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi</h2>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
-          </div>
-          <div class="search-header-group">
-            <input type="text" id="ste-search" class="search-box" placeholder="🔍 Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
-            <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
-          </div>
+        <div class="ste-title-header" style="margin-bottom: 1rem;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
         </div>
 
-        <div class="filter-group" style="margin-bottom: 1.25rem;">
-          <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
-          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (17)</button>
-          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (16)</button>
-          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (17)</button>
-          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (16)</button>
-          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (16)</button>
+        <div id="ste-sticky-bar" class="smart-sticky-bar">
+          <div class="search-header-group">
+            <div class="search-input-box" style="flex:1;">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="ste-search" class="search-box sticky-search" placeholder="Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
+              <button id="ste-search-clear" class="search-clear-btn" onclick="clearSTESearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+            </div>
+            <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
+          </div>
+          <div class="filter-group ste-filters" style="margin-top: 0.5rem;">
+            <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
+            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (17)</button>
+            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (16)</button>
+            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (17)</button>
+            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (16)</button>
+            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (16)</button>
+          </div>
         </div>
         
         <div class="table-container">
@@ -2035,6 +2243,9 @@
         setTimeout(updateTopicScrollspy, 60);
       }
 
+      document.querySelectorAll('.smart-sticky-bar').forEach(b => b.classList.remove('bar-hidden'));
+      lastScrollY = 0;
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -2145,18 +2356,39 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    let lastScrollY = window.scrollY;
+
     function initScrollListener() {
       window.addEventListener('scroll', () => {
+        const currentY = window.scrollY;
         const btn = document.getElementById('back-to-top');
         if (btn) {
-          if (window.scrollY > 280) {
+          if (currentY > 280) {
             btn.classList.add('visible');
           } else {
             btn.classList.remove('visible');
           }
         }
         updateTopicScrollspy();
+        handleSmartScroll(currentY);
       }, { passive: true });
+    }
+
+    function handleSmartScroll(currentY) {
+      if (document.activeElement && document.activeElement.classList.contains('search-box')) {
+        return;
+      }
+      const diff = currentY - lastScrollY;
+      const stickyBars = document.querySelectorAll('.smart-sticky-bar');
+
+      if (currentY <= 100) {
+        stickyBars.forEach(b => b.classList.remove('bar-hidden'));
+      } else if (diff > 8) {
+        stickyBars.forEach(b => b.classList.add('bar-hidden'));
+      } else if (diff < -8) {
+        stickyBars.forEach(b => b.classList.remove('bar-hidden'));
+      }
+      lastScrollY = currentY;
     }
 
     // Question Palette Functions
@@ -2432,7 +2664,18 @@
 
     function handleMatrixSearch(val) {
       matrixSearchQuery = val;
+      const clearBtn = document.getElementById('matrix-search-clear');
+      if (clearBtn) clearBtn.style.display = val.trim() ? 'flex' : 'none';
       renderDecisionMatrix();
+    }
+
+    function clearMatrixSearch() {
+      const input = document.getElementById('matrix-search');
+      if (input) {
+        input.value = '';
+        handleMatrixSearch('');
+        input.focus();
+      }
     }
 
     // Render STE Dictionary with search and domain filter
@@ -2485,7 +2728,18 @@
 
     function handleSTESearch(val) {
       steSearchQuery = val;
+      const clearBtn = document.getElementById('ste-search-clear');
+      if (clearBtn) clearBtn.style.display = val.trim() ? 'flex' : 'none';
       renderSTEDictionary();
+    }
+
+    function clearSTESearch() {
+      const input = document.getElementById('ste-search');
+      if (input) {
+        input.value = '';
+        handleSTESearch('');
+        input.focus();
+      }
     }
 
     function filterSTEDomain(domainId) {
@@ -2593,7 +2847,18 @@
 
     function handleSearch(val) {
       searchQuery = val.toLowerCase().trim();
+      const clearBtn = document.getElementById('quiz-search-clear');
+      if (clearBtn) clearBtn.style.display = searchQuery ? 'flex' : 'none';
       renderQuiz();
+    }
+
+    function clearQuizSearch() {
+      const input = document.getElementById('quiz-search');
+      if (input) {
+        input.value = '';
+        handleSearch('');
+        input.focus();
+      }
     }
 
     // Quiz Mode Switcher
