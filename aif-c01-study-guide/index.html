@@ -1956,6 +1956,375 @@
       border: 1px solid rgba(239, 68, 68, 0.25);
     }
 
+    /* Subtab Navigation Switcher */
+    .view-subtabs-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      background: #090f1d;
+      padding: 0.35rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .view-subtab-btn {
+      flex: 1 1 180px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+    }
+    .view-subtab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .view-subtab-btn.active {
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #0284c7;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Confusing Pairs Hub (Versus Cards) */
+    .versus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .versus-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .versus-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .versus-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.65rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .versus-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .versus-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      letter-spacing: 0.03em;
+    }
+    .versus-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    .versus-col {
+      background: #0a0f1d;
+      border: 1px solid #1a253a;
+      border-radius: 10px;
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .versus-col.service-a {
+      border-top: 3px solid #38bdf8;
+    }
+    .versus-col.service-b {
+      border-top: 3px solid #a855f7;
+    }
+    .versus-svc-name {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .versus-col.service-a .versus-svc-name { color: #38bdf8; }
+    .versus-col.service-b .versus-svc-name { color: #c084fc; }
+    .versus-svc-desc {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .versus-triggers {
+      font-size: 0.78rem;
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      padding: 0.35rem 0.55rem;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .versus-difference-box {
+      background: #0d1525;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      font-size: 0.825rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+    }
+    .versus-difference-box strong {
+      color: #38bdf8;
+    }
+    .versus-trap-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.8rem;
+      color: #fca5a5;
+      line-height: 1.45;
+    }
+
+    /* 3D Interactive Flashcard Deck */
+    .flashcard-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .fc-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: #0d1424;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .fc-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .fc-counter {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .fc-mastery-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+    .fc-progress-track {
+      width: 100%;
+      height: 6px;
+      background: #1e293b;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .fc-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0284c7, #10b981);
+      border-radius: 9999px;
+      transition: width 0.3s ease;
+    }
+    .fc-scene {
+      perspective: 1200px;
+      width: 100%;
+      min-height: 380px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .fc-card {
+      width: 100%;
+      min-height: 380px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 16px;
+    }
+    .fc-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+    }
+    .fc-front {
+      background: linear-gradient(145deg, #111b2e 0%, #0a1120 100%);
+      border: 2px solid #1e293b;
+      text-align: center;
+      align-items: center;
+    }
+    .fc-front:hover {
+      border-color: #38bdf8;
+    }
+    .fc-back {
+      background: linear-gradient(145deg, #0e172a 0%, #070d18 100%);
+      border: 2px solid #0284c7;
+      transform: rotateY(180deg);
+      text-align: left;
+      overflow-y: auto;
+    }
+    .fc-front-term {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 1.25rem 0 0.5rem 0;
+      line-height: 1.3;
+    }
+    .fc-front-hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 440px;
+    }
+    .fc-flip-indicator {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .fc-back-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .fc-back-definition {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: #38bdf8;
+      background: rgba(2, 132, 199, 0.1);
+      border-left: 3px solid #0284c7;
+      padding: 0.6rem 0.85rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+    .fc-back-section {
+      margin-bottom: 0.65rem;
+    }
+    .fc-back-section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+    .fc-back-keywords {
+      font-size: 0.85rem;
+      color: #fbbf24;
+      font-weight: 500;
+    }
+    .fc-back-note {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .fc-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .fc-nav-btn {
+      background: #162032;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      min-height: 40px;
+    }
+    .fc-nav-btn:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+    }
+    .fc-master-btn {
+      flex: 1 1 140px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 0.55rem 0.85rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      min-height: 40px;
+    }
+    .fc-master-btn:hover {
+      background: rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+    }
+    .fc-master-btn.mastered {
+      background: #10b981;
+      color: #fff;
+    }
+
     /* Desktop Responsive Header & Layout */
     @media (min-width: 769px) and (max-width: 1200px) {
       .header-inner {
@@ -2165,6 +2534,29 @@
       }
       .cram-grid {
         grid-template-columns: 1fr;
+      }
+      .versus-grid {
+        grid-template-columns: 1fr;
+      }
+      .versus-cols {
+        grid-template-columns: 1fr;
+      }
+      .fc-scene, .fc-card {
+        min-height: 340px;
+      }
+      .fc-face {
+        padding: 1.5rem 1.15rem;
+      }
+      .fc-front-term {
+        font-size: 1.4rem;
+      }
+      .fc-nav-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.775rem;
+      }
+      .fc-master-btn {
+        font-size: 0.775rem;
+        padding: 0.5rem 0.65rem;
       }
       .smart-sticky-bar {
         top: var(--header-height, 42px) !important;
@@ -2682,34 +3074,54 @@
     <section id="tab-matrix" class="tab-panel">
       <div style="margin-bottom: 2rem;">
         <div class="matrix-title-header" style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Quyết Định Dịch Vụ & Cặp Dễ Nhầm Lẫn</h2>
           <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
         </div>
 
-        <div id="matrix-sticky-bar" class="smart-sticky-bar">
-          <div class="search-header-group">
-            <div class="search-input-box" style="flex:1;">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="matrix-search" class="search-box sticky-search" placeholder="Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
-              <button id="matrix-search-clear" class="search-clear-btn" onclick="clearMatrixSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+        <!-- Subtab Switcher: Matrix vs Confusing Pairs -->
+        <div class="view-subtabs-group">
+          <button id="subtab-matrix-btn" class="view-subtab-btn active" onclick="switchMatrixSubtab('matrix')">
+            <span>📋 Ma trận Quyết định (25 Quy tắc)</span>
+          </button>
+          <button id="subtab-pairs-btn" class="view-subtab-btn" onclick="switchMatrixSubtab('pairs')">
+            <span>🥊 Top 10 Cặp Dịch Vụ Dễ Nhầm Lẫn (Versus Hub)</span>
+          </button>
+        </div>
+
+        <!-- Subtab 1: Decision Matrix Table -->
+        <div id="matrix-subtab-table-view">
+          <div id="matrix-sticky-bar" class="smart-sticky-bar">
+            <div class="search-header-group">
+              <div class="search-input-box" style="flex:1;">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="matrix-search" class="search-box sticky-search" placeholder="Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
+                <button id="matrix-search-clear" class="search-clear-btn" onclick="clearMatrixSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+              </div>
+              <span id="matrix-count" class="search-count-badge">25/25 kết quả</span>
             </div>
-            <span id="matrix-count" class="search-count-badge">25/25 kết quả</span>
+          </div>
+          
+          <div class="table-container">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 48%; min-width: 260px;">Yêu cầu tình huống trong đề thi</th>
+                  <th style="width: 26%; min-width: 170px;">Dịch vụ AWS Chính xác</th>
+                  <th style="width: 26%; min-width: 190px;">Dịch vụ Bẫy (Không chọn)</th>
+                </tr>
+              </thead>
+              <tbody id="matrix-tbody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
           </div>
         </div>
-        
-        <div class="table-container">
-          <table class="matrix-table">
-            <thead>
-              <tr>
-                <th style="width: 48%; min-width: 260px;">Yêu cầu tình huống trong đề thi</th>
-                <th style="width: 26%; min-width: 170px;">Dịch vụ AWS Chính xác</th>
-                <th style="width: 26%; min-width: 190px;">Dịch vụ Bẫy (Không chọn)</th>
-              </tr>
-            </thead>
-            <tbody id="matrix-tbody">
-              <!-- Rendered via JS -->
-            </tbody>
-          </table>
+
+        <!-- Subtab 2: Confusing Pairs Hub -->
+        <div id="matrix-subtab-pairs-view" style="display: none;">
+          <div class="versus-grid" id="confusing-pairs-grid">
+            <!-- Rendered via JS -->
+          </div>
         </div>
       </div>
     </section>
@@ -2718,43 +3130,144 @@
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
         <div class="ste-title-header" style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi</h2>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi (82 Thuật Ngữ)</h2>
           <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
         </div>
 
-        <div id="ste-sticky-bar" class="smart-sticky-bar">
-          <div class="search-header-group">
-            <div class="search-input-box" style="flex:1;">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="ste-search" class="search-box sticky-search" placeholder="Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
-              <button id="ste-search-clear" class="search-clear-btn" onclick="clearSTESearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+        <!-- Subtab View Switcher: Table vs 3D Flashcards -->
+        <div class="view-subtabs-group">
+          <button id="subtab-ste-table-btn" class="view-subtab-btn active" onclick="setDictView('table')">
+            <span>📋 Tra cứu Từ điển (Dạng Bảng)</span>
+          </button>
+          <button id="subtab-ste-cards-btn" class="view-subtab-btn" onclick="setDictView('cards')">
+            <span>🗂️ Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/82 đã thuộc)</span>
+          </button>
+        </div>
+
+        <!-- Subtab 1: Table View -->
+        <div id="ste-subtab-table-view">
+          <div id="ste-sticky-bar" class="smart-sticky-bar">
+            <div class="search-header-group">
+              <div class="search-input-box" style="flex:1;">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="ste-search" class="search-box sticky-search" placeholder="Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
+                <button id="ste-search-clear" class="search-clear-btn" onclick="clearSTESearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
+              </div>
+              <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
             </div>
-            <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
+            <div class="filter-group ste-filters" style="margin-top: 0.5rem;">
+              <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (22)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (15)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (18)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (12)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (15)</button>
+            </div>
           </div>
-          <div class="filter-group ste-filters" style="margin-top: 0.5rem;">
-            <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
-            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (17)</button>
-            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (16)</button>
-            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (17)</button>
-            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (16)</button>
-            <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (16)</button>
+          
+          <div class="table-container">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 20%; min-width: 150px;">Thuật ngữ (Term)</th>
+                  <th style="width: 36%; min-width: 250px;">Định nghĩa tiếng Anh (Definition)</th>
+                  <th style="width: 22%; min-width: 170px;">Exam Trigger Keywords</th>
+                  <th style="width: 22%; min-width: 180px;">Chú giải thực tế (Tiếng Việt)</th>
+                </tr>
+              </thead>
+              <tbody id="ste-tbody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
           </div>
         </div>
-        
-        <div class="table-container">
-          <table class="matrix-table">
-            <thead>
-              <tr>
-                <th style="width: 20%; min-width: 150px;">Thuật ngữ (Term)</th>
-                <th style="width: 36%; min-width: 250px;">Định nghĩa tiếng Anh (Definition)</th>
-                <th style="width: 22%; min-width: 170px;">Exam Trigger Keywords</th>
-                <th style="width: 22%; min-width: 180px;">Chú giải thực tế (Tiếng Việt)</th>
-              </tr>
-            </thead>
-            <tbody id="ste-tbody">
-              <!-- Rendered via JS -->
-            </tbody>
-          </table>
+
+        <!-- Subtab 2: 3D Flashcard Deck View -->
+        <div id="ste-subtab-cards-view" style="display: none;">
+          <div class="flashcard-wrapper">
+            <div class="fc-toolbar">
+              <div class="fc-meta-row">
+                <div class="fc-counter">Thẻ <span id="fc-current-idx">1</span> / <span id="fc-total-count">82</span></div>
+                <div class="fc-mastery-badge">⭐ Đã thuộc: <span id="fc-mastered-stat">0</span>/<span id="fc-total-stat">82</span> (<span id="fc-pct-stat">0%</span>)</div>
+              </div>
+              <div class="fc-progress-track">
+                <div id="fc-progress-fill" class="fc-progress-fill" style="width: 0%;"></div>
+              </div>
+              <div class="filter-group fc-filters" style="margin-top: 0.35rem;">
+                <button class="filter-chip active fc-filter-chip" data-fc-filter="all" onclick="filterFlashcardDomain('all')">Tất cả (82)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="unmastered" onclick="filterFlashcardDomain('unmastered')">🔴 Cần ôn lại</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="mastered" onclick="filterFlashcardDomain('mastered')">⭐ Đã thuộc</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="1" onclick="filterFlashcardDomain(1)">D1 (22)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="2" onclick="filterFlashcardDomain(2)">D2 (15)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="3" onclick="filterFlashcardDomain(3)">D3 (18)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="4" onclick="filterFlashcardDomain(4)">D4 (12)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="5" onclick="filterFlashcardDomain(5)">D5 (15)</button>
+              </div>
+            </div>
+
+            <!-- 3D Card Scene -->
+            <div class="fc-scene" onclick="flipFlashcard()">
+              <div id="fc-card-element" class="fc-card">
+                <!-- Front Side -->
+                <div class="fc-face fc-front">
+                  <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                    <span id="fc-front-domain" class="q-domain-tag">Domain 1</span>
+                    <span id="fc-front-mastered-tag" class="versus-badge" style="display:none; background:rgba(16,185,129,0.2); color:#34d399; border-color:#10b981;">ĐÃ THUỘC ✅</span>
+                  </div>
+                  <div>
+                    <h3 id="fc-front-term" class="fc-front-term">Transfer Learning</h3>
+                    <p id="fc-front-hint" class="fc-front-hint">Bấm thẻ hoặc phím Space để xem định nghĩa & từ khóa bẫy đề thi</p>
+                  </div>
+                  <div class="fc-flip-indicator">
+                    <span>👆 Chạm để lật đáp án</span>
+                  </div>
+                </div>
+
+                <!-- Back Side -->
+                <div class="fc-face fc-back">
+                  <div>
+                    <div style="display:flex; justify-content:space-between; width:100%; align-items:center; margin-bottom:0.4rem;">
+                      <span id="fc-back-domain" class="q-domain-tag">Domain 1</span>
+                      <span class="fc-flip-indicator" style="font-size:0.72rem; padding:0.2rem 0.55rem;">👆 Lật lại</span>
+                    </div>
+                    <h3 id="fc-back-term" class="fc-back-title">Transfer Learning</h3>
+                    <div class="fc-back-section-label">Định nghĩa chuẩn (STE Definition):</div>
+                    <div id="fc-back-definition" class="fc-back-definition">Using knowledge from a pre-trained model to solve a new, related task.</div>
+                    
+                    <div class="fc-back-section">
+                      <div class="fc-back-section-label">🎯 Exam Trigger Keywords:</div>
+                      <div id="fc-back-keywords" class="fc-back-keywords">pre-trained model, related task, fine-tuning, save compute</div>
+                    </div>
+
+                    <div class="fc-back-section">
+                      <div class="fc-back-section-label">💡 Chú giải thực tế (Tiếng Việt):</div>
+                      <div id="fc-back-note" class="fc-back-note">Tận dụng mô hình đã học sẵn trên tập dữ liệu lớn để áp dụng vào bài toán mới.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Bottom Controls -->
+            <div class="fc-controls-bar">
+              <button class="fc-nav-btn" onclick="prevFlashcard()" title="Thẻ trước (Phím mũi tên Trái)">
+                <span>⬅️</span>
+                <span>Trước</span>
+              </button>
+              <button id="fc-mastery-toggle-btn" class="fc-master-btn" onclick="toggleMasterCurrentCard(event)" title="Đánh dấu đã thuộc / cần ôn lại (Phím M)">
+                <span id="fc-mastery-btn-icon">☆</span>
+                <span id="fc-mastery-btn-text">Đánh dấu đã thuộc</span>
+              </button>
+              <button class="fc-nav-btn" onclick="nextFlashcard()" title="Thẻ kế tiếp (Phím mũi tên Phải)">
+                <span>Sau</span>
+                <span>➡️</span>
+              </button>
+              <button class="fc-nav-btn" onclick="shuffleFlashcardsDeck()" title="Xáo trộn ngẫu nhiên thứ tự thẻ">
+                <span>🔀</span>
+                <span>Trộn thẻ</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2838,6 +3351,191 @@
     let timerInterval = null;
     let isTimerPaused = false;
     let currentCramFilter = 'all';
+    let activeMatrixSubtab = 'matrix'; // 'matrix' | 'pairs'
+    let dictView = 'table'; // 'table' | 'cards'
+    let flashcardCurrentIndex = 0;
+    let flashcardDomainFilter = 'all'; // 'all' | 'mastered' | 'unmastered' | 1 | 2 | 3 | 4 | 5
+    let isFlashcardFlipped = false;
+    let masteredFlashcardIds = new Set();
+    let allFlashcardsList = [];
+    let activeFlashcardDeck = [];
+    let isScrollspyManual = false;
+    let lastScrollY = 0;
+    let currentInspectedNodeId = null;
+
+    // Confusing Pairs Hub Data (Top 10 High-Yield Head-to-Head Comparisons)
+    const CONFUSING_PAIRS_DATA = [
+      {
+        id: 'cp-1',
+        title: 'Amazon Textract ⚔️ Amazon Rekognition',
+        category: 'Vision & Documents',
+        serviceA: {
+          name: 'Amazon Textract',
+          desc: 'Trích xuất văn bản in, chữ viết tay, bảng biểu, biểu mẫu (key-value) từ tài liệu scan, hợp đồng PDF, hóa đơn.',
+          triggers: 'scanned documents, tables, forms, key-value pairs, invoices, receipts, PDFs'
+        },
+        serviceB: {
+          name: 'Amazon Rekognition',
+          desc: 'Phân tích thị giác máy tính trên hình ảnh và video: nhận diện khuôn mặt, nhãn vật thể, PPE bảo hộ, kiểm duyệt nội dung.',
+          triggers: 'face detection, celebrity recognition, unsafe content moderation, PPE, object labels in images/videos'
+        },
+        difference: '<strong>Textract</strong> xử lý cấu trúc tài liệu văn bản giấy/scan (OCR chuyên sâu); <strong>Rekognition</strong> phân tích thị giác nhận diện đối tượng/khuôn mặt/nội dung trong ảnh và video.',
+        trap: 'Đề bài nhắc đến "chụp ảnh hóa đơn/hợp đồng bằng điện thoại" rất dễ bị lừa chọn Rekognition vì có từ "ảnh". Nhớ quy tắc: mục tiêu là đọc nội dung văn bản/bảng biểu -> bắt buộc chọn Textract.'
+      },
+      {
+        id: 'cp-2',
+        title: 'Amazon Transcribe ⚔️ Amazon Polly',
+        category: 'Audio & Speech',
+        serviceA: {
+          name: 'Amazon Transcribe',
+          desc: 'Chuyển đổi âm thanh ghi âm cuộc gọi thành văn bản (Speech-to-Text), phân tách người nói (Speaker Diarization), tạo phụ đề.',
+          triggers: 'speech-to-text, audio to text, call center recordings, speaker diarization, subtitles'
+        },
+        serviceB: {
+          name: 'Amazon Polly',
+          desc: 'Chuyển văn bản thành giọng nói nhân tạo tự nhiên (Text-to-Speech), hỗ trợ thẻ SSML tùy biến ngữ điệu, thì thầm.',
+          triggers: 'text-to-speech, convert articles to audio, natural sounding voice, SSML tags, synthesize speech'
+        },
+        difference: '<strong>Transcribe:</strong> Audio &rarr; Text (Đầu vào là tiếng nói, đầu ra là chữ). <strong>Polly:</strong> Text &rarr; Audio (Đầu vào là chữ, đầu ra là giọng đọc).',
+        trap: 'Cần chú ý kỹ chiều chuyển đổi của bài toán trong đề thi tiếng Anh (Speech-to-text vs Text-to-speech) để không bị đảo ngược hai dịch vụ.'
+      },
+      {
+        id: 'cp-3',
+        title: 'SageMaker Clarify ⚔️ Bedrock Guardrails',
+        category: 'Responsible AI & Safety',
+        serviceA: {
+          name: 'SageMaker Clarify',
+          desc: 'Phát hiện thiên vị/định kiến (Bias detection) trong dữ liệu và mô hình ML trước/sau huấn luyện; giải thích dự đoán bằng SHAP values.',
+          triggers: 'bias detection, feature attribution, SHAP values, model explainability, fairness metrics'
+        },
+        serviceB: {
+          name: 'Bedrock Guardrails',
+          desc: 'Thiết lập hàng rào an toàn thời gian thực: chặn prompt injection, lọc nội dung độc hại (Toxicity), che giấu PII, kiểm tra factual grounding chống ảo giác.',
+          triggers: 'denied topics, filter harmful content, mask PII in real-time, prompt injection, factual grounding check'
+        },
+        difference: '<strong>Clarify</strong> dùng cho mô hình Machine Learning truyền thống & phân tích tính công bằng dữ liệu khi phát triển; <strong>Guardrails</strong> là lớp bảo vệ an toàn thời gian thực cho ứng dụng GenAI khi người dùng gửi prompt.',
+        trap: 'Cả hai đều thuộc Domain 4 (Responsible AI). Nếu đề yêu cầu "chặn người dùng nhập prompt độc hại hoặc che PII khi chat" -> Bedrock Guardrails. Nếu đề yêu cầu "đo lường độ thiên vị giới tính trong tập dữ liệu tuyển dụng" -> SageMaker Clarify.'
+      },
+      {
+        id: 'cp-4',
+        title: 'SageMaker Autopilot ⚔️ SageMaker Canvas',
+        category: 'AutoML & No-Code ML',
+        serviceA: {
+          name: 'SageMaker Autopilot',
+          desc: 'Tự động hóa toàn bộ quy trình xây dựng mô hình ML dạng bảng (AutoML), tự sinh mã nguồn Python notebooks với tính minh bạch cao.',
+          triggers: 'AutoML with full code visibility, inspect generated Python code, automated algorithm selection, data scientists'
+        },
+        serviceB: {
+          name: 'SageMaker Canvas',
+          desc: 'Giao diện đồ họa kéo thả hoàn toàn không cần lập trình (No-Code ML), tích hợp sẵn công cụ dự báo kinh doanh cho nhà phân tích.',
+          triggers: 'no-code visual interface, drag-and-drop ML, business analysts, no programming experience required'
+        },
+        difference: '<strong>Autopilot:</strong> Hướng tới Data Scientist/Developer cần tự động hóa nhưng vẫn muốn kiểm tra và tùy biến mã nguồn Python sinh ra. <strong>Canvas:</strong> Hướng tới Business Analyst không biết code.',
+        trap: 'Nếu đề bài nhấn mạnh "no-code" hoặc "business analysts without coding skills" -> chọn SageMaker Canvas. Nếu đề nhấn mạnh "tự động sinh code Python minh bạch" -> chọn SageMaker Autopilot.'
+      },
+      {
+        id: 'cp-5',
+        title: 'Bedrock Fine-Tuning ⚔️ Continual Pre-training ⚔️ RAG',
+        category: 'Model Customization',
+        serviceA: {
+          name: 'Bedrock Fine-Tuning',
+          desc: 'Huấn luyện tùy biến FM bằng tập dữ liệu có nhãn dạng cặp Prompt-Response (nhỏ đến vừa) để dạy model cách phản hồi hoặc phong cách cụ thể.',
+          triggers: 'labeled prompt-response pairs, specialized tone/style, supervised fine-tuning, domain adaptation'
+        },
+        serviceB: {
+          name: 'Bedrock Continual Pre-training',
+          desc: 'Nạp khối lượng lớn văn bản thô phi cấu trúc không có nhãn vào mô hình FM để bổ sung từ vựng và tri thức chuyên ngành sâu rộng.',
+          triggers: 'unlabeled domain-specific text, raw text corpora, industry jargon, continual pre-training'
+        },
+        difference: '<strong>Fine-Tuning:</strong> Cần dữ liệu có nhãn (Prompt-Response). <strong>Continual Pre-training:</strong> Dùng văn bản thô không nhãn. <strong>RAG (Knowledge Bases):</strong> Truy xuất tài liệu động bên ngoài mà KHÔNG cần huấn luyện lại model.',
+        trap: 'Khi tài liệu nội bộ thay đổi liên tục hàng ngày, phương án đúng luôn là RAG (Bedrock Knowledge Bases). Fine-Tuning hay Pre-training chỉ dùng khi muốn thay đổi vĩnh viễn trọng số (weights) của mô hình.'
+      },
+      {
+        id: 'cp-6',
+        title: 'Amazon Comprehend ⚔️ Amazon Translate',
+        category: 'NLP & Language',
+        serviceA: {
+          name: 'Amazon Comprehend',
+          desc: 'Hiểu sâu nội dung văn bản: trích xuất thực thể (NER), phân tích sắc thái cảm xúc (Sentiment Analysis), phát hiện PII, phân loại tài liệu.',
+          triggers: 'sentiment analysis, extract key phrases, PII detection in text, entity recognition, topic modeling'
+        },
+        serviceB: {
+          name: 'Amazon Translate',
+          desc: 'Dịch thuật văn bản tự động chất lượng cao giữa hàng chục ngôn ngữ khác nhau theo thời gian thực hoặc theo lô.',
+          triggers: 'multi-language translation, convert text from Spanish to English, cross-language localization'
+        },
+        difference: '<strong>Comprehend:</strong> Khám phá ý nghĩa, cảm xúc, thực thể bên trong văn bản. <strong>Translate:</strong> Chuyển ngữ từ ngôn ngữ này sang ngôn ngữ khác mà không làm thay đổi ngữ nghĩa.',
+        trap: 'Khi đề bài muốn bóc tách thông tin nhạy cảm PII trong email khách hàng -> Comprehend. Khi chỉ muốn khách nước ngoài đọc được email -> Translate.'
+      },
+      {
+        id: 'cp-7',
+        title: 'AWS Artifact ⚔️ AWS Audit Manager',
+        category: 'Compliance & Auditing',
+        serviceA: {
+          name: 'AWS Artifact',
+          desc: 'Cổng thông tin tự phục vụ để tải về các báo cáo tuân thủ bảo mật có sẵn của AWS (SOC 1/2/3, PCI-DSS, ISO) và ký kết thỏa thuận BAA.',
+          triggers: 'download AWS compliance reports, SOC 2 report for AWS infrastructure, accept agreements (BAA for HIPAA)'
+        },
+        serviceB: {
+          name: 'AWS Audit Manager',
+          desc: 'Tự động hóa liên tục thu thập bằng chứng từ các tài nguyên trong tài khoản AWS của khách hàng để phục vụ kiểm toán nội bộ.',
+          triggers: 'continuously audit customer AWS usage, automate evidence collection, internal control assessment'
+        },
+        difference: '<strong>Artifact:</strong> Xem và tải báo cáo bảo mật của chính hạ tầng AWS. <strong>Audit Manager:</strong> Thu thập bằng chứng kiểm toán cho cấu hình tài nguyên của chính công ty bạn.',
+        trap: 'Khách hàng yêu cầu cung cấp chứng chỉ SOC 2 của trung tâm dữ liệu AWS -> dùng AWS Artifact (không mất phí, tải ngay lập tức).'
+      },
+      {
+        id: 'cp-8',
+        title: 'AWS AI Service Cards ⚔️ AWS Whitepapers',
+        category: 'Governance & Documentation',
+        serviceA: {
+          name: 'AWS AI Service Cards',
+          desc: 'Tài liệu chuẩn mực của AWS cung cấp minh bạch về trường hợp sử dụng phù hợp (Intended Use), giới hạn kỹ thuật (Limitations), và đánh giá Responsible AI cho từng dịch vụ AI.',
+          triggers: 'AI transparency, intended use cases, limitations of AI models, responsible AI deployment documentation'
+        },
+        serviceB: {
+          name: 'AWS Whitepapers',
+          desc: 'Tài liệu kiến trúc chuyên sâu cung cấp best practices, Well-Architected Framework và hướng dẫn kỹ thuật đám mây tổng quan.',
+          triggers: 'cloud architecture best practices, well-architected framework, technical whitepapers'
+        },
+        difference: '<strong>AI Service Cards:</strong> Tài liệu chuyên biệt cho từng dịch vụ AI theo khuôn khổ Responsible AI của AWS (minh bạch giới hạn và cách ứng dụng an toàn). <strong>Whitepapers:</strong> Hướng dẫn kiến trúc đám mây chung.',
+        trap: 'Khi câu hỏi hỏi về nguồn tài liệu AWS nào giúp hiểu rõ ranh giới và giới hạn sử dụng có trách nhiệm của một dịch vụ AI cụ thể -> chọn AWS AI Service Cards.'
+      },
+      {
+        id: 'cp-9',
+        title: 'Amazon Macie ⚔️ Amazon GuardDuty',
+        category: 'Security & Detection',
+        serviceA: {
+          name: 'Amazon Macie',
+          desc: 'Dịch vụ bảo mật dữ liệu sử dụng ML để tự động phát hiện, phân loại và bảo vệ dữ liệu nhạy cảm PII, thẻ tín dụng trong Amazon S3.',
+          triggers: 'discover sensitive data in S3, identify PII in object storage, credit card numbers in S3 buckets'
+        },
+        serviceB: {
+          name: 'Amazon GuardDuty',
+          desc: 'Dịch vụ phát hiện mối đe dọa thông minh phân tích VPC Flow Logs, DNS Logs, CloudTrail để phát hiện hành vi xâm nhập, đào tiền ảo, truy cập bất thường.',
+          triggers: 'threat detection, compromised AWS credentials, cryptocurrency mining, anomalous API calls, malware'
+        },
+        difference: '<strong>Macie:</strong> Chuyên trị dữ liệu nhạy cảm (PII/bảo mật thông tin) lưu trữ trong S3. <strong>GuardDuty:</strong> Chuyên phát hiện hành vi tấn công và mối đe dọa an ninh mạng đối với tài khoản AWS.',
+        trap: 'Đề bài hỏi tìm số chứng minh thư/thẻ tín dụng rò rỉ trong file trên S3 -> bắt buộc chọn Macie, không chọn GuardDuty.'
+      },
+      {
+        id: 'cp-10',
+        title: 'SageMaker Feature Store ⚔️ Amazon DynamoDB',
+        category: 'Data Storage & Machine Learning',
+        serviceA: {
+          name: 'SageMaker Feature Store',
+          desc: 'Kho lưu trữ chuyên dụng cho các đặc trưng ML, hỗ trợ Online Store độ trễ thấp cho suy luận và Offline Store cho huấn luyện với khả năng truy xuất lịch sử (Time-travel) chống rò rỉ dữ liệu.',
+          triggers: 'centralized ML features, point-in-time time-travel queries, prevent data leakage, share features across ML teams'
+        },
+        serviceB: {
+          name: 'Amazon DynamoDB',
+          desc: 'Cơ sở dữ liệu NoSQL phân tán hiệu năng cực cao ở mọi quy mô, lưu trữ key-value/document cho ứng dụng web và di động.',
+          triggers: 'managed NoSQL database, single-digit millisecond latency, key-value document store for web apps'
+        },
+        difference: '<strong>Feature Store:</strong> Thiết kế riêng cho ML: lưu trữ metadata đặc trưng, hỗ trợ point-in-time join để ngăn data leakage trong lúc train. <strong>DynamoDB:</strong> CSDL NoSQL tổng quát cho ứng dụng phần mềm.',
+        trap: 'Dù DynamoDB có thể dùng làm backend cho Online Store, nhưng giải pháp chuẩn hóa cấp doanh nghiệp cho toàn bộ vòng đời đặc trưng ML luôn là SageMaker Feature Store.'
+      }
+    ];
 
     // Pre-Exam Cram Sheet Data (Rapid 10-Minute Exam Triggers)
     const CRAM_DATA = [
@@ -3118,6 +3816,11 @@
           const val = parseInt(savedTime, 10);
           if (!isNaN(val) && val > 0) examTimeRemaining = val;
         }
+        const savedFcMastered = localStorage.getItem('aif_flashcard_mastered');
+        if (savedFcMastered) {
+          const parsed = JSON.parse(savedFcMastered);
+          masteredFlashcardIds = new Set(parsed);
+        }
       } catch (e) {
         console.warn('localStorage read error:', e);
       }
@@ -3129,6 +3832,7 @@
         localStorage.setItem('aif_bookmarked_ids', JSON.stringify(Array.from(bookmarkedQuestions)));
         localStorage.setItem('aif_revealed_cards', JSON.stringify(Array.from(revealedCards)));
         localStorage.setItem('aif_exam_time', String(examTimeRemaining));
+        localStorage.setItem('aif_flashcard_mastered', JSON.stringify(Array.from(masteredFlashcardIds)));
       } catch (e) {
         console.warn('localStorage save error:', e);
       }
@@ -3469,6 +4173,18 @@
         if (parts[1] === 'palette') {
           palette = true;
         }
+      } else if (tab === 'matrix') {
+        if (parts[1] && parts[1].toLowerCase() === 'pairs') {
+          subtab = 'pairs';
+        } else {
+          subtab = 'matrix';
+        }
+      } else if (tab === 'ste') {
+        if (parts[1] && parts[1].toLowerCase() === 'cards') {
+          subtab = 'cards';
+        } else {
+          subtab = 'table';
+        }
       }
 
       return { tab, domain, subtab, node, palette };
@@ -3539,6 +4255,18 @@
         } else if (!route.palette && isCurrentlyOpen) {
           togglePalette(false);
         }
+      } else if (route.tab === 'matrix') {
+        if (route.subtab === 'pairs') {
+          switchMatrixSubtab('pairs');
+        } else {
+          switchMatrixSubtab('matrix');
+        }
+      } else if (route.tab === 'ste') {
+        if (route.subtab === 'cards') {
+          setDictView('cards');
+        } else {
+          setDictView('table');
+        }
       } else if (route.tab === 'cram') {
         renderCramSheet();
       }
@@ -3555,7 +4283,10 @@
       renderTopicDomain(currentTopicDomain);
       renderQuiz();
       renderDecisionMatrix();
+      renderConfusingPairs();
       renderSTEDictionary();
+      initFlashcardData();
+      updateFlashcardMasteryStats();
       renderConceptGraph();
       renderCramSheet();
       initScrollListener();
@@ -3602,6 +4333,12 @@
         setTimeout(updateTopicScrollspy, 60);
       } else if (tabId === 'cram') {
         renderCramSheet();
+      } else if (tabId === 'matrix') {
+        if (activeMatrixSubtab === 'pairs') renderConfusingPairs();
+        else renderDecisionMatrix();
+      } else if (tabId === 'ste') {
+        if (dictView === 'cards') renderCurrentFlashcard();
+        else renderSTEDictionary();
       }
 
       document.querySelectorAll('.smart-sticky-bar').forEach(b => b.classList.remove('bar-hidden'));
@@ -3613,9 +4350,13 @@
         let targetHash = '#' + tabId;
         if (tabId === 'topics') {
           targetHash = '#topics/d' + (currentTopicDomain || 1);
+        } else if (tabId === 'matrix' && activeMatrixSubtab === 'pairs') {
+          targetHash = '#matrix/pairs';
+        } else if (tabId === 'ste' && dictView === 'cards') {
+          targetHash = '#ste/cards';
         }
         if (window.location.hash !== targetHash) {
-          history.pushState({ tab: tabId, domain: currentTopicDomain }, '', targetHash);
+          history.pushState({ tab: tabId, domain: currentTopicDomain, subtab: tabId === 'matrix' ? activeMatrixSubtab : (tabId === 'ste' ? dictView : undefined) }, '', targetHash);
         }
       }
 
@@ -3641,8 +4382,6 @@
         }
       }
     }
-
-    let isScrollspyManual = false;
 
     function switchTopicSubtab(subId) {
       currentTopicSubtab = subId;
@@ -3742,9 +4481,8 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    let lastScrollY = window.scrollY;
-
     function initScrollListener() {
+      lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
         const currentY = window.scrollY;
         const btn = document.getElementById('back-to-top');
@@ -4148,6 +4886,305 @@
       });
       renderSTEDictionary();
     }
+
+    // Confusing Pairs Hub & 3D Flashcards Logic
+    function switchMatrixSubtab(subId) {
+      activeMatrixSubtab = subId;
+      const tblBtn = document.getElementById('subtab-matrix-btn');
+      const pairsBtn = document.getElementById('subtab-pairs-btn');
+      const tblView = document.getElementById('matrix-subtab-table-view');
+      const pairsView = document.getElementById('matrix-subtab-pairs-view');
+
+      if (subId === 'matrix') {
+        if (tblBtn) tblBtn.classList.add('active');
+        if (pairsBtn) pairsBtn.classList.remove('active');
+        if (tblView) tblView.style.display = 'block';
+        if (pairsView) pairsView.style.display = 'none';
+        renderDecisionMatrix();
+        history.replaceState({ tab: 'matrix', subtab: 'matrix' }, '', '#matrix');
+      } else {
+        if (pairsBtn) pairsBtn.classList.add('active');
+        if (tblBtn) tblBtn.classList.remove('active');
+        if (tblView) tblView.style.display = 'none';
+        if (pairsView) pairsView.style.display = 'block';
+        renderConfusingPairs();
+        history.replaceState({ tab: 'matrix', subtab: 'pairs' }, '', '#matrix/pairs');
+      }
+    }
+
+    function renderConfusingPairs() {
+      const container = document.getElementById('confusing-pairs-grid');
+      if (!container) return;
+
+      container.innerHTML = CONFUSING_PAIRS_DATA.map(function(pair, idx) {
+        return '<div class="versus-card" id="' + pair.id + '">' +
+          '<div class="versus-card-header">' +
+            '<div class="versus-title"><span>#' + (idx + 1) + '. ' + pair.title + '</span></div>' +
+            '<span class="versus-badge">' + pair.category + '</span>' +
+          '</div>' +
+          '<div class="versus-cols">' +
+            '<div class="versus-col service-a">' +
+              '<span class="versus-svc-name">🔹 ' + pair.serviceA.name + '</span>' +
+              '<p class="versus-svc-desc">' + pair.serviceA.desc + '</p>' +
+              '<div class="versus-triggers">🎯 Triggers: ' + pair.serviceA.triggers + '</div>' +
+            '</div>' +
+            '<div class="versus-col service-b">' +
+              '<span class="versus-svc-name">🔸 ' + pair.serviceB.name + '</span>' +
+              '<p class="versus-svc-desc">' + pair.serviceB.desc + '</p>' +
+              '<div class="versus-triggers">🎯 Triggers: ' + pair.serviceB.triggers + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="versus-difference-box">⚖️ <strong>Quy tắc quyết định then chốt:</strong> ' + pair.difference + '</div>' +
+          '<div class="versus-trap-box">⚠️ <strong>Cảnh báo bẫy phòng thi:</strong> ' + pair.trap + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function initFlashcardData() {
+      if (allFlashcardsList.length > 0) return;
+      let counter = 1;
+      APP_DATA.domains.forEach(function(d) {
+        d.steTerms.forEach(function(t) {
+          allFlashcardsList.push({
+            id: 'fc-' + d.domainId + '-' + (counter++),
+            term: t.term,
+            definition: t.definition,
+            keywords: t.keywords,
+            note: t.note,
+            domainId: d.domainId
+          });
+        });
+      });
+      applyFlashcardFilter();
+    }
+
+    function applyFlashcardFilter() {
+      initFlashcardData();
+      if (flashcardDomainFilter === 'all') {
+        activeFlashcardDeck = [...allFlashcardsList];
+      } else if (flashcardDomainFilter === 'mastered') {
+        activeFlashcardDeck = allFlashcardsList.filter(function(t) { return masteredFlashcardIds.has(t.id); });
+      } else if (flashcardDomainFilter === 'unmastered') {
+        activeFlashcardDeck = allFlashcardsList.filter(function(t) { return !masteredFlashcardIds.has(t.id); });
+      } else {
+        const dId = parseInt(flashcardDomainFilter, 10);
+        activeFlashcardDeck = allFlashcardsList.filter(function(t) { return t.domainId === dId; });
+      }
+      flashcardCurrentIndex = 0;
+      updateFlashcardMasteryStats();
+      renderCurrentFlashcard();
+    }
+
+    function setDictView(viewMode) {
+      dictView = viewMode;
+      const tblBtn = document.getElementById('subtab-ste-table-btn');
+      const cardsBtn = document.getElementById('subtab-ste-cards-btn');
+      const tblView = document.getElementById('ste-subtab-table-view');
+      const cardsView = document.getElementById('ste-subtab-cards-view');
+
+      if (viewMode === 'table') {
+        if (tblBtn) tblBtn.classList.add('active');
+        if (cardsBtn) cardsBtn.classList.remove('active');
+        if (tblView) tblView.style.display = 'block';
+        if (cardsView) cardsView.style.display = 'none';
+        renderSTEDictionary();
+        history.replaceState({ tab: 'ste', subtab: 'table' }, '', '#ste');
+      } else {
+        if (cardsBtn) cardsBtn.classList.add('active');
+        if (tblBtn) tblBtn.classList.remove('active');
+        if (tblView) tblView.style.display = 'none';
+        if (cardsView) cardsView.style.display = 'block';
+        initFlashcardData();
+        applyFlashcardFilter();
+        history.replaceState({ tab: 'ste', subtab: 'cards' }, '', '#ste/cards');
+      }
+    }
+
+    function updateFlashcardMasteryStats() {
+      initFlashcardData();
+      const masteredCount = masteredFlashcardIds.size;
+      const totalCount = allFlashcardsList.length;
+      const pct = totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0;
+
+      const subtabCount = document.getElementById('fc-mastered-count-subtab');
+      if (subtabCount) subtabCount.textContent = masteredCount;
+
+      const statMastered = document.getElementById('fc-mastered-stat');
+      if (statMastered) statMastered.textContent = masteredCount;
+
+      const statTotal = document.getElementById('fc-total-stat');
+      if (statTotal) statTotal.textContent = totalCount;
+
+      const statPct = document.getElementById('fc-pct-stat');
+      if (statPct) statPct.textContent = pct + '%';
+
+      const progressFill = document.getElementById('fc-progress-fill');
+      if (progressFill) progressFill.style.width = pct + '%';
+    }
+
+    function renderCurrentFlashcard() {
+      const cardEl = document.getElementById('fc-card-element');
+      if (cardEl) cardEl.classList.remove('is-flipped');
+      isFlashcardFlipped = false;
+
+      const idxEl = document.getElementById('fc-current-idx');
+      const totalEl = document.getElementById('fc-total-count');
+
+      if (activeFlashcardDeck.length === 0) {
+        if (idxEl) idxEl.textContent = '0';
+        if (totalEl) totalEl.textContent = '0';
+        const frontTerm = document.getElementById('fc-front-term');
+        if (frontTerm) frontTerm.textContent = 'Không có thẻ nào';
+        const frontHint = document.getElementById('fc-front-hint');
+        if (frontHint) frontHint.textContent = 'Không có thuật ngữ nào phù hợp với bộ lọc này.';
+        const frontDomain = document.getElementById('fc-front-domain');
+        if (frontDomain) frontDomain.textContent = '--';
+        const backTerm = document.getElementById('fc-back-term');
+        if (backTerm) backTerm.textContent = '--';
+        const backDef = document.getElementById('fc-back-definition');
+        if (backDef) backDef.textContent = '--';
+        const backKw = document.getElementById('fc-back-keywords');
+        if (backKw) backKw.textContent = '--';
+        const backNote = document.getElementById('fc-back-note');
+        if (backNote) backNote.textContent = '--';
+        return;
+      }
+
+      if (flashcardCurrentIndex >= activeFlashcardDeck.length) {
+        flashcardCurrentIndex = 0;
+      } else if (flashcardCurrentIndex < 0) {
+        flashcardCurrentIndex = activeFlashcardDeck.length - 1;
+      }
+
+      const card = activeFlashcardDeck[flashcardCurrentIndex];
+      const isMastered = masteredFlashcardIds.has(card.id);
+
+      if (idxEl) idxEl.textContent = flashcardCurrentIndex + 1;
+      if (totalEl) totalEl.textContent = activeFlashcardDeck.length;
+
+      // Front
+      const frontDomain = document.getElementById('fc-front-domain');
+      if (frontDomain) frontDomain.textContent = 'Domain ' + card.domainId;
+      const frontMasteredTag = document.getElementById('fc-front-mastered-tag');
+      if (frontMasteredTag) frontMasteredTag.style.display = isMastered ? 'inline-block' : 'none';
+      const frontTerm = document.getElementById('fc-front-term');
+      if (frontTerm) frontTerm.textContent = card.term;
+      const frontHint = document.getElementById('fc-front-hint');
+      if (frontHint) frontHint.textContent = 'Bấm thẻ hoặc phím Space để xem định nghĩa & từ khóa bẫy đề thi';
+
+      // Back
+      const backDomain = document.getElementById('fc-back-domain');
+      if (backDomain) backDomain.textContent = 'Domain ' + card.domainId;
+      const backTerm = document.getElementById('fc-back-term');
+      if (backTerm) backTerm.textContent = card.term;
+      const backDef = document.getElementById('fc-back-definition');
+      if (backDef) backDef.textContent = card.definition;
+      const backKw = document.getElementById('fc-back-keywords');
+      if (backKw) backKw.textContent = card.keywords;
+      const backNote = document.getElementById('fc-back-note');
+      if (backNote) backNote.textContent = card.note;
+
+      // Mastery button
+      const toggleBtn = document.getElementById('fc-mastery-toggle-btn');
+      const btnIcon = document.getElementById('fc-mastery-btn-icon');
+      const btnText = document.getElementById('fc-mastery-btn-text');
+
+      if (toggleBtn) {
+        if (isMastered) {
+          toggleBtn.classList.add('mastered');
+          if (btnIcon) btnIcon.textContent = '✅';
+          if (btnText) btnText.textContent = 'Đã thuộc (Bấm để hủy)';
+        } else {
+          toggleBtn.classList.remove('mastered');
+          if (btnIcon) btnIcon.textContent = '☆';
+          if (btnText) btnText.textContent = 'Đánh dấu đã thuộc';
+        }
+      }
+    }
+
+    function flipFlashcard() {
+      const cardEl = document.getElementById('fc-card-element');
+      if (!cardEl) return;
+      isFlashcardFlipped = !isFlashcardFlipped;
+      if (isFlashcardFlipped) {
+        cardEl.classList.add('is-flipped');
+      } else {
+        cardEl.classList.remove('is-flipped');
+      }
+    }
+
+    function nextFlashcard() {
+      if (activeFlashcardDeck.length <= 1) return;
+      flashcardCurrentIndex = (flashcardCurrentIndex + 1) % activeFlashcardDeck.length;
+      renderCurrentFlashcard();
+    }
+
+    function prevFlashcard() {
+      if (activeFlashcardDeck.length <= 1) return;
+      flashcardCurrentIndex = (flashcardCurrentIndex - 1 + activeFlashcardDeck.length) % activeFlashcardDeck.length;
+      renderCurrentFlashcard();
+    }
+
+    function toggleMasterCurrentCard(e) {
+      if (e) e.stopPropagation();
+      if (activeFlashcardDeck.length === 0) return;
+      const card = activeFlashcardDeck[flashcardCurrentIndex];
+      if (masteredFlashcardIds.has(card.id)) {
+        masteredFlashcardIds.delete(card.id);
+        showToast('☆ Đã chuyển thẻ về mục Cần ôn lại');
+      } else {
+        masteredFlashcardIds.add(card.id);
+        showToast('⭐ Tuyệt vời! Đã ghi nhận bạn thuộc thẻ này!');
+      }
+      saveStateToStorage();
+      updateFlashcardMasteryStats();
+      renderCurrentFlashcard();
+    }
+
+    function shuffleFlashcardsDeck() {
+      if (activeFlashcardDeck.length <= 1) return;
+      for (let i = activeFlashcardDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = activeFlashcardDeck[i];
+        activeFlashcardDeck[i] = activeFlashcardDeck[j];
+        activeFlashcardDeck[j] = temp;
+      }
+      flashcardCurrentIndex = 0;
+      renderCurrentFlashcard();
+      showToast('🔀 Đã xáo trộn ngẫu nhiên thứ tự các thẻ!');
+    }
+
+    function filterFlashcardDomain(filterVal) {
+      flashcardDomainFilter = filterVal;
+      document.querySelectorAll('.fc-filter-chip').forEach(function(c) {
+        const f = c.getAttribute('data-fc-filter');
+        if (f === String(filterVal)) c.classList.add('active');
+        else c.classList.remove('active');
+      });
+      applyFlashcardFilter();
+    }
+
+    // Flashcard Keyboard Navigation
+    window.addEventListener('keydown', function(e) {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement && document.activeElement.tagName)) return;
+      const steTab = document.getElementById('tab-ste');
+      const isSteActive = steTab && steTab.classList.contains('active');
+      if (isSteActive && dictView === 'cards') {
+        if (e.code === 'Space' || e.code === 'Enter') {
+          e.preventDefault();
+          flipFlashcard();
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          nextFlashcard();
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          prevFlashcard();
+        } else if (e.code === 'KeyM') {
+          e.preventDefault();
+          toggleMasterCurrentCard();
+        }
+      }
+    });
 
     // Flatten all questions with optional shuffle ordering
     function getAllQuestions() {
@@ -4583,8 +5620,6 @@
         });
       }
     }
-
-    let currentInspectedNodeId = null;
 
     function selectGraphNode(nodeId) {
       const node = GRAPH_DATA.nodes.find(n => n.id === nodeId);

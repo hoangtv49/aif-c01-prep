@@ -70,7 +70,8 @@ test("Full End-to-End simulation of all 3 study boost features in generated inde
         setAttribute() {},
         getAttribute() { return null; },
         hasAttribute() { return false; },
-        addEventListener() {}
+        addEventListener() {},
+        getBoundingClientRect() { return { top: 0, bottom: 0, height: 0 }; }
       });
     }
     return domElements.get(id);
@@ -149,4 +150,41 @@ test("Full End-to-End simulation of all 3 study boost features in generated inde
   // 6. Test Back button returns from #cram to previous hash
   history.back();
   expect(globalThis.window.location.hash).not.toBe("#cram");
+
+  // 7. Test Confusing Pairs Hub in Tab 4
+  const pairsFn = new Function(scriptMatch[1] + `
+    switchMatrixSubtab('pairs');
+    return {
+      activeMatrixSubtab,
+      CONFUSING_PAIRS_DATA
+    };
+  `);
+  const matrixState = pairsFn();
+  expect(matrixState.activeMatrixSubtab).toBe("pairs");
+  expect(matrixState.CONFUSING_PAIRS_DATA.length).toBe(10);
+  const pairsContainer = domElements.get("confusing-pairs-grid");
+  expect(pairsContainer.innerHTML).toContain("Amazon Textract");
+  expect(pairsContainer.innerHTML).toContain("Amazon Rekognition");
+
+  // 8. Test 3D Flashcards Deck in Tab 5
+  const fcFn = new Function(scriptMatch[1] + `
+    setDictView('cards');
+    toggleMasterCurrentCard();
+    flipFlashcard();
+    nextFlashcard();
+    return {
+      dictView,
+      allFlashcardsList,
+      activeFlashcardDeck,
+      masteredFlashcardIds,
+      flashcardCurrentIndex,
+      isFlashcardFlipped
+    };
+  `);
+  const fcState = fcFn();
+  expect(fcState.dictView).toBe("cards");
+  expect(fcState.allFlashcardsList.length).toBe(82);
+  expect(fcState.masteredFlashcardIds.size).toBeGreaterThanOrEqual(1);
+  const savedFc = JSON.parse(localStorage.getItem("aif_flashcard_mastered"));
+  expect(savedFc.length).toBeGreaterThanOrEqual(1);
 });
