@@ -886,15 +886,23 @@ const htmlContent = `<!DOCTYPE html>
     <!-- TAB 3: DECISION MATRIX & TRAPS -->
     <section id="tab-matrix" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Gặp từ khóa tình huống trong đề thi $\\rightarrow$ Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <input type="text" id="matrix-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
+            <span id="matrix-count" class="q-badge" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">25 kết quả</span>
+          </div>
+        </div>
         
         <table class="matrix-table">
           <thead>
             <tr>
-              <th>Yêu cầu tình huống trong đề thi</th>
-              <th>Dịch vụ AWS Chính xác</th>
-              <th>Dịch vụ Bẫy (Không chọn)</th>
+              <th style="width: 48%;">Yêu cầu tình huống trong đề thi</th>
+              <th style="width: 26%;">Dịch vụ AWS Chính xác</th>
+              <th style="width: 26%;">Dịch vụ Bẫy (Không chọn)</th>
             </tr>
           </thead>
           <tbody id="matrix-tbody">
@@ -907,16 +915,33 @@ const htmlContent = `<!DOCTYPE html>
     <!-- TAB 4: ASD-STE100 DICTIONARY -->
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Bộ Từ Điển Khái Niệm Chuẩn ASD-STE100</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">82 định nghĩa tiếng Anh kỹ thuật đơn giản ($\le 25$ từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Khái Niệm Chuẩn ASD-STE100</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <input type="text" id="ste-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm thuật ngữ, định nghĩa STE, từ khóa..." oninput="handleSTESearch(this.value)">
+            <span id="ste-count" class="q-badge" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">82 thuật ngữ</span>
+          </div>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1.25rem;">
+          <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
+          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (17)</button>
+          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (16)</button>
+          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (17)</button>
+          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (16)</button>
+          <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (16)</button>
+        </div>
         
         <table class="matrix-table">
           <thead>
             <tr>
-              <th>Thuật ngữ (Term)</th>
-              <th>ASD-STE100 Definition (English)</th>
-              <th>Exam Trigger Keywords</th>
-              <th>Chú giải thực tế (Tiếng Việt)</th>
+              <th style="width: 20%;">Thuật ngữ (Term)</th>
+              <th style="width: 36%;">ASD-STE100 Definition (English)</th>
+              <th style="width: 22%;">Exam Trigger Keywords</th>
+              <th style="width: 22%;">Chú giải thực tế (Tiếng Việt)</th>
             </tr>
           </thead>
           <tbody id="ste-tbody">
@@ -939,6 +964,9 @@ const htmlContent = `<!DOCTYPE html>
     let quizMode = 'exam'; // 'exam' | 'study'
     let isShuffled = false;
     let customQuestionOrder = null;
+    let matrixSearchQuery = '';
+    let steSearchQuery = '';
+    let steDomainFilter = 'all';
     const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
 
@@ -960,33 +988,109 @@ const htmlContent = `<!DOCTYPE html>
       if (panel) panel.classList.add('active');
     }
 
-    // Render Decision Matrix
+    // Render Decision Matrix with search
     function renderDecisionMatrix() {
       const tbody = document.getElementById('matrix-tbody');
-      tbody.innerHTML = APP_DATA.decisionMatrix.map(row => \`
+      const countEl = document.getElementById('matrix-count');
+      const q = matrixSearchQuery.toLowerCase().trim();
+
+      const filtered = APP_DATA.decisionMatrix.filter(row => {
+        if (!q) return true;
+        const text = (row.scenario + ' ' + row.service + ' ' + row.trap).toLowerCase();
+        return text.includes(q);
+      });
+
+      if (countEl) countEl.textContent = \`\${filtered.length}/\${APP_DATA.decisionMatrix.length} kết quả\`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = \`
+          <tr>
+            <td colspan="3" style="text-align:center; padding:2.5rem; color:var(--text-dim);">
+              Không tìm thấy tình huống nào phù hợp với từ khóa "\${matrixSearchQuery}".
+            </td>
+          </tr>
+        \`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(row => {
+        const scenarioFormatted = row.scenario.replace(/\\$\\rightarrow\\$/g, ' &rarr; ').replace(/\\rightarrow/g, ' &rarr; ');
+        return \`
+          <tr>
+            <td>\${scenarioFormatted}</td>
+            <td><span class="service-tag">\${row.service}</span></td>
+            <td><span class="trap-tag">\${row.trap}</span></td>
+          </tr>
+        \`;
+      }).join('');
+    }
+
+    function handleMatrixSearch(val) {
+      matrixSearchQuery = val;
+      renderDecisionMatrix();
+    }
+
+    // Render STE Dictionary with search and domain filter
+    function renderSTEDictionary() {
+      const tbody = document.getElementById('ste-tbody');
+      const countEl = document.getElementById('ste-count');
+      const q = steSearchQuery.toLowerCase().trim();
+
+      const allTerms = [];
+      APP_DATA.domains.forEach(d => {
+        d.steTerms.forEach(t => allTerms.push({ ...t, domainId: d.domainId }));
+      });
+
+      const filtered = allTerms.filter(t => {
+        if (steDomainFilter !== 'all' && t.domainId !== steDomainFilter) return false;
+        if (q) {
+          const text = (t.term + ' ' + t.definition + ' ' + t.keywords + ' ' + t.note).toLowerCase();
+          if (!text.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (countEl) countEl.textContent = \`\${filtered.length}/\${allTerms.length} thuật ngữ\`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = \`
+          <tr>
+            <td colspan="4" style="text-align:center; padding:2.5rem; color:var(--text-dim);">
+              Không tìm thấy thuật ngữ nào phù hợp với từ khóa "\${steSearchQuery}".
+            </td>
+          </tr>
+        \`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(t => \`
         <tr>
-          <td>\${row.scenario}</td>
-          <td><span class="service-tag">\${row.service}</span></td>
-          <td><span class="trap-tag">\${row.trap}</span></td>
+          <td>
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <strong style="color: #fff; font-size: 0.95rem;">\${t.term}</strong>
+              <span class="q-domain-tag" style="align-self:flex-start; font-size:0.7rem; padding:0.15rem 0.45rem;">Domain \${t.domainId}</span>
+            </div>
+          </td>
+          <td style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.85rem; line-height:1.5;">\${t.definition}</td>
+          <td style="color: #fbbf24; font-size: 0.85rem;">\${t.keywords}</td>
+          <td style="color: #cbd5e1; font-size: 0.85rem;">\${t.note}</td>
         </tr>
       \`).join('');
     }
 
-    // Render STE Dictionary
-    function renderSTEDictionary() {
-      const tbody = document.getElementById('ste-tbody');
-      const allTerms = [];
-      APP_DATA.domains.forEach(d => {
-        d.steTerms.forEach(t => allTerms.push(t));
+    function handleSTESearch(val) {
+      steSearchQuery = val;
+      renderSTEDictionary();
+    }
+
+    function filterSTEDomain(domainId) {
+      steDomainFilter = domainId;
+      document.querySelectorAll('.ste-filter-chip').forEach(c => {
+        if (domainId === 'all' && c.textContent.includes('Tất cả')) c.classList.add('active');
+        else if (c.textContent.startsWith('D' + domainId)) c.classList.add('active');
+        else c.classList.remove('active');
       });
-      tbody.innerHTML = allTerms.map(t => \`
-        <tr>
-          <td><strong style="color: #fff;">\${t.term}</strong></td>
-          <td style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.85rem;">\${t.definition}</td>
-          <td style="color: #fbbf24;">\${t.keywords}</td>
-          <td style="color: #cbd5e1;">\${t.note}</td>
-        </tr>
-      \`).join('');
+      renderSTEDictionary();
     }
 
     // Flatten all questions with optional shuffle ordering
