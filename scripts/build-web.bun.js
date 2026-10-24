@@ -826,16 +826,21 @@ const htmlContent = `<!DOCTYPE html>
     .node-group {
       cursor: pointer;
       pointer-events: all;
-      transition: transform 0.2s ease, filter 0.2s ease;
     }
-    .node-group:hover {
-      transform: scale(1.06);
+    .node-group:hover .node-rect {
+      stroke: #38bdf8 !important;
+      stroke-width: 2.5px;
+      fill: #1c2b44;
+      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+    }
+    .node-group:hover .node-text {
+      fill: #ffffff;
     }
     .node-group.selected .node-rect {
       stroke: #38bdf8 !important;
       stroke-width: 3px !important;
       fill: #1e3a5f !important;
-      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.85));
+      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
     }
     .node-group.selected .node-text {
       fill: #ffffff !important;
@@ -846,7 +851,7 @@ const htmlContent = `<!DOCTYPE html>
       stroke-width: 1.5;
       cursor: pointer;
       pointer-events: all;
-      transition: all 0.2s ease;
+      transition: stroke 0.15s ease, fill 0.15s ease, filter 0.15s ease;
     }
     .node-text {
       font-family: var(--font-sans);
