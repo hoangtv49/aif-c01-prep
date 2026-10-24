@@ -1856,12 +1856,14 @@ const htmlContent = `<!DOCTYPE html>
     .exam-timer-widget {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      background: #0b1120;
+      justify-content: space-between;
+      gap: 0.85rem;
+      background: #090e1a;
       border: 1px solid #1e293b;
       border-radius: 10px;
-      padding: 0.3rem 0.65rem;
+      padding: 0.4rem 0.85rem;
       transition: all 0.25s ease;
+      box-sizing: border-box;
     }
     .exam-timer-widget.warning {
       border-color: #f59e0b;
@@ -1885,35 +1887,63 @@ const htmlContent = `<!DOCTYPE html>
     .timer-badge {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.55rem;
     }
     .timer-icon {
-      font-size: 0.95rem;
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+    .timer-meta-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .timer-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      line-height: 1;
+      margin-bottom: 2px;
     }
     .timer-digits {
       font-family: var(--font-mono);
       font-weight: 700;
-      font-size: 0.925rem;
+      font-size: 1.05rem;
       color: #38bdf8;
       letter-spacing: 0.05em;
+      line-height: 1;
     }
-    .timer-toggle-btn, .timer-reset-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .timer-actions-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .timer-action-btn {
+      background: #162032;
+      border: 1px solid var(--border);
       color: #cbd5e1;
       cursor: pointer;
-      font-size: 0.75rem;
-      width: 24px;
-      height: 24px;
+      font-family: var(--font-sans);
+      font-size: 0.775rem;
+      font-weight: 600;
+      height: 32px;
+      padding: 0 0.65rem;
       border-radius: 6px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 0.35rem;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
-    .timer-toggle-btn:hover, .timer-reset-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+    .timer-action-btn:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
       color: #fff;
+    }
+    .timer-action-btn.reset-btn:hover {
+      border-color: #f59e0b;
+      color: #fbbf24;
     }
 
     /* Scoreboard Modal */
@@ -2398,8 +2428,31 @@ const htmlContent = `<!DOCTYPE html>
       }
       .exam-timer-widget {
         width: 100%;
+        display: flex;
+        align-items: center;
         justify-content: space-between;
-        padding: 0.4rem 0.75rem;
+        padding: 0.55rem 0.85rem;
+        gap: 0.5rem;
+      }
+      .timer-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1 1 auto;
+      }
+      .timer-digits {
+        font-size: 1.15rem;
+      }
+      .timer-actions-group {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-shrink: 0;
+      }
+      .timer-action-btn {
+        height: 34px;
+        padding: 0 0.65rem;
+        font-size: 0.75rem;
       }
       .scoreboard-card {
         padding: 1.25rem 1rem;
@@ -2685,6 +2738,10 @@ const htmlContent = `<!DOCTYPE html>
           <span class="stat-label">Độ chính xác:</span>
           <span class="stat-value" id="stats-accuracy">0%</span>
         </div>
+        <div class="stat-item" id="header-timer-stat">
+          <span class="stat-label">Thời gian:</span>
+          <span class="stat-value" id="header-timer-display" style="color: #38bdf8;">01:25:00</span>
+        </div>
       </div>
     </div>
   </header>
@@ -2846,10 +2903,21 @@ const htmlContent = `<!DOCTYPE html>
         <div id="exam-timer-widget" class="exam-timer-widget" title="Thời gian thi mô phỏng (85 phút)">
           <div class="timer-badge">
             <span class="timer-icon">⏱️</span>
-            <span id="exam-timer-display" class="timer-digits">01:25:00</span>
+            <div class="timer-meta-box">
+              <span class="timer-label">Thời gian thi</span>
+              <span id="exam-timer-display" class="timer-digits">01:25:00</span>
+            </div>
           </div>
-          <button id="timer-toggle-btn" class="timer-toggle-btn" onclick="toggleTimerPause()" title="Tạm dừng / Tiếp tục đếm giờ">⏸️</button>
-          <button class="timer-reset-btn" onclick="resetExamTimer()" title="Đặt lại 85 phút">🔄</button>
+          <div class="timer-actions-group">
+            <button id="timer-toggle-btn" class="timer-action-btn" onclick="toggleTimerPause()" title="Tạm dừng / Tiếp tục đếm giờ">
+              <span id="timer-toggle-icon">⏸️</span>
+              <span id="timer-toggle-text" class="timer-btn-text">Tạm dừng</span>
+            </button>
+            <button class="timer-action-btn reset-btn" onclick="resetExamTimer()" title="Đặt lại 85 phút">
+              <span>🔄</span>
+              <span class="timer-btn-text">Đặt lại</span>
+            </button>
+          </div>
         </div>
         <div class="quiz-action-group">
           <button id="submit-exam-btn" class="action-btn submit-btn" onclick="submitExam()" title="Nộp bài thi và nhận bảng điểm chuẩn hóa AWS 100-1000">
@@ -3414,26 +3482,34 @@ const htmlContent = `<!DOCTYPE html>
     function updateTimerDisplay() {
       const display = document.getElementById('exam-timer-display');
       const widget = document.getElementById('exam-timer-widget');
-      if (!display || !widget) return;
+      const headerDisplay = document.getElementById('header-timer-display');
+      if (!display && !headerDisplay) return;
 
       const h = Math.floor(examTimeRemaining / 3600);
       const m = Math.floor((examTimeRemaining % 3600) / 60);
       const s = examTimeRemaining % 60;
       const pad = n => String(n).padStart(2, '0');
-      display.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+      const timeStr = pad(h) + ':' + pad(m) + ':' + pad(s);
 
-      widget.classList.remove('warning', 'danger');
-      if (examTimeRemaining <= 300) {
-        widget.classList.add('danger');
-      } else if (examTimeRemaining <= 900) {
-        widget.classList.add('warning');
+      if (display) display.textContent = timeStr;
+      if (headerDisplay) headerDisplay.textContent = timeStr;
+
+      if (widget) {
+        widget.classList.remove('warning', 'danger');
+        if (examTimeRemaining <= 300) {
+          widget.classList.add('danger');
+        } else if (examTimeRemaining <= 900) {
+          widget.classList.add('warning');
+        }
       }
     }
 
     function toggleTimerPause() {
       isTimerPaused = !isTimerPaused;
-      const btn = document.getElementById('timer-toggle-btn');
-      if (btn) btn.textContent = isTimerPaused ? '▶️' : '⏸️';
+      const icon = document.getElementById('timer-toggle-icon');
+      const text = document.getElementById('timer-toggle-text');
+      if (icon) icon.textContent = isTimerPaused ? '▶️' : '⏸️';
+      if (text) text.textContent = isTimerPaused ? 'Tiếp tục' : 'Tạm dừng';
       showToast(isTimerPaused ? '⏸️ Đã tạm dừng đồng hồ đếm giờ' : '▶️ Tiếp tục đếm giờ');
     }
 
@@ -3441,8 +3517,10 @@ const htmlContent = `<!DOCTYPE html>
       if (!confirm('Bạn có muốn đặt lại đồng hồ thi thử về 85 phút?')) return;
       examTimeRemaining = 85 * 60;
       isTimerPaused = false;
-      const btn = document.getElementById('timer-toggle-btn');
-      if (btn) btn.textContent = '⏸️';
+      const icon = document.getElementById('timer-toggle-icon');
+      const text = document.getElementById('timer-toggle-text');
+      if (icon) icon.textContent = '⏸️';
+      if (text) text.textContent = 'Tạm dừng';
       updateTimerDisplay();
       saveStateToStorage();
       showToast('🔄 Đã đặt lại thời gian thi về 85 phút!');
