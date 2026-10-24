@@ -1,0 +1,24 @@
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_e7a34705b24e77 1150-1154,1160,1163,1166,1169-1172,1175,1191-1192,1194,1196,1198
+index.html
+  s_a513f3f6851de5::t_e7a34705b24e77 1150-1154,1160,1163,1166,1169-1172,1175,1191-1192,1194,1196,1198
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_6c0b4004252fc7 1350-1354,1360,1363,1366,1369-1372,1375
+  s_a513f3f6851de5::t_1b3d38901325fb 1391-1392,1394,1396,1398
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "caab71a7073bd2dc2b7327648beb421503d7cf20",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
