@@ -77,6 +77,9 @@ Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn g�
 | **Amazon Polly** | Chuyển văn bản thành giọng nói tự nhiên (Text-to-Speech - TTS) với giọng đọc sống động. | Văn bản, SSML | File âm thanh (MP3, OGG, PCM) | Đọc báo tự động cho người khiếm thị, tạo giọng thuyết minh cho video đào tạo. |
 | **Amazon Transcribe** | Chuyển giọng nói thành văn bản (Speech-to-Text - STT) hỗ trợ nhận diện từng người nói. | File âm thanh cuộc gọi, Audio stream | Văn bản kèm timestamp, nhãn người nói (speaker diarization) | Ghi biên bản cuộc họp, chép lời cuộc gọi tổng đài chăm sóc khách hàng. |
 | **Amazon Lex** | Xây dựng giao diện đàm thoại (Conversational AI - Chatbot & Voicebot) theo kịch bản. | Tin nhắn văn bản, Giọng nói | Phản hồi tương tác, Slot values, Intent fulfillment | Xây dựng bot đặt vé xem phim, bot tra cứu số dư tài khoản ngân hàng theo luồng cố định. |
+| **Amazon Personalize** | Công cụ gợi ý cá nhân hóa (Recommendation engine) theo thời gian thực dựa trên hành vi người dùng. | Lịch sử tương tác, Dữ liệu người dùng, Danh mục sản phẩm | Danh sách sản phẩm/nội dung gợi ý xếp hạng | Gợi ý sản phẩm nên mua tiếp theo trên sàn thương mại điện tử, gợi ý phim tương tự trên app streaming. |
+| **Amazon Forecast** | Dự báo chuỗi thời gian (Time-series forecasting) kết hợp dữ liệu lịch sử và yếu tố ngoại cảnh. | Dữ liệu thời gian chuỗi (CSV/S3), yếu tố thời tiết/ngày lễ | Dự báo giá trị tương lai theo các phân vị (P10, P50, P90) | Dự báo nhu cầu tồn kho hàng hóa, dự báo nhu cầu năng lượng điện của thành phố. |
+| **Amazon Fraud Detector** | Nền tảng tự động phát hiện các hành vi gian lận trực tuyến tiềm ẩn bằng học máy. | Dữ liệu giao dịch, IP, Thiết bị, Email | Điểm số rủi ro (Risk score), Kết quả quy tắc (Rule outcomes) | Phát hiện tạo tài khoản giả mạo, thanh toán bằng thẻ tín dụng bị đánh cắp. |
 
 ---
 
@@ -103,6 +106,9 @@ Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn g�
 | **Amazon Transcribe** | Amazon Transcribe converts speech audio into accurate text transcripts automatically. | Speech-to-text, audio files, speaker diarization, call analytics. | Dịch vụ chuyển đổi giọng nói thành văn bản, phân biệt người nói trong cuộc gọi. |
 | **Amazon Polly** | Amazon Polly converts written text into lifelike speech in multiple languages. | Text-to-speech, lifelike voices, SSML, audio output. | Dịch vụ chuyển văn bản thành giọng đọc tự nhiên đa ngôn ngữ. |
 | **Amazon Lex** | Amazon Lex builds conversational interfaces with voice and text for applications. | Conversational AI, chatbots, intents, utterances, slots. | Dịch vụ xây dựng chatbot và trợ lý đàm thoại tương tác hai chiều. |
+| **Amazon Personalize** | Amazon Personalize generates real-time product recommendations. It uses customer interaction data to rank items. | Recommendation engine, personalized items, user ranking. | Dịch vụ gợi ý sản phẩm cá nhân hóa theo thời gian thực dựa trên lịch sử người dùng. |
+| **Amazon Forecast** | Amazon Forecast delivers accurate time-series forecasts. It predicts future values with machine learning algorithms. | Time-series forecasting, future demand, inventory planning. | Dịch vụ dự báo chuỗi thời gian kết hợp học máy và dữ liệu lịch sử. |
+| **Amazon Fraud Detector** | Amazon Fraud Detector identifies potentially fraudulent online activities automatically. It generates risk scores for transactions. | Online fraud detection, stolen credit cards, fake account risk. | Dịch vụ tự động phát hiện các giao dịch gian lận và đánh giá điểm rủi ro. |
 
 ---
 

@@ -37,6 +37,21 @@
   3. **Bedrock Guardrails**: Thiết lập hàng rào an toàn cho ứng dụng GenAI. Lọc nội dung thù địch/nhạy cảm, lọc thông tin nhận dạng cá nhân (PII Redaction), chặn các chủ đề bị cấm (Denied Topics), và phát hiện ảo giác (Hallucination Detection via Grounding Check).
   4. **Model Evaluation on Bedrock**: Đánh giá và so sánh hiệu năng các mô hình bằng các bài kiểm tra tự động (Automatic Evaluation) hoặc kiểm tra có sự tham gia của con người (Human-in-the-loop Evaluation).
 
+- **Các hình thức định giá của Amazon Bedrock (Pricing Models)**:
+  - **On-Demand (Theo nhu cầu)**: Trả phí theo từng 1,000 token đầu vào (input) và đầu ra (output). Phù hợp cho ứng dụng thử nghiệm, lưu lượng biến động không ổn định.
+  - **Batch Inference (Theo mẻ)**: Gửi danh sách lớn các prompts qua file JSONL trên S3 và nhận kết quả sau vài giờ với chi phí giảm tới 50% so với On-Demand.
+  - **Provisioned Throughput (Cấp phát thông lượng cố định)**:
+    - Mua các Đơn vị Mô hình (**Model Units - MUs**) theo cam kết 1 tháng hoặc 6 tháng để đảm bảo mức thông lượng (Throughput) tối đa và độ trễ ổn định cho ứng dụng production quan trọng.
+    - **QUY TẮC ĐỀ THI:** Bắt buộc phải sử dụng **Provisioned Throughput** khi muốn triển khai và suy luận trên **Mô hình tùy chỉnh (Custom Fine-Tuned Models)** trong Amazon Bedrock.
+
+#### B. Amazon Kendra vs Bedrock Knowledge Bases (Phân biệt thi cử)
+
+| Tiêu chí | Amazon Kendra | Bedrock Knowledge Bases |
+| :--- | :--- | :--- |
+| **Bản chất** | Công cụ tìm kiếm tài liệu thông minh (Intelligent Enterprise Search Engine) | Giải pháp RAG hoàn chỉnh kết hợp LLM để sinh câu trả lời |
+| **Đầu ra chính** | Trích đoạn tài liệu chính xác nhất, đường dẫn liên kết, danh sách file liên quan | Câu trả lời tổng hợp bằng ngôn ngữ tự nhiên từ LLM có kèm trích dẫn nguồn |
+| **Trường hợp chọn** | Doanh nghiệp cần công cụ search nội bộ để nhân viên tìm file và tài liệu gốc | Doanh nghiệp muốn bot trả lời câu hỏi trực tiếp dựa trên tài liệu |
+
 #### B. Amazon Q (Trợ lý AI chuyên nghiệp cho doanh nghiệp)
 - **Amazon Q Business**: Trợ lý trò chuyện cho nhân viên doanh nghiệp, kết nối với hơn 40 kho dữ liệu nội bộ (S3, Jira, Salesforce, Google Drive, Microsoft 365). Điểm cốt lõi trong đề thi: **Tự động kế thừa và tuân thủ quyền truy cập danh tính người dùng (ACLs - Access Control Lists)**; nhân viên chỉ thấy dữ liệu họ có quyền đọc.
 - **Amazon Q Developer**: Trợ lý lập trình AI hỗ trợ viết code, tạo unit test, quét lỗ hổng bảo mật và tự động nâng cấp phiên bản ứng dụng (ví dụ chuyển đổi Java 8 lên Java 17).
@@ -110,7 +125,8 @@
 | **Chain-of-Thought** | Chain-of-thought prompting asks the model to show intermediate reasoning steps. It improves complex logical problem solving. | Step-by-step reasoning, complex problem solving, intermediate thoughts. | Kỹ thuật hướng dẫn mô hình suy nghĩ từng bước để giải quyết các bài toán suy luận phức tạp. |
 | **PEFT** | PEFT adapts large foundation models efficiently. It updates only a small subset of model parameters. | Parameter-efficient, freezes base weights, reduces GPU memory. | Kỹ thuật tinh chỉnh mô hình chỉ cập nhật một phần nhỏ tham số, giúp tiết kiệm bộ nhớ GPU. |
 | **LoRA** | LoRA injects trainable low-rank matrices into transformer layers. It freezes original pre-trained model weights. | Low-rank adaptation, trainable rank matrices, efficient fine-tuning. | Phương pháp chèn các ma trận hạng thấp để tinh chỉnh mô hình mà không thay đổi trọng số gốc. |
-| **RLHF** | RLHF aligns foundation models with human preferences. It uses reward models based on human feedback. | Human preferences, reward model, model alignment, safety. | Phương pháp căn chỉnh mô hình theo giá trị con người bằng học tăng cường từ phản hồi thực tế. |
+| **RLHF** | RLHF aligns foundation models with human preferences. It uses human feedback to train reward models. | Human preferences, reward model, model alignment, safety. | Phương pháp căn chỉnh mô hình theo giá trị con người bằng học tăng cường từ phản hồi thực tế. |
+| **Amazon Kendra** | Amazon Kendra is an intelligent enterprise search service. It searches internal documents with natural language queries. | Enterprise search, document retrieval, search engine, natural language. | Dịch vụ tìm kiếm tài liệu thông minh dành cho doanh nghiệp bằng ngôn ngữ tự nhiên. |
 | **BLEU Score** | BLEU calculates n-gram precision between generated text and references. It evaluates machine translation quality. | Precision metric, machine translation benchmark, n-gram overlap. | Thang đo độ chính xác so khớp từ ngữ, dùng phổ biến nhất cho bài toán dịch máy. |
 | **ROUGE Score** | ROUGE calculates n-gram recall between generated text and references. It evaluates text summarization quality. | Recall metric, summarization benchmark, ROUGE-N, ROUGE-L. | Thang đo độ bao phủ từ ngữ, dùng làm tiêu chuẩn đánh giá bài toán tóm tắt văn bản. |
 
