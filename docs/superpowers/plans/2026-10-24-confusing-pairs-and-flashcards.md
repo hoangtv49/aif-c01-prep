@@ -40,11 +40,11 @@
 **Interfaces:**
 - Produces: `CONFUSING_PAIRS_DATA`, `switchMatrixSubtab(subId)`, `renderConfusingPairs()`
 
-- [ ] **Step 1: Write test verifying Confusing Pairs dataset completeness and subtab switching**
-- [ ] **Step 2: Run test to verify failure before implementation**
-- [ ] **Step 3: Implement Confusing Pairs dataset, sub-tab controls, and versus cards in `scripts/build-web.bun.js`**
-- [ ] **Step 4: Run test to verify pass**
-- [ ] **Step 5: Commit changes**
+- [x] **Step 1: Write test verifying Confusing Pairs dataset completeness and subtab switching**
+- [x] **Step 2: Run test to verify failure before implementation**
+- [x] **Step 3: Implement Confusing Pairs dataset, sub-tab controls, and versus cards in `scripts/build-web.bun.js`**
+- [x] **Step 4: Run test to verify pass**
+- [x] **Step 5: Commit changes**
 
 ---
 
@@ -57,11 +57,11 @@
 **Interfaces:**
 - Produces: `toggleDictionaryView(viewMode)`, `flipFlashcard()`, `nextFlashcard()`, `prevFlashcard()`, `shuffleFlashcards()`, `markFlashcardMastered()`, `resetFlashcards()`
 
-- [ ] **Step 1: Write test verifying Flashcard 3D flip state, navigation bounds, and mastery calculations**
-- [ ] **Step 2: Run test to verify failure before implementation**
-- [ ] **Step 3: Implement Flashcard component, 3D flip animation, and controls in `scripts/build-web.bun.js`**
-- [ ] **Step 4: Run test to verify pass**
-- [ ] **Step 5: Commit changes**
+- [x] **Step 1: Write test verifying Flashcard 3D flip state, navigation bounds, and mastery calculations**
+- [x] **Step 2: Run test to verify failure before implementation**
+- [x] **Step 3: Implement Flashcard component, 3D flip animation, and controls in `scripts/build-web.bun.js`**
+- [x] **Step 4: Run test to verify pass**
+- [x] **Step 5: Commit changes**
 
 ---
 
@@ -71,7 +71,7 @@
 - Compile: `index.html`, `aif-c01-study-guide/index.html`
 - Git push: `origin/main`
 
-- [ ] **Step 1: Run Bun build generator to compile both standalone HTML files**
-- [ ] **Step 2: Run complete test suite across all feature sets**
-- [ ] **Step 3: Commit and push to origin/main**
-- [ ] **Step 4: Verify live deployment on GitHub Pages**
+- [x] **Step 1: Run Bun build generator to compile both standalone HTML files**
+- [x] **Step 2: Run complete test suite across all feature sets**
+- [x] **Step 3: Commit and push to origin/main**
+- [x] **Step 4: Verify live deployment on GitHub Pages**
