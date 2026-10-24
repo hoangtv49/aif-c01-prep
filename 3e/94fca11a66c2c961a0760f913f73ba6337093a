@@ -1,0 +1,28 @@
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_09b00371d402fc 1076-1077,1107
+  s_a513f3f6851de5::t_81501a913cd150 805-814
+  s_a513f3f6851de5::t_6b4b11916b7afe 544-561
+  s_a513f3f6851de5::t_00a2999f074f98 290-300,302-303,305,307,312,314-316,318-362
+  s_a513f3f6851de5::t_9fd9bf5a1ed136 954-969,971-974,976,983-984,989-1007
+  s_a513f3f6851de5::t_2001afafef821a 1105-1106,1123,1127,1131
+  s_a513f3f6851de5::t_7bf68163251191 878-879
+  s_a513f3f6851de5::t_05ead839f3c9bd 1008
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_89f1e1731bc46e 212-222,224-225,227,229,234,236-238,240-284,466-483,727-736,800-801,876-891,893-896,898,905-906,911-930,998-999,1027-1029,1045,1049,1053
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3e94fca11a66c2c961a0760f913f73ba6337093a",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
