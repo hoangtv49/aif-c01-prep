@@ -135,7 +135,7 @@
 ## Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án
 
 ### Question 1
-Một công ty khởi nghiệp công nghệ muốn tích hợp khả năng tóm tắt văn bản vào ứng dụng web của họ. Công ty không có đội ngũ kỹ sư hạ tầng chuyên trách và muốn triển khai trong vòng 2 ngày với mức chi phí tối ưu nhất, chỉ trả tiền theo lượng sử dụng thực tế (Pay-as-you-go). Họ muốn sử dụng mô hình Claude 3 từ Anthropic thông qua lệnh gọi API tiêu chuẩn. Dịch vụ AWS nào đáp ứng hoàn hảo nhất?
+A technology startup wants to integrate text summarization capabilities into its web application. The company has no dedicated infrastructure engineers, needs to deploy within two days, and requires pay-as-you-go pricing based strictly on actual usage. The team wants to invoke Anthropic Claude 3 models via standard API calls. Which AWS service best fulfills these requirements?
 - A. Amazon SageMaker JumpStart
 - B. Amazon Bedrock
 - C. Amazon EC2 G5 GPU Instance
@@ -144,7 +144,7 @@ Một công ty khởi nghiệp công nghệ muốn tích hợp khả năng tóm 
 **Đáp án đúng:** **B. Amazon Bedrock**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Đề bài yêu cầu: *"không có đội ngũ hạ tầng chuyên trách"* (Serverless) + *"triển khai nhanh nhất"* + *"trả tiền theo lượng sử dụng thực tế (Pay-as-you-go / Pay-per-token)"* + *"truy cập mô hình Claude 3 từ Anthropic qua API"*.
+- Đề bài yêu cầu: *"no dedicated infrastructure engineers"* (Serverless) + *"deploy within two days"* + *"pay-as-you-go pricing"* + *"invoke Anthropic Claude 3 via API calls"*.
 - **Amazon Bedrock** là dịch vụ duy nhất trên AWS cung cấp quyền truy cập mô hình Claude của Anthropic dưới dạng Serverless API hoàn toàn không cần quản lý máy chủ.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -158,20 +158,20 @@ Một công ty khởi nghiệp công nghệ muốn tích hợp khả năng tóm 
 ---
 
 ### Question 2
-Một tập đoàn bán lẻ đa quốc gia muốn cung cấp cho nhân viên một công cụ tìm kiếm nội bộ có khả năng trò chuyện thông minh. Công cụ này phải tự động kết nối với Microsoft SharePoint, Salesforce và Amazon S3. Yêu cầu bảo mật tối quan trọng là: nhân viên phòng ban nào chỉ được phép thấy thông tin và câu trả lời trích xuất từ các tài liệu mà họ đã được cấp quyền truy cập từ trước trên các hệ thống nguồn đó (Access Control Lists - ACLs). Giải pháp nào đòi hỏi ít công sức triển khai nhất?
-- A. Tự xây dựng ứng dụng RAG sử dụng Amazon OpenSearch và Amazon Bedrock, tự viết mã kiểm tra quyền truy cập của người dùng.
-- B. Sử dụng Amazon Q Business và kết nối với các kho dữ liệu thông qua các connector có sẵn.
-- C. Triển khai Amazon Lex kết nối với AWS Lambda để đọc tài liệu từ S3.
-- D. Sử dụng Amazon SageMaker JumpStart kết hợp với AWS IAM Roles để phân quyền tài liệu.
+A multinational enterprise wants to deploy an internal conversational search tool for employees. The tool must automatically connect to Microsoft SharePoint, Salesforce, and Amazon S3. A critical security requirement states that employees must only see information and answers derived from documents they already have permission to access in the source systems (Access Control Lists - ACLs). Which solution requires the LEAST implementation effort?
+- A. Build a custom RAG solution using Amazon OpenSearch and Amazon Bedrock, writing custom logic to enforce user access controls.
+- B. Deploy Amazon Q Business and connect to the enterprise data repositories using built-in connectors.
+- C. Deploy Amazon Lex integrated with AWS Lambda to query documents stored in S3.
+- D. Use Amazon SageMaker JumpStart combined with AWS IAM roles to control document permissions.
 
-**Đáp án đúng:** **B. Sử dụng Amazon Q Business và kết nối với các kho dữ liệu thông qua các connector có sẵn.**
+**Đáp án đúng:** **B. Deploy Amazon Q Business and connect to the enterprise data repositories using built-in connectors.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu bài toán: *"công cụ tìm kiếm nội bộ trò chuyện thông minh"* + *"kết nối SharePoint, Salesforce, S3"* + *"kế thừa và tuân thủ nguyên vẹn quyền truy cập người dùng (ACLs) từ hệ thống nguồn"* + *"ít công sức triển khai nhất"*.
+- Yêu cầu bài toán: *"internal conversational search tool for employees"* + *"connect to SharePoint, Salesforce, S3"* + *"employees only see answers derived from documents they have permission to access (ACLs)"* + *"least implementation effort"*.
 - **Amazon Q Business** được thiết kế chính xác cho tình huống này: Cung cấp sẵn hơn 40 connectors doanh nghiệp và **tự động đồng bộ hóa cũng như thực thi quyền truy cập (ACLs)** của từng người dùng cuối mà lập trình viên không phải tự viết code xác thực phức tạp.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Tự xây dựng RAG với Bedrock và OpenSearch):** Hoàn toàn khả thi về mặt kỹ thuật nhưng đòi hỏi công sức phát triển rất lớn (custom development) để đồng bộ ACLs từ Salesforce và SharePoint vào Vector Store, vi phạm yêu cầu "ít công sức triển khai nhất".
+- **Loại A (Custom RAG with Bedrock and OpenSearch):** Hoàn toàn khả thi về mặt kỹ thuật nhưng đòi hỏi công sức phát triển rất lớn (custom development) để đồng bộ ACLs từ Salesforce và SharePoint vào Vector Store, vi phạm yêu cầu "least implementation effort".
 - **Loại C (Amazon Lex):** Lex dùng để xây dựng bot đàm thoại theo kịch bản đơn giản (Intent/Slot), không có tính năng tìm kiếm văn bản doanh nghiệp kế thừa ACLs.
 - **Loại D (SageMaker JumpStart + IAM Roles):** IAM Roles dùng để phân quyền tài nguyên hạ tầng trên AWS, không thể phân quyền ở cấp độ từng tài liệu trong Salesforce hay SharePoint cho nhân viên cuối.
 
@@ -181,7 +181,7 @@ Một tập đoàn bán lẻ đa quốc gia muốn cung cấp cho nhân viên m�
 ---
 
 ### Question 3
-Một nhóm kỹ sư phát triển một ứng dụng hỗ trợ bác sĩ tóm tắt bệnh án của bệnh nhân. Nhóm muốn đánh giá độ chính xác của các bản tóm tắt do các mô hình ngôn ngữ lớn khác nhau sinh ra so với bản tóm tắt chuẩn do bác sĩ trưởng khoa biên soạn. Nhóm muốn sử dụng một thang đo tự động tập trung vào độ bao phủ thông tin quan trọng (Recall) của bản tóm tắt. Thang đo đánh giá nào là phù hợp nhất?
+An engineering team develops an AI application to assist physicians by summarizing patient medical records. The team wants to evaluate the accuracy of summaries generated by different LLMs against gold-standard summaries created by medical directors. The team needs an automated evaluation metric focused specifically on information coverage (recall). Which metric is MOST appropriate?
 - A. BLEU
 - B. ROUGE
 - C. Perplexity
@@ -190,38 +190,38 @@ Một nhóm kỹ sư phát triển một ứng dụng hỗ trợ bác sĩ tóm t
 **Đáp án đúng:** **B. ROUGE**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Từ khóa trong câu hỏi: *"đánh giá bài toán tóm tắt (Summarization)"* + *"thang đo tập trung vào độ bao phủ thông tin (Recall)"*.
+- Từ khóa trong câu hỏi: *"summarizing patient medical records"* + *"automated evaluation metric focused on information coverage (recall)"*.
 - **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)** là thang đo tiêu chuẩn công nghiệp được thiết kế đặc thù cho bài toán tóm tắt văn bản, đo lường tỷ lệ các n-grams trong văn bản tham chiếu xuất hiện trong văn bản do mô hình tạo ra.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (BLEU):** BLEU tập trung vào độ chính xác (Precision), là tiêu chuẩn vàng cho bài toán **Dịch máy (Machine Translation)**, không tối ưu cho bài toán tóm tắt.
+- **Loại A (BLEU):** BLEU tập trung vào độ chính xác (Precision), là tiêu chuẩn vàng cho bài toán **Machine Translation (Dịch máy)**, không tối ưu cho bài toán tóm tắt.
 - **Loại C (Perplexity):** Đo lường mức độ bất ngờ hoặc tính trôi chảy nội tại của mô hình ngôn ngữ, không so sánh trực tiếp độ bao phủ nội dung giữa văn bản sinh ra và văn bản chuẩn.
 - **Loại D (Accuracy):** Thang đo cho bài toán phân loại nhãn rời rạc trong học máy truyền thống, không áp dụng được cho sinh văn bản tự do.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Ghi nhớ thần chú thi cử:
-  - **Dịch thuật (Translation)** $\rightarrow$ **BLEU** (Precision).
-  - **Tóm tắt (Summarization)** $\rightarrow$ **ROUGE** (Recall).
+  - **Machine Translation** $\rightarrow$ **BLEU** (Precision).
+  - **Text Summarization** $\rightarrow$ **ROUGE** (Recall).
 
 ---
 
 ### Question 4
-Một công ty tài chính muốn mô hình LLM giải quyết bài toán tính toán thuế thu nhập cá nhân phức tạp qua nhiều bước. Khi thử nghiệm với câu lệnh thông thường (Zero-Shot), mô hình thường xuyên tính sai kết quả cuối cùng do bỏ qua các bước khấu trừ phụ thuộc. Kỹ thuật Prompt Engineering nào hiệu quả nhất để giúp mô hình cải thiện khả năng tính toán mà không cần huấn luyện lại?
-- A. Tăng tham số Temperature lên 1.0.
-- B. Chain-of-Thought (CoT) Prompting.
-- C. Bỏ qua System Prompt và gửi câu hỏi ngắn gọn nhất có thể.
-- D. Chuyển đổi toàn bộ câu hỏi sang định dạng Base64.
+A financial services company wants an LLM to perform complex multi-step personal income tax calculations. In zero-shot testing, the model frequently produces incorrect final amounts by skipping dependent deduction steps. Which prompt engineering technique is MOST effective to improve the model's calculation accuracy without retraining?
+- A. Increase the temperature parameter to 1.0.
+- B. Chain-of-Thought (CoT) prompting.
+- C. Remove the system prompt and provide the shortest possible query.
+- D. Encode the entire prompt into Base64 format.
 
-**Đáp án đúng:** **B. Chain-of-Thought (CoT) Prompting.**
+**Đáp án đúng:** **B. Chain-of-Thought (CoT) prompting.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Vấn đề: Bài toán suy luận logic và tính toán nhiều bước phức tạp.
-- **Chain-of-Thought (CoT)** hướng dẫn mô hình phân tích bài toán thành các bước suy luận trung gian (ví dụ thêm câu chỉ dẫn *"Hãy suy nghĩ từng bước một"* hoặc đưa các ví dụ mẫu có lời giải chi tiết). Điều này giúp mô hình phân bổ khả năng tính toán tuần tự cho từng bước trước khi đưa ra kết quả cuối cùng, giảm thiểu tối đa sai sót toán học.
+- Vấn đề: *"complex multi-step personal income tax calculations"* (suy luận logic và tính toán nhiều bước phức tạp).
+- **Chain-of-Thought (CoT)** hướng dẫn mô hình phân tích bài toán thành các bước suy luận trung gian (ví dụ thêm câu chỉ dẫn *"Let's think step by step"* hoặc đưa các ví dụ mẫu có lời giải chi tiết). Điều này giúp mô hình phân bổ khả năng tính toán tuần tự cho từng bước trước khi đưa ra kết quả cuối cùng, giảm thiểu tối đa sai sót toán học.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Tăng Temperature lên 1.0):** Tăng Temperature làm tăng tính ngẫu nhiên, khiến kết quả tính toán toán học càng trở nên sai lệch và khó đoán hơn.
-- **Loại C (Bỏ qua System Prompt):** Loại bỏ ngữ cảnh chỉ dẫn sẽ làm giảm khả năng định hướng của mô hình.
-- **Loại D (Mã hóa Base64):** Base64 làm xáo trộn cấu trúc token ngôn ngữ tự nhiên, làm suy giảm nghiêm trọng khả năng hiểu bài toán của mô hình.
+- **Loại A (Increase temperature to 1.0):** Tăng Temperature làm tăng tính ngẫu nhiên, khiến kết quả tính toán toán học càng trở nên sai lệch và khó đoán hơn.
+- **Loại C (Remove system prompt):** Loại bỏ ngữ cảnh chỉ dẫn sẽ làm giảm khả năng định hướng của mô hình.
+- **Loại D (Encode prompt into Base64):** Base64 làm xáo trộn cấu trúc token ngôn ngữ tự nhiên, làm suy giảm nghiêm trọng khả năng hiểu bài toán của mô hình.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Khi đề bài xuất hiện: *"Complex reasoning"*, *"Multi-step calculations"*, *"Break down logic into intermediate steps"* $\rightarrow$ Luôn chọn **Chain-of-Thought (CoT)**.
@@ -229,7 +229,7 @@ Một công ty tài chính muốn mô hình LLM giải quyết bài toán tính 
 ---
 
 ### Question 5
-Một doanh nghiệp muốn tích hợp trợ lý AI để tự động đặt lịch hẹn cho khách hàng vào hệ thống cơ sở dữ liệu nội bộ và gửi email xác nhận. Trợ lý AI cần có khả năng hiểu yêu cầu của khách hàng, tự xác định xem cần gọi hàm API nào, truyền các tham số nào vào và thực thi hành động trong hệ thống. Tính năng nào của Amazon Bedrock cung cấp giải pháp trọn gói cho nhu cầu này?
+An enterprise wants to deploy an AI assistant that can automatically schedule appointments for customers into an internal database and send confirmation emails. The assistant must understand customer intents, determine which backend APIs to call, pass the correct parameters, and execute the actions. Which Amazon Bedrock capability provides this end-to-end functionality?
 - A. Bedrock Knowledge Bases
 - B. Bedrock Guardrails
 - C. Bedrock Agents
@@ -238,7 +238,7 @@ Một doanh nghiệp muốn tích hợp trợ lý AI để tự động đặt l
 **Đáp án đúng:** **C. Bedrock Agents**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu: *"tự động lập kế hoạch hành động"*, *"xác định API cần gọi và truyền tham số"*, *"thực thi hành động nhiều bước (đặt lịch, gửi email)"*.
+- Yêu cầu: *"understand customer intents, determine which backend APIs to call, pass correct parameters, and execute actions"*.
 - **Amazon Bedrock Agents** là tính năng được xây dựng chuyên biệt để biến Foundation Models thành các tác tử hành động (Autonomous Agents). Bedrock Agents phân tích yêu cầu bằng ReAct framework, đối chiếu với OpenAPI schema và tự động kích hoạt **AWS Lambda functions** tương ứng để hoàn thành tác vụ nghiệp vụ thực tế.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -247,29 +247,29 @@ Một doanh nghiệp muốn tích hợp trợ lý AI để tự động đặt l
 - **Loại D (Bedrock Model Evaluation):** Dùng để so sánh và chấm điểm chất lượng mô hình, không liên quan đến việc tự động hóa tác vụ.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Phân biệt nhanh bộ đôi Bedrock:
-  - Cần **Đọc / Tra cứu dữ liệu** (RAG) $\rightarrow$ **Bedrock Knowledge Bases**.
-  - Cần **Thực thi hành động / Gọi API** $\rightarrow$ **Bedrock Agents**.
+- Phân biệt nhanh bộ đôi Bedrock trong đề tiếng Anh:
+  - Cần **Read / Retrieve knowledge from documents** (RAG) $\rightarrow$ **Bedrock Knowledge Bases**.
+  - Cần **Execute actions / Invoke APIs / Multi-step orchestration** $\rightarrow$ **Bedrock Agents**.
 
 ---
 
 ### Question 6
-Một công ty công nghệ muốn tinh chỉnh mô hình ngôn ngữ lớn 70 tỷ tham số để chuyên phục vụ trong lĩnh vực dịch vụ khách hàng. Tuy nhiên, ngân sách của công ty có hạn và họ không thể chi trả chi phí tính toán khổng lồ cho việc cập nhật toàn bộ 70 tỷ tham số của mô hình (Full Fine-Tuning). Phương pháp tinh chỉnh nào là giải pháp tối ưu nhất về chi phí và tài nguyên?
-- A. Parameter-Efficient Fine-Tuning (PEFT) sử dụng LoRA (Low-Rank Adaptation)
+A technology company wants to adapt a 70-billion-parameter foundation model for specialized customer service conversations. However, the company has a limited budget and cannot afford the massive compute infrastructure required to update all 70 billion weights. Which model customization method is MOST resource-efficient and cost-effective?
+- A. Parameter-Efficient Fine-Tuning (PEFT) using Low-Rank Adaptation (LoRA)
 - B. Pre-training from scratch
-- C. Full Parameter Fine-Tuning trên cụm máy chủ EC2 P4de
-- D. Tăng kích thước Batch Size lên mức tối đa
+- C. Full-parameter fine-tuning on an Amazon EC2 P4de instance cluster
+- D. Increasing the batch size to the maximum possible value
 
-**Đáp án đúng:** **A. Parameter-Efficient Fine-Tuning (PEFT) sử dụng LoRA (Low-Rank Adaptation)**
+**Đáp án đúng:** **A. Parameter-Efficient Fine-Tuning (PEFT) using Low-Rank Adaptation (LoRA)**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Vấn đề: Muốn tinh chỉnh mô hình lớn (70B) nhưng *"ngân sách có hạn"*, *"không thể chi trả chi phí cập nhật toàn bộ tham số"*.
+- Vấn đề: Muốn tinh chỉnh mô hình lớn (70B) nhưng *"limited budget"*, *"cannot afford massive compute to update all 70B weights"*.
 - **PEFT / LoRA** đóng băng (freeze) các trọng số của mô hình cơ sở và chỉ huấn luyện một số lượng nhỏ các ma trận bổ sung hạng thấp. Phương pháp này giảm tới hơn 90% yêu cầu bộ nhớ GPU và tài nguyên tính toán, cho phép tinh chỉnh mô hình lớn với chi phí chỉ bằng một phần nhỏ so với Full Fine-Tuning.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
 - **Loại B (Pre-training from scratch):** Huấn luyện từ đầu là phương pháp đắt đỏ nhất trong toàn bộ lĩnh vực AI, hoàn toàn trái ngược với yêu cầu tiết kiệm chi phí.
-- **Loại C (Full Parameter Fine-Tuning):** Đề bài đã nói rõ công ty không thể chi trả cho việc cập nhật toàn bộ tham số trên các cụm GPU đắt đỏ như P4de.
-- **Loại D (Tăng Batch Size tối đa):** Tăng Batch Size càng làm tràn bộ nhớ VRAM của GPU (Out Of Memory), không giải quyết được bài toán thiếu tài nguyên.
+- **Loại C (Full-parameter fine-tuning):** Đề bài đã nói rõ công ty không thể chi trả cho việc cập nhật toàn bộ tham số trên các cụm GPU đắt đỏ như P4de.
+- **Loại D (Increase batch size):** Tăng Batch Size càng làm tràn bộ nhớ VRAM của GPU (Out Of Memory), không giải quyết được bài toán thiếu tài nguyên.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Từ khóa *"Fine-tune large models with minimal compute/cost/memory"* hoặc *"freeze base model weights and train small parameter subset"* $\rightarrow$ Luôn chọn **PEFT** hoặc **LoRA**.
+- Từ khóa trong đề tiếng Anh: *"Fine-tune large models with minimal compute/cost/memory"* hoặc *"freeze base model weights and train small parameter subset"* $\rightarrow$ Luôn chọn **PEFT** hoặc **LoRA**.

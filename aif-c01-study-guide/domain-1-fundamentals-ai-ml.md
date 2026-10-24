@@ -115,7 +115,7 @@ Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn g�
 ## Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án
 
 ### Question 1
-Một công ty tài chính muốn xây dựng ứng dụng tự động kiểm tra chứng từ vay thế chấp. Ứng dụng cần trích xuất chính xác các trường thông tin cá nhân và dữ liệu bảng biểu từ các bản scan hợp đồng và sao kê ngân hàng định dạng PDF mà không cần lập trình thuật ngữ OCR thủ công. Dịch vụ AWS nào phù hợp nhất?
+A financial services company wants to automate its mortgage application processing. The company needs to accurately extract personal customer information and tabular data from scanned PDF contracts and bank statements without developing custom OCR models. Which AWS service should the company use?
 - A. Amazon Rekognition
 - B. Amazon Textract
 - C. Amazon Comprehend
@@ -124,7 +124,7 @@ Một công ty tài chính muốn xây dựng ứng dụng tự động kiểm t
 **Đáp án đúng:** **B. Amazon Textract**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Từ khóa quan trọng: *"trích xuất chính xác các trường thông tin và dữ liệu bảng biểu từ các bản scan hợp đồng định dạng PDF"*. 
+- Từ khóa quan trọng: *"extract personal customer information and tabular data from scanned PDF contracts"* (trích xuất dữ liệu bảng biểu từ tài liệu scan PDF). 
 - **Amazon Textract** là dịch vụ chuyên biệt sử dụng ML để đọc văn bản và hiểu cấu trúc tài liệu, tự động phân tích và trích xuất dữ liệu dạng bảng (Tables) và cặp khóa-giá trị (Key-Value pairs) từ tài liệu scan hoặc file PDF.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -138,16 +138,16 @@ Một công ty tài chính muốn xây dựng ứng dụng tự động kiểm t
 ---
 
 ### Question 2
-Một nhóm nhà khoa học dữ liệu đang huấn luyện một mô hình học máy phân loại giao dịch gian lận. Khi đánh giá, mô hình đạt độ chính xác 99.5% trên tập dữ liệu huấn luyện (Training Set), nhưng khi kiểm thử trên tập dữ liệu kiểm tra độc lập (Test Set), độ chính xác chỉ đạt 62%. Hiện tượng này là gì và giải pháp phù hợp nhất để khắc phục là gì?
-- A. Underfitting; giải pháp là tăng số lượng đặc trưng và tăng độ sâu của mô hình.
-- B. Data Leakage; giải pháp là xóa bỏ hoàn toàn tập kiểm tra.
-- C. Overfitting; giải pháp là bổ sung thêm dữ liệu huấn luyện hoặc áp dụng kỹ thuật Regularization.
-- D. Catastrophic Forgetting; giải pháp là huấn luyện lại mô hình từ đầu.
+A data science team trains a machine learning model to detect fraudulent transactions. During evaluation, the model achieves 99.5% accuracy on the training set, but only 62.0% accuracy on the independent test set. Which phenomenon is occurring, and what is the best technique to mitigate it?
+- A. Underfitting; the team should increase model complexity and add more features.
+- B. Data Leakage; the team should completely delete the test dataset.
+- C. Overfitting; the team should collect more training data or apply regularization techniques.
+- D. Catastrophic Forgetting; the team should retrain the base model from scratch.
 
-**Đáp án đúng:** **C. Overfitting; giải pháp là bổ sung thêm dữ liệu huấn luyện hoặc áp dụng kỹ thuật Regularization.**
+**Đáp án đúng:** **C. Overfitting; the team should collect more training data or apply regularization techniques.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Tình trạng: Điểm số cực cao trên tập huấn luyện (99.5%) nhưng sụt giảm nghiêm trọng trên tập kiểm tra thực tế (62%). Đây là định nghĩa điển hình của hiện tượng **Overfitting (High Variance)** - mô hình ghi nhớ vẹt các chi tiết và nhiễu của tập huấn luyện thay vì học quy luật tổng quát.
+- Tình trạng: Điểm số cực cao trên tập huấn luyện (99.5%) nhưng sụt giảm nghiêm trọng trên tập kiểm tra thực tế (62.0%). Đây là định nghĩa điển hình của hiện tượng **Overfitting (High Variance)** - mô hình ghi nhớ vẹt các chi tiết và nhiễu của tập huấn luyện thay vì học quy luật tổng quát.
 - Các biện pháp khắc phục Overfitting tiêu chuẩn: Tăng kích thước tập dữ liệu huấn luyện, Regularization (L1/L2), Dropout, giảm bớt đặc trưng không cần thiết, hoặc Early Stopping.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -163,7 +163,7 @@ Một nhóm nhà khoa học dữ liệu đang huấn luyện một mô hình h�
 ---
 
 ### Question 3
-Một công ty thương mại điện tử muốn phân tích hàng triệu bình luận của khách hàng trên website để tự động xác định xem phản hồi là tích cực (positive) hay tiêu cực (negative), đồng thời tự động phát hiện số điện thoại và email cá nhân có trong bình luận để tuân thủ chính sách bảo mật. Nhóm phát triển không có kinh nghiệm về ML và muốn triển khai nhanh nhất. Dịch vụ AWS nào đáp ứng tốt nhất?
+An e-commerce company wants to analyze millions of customer reviews on its website to automatically classify feedback as positive or negative, and detect phone numbers and email addresses to protect customer privacy. The development team has no prior machine learning experience and requires the fastest implementation. Which AWS service best meets these requirements?
 - A. Amazon Lex
 - B. Amazon Comprehend
 - C. Amazon Polly
@@ -172,7 +172,7 @@ Một công ty thương mại điện tử muốn phân tích hàng triệu bìn
 **Đáp án đúng:** **B. Amazon Comprehend**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu: *"xác định phản hồi tích cực/tiêu cực (Sentiment Analysis)"* + *"phát hiện số điện thoại, email cá nhân (PII detection)"* + *"không có kinh nghiệm ML, triển khai nhanh nhất"*.
+- Yêu cầu: *"classify feedback as positive or negative (Sentiment Analysis)"* + *"detect phone numbers and email addresses (PII detection)"* + *"no prior machine learning experience, fastest implementation"*.
 - **Amazon Comprehend** là dịch vụ NLP được quản lý hoàn toàn (fully managed), cung cấp sẵn các API phân tích cảm xúc (Sentiment Analysis) và phát hiện/che giấu dữ liệu định danh cá nhân (PII Detection) mà không cần người dùng phải tự huấn luyện hay quản lý máy chủ.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -181,12 +181,12 @@ Một công ty thương mại điện tử muốn phân tích hàng triệu bìn
 - **Loại D (SageMaker JumpStart):** JumpStart yêu cầu kỹ năng cấu hình hạ tầng ML (chọn instance, deploy endpoint), tốn công sức vận hành và chi phí cao hơn nhiều so với việc gọi thẳng API của Comprehend.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Đề bài xuất hiện cụm từ *"không có kinh nghiệm về ML"* (no ML experience) là dấu hiệu rõ ràng để chọn các dịch vụ **AWS AI Managed Services** (như Comprehend, Rekognition, Textract) thay vì các dịch vụ thuộc bộ công cụ **Amazon SageMaker**.
+- Đề bài xuất hiện cụm từ *"no prior machine learning experience"* (không có kinh nghiệm ML) là dấu hiệu rõ ràng để chọn các dịch vụ **AWS AI Managed Services** (như Comprehend, Rekognition, Textract) thay vì các dịch vụ thuộc bộ công cụ **Amazon SageMaker**.
 
 ---
 
 ### Question 4
-Bộ phận chăm sóc khách hàng của một ngân hàng ghi âm hàng nghìn cuộc gọi mỗi ngày. Ngân hàng muốn chuyển đổi các tệp âm thanh này thành văn bản có gắn thẻ thời gian (timestamp) và nhận diện rõ đâu là lời nói của khách hàng, đâu là lời nói của nhân viên tổng đài. Sau đó, văn bản này sẽ được chuyển thành giọng nói mới để làm mẫu đào tạo nhân viên. Hai dịch vụ AWS nào cần được kết hợp? (Chọn HAI)
+A retail bank records thousands of customer service calls daily. The bank wants to convert these recorded audio files into timestamped text transcripts that distinguish between the customer and the customer service representative. Afterwards, the bank wants to convert sample response scripts into synthetic speech for training. Which TWO AWS services should be combined? (Select TWO)
 - A. Amazon Polly
 - B. Amazon Transcribe
 - C. Amazon Translate
@@ -196,8 +196,8 @@ Bộ phận chăm sóc khách hàng của một ngân hàng ghi âm hàng nghìn
 **Đáp án đúng:** **A. Amazon Polly** và **B. Amazon Transcribe**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu 1: Chuyển đổi âm thanh cuộc gọi thành văn bản kèm timestamp và nhận diện từng người nói (Speaker Diarization) $\rightarrow$ Dịch vụ chính xác là **Amazon Transcribe**.
-- Yêu cầu 2: Chuyển đổi văn bản thành giọng nói nhân tạo để làm tài liệu đào tạo $\rightarrow$ Dịch vụ chính xác là **Amazon Polly**.
+- Yêu cầu 1: Chuyển đổi âm thanh cuộc gọi thành văn bản kèm timestamp và nhận diện từng người nói (*"distinguish between customer and representative"* - Speaker Diarization) $\rightarrow$ Dịch vụ chính xác là **Amazon Transcribe**.
+- Yêu cầu 2: Chuyển đổi kịch bản văn bản thành giọng nói nhân tạo (*"convert scripts into synthetic speech"*) $\rightarrow$ Dịch vụ chính xác là **Amazon Polly**.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
 - **Loại C (Amazon Translate):** Translate dùng để dịch ngôn ngữ này sang ngôn ngữ khác, bài toán không có yêu cầu dịch thuật.
@@ -212,25 +212,25 @@ Bộ phận chăm sóc khách hàng của một ngân hàng ghi âm hàng nghìn
 ---
 
 ### Question 5
-Một doanh nghiệp bán lẻ muốn nhóm các khách hàng của mình thành các tập hợp có hành vi mua sắm tương đồng mà không có bất kỳ nhãn dữ liệu phân loại nào được định nghĩa từ trước. Sau đó, họ muốn dự báo doanh số bán hàng trong 6 tháng tới dựa trên dữ liệu doanh thu quá khứ. Hai bài toán học máy tương ứng với hai mục tiêu này là gì?
-- A. Học có giám sát (Hồi quy) cho mục tiêu 1; Học không giám sát (Phân cụm) cho mục tiêu 2.
-- B. Học không giám sát (Phân loại) cho mục tiêu 1; Học tăng cường cho mục tiêu 2.
-- C. Học không giám sát (Phân cụm) cho mục tiêu 1; Học có giám sát (Hồi quy) cho mục tiêu 2.
-- D. Học có giám sát (Phân loại) cho mục tiêu 1; Học có giám sát (Phân cụm) cho mục tiêu 2.
+A retail enterprise wants to group customers into segments based on similar purchasing patterns without using any pre-existing categorical labels. In addition, the enterprise needs to predict future sales revenue for the next 6 months based on historical revenue data. Which machine learning paradigms correspond to these two business objectives?
+- A. Supervised Learning (Regression) for objective 1; Unsupervised Learning (Clustering) for objective 2.
+- B. Unsupervised Learning (Classification) for objective 1; Reinforcement Learning for objective 2.
+- C. Unsupervised Learning (Clustering) for objective 1; Supervised Learning (Regression) for objective 2.
+- D. Supervised Learning (Classification) for objective 1; Supervised Learning (Clustering) for objective 2.
 
-**Đáp án đúng:** **C. Học không giám sát (Phân cụm) cho mục tiêu 1; Học có giám sát (Hồi quy) cho mục tiêu 2.**
+**Đáp án đúng:** **C. Unsupervised Learning (Clustering) cho mục tiêu 1; Supervised Learning (Regression) cho mục tiêu 2.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Mục tiêu 1: *"Nhóm khách hàng thành các tập hợp tương đồng mà không có nhãn trước"* $\rightarrow$ Đây là bài toán **Phân cụm (Clustering)**, thuộc nhánh **Học không giám sát (Unsupervised Learning)**.
-- Mục tiêu 2: *"Dự báo giá trị doanh số bán hàng (giá trị số thực liên tục) trong tương lai từ dữ liệu quá khứ"* $\rightarrow$ Đây là bài toán **Hồi quy (Regression)**, thuộc nhánh **Học có giám sát (Supervised Learning)**.
+- Mục tiêu 1: *"Group customers into segments without pre-existing labels"* $\rightarrow$ Đây là bài toán **Phân cụm (Clustering)**, thuộc nhánh **Học không giám sát (Unsupervised Learning)**.
+- Mục tiêu 2: *"Predict future sales revenue (continuous value) based on historical revenue"* $\rightarrow$ Đây là bài toán **Hồi quy (Regression)**, thuộc nhánh **Học có giám sát (Supervised Learning)**.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
 - **Loại A:** Đảo ngược thứ tự hai phương pháp so với mục tiêu đề bài.
-- **Loại B:** Phân loại là bài toán có giám sát (cần nhãn); Dự báo doanh thu không phải bài toán Học tăng cường (Reinforcement Learning).
-- **Loại D:** Phân cụm là bài toán không giám sát, không bao giờ là bài toán có giám sát.
+- **Loại B:** Classification là bài toán có giám sát (cần nhãn); Dự báo doanh thu không phải bài toán Reinforcement Learning.
+- **Loại D:** Clustering là bài toán không giám sát, không bao giờ là bài toán có giám sát.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Cần ghi nhớ bản chất bài toán:
-  - Dự đoán nhãn rời rạc (Spam / Non-spam, Fraud / Valid) $\rightarrow$ Classification (Supervised).
-  - Dự đoán con số liên tục (Doanh thu, Giá nhà, Nhiệt độ) $\rightarrow$ Regression (Supervised).
-  - Tự động gom nhóm dựa trên đặc tính tương đồng không nhãn $\rightarrow$ Clustering (Unsupervised).
+- Cần ghi nhớ bản chất bài toán trong đề tiếng Anh:
+  - Dự đoán nhãn danh mục rời rạc $\rightarrow$ **Classification (Supervised)**.
+  - Dự đoán con số liên tục $\rightarrow$ **Regression (Supervised)**.
+  - Gom nhóm dữ liệu không nhãn $\rightarrow$ **Clustering (Unsupervised)**.

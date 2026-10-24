@@ -107,39 +107,39 @@ Tăng chi phí, thời gian và độ phức tạp kỹ thuật  ===============
 ## Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án
 
 ### Question 1
-Một công ty luật muốn xây dựng một trợ lý AI để trả lời câu hỏi của nhân viên dựa trên kho tài liệu pháp lý nội bộ gồm hơn 50,000 văn bản chính sách thay đổi hàng tuần. Công ty yêu cầu câu trả lời phải trích dẫn chính xác số trang và điều khoản của tài liệu nguồn, đồng thời tuyệt đối không được tự bịa đặt thông tin. Giải pháp kỹ thuật nào tối ưu nhất?
-- A. Tinh chỉnh (Fine-Tuning) một mô hình ngôn ngữ lớn nguồn mở hàng ngày với toàn bộ kho tài liệu.
-- B. Triển khai kiến trúc RAG (Retrieval-Augmented Generation) kết nối kho tài liệu với mô hình nền tảng.
-- C. Tăng kích thước Context Window của mô hình và đưa toàn bộ 50,000 văn bản vào System Prompt mỗi lần gọi.
-- D. Huấn luyện một mô hình nền tảng hoàn toàn mới từ đầu (Pre-training from scratch).
+A law firm wants to build an AI assistant to answer employee questions based on an internal repository of over 50,000 legal policy documents that are updated weekly. The firm requires the assistant to cite specific page numbers and clauses from the source documents and strictly prevent fabricated information. Which technical approach is MOST effective?
+- A. Fine-tune an open-source large language model daily on the entire document repository.
+- B. Implement a Retrieval-Augmented Generation (RAG) architecture connecting the document repository with a foundation model.
+- C. Expand the model context window and insert all 50,000 documents into the system prompt for each query.
+- D. Train a custom foundation model from scratch on the legal documents.
 
-**Đáp án đúng:** **B. Triển khai kiến trúc RAG (Retrieval-Augmented Generation) kết nối kho tài liệu với mô hình nền tảng.**
+**Đáp án đúng:** **B. Implement a Retrieval-Augmented Generation (RAG) architecture connecting the document repository with a foundation model.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu cốt lõi: *"tài liệu thay đổi hàng tuần"* + *"trích dẫn chính xác số trang và điều khoản nguồn"* + *"tuyệt đối không tự bịa đặt thông tin (giảm ảo giác)"*.
+- Yêu cầu cốt lõi: *"documents updated weekly"* + *"cite specific page numbers and clauses"* + *"prevent fabricated information (mitigate hallucinations)"*.
 - **RAG** là kiến trúc hoàn hảo nhất cho kịch bản này: Hệ thống chỉ cần lập chỉ mục vector tài liệu mới vào cơ sở dữ liệu tri thức mà không cần huấn luyện lại mô hình. Khi có câu hỏi, RAG truy xuất đoạn văn bản gốc và đính kèm vào prompt, cho phép mô hình trích dẫn trực tiếp nguồn tham chiếu và loại bỏ ảo giác.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Fine-Tuning hàng ngày):** Fine-tuning rất tốn kém chi phí tính toán GPU, mất nhiều giờ để hoàn thành và quan trọng nhất: mô hình sau khi fine-tuning không có cơ chế tự nhiên để trích dẫn số trang/nguồn tài liệu cụ thể một cách đáng tin cậy. Ngoài ra, việc fine-tuning liên tục rất dễ gây hiện tượng Catastrophic Forgetting.
-- **Loại C (Đưa toàn bộ 50,000 văn bản vào Prompt):** 50,000 tài liệu pháp lý tương đương hàng triệu token, vượt xa giới hạn Context Window của bất kỳ mô hình thương mại nào hiện nay, đồng thời gây độ trễ và chi phí suy luận khổng lồ.
+- **Loại A (Fine-Tuning daily):** Fine-tuning rất tốn kém chi phí tính toán GPU, mất nhiều giờ để hoàn thành và quan trọng nhất: mô hình sau khi fine-tuning không có cơ chế tự nhiên để trích dẫn số trang/nguồn tài liệu cụ thể một cách đáng tin cậy. Ngoài ra, việc fine-tuning liên tục rất dễ gây hiện tượng Catastrophic Forgetting.
+- **Loại C (Insert 50,000 documents into prompt):** 50,000 tài liệu pháp lý tương đương hàng triệu token, vượt xa giới hạn Context Window của bất kỳ mô hình thương mại nào hiện nay, đồng thời gây độ trễ và chi phí suy luận khổng lồ.
 - **Loại D (Pre-training from scratch):** Huấn luyện mô hình từ đầu tốn hàng triệu USD và hàng tháng trời, hoàn toàn lãng phí và không giải quyết được yêu cầu tài liệu cập nhật hàng tuần.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Quy tắc vàng trong đề thi AIF-C01: Khi đề bài nhắc đến **"dữ liệu cập nhật thường xuyên" (frequently updated data)**, **"cần dẫn nguồn tài liệu" (traceable citations)** hoặc **"ngăn chặn ảo giác" (mitigate hallucinations)** $\rightarrow$ Luôn chọn **RAG**, KHÔNG chọn Fine-Tuning.
+- Quy tắc vàng trong đề thi AIF-C01: Khi đề bài nhắc đến **"frequently updated data"**, **"traceable citations"** hoặc **"mitigate hallucinations"** $\rightarrow$ Luôn chọn **RAG**, KHÔNG chọn Fine-Tuning.
 
 ---
 
 ### Question 2
-Một tổ chức y tế cần tạo ra hình ảnh minh họa tế bào phục vụ nghiên cứu sinh học bằng cách nhập các câu mô tả bằng văn bản. Nhóm kỹ sư cần lựa chọn họ kiến trúc học sâu phù hợp nhất cho bài toán sinh ảnh từ văn bản (Text-to-Image). Kiến trúc nào sau đây là câu trả lời chính xác?
+A healthcare research organization needs to generate detailed biological illustrations of cells from text descriptions. The engineering team must select the deep learning architecture family best suited for text-to-image synthesis. Which architecture should the team choose?
 - A. Recurrent Neural Networks (RNN)
-- B. Convolutional Neural Networks (CNN) thuần túy
+- B. Pure Convolutional Neural Networks (CNN)
 - C. Diffusion Models
-- D. BERT (Bidirectional Encoder Representations from Transformers)
+- D. Bidirectional Encoder Representations from Transformers (BERT)
 
 **Đáp án đúng:** **C. Diffusion Models**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu: *"sinh ảnh từ câu mô tả văn bản (Text-to-Image)"*.
+- Yêu cầu: *"generate biological illustrations of cells from text descriptions (Text-to-Image)"*.
 - **Diffusion Models** (mô hình khuếch tán) là kiến trúc tiên tiến và tiêu chuẩn công nghiệp hiện nay cho các bài toán sinh ảnh từ văn bản (ví dụ: Stable Diffusion, Amazon Titan Image Generator). Chúng hoạt động bằng cách học quy trình khử nhiễu ngược để tạo ra các điểm ảnh có độ phân giải cao và chân thực.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -148,43 +148,43 @@ Một tổ chức y tế cần tạo ra hình ảnh minh họa tế bào phục 
 - **Loại D (BERT):** BERT là kiến trúc Transformer dạng Encoder-only, chuyên biệt cho việc hiểu ngôn ngữ tự nhiên và phân tích văn bản, hoàn toàn không có khả năng sinh ảnh.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Nhớ nhanh các cặp kiến trúc & tác vụ:
-  - Sinh ảnh từ văn bản $\rightarrow$ **Diffusion Models**.
-  - Xử lý chuỗi ngôn ngữ song song $\rightarrow$ **Transformers**.
-  - Nhận diện phân loại vật thể trong ảnh $\rightarrow$ **CNNs**.
+- Nhớ nhanh các cặp kiến trúc & tác vụ trong đề thi tiếng Anh:
+  - Text-to-Image generation $\rightarrow$ **Diffusion Models**.
+  - Parallel sequential text processing $\rightarrow$ **Transformers**.
+  - Image classification & object detection $\rightarrow$ **CNNs**.
 
 ---
 
 ### Question 3
-Một công ty bảo hiểm đang xem xét lựa chọn giữa việc sử dụng Foundation Model có sẵn (Pre-trained FM) và việc tự xây dựng/tinh chỉnh mô hình (Fine-Tuned Model). Đâu là trường hợp mà công ty **BẮT BUỘC** hoặc **NÊN** lựa chọn Fine-Tuning thay vì chỉ dùng Prompt Engineering với Pre-trained FM?
-- A. Khi công ty muốn cập nhật thông tin giá trị cổ phiếu thay đổi từng phút.
-- B. Khi công ty muốn mô hình xuất kết quả tuân thủ nghiêm ngặt theo một cấu trúc JSON độc quyền và phong cách thuật ngữ y khoa đặc thù không phổ biến.
-- C. Khi công ty muốn trả lời câu hỏi chung về kiến thức thế giới từ Wikipedia.
-- D. Khi công ty muốn tối thiểu hóa chi phí hạ tầng và không có dữ liệu gán nhãn nào.
+An insurance company is evaluating whether to use a pre-trained foundation model or fine-tune an existing model. In which scenario SHOULD the company choose fine-tuning over prompt engineering with a pre-trained model?
+- A. When the company needs to incorporate stock price data that fluctuates every minute.
+- B. When the company requires the model to strictly follow a proprietary internal JSON schema and adopt a specialized medical terminology tone.
+- C. When the company wants to answer general world knowledge questions sourced from Wikipedia.
+- D. When the company wants to minimize infrastructure costs and has no labeled training data.
 
-**Đáp án đúng:** **B. Khi công ty muốn mô hình xuất kết quả tuân thủ nghiêm ngặt theo một cấu trúc JSON độc quyền và phong cách thuật ngữ y khoa đặc thù không phổ biến.**
+**Đáp án đúng:** **B. When the company requires the model to strictly follow a proprietary internal JSON schema and adopt a specialized medical terminology tone.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Mục đích chuẩn của **Fine-Tuning**: Điều chỉnh **phong cách (Style/Tone)**, cấu trúc cú pháp đầu ra chuyên biệt (như định dạng JSON nội bộ nghiêm ngặt) và làm quen với bộ từ vựng chuyên ngành sâu. Fine-Tuning dạy cho mô hình "cách hành xử và định dạng" tốt hơn nhiều so với việc cố gắng mô tả dài dòng trong Prompt.
+- Mục đích chuẩn của **Fine-Tuning**: Điều chỉnh **phong cách (Style/Tone)**, cấu trúc cú pháp đầu ra chuyên biệt (như định dạng JSON nội bộ nghiêm ngặt) và làm quen với bộ từ vựng chuyên ngành sâu (*"specialized medical terminology tone"*). Fine-Tuning dạy cho mô hình "cách hành xử và định dạng" tốt hơn nhiều so với việc cố gắng mô tả dài dòng trong Prompt.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Giá cổ phiếu thay đổi từng phút):** Dữ liệu biến động từng phút là bài toán của RAG hoặc gọi API bên ngoài (Tool/Function Calling), fine-tuning không thể theo kịp tốc độ thay đổi này.
-- **Loại C (Kiến thức thế giới từ Wikipedia):** Pre-trained FM đã chứa sẵn kiến thức thế giới phong phú, chỉ cần dùng Prompt Engineering là đủ.
-- **Loại D (Tối thiểu hóa chi phí và không có nhãn):** Fine-tuning đòi hỏi tập dữ liệu gán nhãn chất lượng cao và phát sinh chi phí huấn luyện tính toán, hoàn toàn trái ngược với phương án D.
+- **Loại A (Stock price data fluctuating every minute):** Dữ liệu biến động từng phút là bài toán của RAG hoặc gọi API bên ngoài (Tool/Function Calling), fine-tuning không thể theo kịp tốc độ thay đổi này.
+- **Loại C (World knowledge questions from Wikipedia):** Pre-trained FM đã chứa sẵn kiến thức thế giới phong phú, chỉ cần dùng Prompt Engineering là đủ.
+- **Loại D (Minimize infrastructure costs and no labeled data):** Fine-tuning đòi hỏi tập dữ liệu gán nhãn chất lượng cao và phát sinh chi phí huấn luyện tính toán, hoàn toàn trái ngược với phương án D.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Gặp câu hỏi: "Khi nào cần Fine-Tuning?" $\rightarrow$ Tìm đáp án chứa các từ khóa: **"Specialized domain vocabulary"**, **"Specific output format/JSON syntax"**, **"Consistent corporate tone/style"**.
+- Gặp câu hỏi: "When to choose Fine-Tuning?" $\rightarrow$ Tìm đáp án chứa các từ khóa: **"Specialized domain vocabulary"**, **"Specific output format/JSON syntax"**, **"Consistent corporate tone/style"**.
 
 ---
 
 ### Question 4
-Trong quá trình thử nghiệm ứng dụng chatbot chăm sóc khách hàng dựa trên LLM, nhóm phát triển nhận thấy mô hình thường xuyên tự khẳng định công ty có chính sách "hoàn tiền 200% trong 60 ngày", mặc dù chính sách thực tế của công ty chỉ là hoàn tiền 100% trong 30 ngày. Hiện tượng này được gọi là gì và cách tiếp cận nào giúp hạn chế hiệu quả nhất?
-- A. Model Drift; khắc phục bằng cách khởi động lại container ứng dụng.
-- B. Catastrophic Forgetting; khắc phục bằng cách huấn luyện lại mô hình từ đầu.
-- C. Hallucination; khắc phục bằng cách triển khai RAG với tài liệu chính sách chuẩn và cấu hình hạ Temperature.
-- D. Data Poisoning; khắc phục bằng cách cài đặt phần mềm diệt virus trên máy chủ client.
+During user testing of a customer support chatbot powered by an LLM, the development team notices the model confidently states that the company offers a "200% refund within 60 days", even though the actual policy is a 100% refund within 30 days. What is this phenomenon called, and which approach MOST effectively mitigates it?
+- A. Model Drift; restart the application container.
+- B. Catastrophic Forgetting; retrain the model from scratch.
+- C. Hallucination; implement RAG with authoritative policy documents and lower the temperature parameter.
+- D. Data Poisoning; install antivirus software on the client machine.
 
-**Đáp án đúng:** **C. Hallucination; khắc phục bằng cách triển khai RAG với tài liệu chính sách chuẩn và cấu hình hạ Temperature.**
+**Đáp án đúng:** **C. Hallucination; implement RAG with authoritative policy documents and lower the temperature parameter.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
 - Hiện tượng mô hình tự bịa ra thông tin không có thật với giọng điệu quả quyết chính là **Ảo giác (Hallucination)**.
@@ -203,22 +203,22 @@ Trong quá trình thử nghiệm ứng dụng chatbot chăm sóc khách hàng d�
 ---
 
 ### Question 5
-Một công ty truyền thông muốn xử lý các video phỏng vấn dài 2 tiếng. Ứng dụng cần đồng thời trích xuất lời thoại thành văn bản, nhận diện các logo thương hiệu xuất hiện trên khung hình và phân loại tâm trạng của người nói qua nét mặt. Loại mô hình nền tảng nào đáp ứng tối ưu nhất cho yêu cầu này?
-- A. Mô hình đơn phương thức (Single-modality Text Model)
-- B. Mô hình đa phương thức (Multimodal Foundation Model)
-- C. Mô hình phân cụm K-Means
-- D. Mạng nơ-ron Encoder-only (như BERT)
+A media company wants to analyze two-hour interview video recordings. The application must transcribe spoken dialogue into text, recognize corporate brand logos appearing on the screen, and detect speaker emotional sentiment from facial expressions. Which type of foundation model is MOST suitable for this workload?
+- A. Single-modality text model
+- B. Multimodal foundation model
+- C. K-Means clustering model
+- D. Encoder-only transformer model (such as BERT)
 
-**Đáp án đúng:** **B. Mô hình đa phương thức (Multimodal Foundation Model)**
+**Đáp án đúng:** **B. Multimodal foundation model**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
 - Yêu cầu bài toán: Xử lý đồng thời nhiều dạng dữ liệu khác nhau trong một luồng công việc: âm thanh lời thoại (Audio), hình ảnh nhận diện logo/khuôn mặt (Vision) và văn bản ngữ nghĩa (Text).
 - **Mô hình đa phương thức (Multimodal FM)** là mô hình được huấn luyện để hiểu, liên kết và chuyển đổi linh hoạt giữa nhiều phương thức dữ liệu khác nhau (Text, Image, Video, Audio) trong cùng một không gian biểu diễn chung.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Single-modality Text Model):** Mô hình đơn phương thức văn bản chỉ nhận và xuất text, không thể xử lý hình ảnh khung hình video hay âm thanh.
+- **Loại A (Single-modality text model):** Mô hình đơn phương thức văn bản chỉ nhận và xuất text, không thể xử lý hình ảnh khung hình video hay âm thanh.
 - **Loại C (K-Means):** Thuật toán phân cụm không giám sát truyền thống, không thể xử lý đa phương thức phức tạp.
 - **Loại D (BERT):** BERT chỉ là mô hình ngôn ngữ (text-only) cho tác vụ hiểu văn bản, không thể nhận diện khuôn mặt hay hình ảnh video.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Cụm từ *"xử lý kết hợp text, image, video, audio"* $\rightarrow$ Luôn trỏ tới thuật ngữ **Multimodal Model**.
+- Cụm từ trong đề tiếng Anh: *"processes text, image, video, audio concurrently"* $\rightarrow$ Luôn trỏ tới **Multimodal Model**.

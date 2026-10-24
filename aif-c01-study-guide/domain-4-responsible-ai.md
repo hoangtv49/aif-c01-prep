@@ -86,7 +86,7 @@ User Prompt  ====>  [ Bedrock Guardrails ]  ====>  Foundation Model
 ## Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án
 
 ### Question 1
-Một ngân hàng bán lẻ triển khai một mô hình học máy trên Amazon SageMaker để tự động phê duyệt các khoản vay tiêu dùng. Cơ quan thanh tra tài chính yêu cầu ngân hàng phải chứng minh rằng mô hình không phân biệt đối xử dựa trên giới tính hoặc độ tuổi của người nộp đơn, đồng thời phải cung cấp lý do giải thích cụ thể cho khách hàng khi hồ sơ của họ bị từ chối. Công cụ nào của AWS giúp ngân hàng đáp ứng đầy đủ cả hai yêu cầu này?
+A retail bank deploys a machine learning model on Amazon SageMaker to automate consumer loan approvals. Financial regulators require the bank to prove that the model does not discriminate based on applicant age or gender, and provide individual applicants with specific explanations when a loan is denied. Which AWS service or tool fulfills both requirements?
 - A. Amazon Inspector
 - B. Amazon SageMaker Clarify
 - C. AWS CloudTrail
@@ -96,8 +96,8 @@ Một ngân hàng bán lẻ triển khai một mô hình học máy trên Amazon
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
 - Hai yêu cầu cốt lõi của bài toán: 
-  1. *"chứng minh mô hình không phân biệt đối xử dựa trên giới tính hoặc độ tuổi (Bias detection & Fairness)"*.
-  2. *"cung cấp lý do giải thích cụ thể vì sao hồ sơ bị từ chối (Model Explainability / Feature Attribution)"*.
+  1. *"prove model does not discriminate based on age or gender (Bias detection & Fairness)"*.
+  2. *"provide individual applicants with specific explanations when a loan is denied (Model Explainability / Feature Attribution)"*.
 - **Amazon SageMaker Clarify** là công cụ chuyên biệt của AWS để đo lường các chỉ số thiên vị (bias metrics) cả trước và sau khi huấn luyện mô hình, đồng thời sử dụng thuật toán SHAP để cung cấp giải thích chi tiết mức độ ảnh hưởng của từng trường dữ liệu tới quyết định phê duyệt (Local Explainability).
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -111,22 +111,22 @@ Một ngân hàng bán lẻ triển khai một mô hình học máy trên Amazon
 ---
 
 ### Question 2
-Một công ty y tế muốn triển khai một chatbot tư vấn dựa trên Amazon Bedrock để giải đáp các câu hỏi thông thường của bệnh nhân. Để tuân thủ quy định bảo vệ dữ liệu y tế, công ty bắt buộc ứng dụng phải tự động phát hiện và che giấu (mask) mã số bảo hiểm xã hội (SSN) và số điện thoại trước khi lưu trữ hoặc phản hồi cho người dùng. Ngoài ra, chatbot tuyệt đối không được đưa ra bất kỳ lời khuyên nào về kê đơn thuốc. Tính năng nào của AWS đáp ứng yêu cầu này với chi phí cấu hình tối thiểu?
-- A. Tự viết biểu thức chính quy (Regex) trong mã nguồn ứng dụng để lọc văn bản.
-- B. Cấu hình Amazon Bedrock Guardrails với Sensitive Information Filters và Denied Topics.
-- C. Sử dụng AWS WAF để kiểm tra gói tin HTTP ở tầng mạng.
-- D. Huấn luyện lại mô hình nền tảng bằng tập dữ liệu không chứa số bảo hiểm xã hội.
+A healthcare company wants to deploy an informational patient consultation chatbot powered by Amazon Bedrock. To comply with healthcare data privacy regulations, the application must automatically detect and mask Social Security Numbers (SSNs) and phone numbers before storing or responding. Additionally, the chatbot must never provide prescription drug advice. Which AWS feature meets these requirements with the LEAST configuration overhead?
+- A. Write custom regular expressions (Regex) in the client application code to filter text.
+- B. Configure Amazon Bedrock Guardrails with Sensitive Information Filters and Denied Topics.
+- C. Deploy AWS WAF to inspect inbound HTTP traffic at the network layer.
+- D. Retrain the underlying foundation model on a custom dataset that excludes Social Security Numbers.
 
-**Đáp án đúng:** **B. Cấu hình Amazon Bedrock Guardrails với Sensitive Information Filters và Denied Topics.**
+**Đáp án đúng:** **B. Configure Amazon Bedrock Guardrails with Sensitive Information Filters and Denied Topics.**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu bài toán: *"tự động phát hiện và che giấu (mask) SSN và số điện thoại (PII redaction)"* + *"tuyệt đối không đưa ra lời khuyên kê đơn thuốc (Denied Topics)"* + *"chi phí cấu hình tối thiểu"*.
+- Yêu cầu bài toán: *"detect and mask SSNs and phone numbers (PII redaction)"* + *"never provide prescription drug advice (Denied Topics)"* + *"least configuration overhead"*.
 - **Amazon Bedrock Guardrails** cung cấp tính năng **Sensitive Information Filters** cho phép tự động nhận diện và che giấu (masking) thông tin PII chuẩn quốc tế chỉ với vài cú click, đồng thời tính năng **Denied Topics** cho phép mô tả bằng ngôn ngữ tự nhiên các chủ đề cấm (như tư vấn kê đơn thuốc) để mô hình từ chối trả lời một cách an toàn.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
-- **Loại A (Tự viết Regex):** Rất tốn công sức bảo trì, dễ bỏ sót các biến thể định dạng số điện thoại/SSN phức tạp và không thể xử lý việc cấm thảo luận về chủ đề kê đơn thuốc.
+- **Loại A (Custom Regex):** Rất tốn công sức bảo trì, dễ bỏ sót các biến thể định dạng số điện thoại/SSN phức tạp và không thể xử lý việc cấm thảo luận về chủ đề kê đơn thuốc.
 - **Loại C (AWS WAF):** WAF là tường lửa ứng dụng web tầng mạng (Layer 7) dùng để chặn tấn công SQL Injection hoặc DDoS, không thể hiểu ngữ nghĩa câu lệnh để cấm chủ đề kê đơn thuốc hay che giấu PII trong payload LLM.
-- **Loại D (Huấn luyện lại mô hình):** Huấn luyện lại mô hình tốn kém hàng triệu USD và hoàn toàn không khả thi đối với các mô hình độc quyền trên Bedrock, đồng thời vẫn không ngăn chặn được việc người dùng nhập SSN của chính họ vào câu hỏi.
+- **Loại D (Retrain model):** Huấn luyện lại mô hình tốn kém hàng triệu USD và hoàn toàn không khả thi đối với các mô hình độc quyền trên Bedrock, đồng thời vẫn không ngăn chặn được việc người dùng nhập SSN của chính họ vào câu hỏi.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Cặp tính năng vàng của **Bedrock Guardrails**:
@@ -136,7 +136,7 @@ Một công ty y tế muốn triển khai một chatbot tư vấn dựa trên Am
 ---
 
 ### Question 3
-Một nhóm phát triển đang lên kế hoạch tích hợp dịch vụ Amazon Rekognition vào ứng dụng an ninh của tòa nhà để nhận diện khuôn mặt nhân viên ra vào. Trước khi triển khai vào môi trường thực tế, nhóm cần tìm hiểu các khuyến nghị chính thức từ AWS về các trường hợp dịch vụ có thể hoạt động kém chính xác (chẳng hạn như điều kiện ánh sáng yếu hoặc góc máy quay quá hẹp) cũng như các hướng dẫn về thiết kế có trách nhiệm. Nhóm phát triển nên tham khảo tài liệu nào của AWS?
+A development team plans to integrate Amazon Rekognition into a building physical security application for facial recognition. Before deploying to production, the team needs official AWS documentation explaining technical conditions where service accuracy might degrade (such as low-light conditions or extreme camera angles) and outlining responsible design principles. Which AWS resource should the team consult?
 - A. AWS Architecture Center
 - B. AWS AI Service Cards
 - C. AWS Artifact
@@ -145,7 +145,7 @@ Một nhóm phát triển đang lên kế hoạch tích hợp dịch vụ Amazon
 **Đáp án đúng:** **B. AWS AI Service Cards**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Yêu cầu: *"tìm hiểu tài liệu chính thức từ AWS về các trường hợp dịch vụ AI hoạt động kém chính xác (limitations) và hướng dẫn thiết kế có trách nhiệm (Responsible AI principles)"*.
+- Yêu cầu: *"official AWS documentation explaining conditions where service accuracy might degrade (limitations) and responsible design principles"*.
 - **AWS AI Service Cards** là nguồn tài liệu minh bạch chuyên biệt do chính AWS phát hành cho các dịch vụ AI như Rekognition, cung cấp thông tin chi tiết về mục đích sử dụng dự kiến (Intended Use), các giới hạn công nghệ thực tế (Limitations: ánh sáng, góc nghiêng) và cách thiết kế ứng dụng có trách nhiệm.
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -159,7 +159,7 @@ Một nhóm phát triển đang lên kế hoạch tích hợp dịch vụ Amazon
 ---
 
 ### Question 4
-Một công ty thương mại điện tử triển khai ứng dụng RAG sử dụng Amazon Bedrock để giải đáp câu hỏi của người dùng. Trong quá trình vận hành, khách hàng hỏi về chính sách bảo hành sản phẩm. Mặc dù tài liệu nguồn RAG chỉ nói về bảo hành đồ điện tử, mô hình LLM lại tự suy diễn và trả lời rằng công ty có chính sách bảo hành trọn đời cho cả quần áo thời trang. Cơ chế nào của Bedrock Guardrails giúp phát hiện và ngăn chặn hiện tượng câu trả lời không bám sát tài liệu nguồn này?
+An e-commerce company deploys a RAG application using Amazon Bedrock to answer customer questions. During operations, a customer asks about return policies. Although the RAG knowledge documents only mention warranties for electronics, the LLM hallucinates and claims the company provides lifetime warranties for fashion apparel. Which Bedrock Guardrails feature detects and prevents answers that are not grounded in the source reference material?
 - A. Word Filters
 - B. Contextual Grounding Check
 - C. Sensitive Information Filters
@@ -177,21 +177,21 @@ Một công ty thương mại điện tử triển khai ứng dụng RAG sử d�
 - **Loại D (AWS Shield Advanced):** Dịch vụ chống tấn công từ chối dịch vụ phân tán (DDoS) ở tầng mạng và giao vận, không liên quan đến kiểm soát nội dung AI.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Từ khóa *"Detect and prevent hallucinations in RAG by verifying factual grounding against source documents"* $\rightarrow$ Luôn trỏ tới **Contextual Grounding Check**.
+- Từ khóa trong đề tiếng Anh: *"Detect and prevent hallucinations in RAG by verifying factual grounding against source documents"* $\rightarrow$ Luôn trỏ tới **Contextual Grounding Check**.
 
 ---
 
 ### Question 5
-Một chuyên viên phân tích dữ liệu đang sử dụng Amazon SageMaker Clarify để giải thích lý do tại sao một khách hàng cụ thể bị mô hình chấm điểm tín dụng đánh giá là "Nguy cơ rủi ro cao". Phương pháp tiếp cận giải thích này được phân loại là gì?
-- A. Global Explainability (Giải thích toàn cục)
-- B. Local Explainability (Giải thích cục bộ)
+A data analyst uses Amazon SageMaker Clarify to explain why an individual loan applicant received a "High Risk" credit assessment score from a machine learning model. What is this explainability approach classified as?
+- A. Global Explainability
+- B. Local Explainability
 - C. Unsupervised Clustering
 - D. Semi-supervised Labeling
 
 **Đáp án đúng:** **B. Local Explainability (Giải thích cục bộ)**
 
 **Lý do chọn (Root Cause & Keyword Triggers):**
-- Trọng tâm câu hỏi: Giải thích quyết định cho *"một khách hàng cụ thể"* (an individual instance / single prediction).
+- Trọng tâm câu hỏi: Giải thích quyết định cho *"an individual loan applicant"* (một cá nhân/trường hợp đơn lẻ cụ thể).
 - **Local Explainability (Giải thích cục bộ)** là việc phân tích và chỉ ra các yếu tố nào đã trực tiếp dẫn đến kết quả dự đoán cho một điểm dữ liệu duy nhất (ví dụ: khách hàng A bị từ chối vay vì lịch sử trễ hạn thanh toán trong 3 tháng gần nhất).
 
 **Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
@@ -200,6 +200,6 @@ Một chuyên viên phân tích dữ liệu đang sử dụng Amazon SageMaker C
 - **Loại D (Semi-supervised Labeling):** Kỹ thuật gán nhãn bán giám sát, không liên quan đến giải thích kết quả dự đoán.
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
-- Phân biệt nhanh trong đề thi:
-  - Giải thích cho **một trường hợp cụ thể / một bệnh nhân / một giao dịch đơn lẻ** $\rightarrow$ **Local Explainability**.
-  - Giải thích **hành vi tổng thể của mô hình trên toàn bộ quần thể** $\rightarrow$ **Global Explainability**.
+- Phân biệt nhanh trong đề thi tiếng Anh:
+  - Explain decision for **an individual instance / single applicant** $\rightarrow$ **Local Explainability**.
+  - Explain **overall feature importance across the entire dataset** $\rightarrow$ **Global Explainability**.
