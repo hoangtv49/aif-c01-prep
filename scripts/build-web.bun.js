@@ -2045,4 +2045,5 @@ const htmlContent = `<!DOCTYPE html>
 `;
 
 fs.writeFileSync(path.join(BASE_DIR, "index.html"), htmlContent);
-console.log("Interactive web application successfully built at:", path.join(BASE_DIR, "index.html"));
+fs.writeFileSync(path.resolve("index.html"), htmlContent);
+console.log("Interactive web application successfully built at:", path.join(BASE_DIR, "index.html"), "and ./index.html");
