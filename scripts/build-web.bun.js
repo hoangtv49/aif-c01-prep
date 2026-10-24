@@ -1318,11 +1318,15 @@ const htmlContent = `<!DOCTYPE html>
       font-weight: 700;
     }
 
+    :root {
+      --header-height: 96px;
+    }
+
     /* Sub-tabs for Topic Study */
     .topic-subtab-bar {
       display: flex;
       gap: 0.5rem;
-      background: #0d1522;
+      background: rgba(13, 21, 34, 0.98);
       padding: 0.4rem;
       border-radius: 10px;
       border: 1px solid var(--border);
@@ -1332,9 +1336,10 @@ const htmlContent = `<!DOCTYPE html>
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       position: sticky;
-      top: 96px;
+      top: var(--header-height, 96px);
       z-index: 30;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
     .topic-subtab-bar::-webkit-scrollbar { display: none; }
     .topic-subtab-btn {
@@ -1486,9 +1491,17 @@ const htmlContent = `<!DOCTYPE html>
         gap: 0.4rem !important;
         overflow-x: visible !important;
         white-space: normal !important;
-        top: 52px;
+        position: sticky;
+        top: var(--header-height, 40px) !important;
+        margin-top: 0;
         margin-bottom: 1.25rem;
         padding: 0.35rem;
+        border-radius: 0 0 10px 10px;
+        border-top: none;
+        background: rgba(13, 21, 34, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
       }
       .topic-subtab-btn {
         width: 100%;
@@ -1957,8 +1970,18 @@ const htmlContent = `<!DOCTYPE html>
     const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
 
+    // Sync dynamic header height for sticky elements
+    function syncHeaderHeight() {
+      const header = document.querySelector('.app-header');
+      if (header) {
+        document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+      }
+    }
+    window.addEventListener('resize', syncHeaderHeight);
+
     // Init App
     window.addEventListener('DOMContentLoaded', () => {
+      syncHeaderHeight();
       renderTopicDomain(currentTopicDomain);
       renderQuiz();
       renderDecisionMatrix();
@@ -1984,6 +2007,8 @@ const htmlContent = `<!DOCTYPE html>
       if (statsPill) {
         statsPill.style.display = tabId === 'quiz' ? 'flex' : 'none';
       }
+
+      syncHeaderHeight();
 
       if (tabId === 'topics') {
         setTimeout(updateTopicScrollspy, 60);
@@ -2028,14 +2053,14 @@ const htmlContent = `<!DOCTYPE html>
       const headerEl = document.querySelector('.app-header');
       const subtabsEl = document.getElementById('topic-subtabs');
       const isMobile = window.innerWidth <= 768;
-      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 48 : 95);
-      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 70 : 45);
-      const totalStickyH = headerH + subtabsH + 15;
+      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 40 : 96);
+      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 68 : 45);
+      const totalStickyH = headerH + subtabsH + 12;
 
       if (subId === 'all') {
         const domainHeader = document.querySelector('.topic-domain-header');
         if (domainHeader) {
-          const targetY = domainHeader.getBoundingClientRect().top + window.pageYOffset - (headerH + 20);
+          const targetY = domainHeader.getBoundingClientRect().top + window.pageYOffset - (headerH + 15);
           window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2057,9 +2082,9 @@ const htmlContent = `<!DOCTYPE html>
       const headerEl = document.querySelector('.app-header');
       const subtabsEl = document.getElementById('topic-subtabs');
       const isMobile = window.innerWidth <= 768;
-      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 48 : 95);
-      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 70 : 45);
-      const threshold = headerH + subtabsH + 60;
+      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 40 : 96);
+      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 68 : 45);
+      const threshold = headerH + subtabsH + 35;
 
       const p1 = document.getElementById('topic-sec-p1');
       const p2 = document.getElementById('topic-sec-p2');
