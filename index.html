@@ -1478,6 +1478,454 @@
       flex-shrink: 0;
     }
 
+    /* Bookmark Button on Question Cards */
+    .q-bookmark-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #94a3b8;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+    .q-bookmark-btn:hover {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: #f59e0b;
+      color: #fbbf24;
+    }
+    .q-bookmark-btn.active {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: #f59e0b;
+      color: #fbbf24;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+    }
+
+    /* Wrong and Bookmark Filter Chips */
+    .filter-chip.filter-wrong-chip {
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+    .filter-chip.filter-wrong-chip:hover {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.15);
+    }
+    .filter-chip.filter-wrong-chip.active {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+    }
+    .filter-chip.filter-star-chip {
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+    .filter-chip.filter-star-chip:hover {
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.15);
+    }
+    .filter-chip.filter-star-chip.active {
+      background: #f59e0b;
+      border-color: #f59e0b;
+      color: #0f172a;
+    }
+
+    /* Action Buttons Variations */
+    .action-btn.submit-btn {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #fff;
+      border-color: #38bdf8;
+      box-shadow: 0 0 14px rgba(2, 132, 199, 0.3);
+    }
+    .action-btn.submit-btn:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+    }
+    .action-btn.retry-btn {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .action-btn.retry-btn:hover {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fff;
+    }
+
+    /* Timed Exam Simulator Widget */
+    .exam-timer-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.3rem 0.65rem;
+      transition: all 0.25s ease;
+    }
+    .exam-timer-widget.warning {
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+    }
+    .exam-timer-widget.warning .timer-digits {
+      color: #fbbf24;
+    }
+    .exam-timer-widget.danger {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.15);
+      animation: timerPulse 1s infinite alternate;
+    }
+    .exam-timer-widget.danger .timer-digits {
+      color: #f87171;
+    }
+    @keyframes timerPulse {
+      from { box-shadow: 0 0 4px rgba(239, 68, 68, 0.2); }
+      to { box-shadow: 0 0 16px rgba(239, 68, 68, 0.6); }
+    }
+    .timer-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .timer-icon {
+      font-size: 0.95rem;
+    }
+    .timer-digits {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.925rem;
+      color: #38bdf8;
+      letter-spacing: 0.05em;
+    }
+    .timer-toggle-btn, .timer-reset-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 0.75rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .timer-toggle-btn:hover, .timer-reset-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    /* Scoreboard Modal */
+    .scoreboard-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.25s ease;
+    }
+    .scoreboard-card {
+      background: #0d1525;
+      border: 1.5px solid #00a4e4;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 164, 228, 0.3);
+      padding: 1.75rem;
+      position: relative;
+    }
+    .scoreboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.85rem;
+    }
+    .scoreboard-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .score-hero {
+      text-align: center;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      background: #111a2e;
+      border: 1px solid var(--border);
+    }
+    .score-badge {
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+    .score-badge.pass {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid #10b981;
+    }
+    .score-badge.fail {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid #ef4444;
+    }
+    .score-val {
+      font-family: var(--font-mono);
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.45rem;
+    }
+    .score-val span {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .score-desc {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .score-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .score-stat-box {
+      background: #131d31;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+    .score-stat-box .num {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .score-stat-box .label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
+    }
+    .domain-bars-header {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .domain-bar-row {
+      margin-bottom: 0.75rem;
+    }
+    .domain-bar-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-bottom: 0.25rem;
+    }
+    .domain-progress-track {
+      width: 100%;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .domain-progress-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-actions {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .modal-btn {
+      flex: 1 1 160px;
+      padding: 0.65rem 1rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .modal-btn.primary {
+      background: #00a4e4;
+      color: #fff;
+      border: 1px solid #00a4e4;
+    }
+    .modal-btn.primary:hover {
+      background: #0284c7;
+    }
+    .modal-btn.secondary {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+    }
+    .modal-btn.secondary:hover {
+      background: #27354f;
+      color: #fff;
+    }
+
+    /* Cram Sheet (Cheat Sheet) Styles */
+    .cram-header {
+      background: linear-gradient(180deg, #131d31 0%, #0d1522 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .cram-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .cram-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .cram-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .cram-filter-chip {
+      background: #162032;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cram-filter-chip:hover {
+      color: #fff;
+      border-color: #38bdf8;
+    }
+    .cram-filter-chip.active {
+      background: #00a4e4;
+      color: #fff;
+      border-color: #00a4e4;
+    }
+    .cram-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .cram-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cram-card:hover {
+      border-color: #00a4e4;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+    .cram-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+    .cram-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .cram-rule-item {
+      background: #0d1424;
+      border: 1px solid #1a253a;
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      margin-bottom: 0.65rem;
+      transition: background 0.15s ease;
+    }
+    .cram-rule-item:last-child {
+      margin-bottom: 0;
+    }
+    .cram-rule-item:hover {
+      background: #111b2f;
+      border-color: #24344f;
+    }
+    .cram-trigger {
+      font-size: 0.825rem;
+      color: #cbd5e1;
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+    .cram-trigger strong {
+      color: #f1f5f9;
+    }
+    .cram-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .cram-service {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+    .cram-trap-warn {
+      font-size: 0.75rem;
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
     /* Desktop Responsive Header & Layout */
     @media (min-width: 769px) and (max-width: 1200px) {
       .header-inner {
@@ -1638,16 +2086,32 @@
       .quiz-action-group {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
         gap: 0.45rem;
       }
       .quiz-action-group .action-btn {
-        flex: 1 1 0;
+        flex: 1 1 calc(50% - 0.25rem);
         min-width: 0;
         padding: 0.48rem 0.35rem;
         font-size: 0.75rem;
         justify-content: center;
         text-align: center;
         white-space: nowrap;
+      }
+      .exam-timer-widget {
+        width: 100%;
+        justify-content: space-between;
+        padding: 0.4rem 0.75rem;
+      }
+      .scoreboard-card {
+        padding: 1.25rem 1rem;
+      }
+      .score-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+      }
+      .cram-grid {
+        grid-template-columns: 1fr;
       }
       .smart-sticky-bar {
         top: var(--header-height, 42px) !important;
@@ -1856,6 +2320,18 @@
       }
       .bottom-nav-bar {
         display: flex;
+        padding: 0 0.1rem;
+      }
+      .bottom-nav-item {
+        padding: 0.35rem 0.15rem;
+        gap: 0.15rem;
+      }
+      .bottom-nav-item .b-icon {
+        font-size: 1.05rem;
+      }
+      .bottom-nav-item span:not(.b-icon) {
+        font-size: 0.65rem;
+        letter-spacing: -0.01em;
       }
       .back-to-top-btn {
         bottom: 4.8rem;
@@ -1894,6 +2370,7 @@
         <button class="tab-btn" onclick="switchTab('graph')">🧭 Bản đồ Khái niệm</button>
         <button class="tab-btn" onclick="switchTab('matrix')">⚡ Bảng Quyết định & Bẫy</button>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
+        <button class="tab-btn" onclick="switchTab('cram')">⚡ Cram Sheet (10 Phút)</button>
       </nav>
 
       <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
@@ -2067,7 +2544,22 @@
             <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
           </button>
         </div>
+        <!-- Timed Exam Simulator Widget -->
+        <div id="exam-timer-widget" class="exam-timer-widget" title="Thời gian thi mô phỏng (85 phút)">
+          <div class="timer-badge">
+            <span class="timer-icon">⏱️</span>
+            <span id="exam-timer-display" class="timer-digits">01:25:00</span>
+          </div>
+          <button id="timer-toggle-btn" class="timer-toggle-btn" onclick="toggleTimerPause()" title="Tạm dừng / Tiếp tục đếm giờ">⏸️</button>
+          <button class="timer-reset-btn" onclick="resetExamTimer()" title="Đặt lại 85 phút">🔄</button>
+        </div>
         <div class="quiz-action-group">
+          <button id="submit-exam-btn" class="action-btn submit-btn" onclick="submitExam()" title="Nộp bài thi và nhận bảng điểm chuẩn hóa AWS 100-1000">
+            <span>🚀 Nộp bài thi</span>
+          </button>
+          <button id="retry-wrong-btn" class="action-btn retry-btn" onclick="retryWrongQuestions()" style="display:none;" title="Chỉ làm lại các câu bị sai">
+            <span>🔄 Luyện lại câu sai</span>
+          </button>
           <button id="shuffle-btn" class="action-btn" onclick="shuffleQuestions()" title="Trộn ngẫu nhiên thứ tự các câu hỏi để thi thử">
             <span>🔀 Trộn đề</span>
           </button>
@@ -2075,7 +2567,7 @@
             <span>↩️ Thứ tự gốc</span>
           </button>
           <button class="action-btn" onclick="resetQuiz()" title="Xóa các đáp án đã chọn để làm lại">
-            <span>🔄 Làm lại bài thi</span>
+            <span>🗑️ Xóa hết bài làm</span>
           </button>
         </div>
       </div>
@@ -2084,12 +2576,14 @@
       <div id="quiz-sticky-bar" class="smart-sticky-bar">
         <div class="quiz-sticky-inner">
           <div class="filter-group quiz-filters">
-            <button class="filter-chip active" onclick="filterDomain('all')">Tất cả (57)</button>
-            <button class="filter-chip" onclick="filterDomain(1)">D1: ML Basics (11)</button>
-            <button class="filter-chip" onclick="filterDomain(2)">D2: GenAI FMs (11)</button>
-            <button class="filter-chip" onclick="filterDomain(3)">D3: Applications (12)</button>
-            <button class="filter-chip" onclick="filterDomain(4)">D4: Responsible AI (11)</button>
-            <button class="filter-chip" onclick="filterDomain(5)">D5: Security (12)</button>
+            <button class="filter-chip active" data-filter="all" onclick="filterDomain('all')">Tất cả (57)</button>
+            <button class="filter-chip filter-wrong-chip" data-filter="wrong" id="chip-filter-wrong" onclick="filterDomain('wrong')">🔴 Câu sai (<span id="wrong-count-badge">0</span>)</button>
+            <button class="filter-chip filter-star-chip" data-filter="bookmarks" id="chip-filter-bookmarks" onclick="filterDomain('bookmarks')">⭐ Đã lưu (<span id="star-count-badge">0</span>)</button>
+            <button class="filter-chip" data-filter="1" onclick="filterDomain(1)">D1: ML Basics (11)</button>
+            <button class="filter-chip" data-filter="2" onclick="filterDomain(2)">D2: GenAI FMs (11)</button>
+            <button class="filter-chip" data-filter="3" onclick="filterDomain(3)">D3: Applications (12)</button>
+            <button class="filter-chip" data-filter="4" onclick="filterDomain(4)">D4: Responsible AI (11)</button>
+            <button class="filter-chip" data-filter="5" onclick="filterDomain(5)">D5: Security (12)</button>
           </div>
           <div class="quiz-sticky-right">
             <div class="search-input-box">
@@ -2197,6 +2691,27 @@
       </div>
     </section>
 
+    <!-- TAB 6: CRAM SHEET (CHEAT SHEET 10 PHÚT TRƯỚC GIỜ THI) -->
+    <section id="tab-cram" class="tab-panel">
+      <div class="cram-header">
+        <div class="cram-title">⚡ Bảng Tra Cứu "Thần Chú" 10 Phút Trước Giờ Thi (Cram Sheet)</div>
+        <p class="cram-subtitle">
+          Tổng hợp ngắn gọn các cặp từ khóa then chốt trong đề thi tiếng Anh &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án bẫy gây nhầm lẫn.
+        </p>
+        <div class="cram-filters">
+          <button class="cram-filter-chip active" data-cram="all" onclick="filterCramCategory('all')">Tất cả (4 Nhóm)</button>
+          <button class="cram-filter-chip" data-cram="bedrock" onclick="filterCramCategory('bedrock')">Amazon Bedrock (GenAI)</button>
+          <button class="cram-filter-chip" data-cram="sagemaker" onclick="filterCramCategory('sagemaker')">Amazon SageMaker (ML)</button>
+          <button class="cram-filter-chip" data-cram="core" onclick="filterCramCategory('core')">Dịch vụ AI Chuyên biệt</button>
+          <button class="cram-filter-chip" data-cram="governance" onclick="filterCramCategory('governance')">Bảo mật & Trách nhiệm</button>
+        </div>
+      </div>
+
+      <div class="cram-grid" id="cram-grid-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
     <!-- Floating Back-to-Top Button -->
     <button id="back-to-top" class="back-to-top-btn" onclick="scrollToTop()" title="Cuộn lên đầu trang">⬆️</button>
 
@@ -2222,6 +2737,10 @@
         <span class="b-icon">📖</span>
         <span>Từ điển</span>
       </button>
+      <button class="bottom-nav-item" id="bnav-cram" onclick="switchTab('cram')">
+        <span class="b-icon">⚡</span>
+        <span>Cram</span>
+      </button>
     </nav>
 
   </main>
@@ -2246,6 +2765,582 @@
     let steDomainFilter = 'all';
     const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
+    let bookmarkedQuestions = new Set();
+    let examTimeRemaining = 85 * 60; // 85 mins in seconds = 5100
+    let timerInterval = null;
+    let isTimerPaused = false;
+    let currentCramFilter = 'all';
+
+    // Pre-Exam Cram Sheet Data (Rapid 10-Minute Exam Triggers)
+    const CRAM_DATA = [
+      // Bedrock
+      {
+        category: 'bedrock',
+        title: 'Bedrock Guardrails',
+        trigger: 'Ngăn chặn Hallucination trong RAG bằng Factual Grounding Check, che giấu dữ liệu nhạy cảm PII, lọc từ ngữ thù địch (Toxicity), chặn chủ đề cấm (Denied Topics)',
+        service: 'Amazon Bedrock Guardrails',
+        trap: 'Khác SageMaker Clarify (Clarify chuyên về bias/fairness dữ liệu huấn luyện, không chặn input/output prompt realtime).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Knowledge Bases',
+        trigger: 'Triển khai kiến trúc RAG hoàn toàn được quản lý (Managed RAG): tự động phân đoạn văn bản (chunking), tạo vector embeddings và lưu trữ truy vấn trong Vector Store',
+        service: 'Bedrock Knowledge Bases',
+        trap: 'Tự dựng Kendra/OpenSearch + Lambda viết code thủ công khi đề thi yêu cầu Managed RAG.'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Agents',
+        trigger: 'Tự động lập luận và thực thi tác vụ nhiều bước (multi-step workflow) kết nối hệ sinh thái doanh nghiệp qua OpenAPI schema và AWS Lambda',
+        service: 'Amazon Bedrock Agents',
+        trap: 'AWS Step Functions (Step Functions điều phối workflow tĩnh, không có GenAI autonomous reasoning).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Model Evaluation',
+        trigger: 'Đánh giá so sánh chất lượng các mô hình FM bằng bộ chỉ số tự động (BLEU, ROUGE, Accuracy) hoặc thẩm định bởi con người (Human review work team)',
+        service: 'Bedrock Model Evaluation',
+        trap: 'SageMaker Model Monitor (chỉ dành cho SageMaker endpoints chạy production).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Fine-Tuning',
+        trigger: 'Tùy biến mô hình nền tảng bằng dữ liệu có nhãn dạng cặp câu lệnh - phản hồi (Prompt-Response pairs) cho bài toán cụ thể',
+        service: 'Bedrock Fine-Tuning',
+        trap: 'Continual Pre-training (Fine-tuning cần dữ liệu có nhãn).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Continual Pre-training',
+        trigger: 'Huấn luyện tiếp mô hình nền tảng bằng khối lượng lớn văn bản thô phi cấu trúc không nhãn (Unlabeled domain-specific text)',
+        service: 'Bedrock Continual Pre-training',
+        trap: 'Fine-tuning (Continual Pre-training dùng văn bản không nhãn để model hiểu từ vựng chuyên ngành).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Titan Digital Watermarking',
+        trigger: 'Nhúng chữ ký số vô hình, chống can thiệp vào hình ảnh do AI tạo ra để xác minh nguồn gốc và chống deepfake',
+        service: 'Titan Image Generator Watermarking',
+        trap: 'Rekognition (Rekognition chỉ nhận diện, không nhúng mã thủy vân số).'
+      },
+      {
+        category: 'bedrock',
+        title: 'Bedrock Data Security & Privacy',
+        trigger: 'AWS cam kết KHÔNG lưu trữ hoặc sử dụng prompt/completion của khách hàng để huấn luyện lại các mô hình nền tảng của AWS hay bên thứ 3',
+        service: 'Bedrock Data Governance',
+        trap: 'Hiểu nhầm AWS tự ý dùng dữ liệu doanh nghiệp để cải tiến model công cộng.'
+      },
+
+      // SageMaker
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Clarify',
+        trigger: 'Phát hiện thiên vị/định kiến (Bias detection) trước và sau huấn luyện, giải thích mô hình (Explainability) bằng giá trị SHAP values, đo lường Fairness',
+        service: 'Amazon SageMaker Clarify',
+        trap: 'Bedrock Guardrails (Clarify tập trung vào Model Explainability & Bias, không phải prompt guard).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Model Monitor',
+        trigger: 'Giám sát mô hình đang phục vụ trên production để phát hiện Data Drift, Concept Drift, Bias Drift và suy giảm chất lượng dự đoán',
+        service: 'SageMaker Model Monitor',
+        trap: 'CloudWatch Logs đơn thuần (Model Monitor phân tích độ trôi lệch phân phối dữ liệu).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Ground Truth',
+        trigger: 'Dán nhãn dữ liệu có sự tham gia của con người (Human-in-the-loop) kết hợp Active Learning tự động hóa dán nhãn ảnh, văn bản, video',
+        service: 'SageMaker Ground Truth',
+        trap: 'Mechanical Turk đơn lẻ khi dữ liệu nội bộ đòi hỏi bảo mật và kiểm soát.'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Feature Store',
+        trigger: 'Kho lưu trữ tập trung để quản lý, tái sử dụng và chia sẻ các đặc trưng ML (Features) phục vụ cả huấn luyện batch và suy luận độ trễ thấp (online)',
+        service: 'SageMaker Feature Store',
+        trap: 'S3 hoặc DynamoDB thuần túy (Feature Store có point-in-time time-travel truy xuất dữ liệu).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Model Registry',
+        trigger: 'Quản lý phiên bản mô hình (Versioning), quy trình phê duyệt triển khai (Approval/Rejection), theo dõi phả hệ (Lineage) và siêu dữ liệu mô hình',
+        service: 'SageMaker Model Registry',
+        trap: 'S3 bucket versioning (Model Registry lưu trữ metadata, metric đánh giá và trạng thái duyệt).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Autopilot',
+        trigger: 'Tự động xây dựng mô hình học máy (AutoML) cho dữ liệu dạng bảng với tính minh bạch cao, tự sinh mã nguồn Python notebooks',
+        service: 'SageMaker Autopilot',
+        trap: 'SageMaker Canvas (Autopilot sinh code minh bạch; Canvas là no-code UI cho business analyst).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker Canvas',
+        trigger: 'Giao diện trực quan kéo thả không cần viết mã (No-code ML) dành cho Business Analysts tạo dự đoán kinh doanh nhanh chóng',
+        service: 'SageMaker Canvas',
+        trap: 'SageMaker Studio / Notebooks (Canvas hướng tới người không chuyên lập trình).'
+      },
+      {
+        category: 'sagemaker',
+        title: 'SageMaker JumpStart',
+        trigger: 'Trung tâm khám phá và triển khai 1-click các mô hình nền tảng nguồn mở và thương mại có sẵn kèm giải pháp mẫu (Solution Templates)',
+        service: 'SageMaker JumpStart',
+        trap: 'Tự tải weights từ HuggingFace về cấu hình EC2 thủ công.'
+      },
+
+      // Core AI Services
+      {
+        category: 'core',
+        title: 'Amazon Textract',
+        trigger: 'Trích xuất văn bản in, chữ viết tay, biểu mẫu, bảng biểu, cặp key-value từ tài liệu scan, hóa đơn, PDF hợp đồng (OCR nâng cao)',
+        service: 'Amazon Textract',
+        trap: 'Amazon Rekognition (Rekognition nhận diện vật thể/khuôn mặt; Textract chuyên xử lý form, bảng biểu tài liệu).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Rekognition',
+        trigger: 'Phân tích hình ảnh và video: nhận diện khuôn mặt, nhãn vật thể, kiểm duyệt nội dung phản cảm, phát hiện thiết bị bảo hộ PPE',
+        service: 'Amazon Rekognition',
+        trap: 'Amazon Textract (Không dùng Rekognition để đọc form hay hóa đơn).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Transcribe',
+        trigger: 'Chuyển đổi âm thanh cuộc gọi thành văn bản kèm timestamp, phân tách từng người nói trong hội thoại (Speaker Diarization)',
+        service: 'Amazon Transcribe',
+        trap: 'Amazon Polly (Transcribe: Audio → Text; Polly: Text → Audio).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Polly',
+        trigger: 'Chuyển văn bản thành giọng nói nhân tạo tự nhiên, hỗ trợ tùy chỉnh phát âm, ngữ điệu, thì thầm bằng thẻ SSML',
+        service: 'Amazon Polly',
+        trap: 'Amazon Transcribe (Polly là Text-to-Speech).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Comprehend',
+        trigger: 'Xử lý ngôn ngữ tự nhiên (NLP): phân tích sắc thái cảm xúc (Sentiment), trích xuất thực thể, phát hiện ngôn ngữ, bóc tách PII trong văn bản',
+        service: 'Amazon Comprehend',
+        trap: 'Amazon Translate (Translate chỉ dịch ngữ; Comprehend phân tích ý nghĩa nội hàm văn bản).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Translate',
+        trigger: 'Dịch thuật văn bản tự động đa ngôn ngữ theo thời gian thực hoặc hàng loạt với độ chính xác cao',
+        service: 'Amazon Translate',
+        trap: 'Amazon Comprehend.'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Lex',
+        trigger: 'Xây dựng chatbot hội thoại thông minh bằng giọng nói và văn bản (ASR + NLU), tích hợp trực tiếp Amazon Connect',
+        service: 'Amazon Lex',
+        trap: 'Amazon Polly / Bedrock Agents (Lex chuyên nghiệp cho luồng chatbot tương tác khách hàng).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Personalize',
+        trigger: 'Hệ thống gợi ý sản phẩm/nội dung cá nhân hóa theo thời gian thực dựa trên lịch sử hành vi người dùng (clickstream, mua hàng)',
+        service: 'Amazon Personalize',
+        trap: 'SageMaker Autopilot (Personalize là managed recommendation system dựng sẵn).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Forecast',
+        trigger: 'Dự báo chuỗi thời gian (Time-series forecasting) về nhu cầu hàng tồn kho, doanh thu tài chính dựa trên dữ liệu lịch sử',
+        service: 'Amazon Forecast',
+        trap: 'SageMaker Canvas / Autopilot khi bài toán cần chuyên biệt time-series forecasting.'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Fraud Detector',
+        trigger: 'Tự động phát hiện các hành vi gian lận trực tuyến (tạo tài khoản giả mạo, thanh toán gian lận, lạm dụng khuyến mãi)',
+        service: 'Amazon Fraud Detector',
+        trap: 'AWS WAF / AWS Shield (WAF chống tấn công web/DDoS, Fraud Detector chống gian lận kinh doanh).'
+      },
+      {
+        category: 'core',
+        title: 'AWS Augmented AI (A2I)',
+        trigger: 'Thiết lập quy trình cho con người duyệt lại (Human Review) các kết quả dự đoán ML có độ tự tin thấp từ Textract, Rekognition, SageMaker',
+        service: 'AWS Augmented AI (A2I)',
+        trap: 'Ground Truth (Ground Truth dán nhãn dữ liệu huấn luyện ban đầu; A2I duyệt lại kết quả inference).'
+      },
+      {
+        category: 'core',
+        title: 'Amazon Q Business / Developer',
+        trigger: 'Trợ lý AI doanh nghiệp tra cứu dữ liệu nội bộ bảo mật (Q Business) / Trợ lý lập trình tự động sinh và tối ưu hóa code (Q Developer)',
+        service: 'Amazon Q Suite',
+        trap: 'Amazon Bedrock (Q là trợ lý AI đóng gói sẵn dành cho người dùng cuối).'
+      },
+
+      // Security & Governance
+      {
+        category: 'governance',
+        title: 'AWS AI Service Cards',
+        trigger: 'Nguồn tài liệu chuẩn của AWS giải thích mục đích sử dụng (Intended use cases), giới hạn kỹ thuật (Limitations), và thiết kế AI có trách nhiệm',
+        service: 'AWS AI Service Cards',
+        trap: 'AWS Whitepapers chung chung (AI Service Cards là tài liệu chính thức theo chuẩn Responsible AI).'
+      },
+      {
+        category: 'governance',
+        title: 'Amazon Macie',
+        trigger: 'Tự động quét, phát hiện, phân loại và bảo vệ dữ liệu nhạy cảm PII, khóa truy cập, thông tin thẻ tín dụng nằm trong các Amazon S3 buckets',
+        service: 'Amazon Macie',
+        trap: 'Amazon GuardDuty (GuardDuty phát hiện mối đe dọa an ninh; Macie chuyên phát hiện dữ liệu nhạy cảm trong S3).'
+      },
+      {
+        category: 'governance',
+        title: 'AWS Artifact',
+        trigger: 'Cổng thông tin tự phục vụ để tải về các báo cáo tuân thủ bảo mật của AWS (SOC, PCI-DSS, ISO) và ký kết thỏa thuận pháp lý (BAA cho HIPAA)',
+        service: 'AWS Artifact',
+        trap: 'AWS Audit Manager (Artifact là nơi tải báo cáo có sẵn; Audit Manager tự động thu thập bằng chứng từ tài nguyên).'
+      },
+      {
+        category: 'governance',
+        title: 'AWS Audit Manager',
+        trigger: 'Tự động hóa việc thu thập bằng chứng (Evidence Collection) liên tục từ tài nguyên AWS để phục vụ kiểm toán tuân thủ quy chuẩn',
+        service: 'AWS Audit Manager',
+        trap: 'AWS Artifact.'
+      },
+      {
+        category: 'governance',
+        title: 'AWS KMS (Key Management Service)',
+        trigger: 'Quản lý khóa mã hóa Customer Managed Keys (CMK), mã hóa phong bì (Envelope encryption), tự động xoay vòng khóa cho dữ liệu lưu trữ (at rest)',
+        service: 'AWS KMS',
+        trap: 'AWS CloudHSM (CloudHSM chỉ dùng khi có yêu cầu phần cứng chuyên dụng FIPS 140-2 Level 3).'
+      },
+      {
+        category: 'governance',
+        title: 'AWS CloudTrail',
+        trigger: 'Ghi nhật ký và giám sát toàn bộ hoạt động gọi API của người dùng và dịch vụ trong tài khoản AWS, phục vụ điều tra truy vết bảo mật',
+        service: 'AWS CloudTrail',
+        trap: 'Amazon CloudWatch (CloudWatch theo dõi metrics/logs ứng dụng; CloudTrail ghi lại ai đã gọi API nào).'
+      },
+      {
+        category: 'governance',
+        title: 'VPC Endpoints (AWS PrivateLink)',
+        trigger: 'Kết nối mạng riêng an toàn giữa Amazon VPC của khách hàng với Bedrock hoặc SageMaker mà dữ liệu không bao giờ đi qua Internet công cộng',
+        service: 'VPC Endpoints / PrivateLink',
+        trap: 'Internet Gateway / NAT Gateway (Đi qua internet công cộng, vi phạm chuẩn bảo mật khắt khe).'
+      }
+    ];
+
+    // Persistence with localStorage
+    function loadStoredState() {
+      try {
+        const savedAns = localStorage.getItem('aif_user_answers');
+        if (savedAns) {
+          const parsed = JSON.parse(savedAns);
+          Object.assign(userAnswers, parsed);
+        }
+        const savedBks = localStorage.getItem('aif_bookmarked_ids');
+        if (savedBks) {
+          const parsed = JSON.parse(savedBks);
+          bookmarkedQuestions = new Set(parsed);
+        }
+        const savedRev = localStorage.getItem('aif_revealed_cards');
+        if (savedRev) {
+          const parsed = JSON.parse(savedRev);
+          parsed.forEach(id => revealedCards.add(id));
+        }
+        const savedTime = localStorage.getItem('aif_exam_time');
+        if (savedTime) {
+          const val = parseInt(savedTime, 10);
+          if (!isNaN(val) && val > 0) examTimeRemaining = val;
+        }
+      } catch (e) {
+        console.warn('localStorage read error:', e);
+      }
+    }
+
+    function saveStateToStorage() {
+      try {
+        localStorage.setItem('aif_user_answers', JSON.stringify(userAnswers));
+        localStorage.setItem('aif_bookmarked_ids', JSON.stringify(Array.from(bookmarkedQuestions)));
+        localStorage.setItem('aif_revealed_cards', JSON.stringify(Array.from(revealedCards)));
+        localStorage.setItem('aif_exam_time', String(examTimeRemaining));
+      } catch (e) {
+        console.warn('localStorage save error:', e);
+      }
+    }
+
+    function isQuestionWrong(q) {
+      const sel = userAnswers[q.id] || [];
+      if (sel.length === 0) return false;
+      const correct = (q.correctAnswer.match(/[A-E]/g) || []);
+      if (q.isMultiple) {
+        if (sel.length !== correct.length) return true;
+        return !sel.every(k => correct.includes(k));
+      } else {
+        return sel[0] !== correct[0];
+      }
+    }
+
+    function toggleBookmark(qId, event) {
+      if (event) event.stopPropagation();
+      if (bookmarkedQuestions.has(qId)) {
+        bookmarkedQuestions.delete(qId);
+        showToast('☆ Đã bỏ đánh dấu câu hỏi');
+      } else {
+        bookmarkedQuestions.add(qId);
+        showToast('⭐ Đã đánh dấu câu hỏi vào sổ tay!');
+      }
+      saveStateToStorage();
+      updateStats();
+      renderQuiz();
+      renderPalette();
+    }
+
+    // Timed Exam Simulator Functions
+    function startExamTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        if (!isTimerPaused && examTimeRemaining > 0) {
+          examTimeRemaining--;
+          updateTimerDisplay();
+          if (examTimeRemaining % 15 === 0) {
+            saveStateToStorage();
+          }
+          if (examTimeRemaining === 0) {
+            clearInterval(timerInterval);
+            showToast('⏰ Đã hết thời gian 85 phút làm bài!');
+            submitExam();
+          }
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById('exam-timer-display');
+      const widget = document.getElementById('exam-timer-widget');
+      if (!display || !widget) return;
+
+      const h = Math.floor(examTimeRemaining / 3600);
+      const m = Math.floor((examTimeRemaining % 3600) / 60);
+      const s = examTimeRemaining % 60;
+      const pad = n => String(n).padStart(2, '0');
+      display.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+
+      widget.classList.remove('warning', 'danger');
+      if (examTimeRemaining <= 300) {
+        widget.classList.add('danger');
+      } else if (examTimeRemaining <= 900) {
+        widget.classList.add('warning');
+      }
+    }
+
+    function toggleTimerPause() {
+      isTimerPaused = !isTimerPaused;
+      const btn = document.getElementById('timer-toggle-btn');
+      if (btn) btn.textContent = isTimerPaused ? '▶️' : '⏸️';
+      showToast(isTimerPaused ? '⏸️ Đã tạm dừng đồng hồ đếm giờ' : '▶️ Tiếp tục đếm giờ');
+    }
+
+    function resetExamTimer() {
+      if (!confirm('Bạn có muốn đặt lại đồng hồ thi thử về 85 phút?')) return;
+      examTimeRemaining = 85 * 60;
+      isTimerPaused = false;
+      const btn = document.getElementById('timer-toggle-btn');
+      if (btn) btn.textContent = '⏸️';
+      updateTimerDisplay();
+      saveStateToStorage();
+      showToast('🔄 Đã đặt lại thời gian thi về 85 phút!');
+    }
+
+    function retryWrongQuestions() {
+      const allQs = getAllQuestions();
+      let clearedCount = 0;
+      allQs.forEach(q => {
+        if (isQuestionWrong(q)) {
+          delete userAnswers[q.id];
+          revealedCards.delete(q.id);
+          clearedCount++;
+        }
+      });
+      saveStateToStorage();
+      updateStats();
+      filterDomain('wrong');
+      showToast('🔄 Đã làm mới ' + clearedCount + ' câu hỏi sai để bạn luyện lại!');
+    }
+
+    function submitExam() {
+      const allQs = getAllQuestions();
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      const domainScores = {
+        1: { name: 'Domain 1: ML Fundamentals', weight: 20, total: 0, correct: 0 },
+        2: { name: 'Domain 2: Generative AI & FMs', weight: 24, total: 0, correct: 0 },
+        3: { name: 'Domain 3: Applications & Bedrock', weight: 28, total: 0, correct: 0 },
+        4: { name: 'Domain 4: Responsible AI', weight: 14, total: 0, correct: 0 },
+        5: { name: 'Domain 5: Security & Compliance', weight: 14, total: 0, correct: 0 },
+      };
+
+      allQs.forEach(q => {
+        domainScores[q.domainId].total++;
+        const sel = userAnswers[q.id] || [];
+        if (sel.length === 0) {
+          unattemptedCount++;
+        } else if (isQuestionWrong(q)) {
+          wrongCount++;
+        } else {
+          const correct = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
+          if (sel.length === correct.length && sel.every(k => correct.includes(k))) {
+            correctCount++;
+            domainScores[q.domainId].correct++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      const scaledScore = allQs.length > 0 ? (100 + Math.round((correctCount / allQs.length) * 900)) : 100;
+      const isPassed = scaledScore >= 700;
+
+      const modalBody = document.getElementById('scoreboard-body');
+      if (!modalBody) return;
+
+      let domainBarsHtml = Object.keys(domainScores).map(dId => {
+        const d = domainScores[dId];
+        const pct = d.total > 0 ? Math.round((d.correct / d.total) * 100) : 0;
+        const isPassDomain = pct >= 70;
+        const fillColor = isPassDomain ? '#10b981' : '#f87171';
+        return `
+          <div class="domain-bar-row">
+            <div class="domain-bar-meta">
+              <span>${d.name} (${d.weight}% trọng số)</span>
+              <span style="font-weight:700; color:${fillColor};">${d.correct}/${d.total} (${pct}%)</span>
+            </div>
+            <div class="domain-progress-track">
+              <div class="domain-progress-fill" style="width:${pct}%; background:${fillColor};"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      modalBody.innerHTML = `
+        <div class="score-hero">
+          <div class="score-badge ${isPassed ? 'pass' : 'fail'}">
+            ${isPassed ? '🎉 CHÚC MỪNG: BẠN ĐÃ ĐẠT (PASS)' : '⚠️ KẾT QUẢ: CHƯA ĐẠT (FAIL)'}
+          </div>
+          <div class="score-val">${scaledScore} <span>/ 1000 điểm</span></div>
+          <p class="score-desc">
+            ${isPassed
+              ? 'Điểm số của bạn vượt ngưỡng 700 điểm chuẩn của kỳ thi AWS Certified AI Practitioner. Bạn đã sẵn sàng đi thi thật!'
+              : 'Điểm số của bạn chưa đạt ngưỡng tối thiểu 700/1000 điểm. Hãy kiểm tra các Domain yếu bên dưới và ôn lại các câu sai!'}
+          </p>
+        </div>
+
+        <div class="score-stats-grid">
+          <div class="score-stat-box">
+            <div class="num" style="color:#34d399;">${correctCount}</div>
+            <div class="label">Câu đúng</div>
+          </div>
+          <div class="score-stat-box">
+            <div class="num" style="color:#f87171;">${wrongCount}</div>
+            <div class="label">Câu sai</div>
+          </div>
+          <div class="score-stat-box">
+            <div class="num" style="color:#94a3b8;">${unattemptedCount}</div>
+            <div class="label">Chưa làm</div>
+          </div>
+        </div>
+
+        <div class="domain-bars-header">📈 Phân tích kết quả theo 5 Domain:</div>
+        <div class="domain-bars-container">
+          ${domainBarsHtml}
+        </div>
+
+        <div class="modal-actions">
+          ${wrongCount > 0 ? '<button class="modal-btn primary" onclick="reviewWrongFromModal()">🔴 Xem và sửa các câu làm sai</button>' : ''}
+          <button class="modal-btn secondary" onclick="restartExamFromModal()">🔄 Thi lại bài mới</button>
+          <button class="modal-btn secondary" onclick="closeScoreboardModal()">✕ Đóng bảng điểm</button>
+        </div>
+      `;
+
+      const modal = document.getElementById('scoreboard-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeScoreboardModal() {
+      const modal = document.getElementById('scoreboard-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function reviewWrongFromModal() {
+      closeScoreboardModal();
+      filterDomain('wrong');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartExamFromModal() {
+      closeScoreboardModal();
+      resetQuiz();
+      resetExamTimer();
+    }
+
+    // Cram Sheet Renderer
+    function renderCramSheet() {
+      const container = document.getElementById('cram-grid-container');
+      if (!container) return;
+
+      const filtered = CRAM_DATA.filter(item => {
+        if (currentCramFilter === 'all') return true;
+        return item.category === currentCramFilter;
+      });
+
+      const categoryTitles = {
+        bedrock: '⚡ Amazon Bedrock & Generative AI',
+        sagemaker: '🛠️ Amazon SageMaker ML Platform',
+        core: '🎯 Dịch vụ AI Chuyên biệt (Core AI)',
+        governance: '🛡️ Bảo mật, Quản trị & Trách nhiệm'
+      };
+
+      const groups = {};
+      filtered.forEach(item => {
+        if (!groups[item.category]) groups[item.category] = [];
+        groups[item.category].push(item);
+      });
+
+      container.innerHTML = Object.keys(groups).map(cat => {
+        const items = groups[cat];
+        const rowsHtml = items.map(item => `
+          <div class="cram-rule-item">
+            <div class="cram-trigger">
+              <strong>${item.title}:</strong> ${item.trigger}
+            </div>
+            <div class="cram-result">
+              <span class="cram-service">${item.service}</span>
+              ${item.trap ? `<span class="cram-trap-warn">⚠️ Bẫy: ${item.trap}</span>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        return `
+          <div class="cram-card" data-category="${cat}">
+            <div class="cram-card-header">
+              <span class="cram-card-title">${categoryTitles[cat] || cat} (${items.length})</span>
+            </div>
+            <div class="cram-card-body">
+              ${rowsHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterCramCategory(cat) {
+      currentCramFilter = cat;
+      document.querySelectorAll('.cram-filter-chip').forEach(c => {
+        if (c.getAttribute('data-cram') === cat) c.classList.add('active');
+        else c.classList.remove('active');
+      });
+      renderCramSheet();
+    }
 
     // Sync dynamic header height for sticky elements
     function syncHeaderHeight() {
@@ -2271,7 +3366,7 @@
       }
       const parts = clean.split('/');
       const tabCandidate = parts[0].toLowerCase();
-      const validTabs = ['topics', 'quiz', 'graph', 'matrix', 'ste'];
+      const validTabs = ['topics', 'quiz', 'graph', 'matrix', 'ste', 'cram'];
       const tab = validTabs.includes(tabCandidate) ? tabCandidate : 'topics';
 
       let domain = currentTopicDomain || 1;
@@ -2328,6 +3423,9 @@
         case 'ste':
           document.title = '📖 Từ điển Thuật ngữ | ' + baseTitle;
           break;
+        case 'cram':
+          document.title = '⚡ Cram Sheet (10 Phút) | ' + baseTitle;
+          break;
         default:
           document.title = baseTitle;
       }
@@ -2363,6 +3461,8 @@
         } else if (!route.palette && isCurrentlyOpen) {
           togglePalette(false);
         }
+      } else if (route.tab === 'cram') {
+        renderCramSheet();
       }
 
       if (route.tab !== 'graph') {
@@ -2372,13 +3472,17 @@
 
     // Init App
     window.addEventListener('DOMContentLoaded', () => {
+      loadStoredState();
       syncHeaderHeight();
       renderTopicDomain(currentTopicDomain);
       renderQuiz();
       renderDecisionMatrix();
       renderSTEDictionary();
       renderConceptGraph();
+      renderCramSheet();
       initScrollListener();
+      startExamTimer();
+      updateStats();
 
       const initialHash = window.location.hash;
       if (initialHash && initialHash !== '#' && initialHash !== '#/') {
@@ -2418,6 +3522,8 @@
 
       if (tabId === 'topics') {
         setTimeout(updateTopicScrollspy, 60);
+      } else if (tabId === 'cram') {
+        renderCramSheet();
       }
 
       document.querySelectorAll('.smart-sticky-bar').forEach(b => b.classList.remove('bar-hidden'));
@@ -3051,9 +4157,15 @@
     function filterDomain(domainId) {
       currentDomainFilter = domainId;
       document.querySelectorAll('.filter-chip').forEach(c => {
-        if (domainId === 'all' && c.textContent.includes('Tất cả')) c.classList.add('active');
-        else if (c.textContent.startsWith('D' + domainId)) c.classList.add('active');
-        else c.classList.remove('active');
+        const dFilter = c.getAttribute('data-filter');
+        if (dFilter) {
+          if (String(domainId) === dFilter) c.classList.add('active');
+          else c.classList.remove('active');
+        } else {
+          if (domainId === 'all' && c.textContent.includes('Tất cả')) c.classList.add('active');
+          else if (typeof domainId === 'number' && c.textContent.startsWith('D' + domainId)) c.classList.add('active');
+          else c.classList.remove('active');
+        }
       });
       renderQuiz();
     }
@@ -3079,13 +4191,19 @@
       quizMode = mode;
       const examBtn = document.getElementById('mode-exam-btn');
       const studyBtn = document.getElementById('mode-study-btn');
+      const timerWidget = document.getElementById('exam-timer-widget');
+      const submitBtn = document.getElementById('submit-exam-btn');
       if (examBtn && studyBtn) {
         if (mode === 'exam') {
           examBtn.classList.add('active');
           studyBtn.classList.remove('active');
+          if (timerWidget) timerWidget.style.display = 'inline-flex';
+          if (submitBtn) submitBtn.style.display = 'inline-flex';
         } else {
           studyBtn.classList.add('active');
           examBtn.classList.remove('active');
+          if (timerWidget) timerWidget.style.display = 'none';
+          if (submitBtn) submitBtn.style.display = 'none';
         }
       }
       renderQuiz();
@@ -3098,6 +4216,7 @@
       } else {
         revealedCards.add(qId);
       }
+      saveStateToStorage();
       renderQuiz();
       renderTopicDomain(currentTopicDomain);
     }
@@ -3105,6 +4224,7 @@
     function resetQuiz() {
       for (const k in userAnswers) delete userAnswers[k];
       revealedCards.clear();
+      saveStateToStorage();
       setQuizMode('exam');
       updateStats();
       renderQuiz();
@@ -3153,6 +4273,7 @@
         userAnswers[qId] = [key];
       }
       
+      saveStateToStorage();
       updateStats();
       renderQuiz();
       renderTopicDomain(currentTopicDomain);
@@ -3161,23 +4282,45 @@
 
     function updateStats() {
       const allQs = getAllQuestions();
-      const attemptedIds = Object.keys(userAnswers).filter(id => userAnswers[id].length > 0);
+      const attemptedIds = Object.keys(userAnswers).filter(id => userAnswers[id] && userAnswers[id].length > 0);
       let correctCount = 0;
+      let wrongCount = 0;
 
-      attemptedIds.forEach(id => {
-        const q = allQs.find(item => item.id === id);
-        if (q) {
-          const selected = userAnswers[id].sort().join('');
-          // Parse correct answer letters
-          const letters = (q.correctAnswer.match(/\b[A-E]\b/g) || []).sort().join('');
-          if (selected === letters) correctCount++;
+      allQs.forEach(q => {
+        const sel = userAnswers[q.id] || [];
+        if (sel.length > 0) {
+          if (isQuestionWrong(q)) {
+            wrongCount++;
+          } else {
+            const correct = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
+            if (sel.length === correct.length && sel.every(k => correct.includes(k))) {
+              correctCount++;
+            } else {
+              wrongCount++;
+            }
+          }
         }
       });
 
-      document.getElementById('stats-attempted').textContent = `${attemptedIds.length}/${allQs.length}`;
-      document.getElementById('stats-correct').textContent = correctCount;
+      const attEl = document.getElementById('stats-attempted');
+      if (attEl) attEl.textContent = `${attemptedIds.length}/${allQs.length}`;
+      const corEl = document.getElementById('stats-correct');
+      if (corEl) corEl.textContent = correctCount;
       const pct = attemptedIds.length > 0 ? Math.round((correctCount / attemptedIds.length) * 100) : 0;
-      document.getElementById('stats-accuracy').textContent = pct + '%';
+      const accEl = document.getElementById('stats-accuracy');
+      if (accEl) accEl.textContent = pct + '%';
+
+      // Badges on filter chips
+      const wrongBadge = document.getElementById('wrong-count-badge');
+      if (wrongBadge) wrongBadge.textContent = wrongCount;
+      const starBadge = document.getElementById('star-count-badge');
+      if (starBadge) starBadge.textContent = bookmarkedQuestions.size;
+
+      // Show retry wrong questions button if there are wrong answers
+      const retryBtn = document.getElementById('retry-wrong-btn');
+      if (retryBtn) {
+        retryBtn.style.display = wrongCount > 0 ? 'inline-flex' : 'none';
+      }
     }
 
     // Reusable Question Cards Renderer
@@ -3188,6 +4331,7 @@
         const correctLetters = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
         const isRevealedByCard = revealedCards.has(q.id);
         const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
+        const isBookmarked = bookmarkedQuestions.has(q.id);
 
         const orderBadgeHtml = (prefix === 'quiz' && isShuffled)
           ? `<span class="q-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45);">Câu ${idx + 1}</span>
@@ -3222,6 +4366,9 @@
               <span class="q-type-tag">${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
               <button class="q-toggle-btn" onclick="toggleCardExplanation('${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
                 ${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
+              </button>
+              <button class="q-bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${q.id}', event)" title="${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
+                <span>${isBookmarked ? '⭐' : '☆'}</span>
               </button>
             </div>
 
@@ -3260,6 +4407,12 @@
       const allQs = getAllQuestions();
 
       const filtered = allQs.filter(q => {
+        if (currentDomainFilter === 'wrong') {
+          return isQuestionWrong(q);
+        }
+        if (currentDomainFilter === 'bookmarks') {
+          return bookmarkedQuestions.has(q.id);
+        }
         if (currentDomainFilter !== 'all' && q.domainId !== currentDomainFilter) return false;
         if (searchQuery) {
           const content = (q.stem + ' ' + q.reason + ' ' + q.options.map(o=>o.text).join(' ')).toLowerCase();
@@ -3269,7 +4422,13 @@
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div style="text-align:center; padding:3rem; color:var(--text-dim);">Không tìm thấy câu hỏi nào phù hợp với từ khóa "${searchQuery}".</div>`;
+        let emptyMsg = `Không tìm thấy câu hỏi nào phù hợp với từ khóa "${searchQuery}".`;
+        if (currentDomainFilter === 'wrong') {
+          emptyMsg = '🎉 Tuyệt vời! Bạn không có câu hỏi nào làm sai trong danh sách.';
+        } else if (currentDomainFilter === 'bookmarks') {
+          emptyMsg = '⭐ Bạn chưa đánh dấu sao câu hỏi nào. Hãy bấm biểu tượng ☆ trên thẻ câu hỏi để lưu vào sổ tay!';
+        }
+        container.innerHTML = `<div style="text-align:center; padding:3rem; color:var(--text-dim); font-size:0.95rem; line-height:1.6;">${emptyMsg}</div>`;
         return;
       }
 
@@ -3545,5 +4704,18 @@
       }
     }
   </script>
+
+  <!-- Exam Scoreboard Modal Dialog -->
+  <div id="scoreboard-modal" class="scoreboard-modal-backdrop" style="display: none;" onclick="if(event.target===this)closeScoreboardModal()">
+    <div class="scoreboard-card">
+      <div class="scoreboard-header">
+        <div class="scoreboard-title">📊 Bảng Điểm Thi Thử Chuẩn Hóa AWS (AIF-C01)</div>
+        <button class="modal-close-btn" onclick="closeScoreboardModal()" title="Đóng bảng điểm">✕</button>
+      </div>
+      <div id="scoreboard-body">
+        <!-- Injected via submitExam() -->
+      </div>
+    </div>
+  </div>
 </body>
 </html>
