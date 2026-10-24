@@ -1517,20 +1517,20 @@ const htmlContent = `<!DOCTYPE html>
       .topic-subtab-bar {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.4rem !important;
+        gap: 0.45rem !important;
         overflow-x: visible !important;
         white-space: normal !important;
         position: sticky;
-        top: var(--header-height, 40px) !important;
-        margin-top: 0;
+        top: var(--header-height, 42px) !important;
+        margin-top: 0.35rem;
         margin-bottom: 1.25rem;
-        padding: 0.35rem;
-        border-radius: 0 0 10px 10px;
-        border-top: none;
+        padding: 0.45rem;
+        border: 1px solid #2a3a54 !important;
+        border-radius: 12px !important;
         background: rgba(13, 21, 34, 0.98);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       }
       .topic-subtab-btn {
         width: 100%;
@@ -1544,6 +1544,16 @@ const htmlContent = `<!DOCTYPE html>
         white-space: nowrap;
         text-align: center;
         border-radius: 8px;
+        background: #111a2e;
+        border: 1px solid #1e293b;
+        color: var(--text-muted);
+        transition: all 0.2s ease;
+      }
+      .topic-subtab-btn.active {
+        background: #1e293b;
+        border-color: #38bdf8 !important;
+        color: #fff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       }
       .table-header-bar {
         flex-direction: column;
@@ -1636,13 +1646,40 @@ const htmlContent = `<!DOCTYPE html>
         height: 480px;
       }
       .graph-inspector {
-        position: fixed;
-        left: 1rem;
-        right: 1rem;
-        bottom: 1rem;
-        width: auto;
-        max-height: 55vh;
-        overflow-y: auto;
+        position: fixed !important;
+        left: 0.75rem !important;
+        right: 0.75rem !important;
+        bottom: 68px !important; /* Above the 60px bottom nav bar */
+        top: auto !important; /* Resets desktop top: 110px */
+        width: auto !important;
+        max-width: none !important;
+        max-height: 40vh !important; /* Only takes 40% of screen so the graph remains visible above */
+        overflow-y: auto !important;
+        background: rgba(13, 21, 37, 0.98) !important;
+        border: 1.5px solid #00a4e4 !important;
+        border-radius: 16px !important;
+        padding: 0.85rem 1rem !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 164, 228, 0.25) !important;
+        z-index: 1000 !important;
+      }
+      .inspector-title {
+        font-size: 1.05rem !important;
+        margin-bottom: 0.35rem !important;
+      }
+      .inspector-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.65rem !important;
+      }
+      .inspector-links-title {
+        font-size: 0.72rem !important;
+        margin-bottom: 0.35rem !important;
+      }
+      .inspector-links {
+        font-size: 0.775rem !important;
+      }
+      .inspector-links li {
+        margin-bottom: 0.25rem !important;
       }
       .quiz-toast {
         max-width: 90vw;
