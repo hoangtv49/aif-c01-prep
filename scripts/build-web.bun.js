@@ -5,12 +5,19 @@ import { marked } from "marked";
 const BASE_DIR = path.resolve("aif-c01-study-guide");
 
 function cleanMath(text) {
+  if (!text) return "";
   return text
-    .replace(/\$\\rightarrow\$/g, " &rarr; ")
+    .replace(/\$\s*\\rightarrow\s*\$/g, " &rarr; ")
+    .replace(/\$\s*\\to\s*\$/g, " &rarr; ")
     .replace(/\\rightarrow/g, " &rarr; ")
+    .replace(/\\to\b/g, " &rarr; ")
     .replace(/\$\\le\s*(\d+)\$/g, " &le; $1 ")
     .replace(/\$([^\$]+)\$/g, (m, expr) => {
-      const cleaned = expr.replace(/\\text\{([^}]+)\}/g, "$1").replace(/\\rightarrow/g, "&rarr;");
+      let cleaned = expr
+        .replace(/\\text\{([^}]+)\}/g, "$1")
+        .replace(/\\rightarrow/g, " &rarr; ")
+        .replace(/\\to\b/g, " &rarr; ")
+        .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1 / $2)");
       return `<code class="math-tag">${cleaned}</code>`;
     });
 }
@@ -35,10 +42,10 @@ function parseDomainFile(filename) {
       const parts = line.split("|").map(p => p.trim());
       if (parts.length >= 5) {
         steTerms.push({
-          term: parts[1].replace(/\*\*/g, ""),
-          definition: parts[2],
-          keywords: parts[3],
-          note: parts[4]
+          term: cleanMath(parts[1].replace(/\*\*/g, "")),
+          definition: cleanMath(parts[2]),
+          keywords: cleanMath(parts[3]),
+          note: cleanMath(parts[4])
         });
       }
     } else if (inTable && line.trim() === "") {
@@ -81,16 +88,16 @@ function parseDomainFile(filename) {
       domainId,
       number: qNum,
       isMultiple,
-      stem: stemLines.join(" "),
+      stem: cleanMath(stemLines.join(" ")),
       options: optionLines.map(opt => {
         const key = opt.slice(0, 1);
-        const text = opt.slice(3).trim();
+        const text = cleanMath(opt.slice(3).trim());
         return { key, text };
       }),
-      correctAnswer,
-      reason,
-      distractor,
-      trap
+      correctAnswer: cleanMath(correctAnswer),
+      reason: cleanMath(reason),
+      distractor: cleanMath(distractor),
+      trap: cleanMath(trap)
     });
   });
 
@@ -113,9 +120,9 @@ rLines.forEach(l => {
     const parts = l.split("|").map(p => p.trim());
     if (parts.length >= 4) {
       matrixRows.push({
-        scenario: parts[1],
-        service: parts[2].replace(/\*\*/g, ""),
-        trap: parts[3]
+        scenario: cleanMath(parts[1]),
+        service: cleanMath(parts[2].replace(/\*\*/g, "")),
+        trap: cleanMath(parts[3])
       });
     }
   } else if (inMatrix && l.trim() === "") {
@@ -2942,7 +2949,11 @@ const htmlContent = `<!DOCTYPE html>
       }
 
       tbody.innerHTML = filtered.map(row => {
-        const scenarioFormatted = row.scenario.replace(/\\$\\rightarrow\\$/g, ' &rarr; ').replace(/\\rightarrow/g, ' &rarr; ');
+        const scenarioFormatted = row.scenario
+          .replace(/\\$\\s*\\\\rightarrow\\s*\\$/g, ' &rarr; ')
+          .replace(/\\$\\s*\\\\to\\s*\\$/g, ' &rarr; ')
+          .replace(/\\\\rightarrow/g, ' &rarr; ')
+          .replace(/\\\\to\\b/g, ' &rarr; ');
         return \`
           <tr>
             <td>\${scenarioFormatted}</td>
@@ -3194,9 +3205,10 @@ const htmlContent = `<!DOCTYPE html>
     function formatMarkdown(text) {
       if (!text) return '';
       return text
-        .replace(/\\$\\rightarrow\\$/g, ' &rarr; ')
-        .replace(/\\$\\to\\$/g, ' &rarr; ')
-        .replace(/\\rightarrow/g, ' &rarr; ')
+        .replace(/\\$\\s*\\\\rightarrow\\s*\\$/g, ' &rarr; ')
+        .replace(/\\$\\s*\\\\to\\s*\\$/g, ' &rarr; ')
+        .replace(/\\\\rightarrow/g, ' &rarr; ')
+        .replace(/\\\\to\\b/g, ' &rarr; ')
         .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')
         .replace(/\\*(.*?)\\*/g, '<em>$1</em>')
         .split('\\n')

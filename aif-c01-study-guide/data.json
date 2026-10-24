@@ -166,7 +166,7 @@
           "correctAnswer": "B. Amazon Textract",
           "reason": "- Từ khóa quan trọng: *\"extract personal customer information and tabular data from scanned PDF contracts\"* (trích xuất dữ liệu bảng biểu từ tài liệu scan PDF). \n- **Amazon Textract** là dịch vụ chuyên biệt sử dụng ML để đọc văn bản và hiểu cấu trúc tài liệu, tự động phân tích và trích xuất dữ liệu dạng bảng (Tables) và cặp khóa-giá trị (Key-Value pairs) từ tài liệu scan hoặc file PDF.",
           "distractor": "- **Loại A (Amazon Rekognition):** Dù Rekognition có khả năng đọc một số từ ngữ xuất hiện trong ảnh (Text in Image như biển số xe, bảng hiệu), nó không hiểu ngữ nghĩa tài liệu văn bản và hoàn toàn không trích xuất được bảng biểu (tables) hay form mẫu.\n- **Loại C (Amazon Comprehend):** Comprehend nhận đầu vào là văn bản phi cấu trúc đã ở dạng text để phân tích cảm xúc hoặc phát hiện thực thể, không nhận file PDF scan để trích xuất chữ.\n- **Loại D (Amazon Transcribe):** Transcribe là dịch vụ chuyển đổi âm thanh giọng nói (Audio) thành văn bản (Speech-to-Text), không liên quan đến tài liệu scan.",
-          "trap": "- Đề bài nhắc đến *\"hình ảnh scan\"* rất dễ khiến thí sinh vội vàng chọn *Amazon Rekognition*. Hãy nhớ: Nếu mục đích là đọc **tài liệu, hợp đồng, form, hóa đơn, bảng biểu** $\\rightarrow$ Luôn chọn **Amazon Textract**."
+          "trap": "- Đề bài nhắc đến *\"hình ảnh scan\"* rất dễ khiến thí sinh vội vàng chọn *Amazon Rekognition*. Hãy nhớ: Nếu mục đích là đọc **tài liệu, hợp đồng, form, hóa đơn, bảng biểu**  &rarr;  Luôn chọn **Amazon Textract**."
         },
         {
           "id": "d1-q2",
@@ -195,7 +195,7 @@
           "correctAnswer": "C. Overfitting; the team should collect more training data or apply regularization techniques.",
           "reason": "- Tình trạng: Điểm số cực cao trên tập huấn luyện (99.5%) nhưng sụt giảm nghiêm trọng trên tập kiểm tra thực tế (62.0%). Đây là định nghĩa điển hình của hiện tượng **Overfitting (High Variance)** - mô hình ghi nhớ vẹt các chi tiết và nhiễu của tập huấn luyện thay vì học quy luật tổng quát.\n- Các biện pháp khắc phục Overfitting tiêu chuẩn: Tăng kích thước tập dữ liệu huấn luyện, Regularization (L1/L2), Dropout, giảm bớt đặc trưng không cần thiết, hoặc Early Stopping.",
           "distractor": "- **Loại A (Underfitting):** Underfitting xảy ra khi mô hình quá đơn giản và có kết quả thấp ngay trên chính tập huấn luyện. Đề bài cho thấy kết quả tập huấn luyện đạt tới 99.5%, nên không thể là underfitting.\n- **Loại B (Data Leakage):** Xóa tập kiểm tra là phi lý, vì tập kiểm tra là bắt buộc để đánh giá tính tổng quát hóa của mô hình.\n- **Loại D (Catastrophic Forgetting):** Đây là hiện tượng mô hình quên tri thức cũ khi fine-tuning tri thức mới trong học liên tục (thường gặp ở Neural Networks/LLM), không phản ánh mối tương quan sai số giữa Training Set và Test Set trong bài toán phân loại chuẩn.",
-          "trap": "- Phân biệt nhanh: \n  - Train Thấp + Test Thấp $\\rightarrow$ **Underfitting**.\n  - Train Rất Cao + Test Thấp $\\rightarrow$ **Overfitting**."
+          "trap": "- Phân biệt nhanh: \n  - Train Thấp + Test Thấp  &rarr;  **Underfitting**.\n  - Train Rất Cao + Test Thấp  &rarr;  **Overfitting**."
         },
         {
           "id": "d1-q3",
@@ -255,9 +255,9 @@
             }
           ],
           "correctAnswer": "A. Amazon Polly** và **B. Amazon Transcribe",
-          "reason": "- Yêu cầu 1: Chuyển đổi âm thanh cuộc gọi thành văn bản kèm timestamp và nhận diện từng người nói (*\"distinguish between customer and representative\"* - Speaker Diarization) $\\rightarrow$ Dịch vụ chính xác là **Amazon Transcribe**.\n- Yêu cầu 2: Chuyển đổi kịch bản văn bản thành giọng nói nhân tạo (*\"convert scripts into synthetic speech\"*) $\\rightarrow$ Dịch vụ chính xác là **Amazon Polly**.",
+          "reason": "- Yêu cầu 1: Chuyển đổi âm thanh cuộc gọi thành văn bản kèm timestamp và nhận diện từng người nói (*\"distinguish between customer and representative\"* - Speaker Diarization)  &rarr;  Dịch vụ chính xác là **Amazon Transcribe**.\n- Yêu cầu 2: Chuyển đổi kịch bản văn bản thành giọng nói nhân tạo (*\"convert scripts into synthetic speech\"*)  &rarr;  Dịch vụ chính xác là **Amazon Polly**.",
           "distractor": "- **Loại C (Amazon Translate):** Translate dùng để dịch ngôn ngữ này sang ngôn ngữ khác, bài toán không có yêu cầu dịch thuật.\n- **Loại D (Amazon Rekognition):** Rekognition là dịch vụ thị giác máy tính (Computer Vision), không xử lý âm thanh hay giọng nói.\n- **Loại E (AWS Glue):** Dịch vụ ETL tích hợp dữ liệu, không có tính năng xử lý giọng nói thành chữ.",
-          "trap": "- Thí sinh rất hay nhầm lẫn giữa **Amazon Polly** và **Amazon Transcribe**:\n  - **Audio $\\rightarrow$ Text**: Transcribe (Ghi âm thành chữ).\n  - **Text $\\rightarrow$ Audio**: Polly (Văn bản thành giọng nói)."
+          "trap": "- Thí sinh rất hay nhầm lẫn giữa **Amazon Polly** và **Amazon Transcribe**:\n  - **Audio  &rarr;  Text**: Transcribe (Ghi âm thành chữ).\n  - **Text  &rarr;  Audio**: Polly (Văn bản thành giọng nói)."
         },
         {
           "id": "d1-q5",
@@ -284,9 +284,9 @@
             }
           ],
           "correctAnswer": "C. Unsupervised Learning (Clustering) cho mục tiêu 1; Supervised Learning (Regression) cho mục tiêu 2.",
-          "reason": "- Mục tiêu 1: *\"Group customers into segments without pre-existing labels\"* $\\rightarrow$ Đây là bài toán **Phân cụm (Clustering)**, thuộc nhánh **Học không giám sát (Unsupervised Learning)**.\n- Mục tiêu 2: *\"Predict future sales revenue (continuous value) based on historical revenue\"* $\\rightarrow$ Đây là bài toán **Hồi quy (Regression)**, thuộc nhánh **Học có giám sát (Supervised Learning)**.",
+          "reason": "- Mục tiêu 1: *\"Group customers into segments without pre-existing labels\"*  &rarr;  Đây là bài toán **Phân cụm (Clustering)**, thuộc nhánh **Học không giám sát (Unsupervised Learning)**.\n- Mục tiêu 2: *\"Predict future sales revenue (continuous value) based on historical revenue\"*  &rarr;  Đây là bài toán **Hồi quy (Regression)**, thuộc nhánh **Học có giám sát (Supervised Learning)**.",
           "distractor": "- **Loại A:** Đảo ngược thứ tự hai phương pháp so với mục tiêu đề bài.\n- **Loại B:** Classification là bài toán có giám sát (cần nhãn); Dự báo doanh thu không phải bài toán Reinforcement Learning.\n- **Loại D:** Clustering là bài toán không giám sát, không bao giờ là bài toán có giám sát.",
-          "trap": "- Cần ghi nhớ bản chất bài toán trong đề tiếng Anh:\n  - Dự đoán nhãn danh mục rời rạc $\\rightarrow$ **Classification (Supervised)**.\n  - Dự đoán con số liên tục $\\rightarrow$ **Regression (Supervised)**.\n  - Gom nhóm dữ liệu không nhãn $\\rightarrow$ **Clustering (Unsupervised)**."
+          "trap": "- Cần ghi nhớ bản chất bài toán trong đề tiếng Anh:\n  - Dự đoán nhãn danh mục rời rạc  &rarr;  **Classification (Supervised)**.\n  - Dự đoán con số liên tục  &rarr;  **Regression (Supervised)**.\n  - Gom nhóm dữ liệu không nhãn  &rarr;  **Clustering (Unsupervised)**."
         },
         {
           "id": "d1-q6",
@@ -313,9 +313,9 @@
             }
           ],
           "correctAnswer": "B. Recall",
-          "reason": "- Tình huống: Chi phí của việc bỏ sót ca bệnh (False Negative - dự đoán Không bệnh trong khi Thực tế Có bệnh) là thảm họa.\n- **Recall (Sensitivity / True Positive Rate)** đo lường tỷ lệ các ca thực sự dương tính được mô hình phát hiện chính xác: $\\text{Recall} = \\frac{TP}{TP + FN}$. Khi tối ưu hóa **Recall**, số lượng ca bỏ sót (FN) sẽ được kéo xuống mức thấp nhất có thể.",
-          "distractor": "- **Loại A (Precision):** Precision đo lường trong số những ca mô hình dự đoán là Có bệnh thì có bao nhiêu ca đúng thật: $\\text{Precision} = \\frac{TP}{TP + FP}$. Tối ưu Precision giúp giảm thiểu báo động giả (False Positives), phù hợp cho bài toán lọc spam hoặc chặn thẻ tín dụng nhầm, nhưng sẽ làm tăng nguy cơ bỏ sót ca bệnh (tăng FN).\n- **Loại C (Accuracy):** Accuracy đo tỷ lệ dự đoán đúng trên toàn bộ mẫu, dễ bị đánh lừa khi dữ liệu mất cân bằng (ví dụ 99% người không mắc bệnh thì đoán tất cả không bệnh vẫn đạt 99% accuracy).\n- **Loại D (Specificity):** Đo lường tỷ lệ các ca âm tính thật được dự đoán đúng (True Negative Rate), không tập trung vào việc giảm thiểu False Negatives ở nhóm người mắc bệnh.",
-          "trap": "- Quy tắc vàng trong đề thi AIF-C01:\n  - Bỏ sót ca bệnh / gian lận gây hậu quả nghiêm trọng (**Minimize False Negatives**) $\\rightarrow$ Chọn **Recall**.\n  - Báo động nhầm gây phiền toái cho khách hàng (**Minimize False Positives**) $\\rightarrow$ Chọn **Precision**.\n  - Cần cân bằng hài hòa cả hai $\\rightarrow$ Chọn **F1-Score**."
+          "reason": "- Tình huống: Chi phí của việc bỏ sót ca bệnh (False Negative - dự đoán Không bệnh trong khi Thực tế Có bệnh) là thảm họa.\n- **Recall (Sensitivity / True Positive Rate)** đo lường tỷ lệ các ca thực sự dương tính được mô hình phát hiện chính xác: <code class=\"math-tag\">Recall = (TP / TP + FN)</code>. Khi tối ưu hóa **Recall**, số lượng ca bỏ sót (FN) sẽ được kéo xuống mức thấp nhất có thể.",
+          "distractor": "- **Loại A (Precision):** Precision đo lường trong số những ca mô hình dự đoán là Có bệnh thì có bao nhiêu ca đúng thật: <code class=\"math-tag\">Precision = (TP / TP + FP)</code>. Tối ưu Precision giúp giảm thiểu báo động giả (False Positives), phù hợp cho bài toán lọc spam hoặc chặn thẻ tín dụng nhầm, nhưng sẽ làm tăng nguy cơ bỏ sót ca bệnh (tăng FN).\n- **Loại C (Accuracy):** Accuracy đo tỷ lệ dự đoán đúng trên toàn bộ mẫu, dễ bị đánh lừa khi dữ liệu mất cân bằng (ví dụ 99% người không mắc bệnh thì đoán tất cả không bệnh vẫn đạt 99% accuracy).\n- **Loại D (Specificity):** Đo lường tỷ lệ các ca âm tính thật được dự đoán đúng (True Negative Rate), không tập trung vào việc giảm thiểu False Negatives ở nhóm người mắc bệnh.",
+          "trap": "- Quy tắc vàng trong đề thi AIF-C01:\n  - Bỏ sót ca bệnh / gian lận gây hậu quả nghiêm trọng (**Minimize False Negatives**)  &rarr;  Chọn **Recall**.\n  - Báo động nhầm gây phiền toái cho khách hàng (**Minimize False Positives**)  &rarr;  Chọn **Precision**.\n  - Cần cân bằng hài hòa cả hai  &rarr;  Chọn **F1-Score**."
         },
         {
           "id": "d1-q7",
@@ -344,7 +344,7 @@
           "correctAnswer": "B. Amazon Forecast",
           "reason": "- Yêu cầu bài toán: *\"predict product inventory demand over time\"* + *\"combines historical time-series data with external variables (weather, holidays)\"*.\n- **Amazon Forecast** là dịch vụ dự báo chuỗi thời gian (Time-series forecasting) được quản lý hoàn toàn, tự động áp dụng các thuật toán ML tiên tiến để dự báo nhu cầu hàng hóa trong tương lai kết hợp dữ liệu lịch sử và các yếu tố ngoại cảnh.",
           "distractor": "- **Loại A (Amazon Personalize):** Personalize dùng để tạo hệ thống gợi ý sản phẩm cho từng cá nhân người dùng (Recommendation engine), không phải dịch vụ dự báo số lượng tồn kho theo chuỗi thời gian.\n- **Loại C (Amazon Polly):** Chuyển văn bản thành giọng nói (Text-to-Speech).\n- **Loại D (Amazon Rekognition):** Dịch vụ thị giác máy tính nhận diện hình ảnh/video.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Predict inventory demand / financial time-series forecasting\"* $\\rightarrow$ Luôn chọn **Amazon Forecast**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Predict inventory demand / financial time-series forecasting\"*  &rarr;  Luôn chọn **Amazon Forecast**."
         },
         {
           "id": "d1-q8",
@@ -373,7 +373,7 @@
           "correctAnswer": "A. Amazon Personalize",
           "reason": "- Yêu cầu bài toán: *\"personalized recommendations to users in real time based on clickstream, watch history, and ratings\"*.\n- **Amazon Personalize** cho phép các nhà phát triển nhanh chóng xây dựng tính năng cá nhân hóa trải nghiệm người dùng theo thời gian thực (User Recommendations, Similar Items, Personalized Ranking) bằng công nghệ học máy được kế thừa từ Amazon.com.",
           "distractor": "- **Loại B (Amazon Forecast):** Dùng cho bài toán dự báo nhu cầu tương lai theo chuỗi thời gian (như tồn kho, doanh thu), không phải gợi ý sở thích cho từng người dùng.\n- **Loại C (Amazon Comprehend):** Dịch vụ xử lý ngôn ngữ tự nhiên (NLP) phân tích cảm xúc văn bản, không phải công cụ gợi ý nội dung.\n- **Loại D (AWS Glue DataBrew):** Công cụ làm sạch và chuẩn bị dữ liệu bằng giao diện trực quan, không phải mô hình ML gợi ý sản phẩm.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Personalized product recommendations / Similar items ranking\"* $\\rightarrow$ Luôn chọn **Amazon Personalize**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Personalized product recommendations / Similar items ranking\"*  &rarr;  Luôn chọn **Amazon Personalize**."
         },
         {
           "id": "d1-q9",
@@ -402,7 +402,7 @@
           "correctAnswer": "B. Amazon Fraud Detector",
           "reason": "- Yêu cầu bài toán: *\"evaluate transactions in real time to detect fraudulent activities (stolen cards, account takeovers)\"*.\n- **Amazon Fraud Detector** là dịch vụ chuyên biệt giúp doanh nghiệp xây dựng, huấn luyện và triển khai các mô hình phát hiện gian lận giao dịch trực tuyến nhanh chóng dựa trên kinh nghiệm thực tế của Amazon.com.",
           "distractor": "- **Loại A (Amazon Inspector):** Dịch vụ quét lỗ hổng bảo mật hệ điều hành và container images, không phát hiện gian lận thanh toán tài chính.\n- **Loại C (AWS Shield Advanced):** Dịch vụ bảo vệ chống tấn công từ chối dịch vụ (DDoS) ở tầng mạng.\n- **Loại D (AWS WAF):** Tường lửa web lọc traffic HTTP độc hại (SQL Injection, XSS), không phân tích hành vi gian lận thẻ tín dụng của khách hàng.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Detect online payment fraud, stolen credit cards, fake account registrations\"* $\\rightarrow$ Luôn chọn **Amazon Fraud Detector**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Detect online payment fraud, stolen credit cards, fake account registrations\"*  &rarr;  Luôn chọn **Amazon Fraud Detector**."
         },
         {
           "id": "d1-q10",
@@ -431,7 +431,7 @@
           "correctAnswer": "B. SageMaker Data Wrangler",
           "reason": "- Yêu cầu: *\"prepare, clean, and visualize tabular dataset\"*, *\"point-and-click visual interface with 300+ pre-built transformations\"*, *\"export workflow as code\"*.\n- **Amazon SageMaker Data Wrangler** là tính năng trong SageMaker Studio giúp giảm thời gian làm sạch và chuẩn bị dữ liệu từ nhiều tuần xuống vài phút nhờ giao diện trực quan và thư viện biến đổi dữ liệu đồ sộ.",
           "distractor": "- **Loại A (SageMaker Feature Store):** Kho lưu trữ tập trung để quản lý và tái sử dụng các đặc trưng (features) cho training và inference, không phải công cụ làm sạch dữ liệu trực quan.\n- **Loại C (SageMaker Model Registry):** Quản lý phiên bản và quy trình phê duyệt mô hình ML trước khi triển khai production.\n- **Loại D (SageMaker JumpStart):** Kho chứa các mô hình pre-trained và giải pháp mẫu, không dùng để làm sạch dữ liệu bảng biểu.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Visual point-and-click data preparation with 300+ transformations\"* $\\rightarrow$ Luôn chọn **SageMaker Data Wrangler**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Visual point-and-click data preparation with 300+ transformations\"*  &rarr;  Luôn chọn **SageMaker Data Wrangler**."
         },
         {
           "id": "d1-q11",
@@ -592,7 +592,7 @@
           "correctAnswer": "B. Implement a Retrieval-Augmented Generation (RAG) architecture connecting the document repository with a foundation model.",
           "reason": "- Yêu cầu cốt lõi: *\"documents updated weekly\"* + *\"cite specific page numbers and clauses\"* + *\"prevent fabricated information (mitigate hallucinations)\"*.\n- **RAG** là kiến trúc hoàn hảo nhất cho kịch bản này: Hệ thống chỉ cần lập chỉ mục vector tài liệu mới vào cơ sở dữ liệu tri thức mà không cần huấn luyện lại mô hình. Khi có câu hỏi, RAG truy xuất đoạn văn bản gốc và đính kèm vào prompt, cho phép mô hình trích dẫn trực tiếp nguồn tham chiếu và loại bỏ ảo giác.",
           "distractor": "- **Loại A (Fine-Tuning daily):** Fine-tuning rất tốn kém chi phí tính toán GPU, mất nhiều giờ để hoàn thành và quan trọng nhất: mô hình sau khi fine-tuning không có cơ chế tự nhiên để trích dẫn số trang/nguồn tài liệu cụ thể một cách đáng tin cậy. Ngoài ra, việc fine-tuning liên tục rất dễ gây hiện tượng Catastrophic Forgetting.\n- **Loại C (Insert 50,000 documents into prompt):** 50,000 tài liệu pháp lý tương đương hàng triệu token, vượt xa giới hạn Context Window của bất kỳ mô hình thương mại nào hiện nay, đồng thời gây độ trễ và chi phí suy luận khổng lồ.\n- **Loại D (Pre-training from scratch):** Huấn luyện mô hình từ đầu tốn hàng triệu USD và hàng tháng trời, hoàn toàn lãng phí và không giải quyết được yêu cầu tài liệu cập nhật hàng tuần.",
-          "trap": "- Quy tắc vàng trong đề thi AIF-C01: Khi đề bài nhắc đến **\"frequently updated data\"**, **\"traceable citations\"** hoặc **\"mitigate hallucinations\"** $\\rightarrow$ Luôn chọn **RAG**, KHÔNG chọn Fine-Tuning."
+          "trap": "- Quy tắc vàng trong đề thi AIF-C01: Khi đề bài nhắc đến **\"frequently updated data\"**, **\"traceable citations\"** hoặc **\"mitigate hallucinations\"**  &rarr;  Luôn chọn **RAG**, KHÔNG chọn Fine-Tuning."
         },
         {
           "id": "d2-q2",
@@ -621,7 +621,7 @@
           "correctAnswer": "C. Diffusion Models",
           "reason": "- Yêu cầu: *\"generate biological illustrations of cells from text descriptions (Text-to-Image)\"*.\n- **Diffusion Models** (mô hình khuếch tán) là kiến trúc tiên tiến và tiêu chuẩn công nghiệp hiện nay cho các bài toán sinh ảnh từ văn bản (ví dụ: Stable Diffusion, Amazon Titan Image Generator). Chúng hoạt động bằng cách học quy trình khử nhiễu ngược để tạo ra các điểm ảnh có độ phân giải cao và chân thực.",
           "distractor": "- **Loại A (RNN):** RNN là mạng nơ-ron hồi quy cổ điển dùng để xử lý dữ liệu chuỗi tuần tự thời gian (như âm thanh hoặc text một chiều), không dùng để tạo ảnh chất lượng cao.\n- **Loại B (CNN thuần túy):** CNN chủ yếu dùng để phân tích và trích xuất đặc trưng từ ảnh có sẵn (phân loại ảnh, phát hiện vật thể), không phải là kiến trúc hiện đại hàng đầu cho bài toán Text-to-Image thế hệ mới.\n- **Loại D (BERT):** BERT là kiến trúc Transformer dạng Encoder-only, chuyên biệt cho việc hiểu ngôn ngữ tự nhiên và phân tích văn bản, hoàn toàn không có khả năng sinh ảnh.",
-          "trap": "- Nhớ nhanh các cặp kiến trúc & tác vụ trong đề thi tiếng Anh:\n  - Text-to-Image generation $\\rightarrow$ **Diffusion Models**.\n  - Parallel sequential text processing $\\rightarrow$ **Transformers**.\n  - Image classification & object detection $\\rightarrow$ **CNNs**."
+          "trap": "- Nhớ nhanh các cặp kiến trúc & tác vụ trong đề thi tiếng Anh:\n  - Text-to-Image generation  &rarr;  **Diffusion Models**.\n  - Parallel sequential text processing  &rarr;  **Transformers**.\n  - Image classification & object detection  &rarr;  **CNNs**."
         },
         {
           "id": "d2-q3",
@@ -650,7 +650,7 @@
           "correctAnswer": "B. When the company requires the model to strictly follow a proprietary internal JSON schema and adopt a specialized medical terminology tone.",
           "reason": "- Mục đích chuẩn của **Fine-Tuning**: Điều chỉnh **phong cách (Style/Tone)**, cấu trúc cú pháp đầu ra chuyên biệt (như định dạng JSON nội bộ nghiêm ngặt) và làm quen với bộ từ vựng chuyên ngành sâu (*\"specialized medical terminology tone\"*). Fine-Tuning dạy cho mô hình \"cách hành xử và định dạng\" tốt hơn nhiều so với việc cố gắng mô tả dài dòng trong Prompt.",
           "distractor": "- **Loại A (Stock price data fluctuating every minute):** Dữ liệu biến động từng phút là bài toán của RAG hoặc gọi API bên ngoài (Tool/Function Calling), fine-tuning không thể theo kịp tốc độ thay đổi này.\n- **Loại C (World knowledge questions from Wikipedia):** Pre-trained FM đã chứa sẵn kiến thức thế giới phong phú, chỉ cần dùng Prompt Engineering là đủ.\n- **Loại D (Minimize infrastructure costs and no labeled data):** Fine-tuning đòi hỏi tập dữ liệu gán nhãn chất lượng cao và phát sinh chi phí huấn luyện tính toán, hoàn toàn trái ngược với phương án D.",
-          "trap": "- Gặp câu hỏi: \"When to choose Fine-Tuning?\" $\\rightarrow$ Tìm đáp án chứa các từ khóa: **\"Specialized domain vocabulary\"**, **\"Specific output format/JSON syntax\"**, **\"Consistent corporate tone/style\"**."
+          "trap": "- Gặp câu hỏi: \"When to choose Fine-Tuning?\"  &rarr;  Tìm đáp án chứa các từ khóa: **\"Specialized domain vocabulary\"**, **\"Specific output format/JSON syntax\"**, **\"Consistent corporate tone/style\"**."
         },
         {
           "id": "d2-q4",
@@ -679,7 +679,7 @@
           "correctAnswer": "C. Hallucination; implement RAG with authoritative policy documents and lower the temperature parameter.",
           "reason": "- Hiện tượng mô hình tự bịa ra thông tin không có thật với giọng điệu quả quyết chính là **Ảo giác (Hallucination)**.\n- Biện pháp khắc phục chuẩn: Kết hợp RAG để buộc mô hình chỉ lấy thông tin từ tài liệu chính sách được cấp, đồng thời giảm tham số **Temperature** (ví dụ đưa về 0 hoặc 0.1) để giảm tính ngẫu nhiên, tăng tính xác thực và dự đoán nhất quán của câu trả lời.",
           "distractor": "- **Loại A (Model Drift):** Model drift là hiện tượng hiệu năng mô hình ML truyền thống suy giảm theo thời gian do phân phối dữ liệu thực tế thay đổi (Data drift/Concept drift), không phải việc LLM sinh nội dung bịa đặt.\n- **Loại B (Catastrophic Forgetting):** Là việc mô hình quên kỹ năng cũ sau khi fine-tuning kỹ năng mới.\n- **Loại D (Data Poisoning):** Là cuộc tấn công có chủ đích của kẻ xấu cố tình đưa dữ liệu bẩn vào tập huấn luyện, không liên quan đến hành vi hallucination tự nhiên của LLM.",
-          "trap": "- Tham số **Temperature**:\n  - Muốn câu trả lời **sáng tạo, phong phú** (viết thơ, marketing) $\\rightarrow$ Tăng Temperature (gần 1.0).\n  - Muốn câu trả lời **chính xác, nhất quán, đúng sự thật** (hỏi đáp chính sách, y tế, tài chính) $\\rightarrow$ Hạ Temperature (gần 0)."
+          "trap": "- Tham số **Temperature**:\n  - Muốn câu trả lời **sáng tạo, phong phú** (viết thơ, marketing)  &rarr;  Tăng Temperature (gần 1.0).\n  - Muốn câu trả lời **chính xác, nhất quán, đúng sự thật** (hỏi đáp chính sách, y tế, tài chính)  &rarr;  Hạ Temperature (gần 0)."
         },
         {
           "id": "d2-q5",
@@ -708,7 +708,7 @@
           "correctAnswer": "B. Multimodal foundation model",
           "reason": "- Yêu cầu bài toán: Xử lý đồng thời nhiều dạng dữ liệu khác nhau trong một luồng công việc: âm thanh lời thoại (Audio), hình ảnh nhận diện logo/khuôn mặt (Vision) và văn bản ngữ nghĩa (Text).\n- **Mô hình đa phương thức (Multimodal FM)** là mô hình được huấn luyện để hiểu, liên kết và chuyển đổi linh hoạt giữa nhiều phương thức dữ liệu khác nhau (Text, Image, Video, Audio) trong cùng một không gian biểu diễn chung.",
           "distractor": "- **Loại A (Single-modality text model):** Mô hình đơn phương thức văn bản chỉ nhận và xuất text, không thể xử lý hình ảnh khung hình video hay âm thanh.\n- **Loại C (K-Means):** Thuật toán phân cụm không giám sát truyền thống, không thể xử lý đa phương thức phức tạp.\n- **Loại D (BERT):** BERT chỉ là mô hình ngôn ngữ (text-only) cho tác vụ hiểu văn bản, không thể nhận diện khuôn mặt hay hình ảnh video.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"processes text, image, video, audio concurrently\"* $\\rightarrow$ Luôn trỏ tới **Multimodal Model**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"processes text, image, video, audio concurrently\"*  &rarr;  Luôn trỏ tới **Multimodal Model**."
         },
         {
           "id": "d2-q6",
@@ -735,9 +735,9 @@
             }
           ],
           "correctAnswer": "B. Set Temperature to 0.9, Top-P to 0.9, and Max Generation Length to 200 tokens.",
-          "reason": "- Hai yêu cầu đề bài:\n  1. *\"highly creative and diverse text\"* $\\rightarrow$ Cần **Temperature cao** (gần 1.0, ví dụ 0.8–0.9) và **Top-P cao** (0.9) để mở rộng phân phối từ ngữ được lựa chọn.\n  2. *\"short in length (under 150 words)\"* $\\rightarrow$ Cần giới hạn **Max Generation Length / Max Tokens** ở mức nhỏ (ví dụ 200 tokens $\\approx$ 150 từ).",
+          "reason": "- Hai yêu cầu đề bài:\n  1. *\"highly creative and diverse text\"*  &rarr;  Cần **Temperature cao** (gần 1.0, ví dụ 0.8–0.9) và **Top-P cao** (0.9) để mở rộng phân phối từ ngữ được lựa chọn.\n  2. *\"short in length (under 150 words)\"*  &rarr;  Cần giới hạn **Max Generation Length / Max Tokens** ở mức nhỏ (ví dụ 200 tokens <code class=\"math-tag\">\\approx</code> 150 từ).",
           "distractor": "- **Loại A:** Temperature 0.1 và Top-P 0.2 sẽ làm cho kết quả đầu ra rất đơn điệu, lặp lại và thiếu tính sáng tạo; Max Generation Length 4096 tokens không khống chế được độ dài ngắn của email.\n- **Loại C:** Temperature 0.0 và Top-K 1 biến mô hình thành greedy decoding (luôn chọn từ có xác suất cao nhất), triệt tiêu hoàn toàn tính sáng tạo.\n- **Loại D:** Top-P 0.1 giới hạn không gian lựa chọn quá hẹp và Max Tokens 8192 quá lớn so với yêu cầu email ngắn.",
-          "trap": "- Thuộc lòng bảng suy luận tham số:\n  - Cần **Sáng tạo (Creative / Diverse)** $\\rightarrow$ **High Temperature & High Top-P**.\n  - Cần **Chính xác, thực tế (Deterministic / Factual)** $\\rightarrow$ **Low Temperature & Low Top-P**.\n  - Cần **Độ dài ngắn (Short length)** $\\rightarrow$ **Low Max Generation Length / Max Tokens**."
+          "trap": "- Thuộc lòng bảng suy luận tham số:\n  - Cần **Sáng tạo (Creative / Diverse)**  &rarr;  **High Temperature & High Top-P**.\n  - Cần **Chính xác, thực tế (Deterministic / Factual)**  &rarr;  **Low Temperature & Low Top-P**.\n  - Cần **Độ dài ngắn (Short length)**  &rarr;  **Low Max Generation Length / Max Tokens**."
         },
         {
           "id": "d2-q7",
@@ -766,7 +766,7 @@
           "correctAnswer": "B. Select a smaller, lightweight model designed for high throughput and low latency.",
           "reason": "- Ràng buộc quan trọng: *\"interactive customer support chatbot\"*, *\"sub-second response times with minimal latency\"*, *\"complex reasoning not required\"*.\n- Trong kỳ thi AIF-C01, quy tắc chọn mô hình luôn yêu cầu cân đối giữa kích thước mô hình và độ trễ. Các mô hình nhỏ gọn (như Claude 3 Haiku, Amazon Titan Text Lite, Llama 8B) được tối ưu hóa đặc biệt cho **tốc độ phản hồi tức thì (low latency)** và **thông lượng cao (high throughput)** với chi phí rẻ hơn nhiều so với các mô hình khổng lồ.",
           "distractor": "- **Loại A:** Các mô hình lớn (Frontier/70B+ models) có thời gian xử lý suy luận (Time-to-First-Token) cao hơn nhiều, không thể đảm bảo độ trễ dưới 1 giây cho chatbot tương tác.\n- **Loại C (Fine-tune 70B model):** Không giải quyết được bài toán độ trễ suy luận của mô hình lớn, gây lãng phí chi phí.\n- **Loại D (Chain-of-thought iterations):** CoT làm tăng số lượng token sinh ra qua nhiều bước suy luận, làm tăng đáng kể độ trễ phản hồi.",
-          "trap": "- Khi đề bài nhấn mạnh: *\"Real-time user interaction\"*, *\"Sub-second response\"*, *\"High throughput and lowest cost\"* $\\rightarrow$ Luôn ưu tiên chọn **Smaller / Lightweight models** (như Claude Haiku hay Titan Lite)."
+          "trap": "- Khi đề bài nhấn mạnh: *\"Real-time user interaction\"*, *\"Sub-second response\"*, *\"High throughput and lowest cost\"*  &rarr;  Luôn ưu tiên chọn **Smaller / Lightweight models** (như Claude Haiku hay Titan Lite)."
         },
         {
           "id": "d2-q8",
@@ -795,7 +795,7 @@
           "correctAnswer": "C. Implement document chunking with a vector store and use Retrieval-Augmented Generation (RAG) to retrieve only relevant sections.",
           "reason": "- Tình huống: Tài liệu 500 trang vượt quá giới hạn **Context Window** của mô hình.\n- Giải pháp chuẩn công nghiệp: Áp dụng kỹ thuật **Document Chunking** (chia nhỏ tài liệu thành các đoạn văn ngắn có phần chồng lấn overlap), chuyển thành vector embedding và lưu vào Vector Store. Khi người dùng đặt câu hỏi, hệ thống **RAG** chỉ tìm kiếm và đưa các đoạn văn liên quan nhất vào prompt, hoàn toàn vượt qua giới hạn của Context Window mà không làm mất thông tin pháp lý quan trọng.",
           "distractor": "- **Loại A:** Tham số Temperature chỉ điều chỉnh tính ngẫu nhiên, không thể giải quyết lỗi tràn Context Window hay tự bịa nội dung văn bản bị thiếu.\n- **Loại B (Truncate):** Cắt bỏ tài liệu sẽ làm mất vĩnh viễn các điều khoản pháp lý quan trọng ở các trang phía sau.\n- **Loại D (Base64):** Mã hóa Base64 không làm giảm dung lượng token mà còn làm tăng số lượng ký tự lên khoảng 33%, khiến mô hình hoàn toàn không đọc được.",
-          "trap": "- Vấn đề *\"Document exceeds context window\"* $\\rightarrow$ Luôn giải quyết bằng **Document Chunking + RAG (Vector retrieval)**."
+          "trap": "- Vấn đề *\"Document exceeds context window\"*  &rarr;  Luôn giải quyết bằng **Document Chunking + RAG (Vector retrieval)**."
         },
         {
           "id": "d2-q9",
@@ -824,7 +824,7 @@
           "correctAnswer": "C. Amazon Titan Multimodal Embeddings",
           "reason": "- Yêu cầu bài toán: *\"map both product images and text descriptions into the same semantic vector space for cross-modal similarity search (image-to-text, text-to-image)\"*.\n- **Amazon Titan Multimodal Embeddings** được thiết kế chính xác cho tác vụ này: Chuyển đổi cả văn bản và hình ảnh thành các vector embedding có cùng số chiều trong một không gian ngữ nghĩa thống nhất, cho phép thực hiện tìm kiếm tương đồng vector giữa ảnh và chữ.",
           "distractor": "- **Loại A (Amazon Titan Text Express):** Chỉ tạo text generation hoặc text-only embeddings, không xử lý được vector ảnh.\n- **Loại B (Amazon Titan Image Generator):** Dùng để sinh ảnh mới từ câu mô tả văn bản (Text-to-Image generation), không tạo vector embeddings để tìm kiếm tương đồng.\n- **Loại D (Amazon Comprehend):** Dịch vụ NLP truyền thống chỉ phân tích văn bản, không có chức năng tạo vector embedding đa phương thức.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Map images and text into the same vector embedding space for search\"* $\\rightarrow$ Luôn chọn **Amazon Titan Multimodal Embeddings**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Map images and text into the same vector embedding space for search\"*  &rarr;  Luôn chọn **Amazon Titan Multimodal Embeddings**."
         },
         {
           "id": "d2-q10",
@@ -851,7 +851,7 @@
             }
           ],
           "correctAnswer": "B. Top-K and Top-P (Nucleus Sampling)",
-          "reason": "- Yêu cầu 1: Giới hạn xem xét ở *\"top 50 most likely token candidates\"* $\\rightarrow$ Đây chính là tham số **Top-K** ($K = 50$).\n- Yêu cầu 2: Lựa chọn trong nhóm từ có *\"cumulative probability equals 90%\"* $\\rightarrow$ Đây chính là tham số **Top-P (Nucleus Sampling)** ($P = 0.90$).",
+          "reason": "- Yêu cầu 1: Giới hạn xem xét ở *\"top 50 most likely token candidates\"*  &rarr;  Đây chính là tham số **Top-K** (<code class=\"math-tag\">K = 50</code>).\n- Yêu cầu 2: Lựa chọn trong nhóm từ có *\"cumulative probability equals 90%\"*  &rarr;  Đây chính là tham số **Top-P (Nucleus Sampling)** (<code class=\"math-tag\">P = 0.90</code>).",
           "distractor": "- **Loại A:** Temperature điều chỉnh độ phẳng của phân phối xác suất; Stop Sequences xác định chuỗi ký tự dừng sinh từ.\n- **Loại C:** Frequency Penalty và Presence Penalty dùng để phạt các từ lặp lại trong văn bản, không lọc theo số lượng ứng viên hay xác suất tích lũy.\n- **Loại D:** Max Tokens giới hạn số lượng token đầu ra; System Prompt là câu lệnh chỉ dẫn hệ thống.",
           "trap": "- Nhớ định nghĩa cốt lõi:\n  - **Top-K**: Giới hạn **số lượng cố định K từ** có xác suất cao nhất.\n  - **Top-P**: Giới hạn động các từ có **tổng xác suất tích lũy đạt ngưỡng P**."
         },
@@ -1032,7 +1032,7 @@
           "correctAnswer": "B. Amazon Bedrock",
           "reason": "- Đề bài yêu cầu: *\"no dedicated infrastructure engineers\"* (Serverless) + *\"deploy within two days\"* + *\"pay-as-you-go pricing\"* + *\"invoke Anthropic Claude 3 via API calls\"*.\n- **Amazon Bedrock** là dịch vụ duy nhất trên AWS cung cấp quyền truy cập mô hình Claude của Anthropic dưới dạng Serverless API hoàn toàn không cần quản lý máy chủ.",
           "distractor": "- **Loại A (SageMaker JumpStart):** JumpStart yêu cầu người dùng phải chọn loại máy chủ instance EC2, triển khai endpoint và phải trả tiền theo giờ máy chủ hoạt động liên tục ngay cả khi không có lượt truy vấn nào, vi phạm yêu cầu không có kỹ sư hạ tầng và tối ưu chi phí pay-as-you-go.\n- **Loại C (Amazon EC2 G5 Instance):** Tự quản lý máy chủ ảo GPU đòi hỏi kiến thức chuyên sâu về cài đặt driver, container, quản trị mạng và bảo trì hạ tầng.\n- **Loại D (Amazon Comprehend):** Comprehend không cung cấp quyền truy cập vào các mô hình LLM tiên tiến như Anthropic Claude.",
-          "trap": "- Bất cứ khi nào đề thi nhắc đến **\"Anthropic Claude\"** hoặc **\"Meta Llama\"** kết hợp với **\"Serverless\"** hoặc **\"Zero infrastructure management\"** $\\rightarrow$ Đáp án chắc chắn là **Amazon Bedrock**."
+          "trap": "- Bất cứ khi nào đề thi nhắc đến **\"Anthropic Claude\"** hoặc **\"Meta Llama\"** kết hợp với **\"Serverless\"** hoặc **\"Zero infrastructure management\"**  &rarr;  Đáp án chắc chắn là **Amazon Bedrock**."
         },
         {
           "id": "d3-q2",
@@ -1090,7 +1090,7 @@
           "correctAnswer": "B. ROUGE",
           "reason": "- Từ khóa trong câu hỏi: *\"summarizing patient medical records\"* + *\"automated evaluation metric focused on information coverage (recall)\"*.\n- **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)** là thang đo tiêu chuẩn công nghiệp được thiết kế đặc thù cho bài toán tóm tắt văn bản, đo lường tỷ lệ các n-grams trong văn bản tham chiếu xuất hiện trong văn bản do mô hình tạo ra.",
           "distractor": "- **Loại A (BLEU):** BLEU tập trung vào độ chính xác (Precision), là tiêu chuẩn vàng cho bài toán **Machine Translation (Dịch máy)**, không tối ưu cho bài toán tóm tắt.\n- **Loại C (Perplexity):** Đo lường mức độ bất ngờ hoặc tính trôi chảy nội tại của mô hình ngôn ngữ, không so sánh trực tiếp độ bao phủ nội dung giữa văn bản sinh ra và văn bản chuẩn.\n- **Loại D (Accuracy):** Thang đo cho bài toán phân loại nhãn rời rạc trong học máy truyền thống, không áp dụng được cho sinh văn bản tự do.",
-          "trap": "- Ghi nhớ thần chú thi cử:\n  - **Machine Translation** $\\rightarrow$ **BLEU** (Precision).\n  - **Text Summarization** $\\rightarrow$ **ROUGE** (Recall)."
+          "trap": "- Ghi nhớ thần chú thi cử:\n  - **Machine Translation**  &rarr;  **BLEU** (Precision).\n  - **Text Summarization**  &rarr;  **ROUGE** (Recall)."
         },
         {
           "id": "d3-q4",
@@ -1119,7 +1119,7 @@
           "correctAnswer": "B. Chain-of-Thought (CoT) prompting.",
           "reason": "- Vấn đề: *\"complex multi-step personal income tax calculations\"* (suy luận logic và tính toán nhiều bước phức tạp).\n- **Chain-of-Thought (CoT)** hướng dẫn mô hình phân tích bài toán thành các bước suy luận trung gian (ví dụ thêm câu chỉ dẫn *\"Let's think step by step\"* hoặc đưa các ví dụ mẫu có lời giải chi tiết). Điều này giúp mô hình phân bổ khả năng tính toán tuần tự cho từng bước trước khi đưa ra kết quả cuối cùng, giảm thiểu tối đa sai sót toán học.",
           "distractor": "- **Loại A (Increase temperature to 1.0):** Tăng Temperature làm tăng tính ngẫu nhiên, khiến kết quả tính toán toán học càng trở nên sai lệch và khó đoán hơn.\n- **Loại C (Remove system prompt):** Loại bỏ ngữ cảnh chỉ dẫn sẽ làm giảm khả năng định hướng của mô hình.\n- **Loại D (Encode prompt into Base64):** Base64 làm xáo trộn cấu trúc token ngôn ngữ tự nhiên, làm suy giảm nghiêm trọng khả năng hiểu bài toán của mô hình.",
-          "trap": "- Khi đề bài xuất hiện: *\"Complex reasoning\"*, *\"Multi-step calculations\"*, *\"Break down logic into intermediate steps\"* $\\rightarrow$ Luôn chọn **Chain-of-Thought (CoT)**."
+          "trap": "- Khi đề bài xuất hiện: *\"Complex reasoning\"*, *\"Multi-step calculations\"*, *\"Break down logic into intermediate steps\"*  &rarr;  Luôn chọn **Chain-of-Thought (CoT)**."
         },
         {
           "id": "d3-q5",
@@ -1148,7 +1148,7 @@
           "correctAnswer": "C. Bedrock Agents",
           "reason": "- Yêu cầu: *\"understand customer intents, determine which backend APIs to call, pass correct parameters, and execute actions\"*.\n- **Amazon Bedrock Agents** là tính năng được xây dựng chuyên biệt để biến Foundation Models thành các tác tử hành động (Autonomous Agents). Bedrock Agents phân tích yêu cầu bằng ReAct framework, đối chiếu với OpenAPI schema và tự động kích hoạt **AWS Lambda functions** tương ứng để hoàn thành tác vụ nghiệp vụ thực tế.",
           "distractor": "- **Loại A (Bedrock Knowledge Bases):** Chỉ dùng để tra cứu và truy xuất tài liệu (RAG - Read-only), không có khả năng thực thi hành động (Actions/API calls) vào cơ sở dữ liệu.\n- **Loại B (Bedrock Guardrails):** Dùng để lọc nội dung độc hại và bảo vệ an toàn, không có tính năng gọi API nghiệp vụ.\n- **Loại D (Bedrock Model Evaluation):** Dùng để so sánh và chấm điểm chất lượng mô hình, không liên quan đến việc tự động hóa tác vụ.",
-          "trap": "- Phân biệt nhanh bộ đôi Bedrock trong đề tiếng Anh:\n  - Cần **Read / Retrieve knowledge from documents** (RAG) $\\rightarrow$ **Bedrock Knowledge Bases**.\n  - Cần **Execute actions / Invoke APIs / Multi-step orchestration** $\\rightarrow$ **Bedrock Agents**."
+          "trap": "- Phân biệt nhanh bộ đôi Bedrock trong đề tiếng Anh:\n  - Cần **Read / Retrieve knowledge from documents** (RAG)  &rarr;  **Bedrock Knowledge Bases**.\n  - Cần **Execute actions / Invoke APIs / Multi-step orchestration**  &rarr;  **Bedrock Agents**."
         },
         {
           "id": "d3-q6",
@@ -1177,7 +1177,7 @@
           "correctAnswer": "A. Parameter-Efficient Fine-Tuning (PEFT) using Low-Rank Adaptation (LoRA)",
           "reason": "- Vấn đề: Muốn tinh chỉnh mô hình lớn (70B) nhưng *\"limited budget\"*, *\"cannot afford massive compute to update all 70B weights\"*.\n- **PEFT / LoRA** đóng băng (freeze) các trọng số của mô hình cơ sở và chỉ huấn luyện một số lượng nhỏ các ma trận bổ sung hạng thấp. Phương pháp này giảm tới hơn 90% yêu cầu bộ nhớ GPU và tài nguyên tính toán, cho phép tinh chỉnh mô hình lớn với chi phí chỉ bằng một phần nhỏ so với Full Fine-Tuning.",
           "distractor": "- **Loại B (Pre-training from scratch):** Huấn luyện từ đầu là phương pháp đắt đỏ nhất trong toàn bộ lĩnh vực AI, hoàn toàn trái ngược với yêu cầu tiết kiệm chi phí.\n- **Loại C (Full-parameter fine-tuning):** Đề bài đã nói rõ công ty không thể chi trả cho việc cập nhật toàn bộ tham số trên các cụm GPU đắt đỏ như P4de.\n- **Loại D (Increase batch size):** Tăng Batch Size càng làm tràn bộ nhớ VRAM của GPU (Out Of Memory), không giải quyết được bài toán thiếu tài nguyên.",
-          "trap": "- Từ khóa trong đề tiếng Anh: *\"Fine-tune large models with minimal compute/cost/memory\"* hoặc *\"freeze base model weights and train small parameter subset\"* $\\rightarrow$ Luôn chọn **PEFT** hoặc **LoRA**."
+          "trap": "- Từ khóa trong đề tiếng Anh: *\"Fine-tune large models with minimal compute/cost/memory\"* hoặc *\"freeze base model weights and train small parameter subset\"*  &rarr;  Luôn chọn **PEFT** hoặc **LoRA**."
         },
         {
           "id": "d3-q7",
@@ -1206,7 +1206,7 @@
           "correctAnswer": "B. On-Demand pricing",
           "reason": "- Yêu cầu bài toán: *\"proof-of-concept with sporadic, unpredictable traffic\"*, *\"limited budget, no long-term commitment\"*, *\"no paying for idle compute\"*.\n- **On-Demand pricing** của Amazon Bedrock cho phép người dùng chỉ trả tiền chính xác theo số lượng token đầu vào (input tokens) và token đầu ra (output tokens) đã xử lý (Pay-as-you-go). Đây là mô hình linh hoạt nhất, không đòi hỏi cam kết thời gian và không mất phí khi hệ thống không có yêu cầu nào.",
           "distractor": "- **Loại A (Provisioned Throughput):** Yêu cầu cam kết mua Model Units trong 1 tháng hoặc 6 tháng, tạo ra chi phí cố định liên tục ngay cả khi không có lượt truy vấn, hoàn toàn không phù hợp cho thử nghiệm tải thấp ngắt quãng.\n- **Loại C (Spot Instance):** Spot Instance là mô hình giá của máy chủ ảo Amazon EC2, không tồn tại trong dịch vụ serverless Amazon Bedrock.\n- **Loại D (Reserved Instance):** Reserved Instance cũng là mô hình trả trước dành cho EC2 và RDS, không áp dụng cho Amazon Bedrock API.",
-          "trap": "- Nhớ các hình thức giá của Amazon Bedrock:\n  - Tải ngắt quãng, thử nghiệm, trả theo token thực tế $\\rightarrow$ **On-Demand**.\n  - Xử lý hàng loạt tài liệu lớn qua S3 với giá rẻ hơn 50% $\\rightarrow$ **Batch Inference**.\n  - Cần đảm bảo thông lượng tối đa, độ trễ ổn định cho production $\\rightarrow$ **Provisioned Throughput**."
+          "trap": "- Nhớ các hình thức giá của Amazon Bedrock:\n  - Tải ngắt quãng, thử nghiệm, trả theo token thực tế  &rarr;  **On-Demand**.\n  - Xử lý hàng loạt tài liệu lớn qua S3 với giá rẻ hơn 50%  &rarr;  **Batch Inference**.\n  - Cần đảm bảo thông lượng tối đa, độ trễ ổn định cho production  &rarr;  **Provisioned Throughput**."
         },
         {
           "id": "d3-q8",
@@ -1235,7 +1235,7 @@
           "correctAnswer": "B. Provisioned Throughput",
           "reason": "- Tình huống: *\"deploy and run inference on custom fine-tuned foundation models in Amazon Bedrock\"*.\n- **QUY TẮC BẮT BUỘC TRÊN AWS BEDROCK**: Để phục vụ suy luận (inference) cho các mô hình tùy chỉnh (**Custom Models** - được tạo ra qua Fine-Tuning hoặc Continued Pre-training), người dùng **bắt buộc phải mua Provisioned Throughput** (cấp phát các Model Units). Bedrock không hỗ trợ On-Demand pricing cho Custom Models.",
           "distractor": "- **Loại A (On-Demand pricing):** On-Demand chỉ áp dụng cho các mô hình cơ sở tiêu chuẩn (Base Models) có sẵn của AWS và bên thứ ba, không hỗ trợ Custom Fine-tuned Models.\n- **Loại C (AWS Savings Plans):** Là chương trình chiết khấu cam kết chi tiêu cho Compute (EC2, Fargate, Lambda), không phải cơ chế cấp phát tài nguyên chạy mô hình tùy chỉnh trong Bedrock.\n- **Loại D (EC2 On-Demand Instances):** Bedrock là dịch vụ serverless do AWS quản lý, người dùng không thể tự triển khai Bedrock model lên máy chủ EC2 thông thường.",
-          "trap": "- Câu hỏi bẫy rất kinh điển trong đề thi AIF-C01: *\"How do you deploy and consume a custom fine-tuned model in Amazon Bedrock?\"* $\\rightarrow$ Đáp án duy nhất đúng luôn là **Provisioned Throughput**."
+          "trap": "- Câu hỏi bẫy rất kinh điển trong đề thi AIF-C01: *\"How do you deploy and consume a custom fine-tuned model in Amazon Bedrock?\"*  &rarr;  Đáp án duy nhất đúng luôn là **Provisioned Throughput**."
         },
         {
           "id": "d3-q9",
@@ -1264,7 +1264,7 @@
           "correctAnswer": "A. Enable Amazon Bedrock Model Invocation Logging and specify an Amazon S3 bucket or Amazon CloudWatch log group.",
           "reason": "- Yêu cầu: *\"maintain an audit trail of all input prompts, model inference responses, and metadata for regulatory compliance\"*.\n- **Amazon Bedrock Model Invocation Logging** là tính năng tích hợp sẵn của Bedrock cho phép ghi lại toàn bộ nội dung câu lệnh đầu vào (prompts), câu trả lời của mô hình (responses), dữ liệu hình ảnh/tài liệu và siêu dữ liệu (metadata) và tự động đẩy về **Amazon S3** (để lưu trữ lâu dài) hoặc **Amazon CloudWatch Logs** (để giám sát thời gian thực).",
           "distractor": "- **Loại B (Custom Lambda + DynamoDB):** Đòi hỏi viết mã phức tạp, tăng độ trễ và chi phí bảo trì so với tính năng có sẵn của nền tảng (native feature).\n- **Loại C (AWS CloudTrail):** Mặc định CloudTrail chỉ ghi lại thông tin quản lý API (ai gọi, lúc nào, mã lỗi), nhưng CloudTrail không ghi lại toàn bộ nội dung văn bản chi tiết của Prompt và Response của mô hình.\n- **Loại D (Amazon GuardDuty):** Dịch vụ phát hiện mối đe dọa an ninh mạng thông minh (quét DNS, VPC flow logs), không dùng để lưu vết kiểm toán nội dung văn bản AI.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Log full prompts and completions for audit/compliance in Amazon Bedrock\"* $\\rightarrow$ Luôn chọn **Model Invocation Logging (S3 / CloudWatch Logs)**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Log full prompts and completions for audit/compliance in Amazon Bedrock\"*  &rarr;  Luôn chọn **Model Invocation Logging (S3 / CloudWatch Logs)**."
         },
         {
           "id": "d3-q10",
@@ -1293,7 +1293,7 @@
           "correctAnswer": "B. Amazon Bedrock Model Evaluation",
           "reason": "- Yêu cầu: *\"evaluate and compare foundation models across criteria (accuracy, robustness, toxicity) using automated datasets and human workforces\"*.\n- **Amazon Bedrock Model Evaluation** cung cấp công cụ có cấu trúc cho phép lựa chọn và so sánh nhiều mô hình nền tảng khác nhau bằng cách sử dụng các bộ dữ liệu prompt chuẩn hóa (curated datasets) hoặc dữ liệu tùy chỉnh, hỗ trợ cả đánh giá tự động (Automatic Evaluation) và đánh giá có sự tham gia của con người (Human-in-the-loop Evaluation).",
           "distractor": "- **Loại A (Knowledge Bases):** Dùng để truy xuất dữ liệu doanh nghiệp phục vụ RAG, không phải công cụ đánh giá so sánh chất lượng mô hình.\n- **Loại C (Playgrounds):** Giao diện web thử nghiệm ad-hoc thủ công từng câu prompt một cách trực quan, không phải công cụ đánh giá định lượng theo các bộ benchmark chuẩn hóa.\n- **Loại D (Guardrails):** Hàng rào bảo vệ an toàn nội dung trong thời gian chạy (runtime filtering), không phải tính năng so sánh đánh giá hiệu năng mô hình.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Compare foundation model performance across metrics and datasets\"* $\\rightarrow$ Luôn chọn **Amazon Bedrock Model Evaluation**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Compare foundation model performance across metrics and datasets\"*  &rarr;  Luôn chọn **Amazon Bedrock Model Evaluation**."
         },
         {
           "id": "d3-q11",
@@ -1322,7 +1322,7 @@
           "correctAnswer": "B. Amazon Kendra",
           "reason": "- Ràng buộc quan trọng: *\"intelligent enterprise search solution\"*, *\"provide direct clickable links to original source documents\"*, *\"return precise extracted document text passages rather than synthesizing new generated answers\"*.\n- **Amazon Kendra** là công cụ tìm kiếm thông minh chuyên dụng dành cho doanh nghiệp (Intelligent Enterprise Search Engine). Kendra hiểu ngôn ngữ tự nhiên và trả về kết quả tìm kiếm gồm **các đoạn trích dẫn nguyên văn từ tài liệu nguồn và liên kết trực tiếp (clickable links) tới tệp tin gốc**, không sử dụng LLM để tổng hợp hay sinh văn bản mới.",
           "distractor": "- **Loại A (Bedrock Knowledge Bases with Claude 3):** Knowledge Bases sử dụng LLM để sinh ra câu trả lời mới tự nhiên (synthesized generative answer), trong khi đề bài yêu cầu rõ ràng là trích xuất đoạn văn nguyên bản và cung cấp liên kết tài liệu nguồn chứ không sinh câu trả lời mới (*\"rather than synthesizing new generated answers\"*).\n- **Loại C (Amazon Polly):** Dịch vụ chuyển văn bản thành giọng nói.\n- **Loại D (Amazon Rekognition):** Dịch vụ phân tích hình ảnh/video.",
-          "trap": "- Phân biệt điểm chốt trong phòng thi:\n  - Cần **Tìm kiếm tài liệu nội bộ, trả về link file gốc và trích đoạn chuẩn** $\\rightarrow$ **Amazon Kendra**.\n  - Cần **Trợ lý LLM đọc tài liệu và viết câu trả lời tổng hợp** $\\rightarrow$ **Bedrock Knowledge Bases / Amazon Q Business**."
+          "trap": "- Phân biệt điểm chốt trong phòng thi:\n  - Cần **Tìm kiếm tài liệu nội bộ, trả về link file gốc và trích đoạn chuẩn**  &rarr;  **Amazon Kendra**.\n  - Cần **Trợ lý LLM đọc tài liệu và viết câu trả lời tổng hợp**  &rarr;  **Bedrock Knowledge Bases / Amazon Q Business**."
         },
         {
           "id": "d3-q12",
@@ -1355,7 +1355,7 @@
           "correctAnswer": "A. An OpenAPI schema defining the agent's action group APIs in JSON or YAML format** và **C. An AWS Lambda function that implements the business logic to execute the API operations",
           "reason": "- Kiến trúc của **Amazon Bedrock Agents Action Groups**:\n  1. **OpenAPI Schema (A)**: Bản đặc tả API chuẩn (JSON/YAML) lưu trên Amazon S3, định nghĩa danh sách các hàm/API mà Agent có thể gọi, mô tả rõ các tham số đầu vào và kiểu dữ liệu trả về để Agent hiểu khi nào và làm thế nào để gọi.\n  2. **AWS Lambda Function (C)**: Mã nguồn thực thi logic nghiệp vụ. Khi Agent phân tích yêu cầu của người dùng và quyết định thực hiện hành động, Bedrock Agent sẽ truyền các tham số đã trích xuất vào hàm Lambda này để đọc/ghi dữ liệu trong hệ thống backend.",
           "distractor": "- **Loại B (SageMaker Studio notebook):** Môi trường phát triển ML truyền thống, không phải thành phần cấu hình Action Group trong Bedrock Agent.\n- **Loại D (Amazon Rekognition custom moderation):** Dịch vụ kiểm duyệt hình ảnh, không liên quan đến việc thực thi logic nghiệp vụ API của Agent.\n- **Loại E (AWS Glue ETL crawler):** Công cụ quét metadata cho catalog dữ liệu, không tham gia vào luồng thực thi action thời gian thực của Agent.",
-          "trap": "- Công thức cốt lõi để xây dựng **Bedrock Agent Action Group**:\n  $$\\text{Action Group} = \\text{OpenAPI Schema (định nghĩa API)} + \\text{AWS Lambda (thực thi API)}$$"
+          "trap": "- Công thức cốt lõi để xây dựng **Bedrock Agent Action Group**:\n  $<code class=\"math-tag\">Action Group = OpenAPI Schema (định nghĩa API) + AWS Lambda (thực thi API)</code>$"
         }
       ]
     },
@@ -1465,7 +1465,7 @@
           "correctAnswer": "B. Amazon SageMaker Clarify",
           "reason": "- Hai yêu cầu cốt lõi của bài toán: \n  1. *\"prove model does not discriminate based on age or gender (Bias detection & Fairness)\"*.\n  2. *\"provide individual applicants with specific explanations when a loan is denied (Model Explainability / Feature Attribution)\"*.\n- **Amazon SageMaker Clarify** là công cụ chuyên biệt của AWS để đo lường các chỉ số thiên vị (bias metrics) cả trước và sau khi huấn luyện mô hình, đồng thời sử dụng thuật toán SHAP để cung cấp giải thích chi tiết mức độ ảnh hưởng của từng trường dữ liệu tới quyết định phê duyệt (Local Explainability).",
           "distractor": "- **Loại A (Amazon Inspector):** Inspector là dịch vụ quét lỗ hổng bảo mật và phần mềm độc hại trên hệ điều hành máy chủ EC2 và container images, không có tính năng phân tích thiên vị hay giải thích mô hình AI.\n- **Loại C (AWS CloudTrail):** CloudTrail dùng để ghi log lịch sử các lệnh gọi API trên tài khoản AWS nhằm mục đích kiểm toán hạ tầng, không phân tích dữ liệu bên trong mô hình ML.\n- **Loại D (Amazon CloudWatch Logs):** CloudWatch chỉ lưu trữ và giám sát log ứng dụng thông thường, không thể tính toán các chỉ số thống kê về tính công bằng hay giá trị SHAP.",
-          "trap": "- Bất cứ khi nào đề thi nhắc đến **\"Bias detection\"**, **\"Model Explainability\"**, **\"Fairness\"** hoặc **\"SHAP values\"** $\\rightarrow$ Luôn chọn **Amazon SageMaker Clarify**."
+          "trap": "- Bất cứ khi nào đề thi nhắc đến **\"Bias detection\"**, **\"Model Explainability\"**, **\"Fairness\"** hoặc **\"SHAP values\"**  &rarr;  Luôn chọn **Amazon SageMaker Clarify**."
         },
         {
           "id": "d4-q2",
@@ -1494,7 +1494,7 @@
           "correctAnswer": "B. Configure Amazon Bedrock Guardrails with Sensitive Information Filters and Denied Topics.",
           "reason": "- Yêu cầu bài toán: *\"detect and mask SSNs and phone numbers (PII redaction)\"* + *\"never provide prescription drug advice (Denied Topics)\"* + *\"least configuration overhead\"*.\n- **Amazon Bedrock Guardrails** cung cấp tính năng **Sensitive Information Filters** cho phép tự động nhận diện và che giấu (masking) thông tin PII chuẩn quốc tế chỉ với vài cú click, đồng thời tính năng **Denied Topics** cho phép mô tả bằng ngôn ngữ tự nhiên các chủ đề cấm (như tư vấn kê đơn thuốc) để mô hình từ chối trả lời một cách an toàn.",
           "distractor": "- **Loại A (Custom Regex):** Rất tốn công sức bảo trì, dễ bỏ sót các biến thể định dạng số điện thoại/SSN phức tạp và không thể xử lý việc cấm thảo luận về chủ đề kê đơn thuốc.\n- **Loại C (AWS WAF):** WAF là tường lửa ứng dụng web tầng mạng (Layer 7) dùng để chặn tấn công SQL Injection hoặc DDoS, không thể hiểu ngữ nghĩa câu lệnh để cấm chủ đề kê đơn thuốc hay che giấu PII trong payload LLM.\n- **Loại D (Retrain model):** Huấn luyện lại mô hình tốn kém hàng triệu USD và hoàn toàn không khả thi đối với các mô hình độc quyền trên Bedrock, đồng thời vẫn không ngăn chặn được việc người dùng nhập SSN của chính họ vào câu hỏi.",
-          "trap": "- Cặp tính năng vàng của **Bedrock Guardrails**:\n  - Che giấu hoặc chặn dữ liệu cá nhân nhạy cảm $\\rightarrow$ **Sensitive Information Filters (PII)**.\n  - Cấm thảo luận về một lĩnh vực/chủ đề cụ thể $\\rightarrow$ **Denied Topics**."
+          "trap": "- Cặp tính năng vàng của **Bedrock Guardrails**:\n  - Che giấu hoặc chặn dữ liệu cá nhân nhạy cảm  &rarr;  **Sensitive Information Filters (PII)**.\n  - Cấm thảo luận về một lĩnh vực/chủ đề cụ thể  &rarr;  **Denied Topics**."
         },
         {
           "id": "d4-q3",
@@ -1523,7 +1523,7 @@
           "correctAnswer": "B. AWS AI Service Cards",
           "reason": "- Yêu cầu: *\"official AWS documentation explaining conditions where service accuracy might degrade (limitations) and responsible design principles\"*.\n- **AWS AI Service Cards** là nguồn tài liệu minh bạch chuyên biệt do chính AWS phát hành cho các dịch vụ AI như Rekognition, cung cấp thông tin chi tiết về mục đích sử dụng dự kiến (Intended Use), các giới hạn công nghệ thực tế (Limitations: ánh sáng, góc nghiêng) và cách thiết kế ứng dụng có trách nhiệm.",
           "distractor": "- **Loại A (AWS Architecture Center):** Cung cấp các sơ đồ kiến trúc hạ tầng mẫu, không đi sâu vào phân tích giới hạn đạo đức và khả năng nhận diện của từng dịch vụ AI cụ thể.\n- **Loại C (AWS Artifact):** Là cổng thông tin để tải các báo cáo kiểm toán bảo mật và tuân thủ pháp lý của AWS (SOC, PCI DSS), không phải tài liệu hướng dẫn kỹ thuật Responsible AI cho từng dịch vụ AI.\n- **Loại D (AWS Trusted Advisor):** Công cụ đưa ra các khuyến nghị tối ưu chi phí, hiệu năng và bảo mật cho tài nguyên đang chạy trên tài khoản AWS của người dùng.",
-          "trap": "- Khi đề bài hỏi về tài liệu của AWS giải thích **\"Intended use cases, technical limitations, and responsible design of an AWS AI managed service\"** $\\rightarrow$ Đáp án chắc chắn là **AWS AI Service Cards**."
+          "trap": "- Khi đề bài hỏi về tài liệu của AWS giải thích **\"Intended use cases, technical limitations, and responsible design of an AWS AI managed service\"**  &rarr;  Đáp án chắc chắn là **AWS AI Service Cards**."
         },
         {
           "id": "d4-q4",
@@ -1552,7 +1552,7 @@
           "correctAnswer": "B. Contextual Grounding Check",
           "reason": "- Tình huống: Mô hình tự suy diễn và đưa ra thông tin không có trong tài liệu tham chiếu RAG (Ảo giác / Hallucination).\n- Tính năng **Contextual Grounding Check** trong **Amazon Bedrock Guardrails** được thiết kế đặc thù để phát hiện và ngăn chặn ảo giác trong các ứng dụng RAG. Cơ chế này tính toán điểm số đối chiếu (**Grounding score** - đo lường xem câu trả lời có được chứng minh bởi tài liệu nguồn không) và điểm số liên quan (**Relevance score** - đo lường xem câu trả lời có trả lời đúng câu hỏi không). Nếu câu trả lời không bám sát tài liệu nguồn, Guardrail sẽ tự động chặn hoặc thay thế bằng thông báo an toàn.",
           "distractor": "- **Loại A (Word Filters):** Chỉ chặn các từ ngữ tục tĩu hoặc từ khóa cụ thể nằm trong danh sách đen, không hiểu được việc câu trả lời có bám sát ngữ cảnh tài liệu hay không.\n- **Loại C (Sensitive Information Filters):** Chỉ lọc dữ liệu định danh cá nhân (PII) như số thẻ tín dụng hay số điện thoại.\n- **Loại D (AWS Shield Advanced):** Dịch vụ chống tấn công từ chối dịch vụ phân tán (DDoS) ở tầng mạng và giao vận, không liên quan đến kiểm soát nội dung AI.",
-          "trap": "- Từ khóa trong đề tiếng Anh: *\"Detect and prevent hallucinations in RAG by verifying factual grounding against source documents\"* $\\rightarrow$ Luôn trỏ tới **Contextual Grounding Check**."
+          "trap": "- Từ khóa trong đề tiếng Anh: *\"Detect and prevent hallucinations in RAG by verifying factual grounding against source documents\"*  &rarr;  Luôn trỏ tới **Contextual Grounding Check**."
         },
         {
           "id": "d4-q5",
@@ -1581,7 +1581,7 @@
           "correctAnswer": "B. Local Explainability (Giải thích cục bộ)",
           "reason": "- Trọng tâm câu hỏi: Giải thích quyết định cho *\"an individual loan applicant\"* (một cá nhân/trường hợp đơn lẻ cụ thể).\n- **Local Explainability (Giải thích cục bộ)** là việc phân tích và chỉ ra các yếu tố nào đã trực tiếp dẫn đến kết quả dự đoán cho một điểm dữ liệu duy nhất (ví dụ: khách hàng A bị từ chối vay vì lịch sử trễ hạn thanh toán trong 3 tháng gần nhất).",
           "distractor": "- **Loại A (Global Explainability):** Giải thích toàn cục mô tả hành vi tổng thể của mô hình trên toàn bộ tập dữ liệu (ví dụ: trên toàn bộ khách hàng nói chung, thu nhập hàng tháng là yếu tố quan trọng nhất chiếm 35% tỷ trọng mô hình).\n- **Loại C (Unsupervised Clustering):** Kỹ thuật phân cụm dữ liệu không nhãn, không phải phương pháp giải thích mô hình.\n- **Loại D (Semi-supervised Labeling):** Kỹ thuật gán nhãn bán giám sát, không liên quan đến giải thích kết quả dự đoán.",
-          "trap": "- Phân biệt nhanh trong đề thi tiếng Anh:\n  - Explain decision for **an individual instance / single applicant** $\\rightarrow$ **Local Explainability**.\n  - Explain **overall feature importance across the entire dataset** $\\rightarrow$ **Global Explainability**."
+          "trap": "- Phân biệt nhanh trong đề thi tiếng Anh:\n  - Explain decision for **an individual instance / single applicant**  &rarr;  **Local Explainability**.\n  - Explain **overall feature importance across the entire dataset**  &rarr;  **Global Explainability**."
         },
         {
           "id": "d4-q6",
@@ -1610,7 +1610,7 @@
           "correctAnswer": "B. Amazon SageMaker Model Cards",
           "reason": "- Yêu cầu bài toán: *\"document intended use, training data origins, evaluation metrics, limitations, and ethical considerations for a CUSTOM model built on SageMaker\"*.\n- **Amazon SageMaker Model Cards** là tính năng quản trị mô hình chuyên biệt, cung cấp mẫu tài liệu chuẩn hóa để ghi nhận toàn bộ vòng đời của mô hình tự phát triển (Custom Model): từ mục đích sử dụng, dữ liệu huấn luyện, kết quả kiểm thử bias/accuracy cho đến các lưu ý về đạo đức trước khi đưa vào sản xuất.",
           "distractor": "- **Loại A (AWS AI Service Cards):** AI Service Cards là tài liệu do **chính AWS biên soạn** cho các dịch vụ AI được quản lý của AWS (như Rekognition, Textract, Transcribe). Người dùng không thể tự tạo hay chỉnh sửa AWS AI Service Cards cho mô hình riêng của mình.\n- **Loại C (AWS Config Rules):** Dùng để kiểm tra tuân thủ cấu hình tài nguyên đám mây (ví dụ mã hóa S3), không phải tài liệu hồ sơ mô hình AI.\n- **Loại D (AWS Trusted Advisor):** Đưa ra khuyến nghị tối ưu chi phí và hiệu năng tài khoản AWS.",
-          "trap": "- Phân biệt cặp bài trùng trong đề thi:\n  - Hồ sơ quản trị cho **Mô hình tự xây dựng trên SageMaker (Custom ML Models)** $\\rightarrow$ **Amazon SageMaker Model Cards**.\n  - Tài liệu minh bạch của **Dịch vụ AI có sẵn của AWS (Managed Services: Rekognition, Comprehend)** $\\rightarrow$ **AWS AI Service Cards**."
+          "trap": "- Phân biệt cặp bài trùng trong đề thi:\n  - Hồ sơ quản trị cho **Mô hình tự xây dựng trên SageMaker (Custom ML Models)**  &rarr;  **Amazon SageMaker Model Cards**.\n  - Tài liệu minh bạch của **Dịch vụ AI có sẵn của AWS (Managed Services: Rekognition, Comprehend)**  &rarr;  **AWS AI Service Cards**."
         },
         {
           "id": "d4-q7",
@@ -1668,7 +1668,7 @@
           "correctAnswer": "A. Amazon Augmented AI (Amazon A2I)",
           "reason": "- Yêu cầu bài toán: *\"integrate human review workflows when model confidence score is low or for sensitive high-value predictions\"*.\n- **Amazon Augmented AI (Amazon A2I)** là dịch vụ được xây dựng chuyên biệt để triển khai cơ chế **Con người can thiệp (Human-in-the-Loop - HITL)**. Amazon A2I tích hợp sẵn với Amazon Textract, Rekognition và SageMaker, tự động chuyển hướng các dự đoán có điểm tin cậy (confidence score) thấp đến đội ngũ chuyên viên để kiểm tra và phê duyệt thủ công.",
           "distractor": "- **Loại B (Amazon CloudWatch Alarms):** Chỉ kích hoạt cảnh báo số liệu kỹ thuật hạ tầng (CPU, RAM, API errors), không cung cấp giao diện và quy trình làm việc cho con người đánh giá kết quả AI.\n- **Loại C (Step Functions without human tasks):** Tự động hóa điều phối dịch vụ kỹ thuật, không có giao diện chấm điểm và sửa lỗi dữ liệu cho người kiểm duyệt.\n- **Loại D (Amazon SNS):** Dịch vụ gửi thông báo tin nhắn (email, SMS), không quản lý quy trình gán nhãn hay xem xét của con người.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Human-in-the-loop review for low confidence ML predictions\"* $\\rightarrow$ Luôn chọn **Amazon Augmented AI (Amazon A2I)**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Human-in-the-loop review for low confidence ML predictions\"*  &rarr;  Luôn chọn **Amazon Augmented AI (Amazon A2I)**."
         },
         {
           "id": "d4-q9",
@@ -1697,7 +1697,7 @@
           "correctAnswer": "B. System Prompt Leakage (Direct Prompt Extraction)",
           "reason": "- Hình thức tấn công: Người dùng nhập câu lệnh cố tình đánh lừa mô hình để *\"print out exact system instructions and developer guidelines (tiết lộ toàn bộ System Prompt ẩn)\"*.\n- Đây là lỗ hổng **Rò rỉ câu lệnh hệ thống (System Prompt Leakage / Direct Prompt Extraction)**, một dạng phụ phổ biến của Prompt Injection trong OWASP Top 10 for LLMs, làm lộ các bí mật kinh doanh, logic nghiệp vụ nội bộ hoặc quy tắc an ninh của ứng dụng.",
           "distractor": "- **Loại A (Data Drift):** Phân phối dữ liệu thực tế thay đổi theo thời gian trong học máy truyền thống, không phải tấn công bảo mật LLM.\n- **Loại C (DDoS):** Tấn công từ chối dịch vụ làm sập máy chủ mạng, không phải việc trích xuất văn bản câu lệnh bí mật.\n- **Loại D (Overfitting):** Lỗi mô hình học vẹt tập huấn luyện, không liên quan đến việc bảo mật prompt.",
-          "trap": "- Khi đề bài mô tả việc câu lệnh ép mô hình *\"expose configured behavior or reveal internal system instructions\"* $\\rightarrow$ Đáp án là **System Prompt Leakage / Jailbreak Attack**."
+          "trap": "- Khi đề bài mô tả việc câu lệnh ép mô hình *\"expose configured behavior or reveal internal system instructions\"*  &rarr;  Đáp án là **System Prompt Leakage / Jailbreak Attack**."
         },
         {
           "id": "d4-q10",
@@ -1726,7 +1726,7 @@
           "correctAnswer": "B. Denied Topics",
           "reason": "- Yêu cầu bài toán: *\"strictly prevent chatbot from discussing specific restricted subjects (cryptocurrency, political elections) using natural language descriptions\"*.\n- Tính năng **Denied Topics (Chủ đề bị từ chối)** trong **Amazon Bedrock Guardrails** cho phép quản trị viên nhập tên và mô tả bằng ngôn ngữ tự nhiên của các chủ đề bị cấm (ví dụ: *\"Bất kỳ câu hỏi nào liên quan đến đầu tư tiền mã hóa hoặc bầu cử chính trị\"*). Khi người dùng hỏi về các chủ đề này, mô hình sẽ tự động từ chối trả lời bằng một thông điệp an toàn được cấu hình trước.",
           "distractor": "- **Loại A (Sensitive Information Filters):** Chỉ dùng để lọc và che giấu dữ liệu định danh cá nhân nhạy cảm (SSN, thẻ tín dụng, số điện thoại).\n- **Loại C (Contextual Grounding Check):** Dùng để kiểm tra xem câu trả lời có bám sát tài liệu nguồn RAG để ngăn chặn ảo giác hay không, không dùng để cấm một chủ đề nghiệp vụ tổng quát.\n- **Loại D (Token Bucket Rate Limiting):** Kỹ thuật giới hạn số lượng request API ở tầng mạng để chống quá tải.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Prevent discussion of specific topics using natural language definitions\"* $\\rightarrow$ Luôn chọn **Denied Topics**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Prevent discussion of specific topics using natural language definitions\"*  &rarr;  Luôn chọn **Denied Topics**."
         },
         {
           "id": "d4-q11",
@@ -1887,7 +1887,7 @@
           "correctAnswer": "B. AWS Artifact",
           "reason": "- Yêu cầu bài toán: *\"download official AWS audit reports (SOC 2, ISO/IEC 27001) for independent auditors\"*.\n- **AWS Artifact** là cổng thông tin tự phục vụ chính thức của AWS, cung cấp quyền truy cập theo yêu cầu (on-demand) để tải về các tài liệu bảo mật, chứng chỉ ISO và báo cáo kiểm toán SOC của chính AWS và các đối tác độc lập.",
           "distractor": "- **Loại A (AWS Audit Manager):** Dùng để tự động thu thập bằng chứng từ *chính các tài nguyên và cấu hình trong tài khoản của công ty*, không phải nơi chứa các báo cáo kiểm toán hạ tầng của AWS.\n- **Loại C (AWS Trusted Advisor):** Đưa ra các khuyến nghị tối ưu chi phí, hiệu năng và bảo mật tài nguyên cho tài khoản khách hàng, không cung cấp báo cáo kiểm toán bên thứ ba.\n- **Loại D (Amazon CloudWatch Logs):** Lưu trữ log vận hành ứng dụng, không chứa báo cáo kiểm toán.",
-          "trap": "- Phân biệt cặp đôi kinh điển:\n  - Tải **Báo cáo kiểm toán có sẵn của AWS** (Download AWS SOC/ISO reports) $\\rightarrow$ **AWS Artifact**.\n  - Tự động **Gom bằng chứng kỹ thuật từ hệ thống của bạn** (Automate evidence collection) $\\rightarrow$ **AWS Audit Manager**."
+          "trap": "- Phân biệt cặp đôi kinh điển:\n  - Tải **Báo cáo kiểm toán có sẵn của AWS** (Download AWS SOC/ISO reports)  &rarr;  **AWS Artifact**.\n  - Tự động **Gom bằng chứng kỹ thuật từ hệ thống của bạn** (Automate evidence collection)  &rarr;  **AWS Audit Manager**."
         },
         {
           "id": "d5-q2",
@@ -1916,7 +1916,7 @@
           "correctAnswer": "B. Establish a VPC Interface Endpoint powered by AWS PrivateLink for Amazon Bedrock.",
           "reason": "- Yêu cầu tối quan trọng: *\"data from VPC must NEVER traverse the public internet when communicating with Amazon Bedrock\"*.\n- **VPC Interface Endpoint (AWS PrivateLink)** tạo ra một giao diện mạng riêng tư (ENI) với địa chỉ IP nội bộ trong chính subnet của khách hàng. Mọi lưu lượng kết nối đến Amazon Bedrock sẽ được định tuyến hoàn toàn qua mạng đường trục bảo mật nội bộ của AWS mà không bao giờ chạm tới mạng Internet công cộng.",
           "distractor": "- **Loại A (Internet Gateway & Elastic IP):** Đưa máy chủ trực tiếp ra Internet công cộng, vi phạm nghiêm trọng chính sách bảo mật dữ liệu y tế.\n- **Loại C (NAT Gateway):** NAT Gateway vẫn định tuyến dữ liệu đi ra ngoài Internet công cộng, vi phạm yêu cầu đề bài.\n- **Loại D (AWS Direct Connect to public web):** Dù Direct Connect cung cấp đường truyền vật lý riêng từ trung tâm dữ liệu on-premises lên AWS, việc kết nối tới endpoint công cộng vẫn không tối ưu bằng việc giữ dữ liệu hoàn toàn trong VPC thông qua PrivateLink.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Connect to AWS services without traversing the public internet\"* $\\rightarrow$ Luôn chọn **VPC Interface Endpoint / AWS PrivateLink**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Connect to AWS services without traversing the public internet\"*  &rarr;  Luôn chọn **VPC Interface Endpoint / AWS PrivateLink**."
         },
         {
           "id": "d5-q3",
@@ -1945,7 +1945,7 @@
           "correctAnswer": "B. Indirect Prompt Injection",
           "reason": "- Đặc điểm cuộc tấn công: Lệnh độc hại không phải do người dùng ứng dụng nhập trực tiếp vào khung chat, mà được cài cắm tinh vi vào một **nguồn dữ liệu bên ngoài (tài liệu PDF hồ sơ ứng viên)** mà mô hình đọc vào khi thực hiện tác vụ.\n- Đây là định nghĩa chính xác của **Indirect Prompt Injection** (Tấn công chèn câu lệnh gián tiếp). Mô hình không phân biệt được đâu là dữ liệu tham khảo và đâu là mệnh lệnh điều khiển, dẫn đến việc thực thi câu lệnh ẩn của kẻ tấn công.",
           "distractor": "- **Loại A (Direct Prompt Injection):** Xảy ra khi kẻ tấn công trực tiếp gõ câu lệnh phá hoại vào giao diện prompt tương tác của mô hình.\n- **Loại C (Training Data Poisoning):** Là việc đầu độc tập dữ liệu dùng để huấn luyện hoặc tinh chỉnh (fine-tuning) mô hình từ trước, không phải chèn câu lệnh vào tài liệu đầu vào tại thời điểm suy luận (Inference time).\n- **Loại D (Denial of Service):** Tấn công làm cạn kiệt tài nguyên khiến hệ thống ngừng phục vụ, không liên quan đến việc chiếm quyền điều khiển hành vi của LLM.",
-          "trap": "- Phân biệt trong đề thi tiếng Anh:\n  - Input directly into the conversational prompt $\\rightarrow$ **Direct Prompt Injection / Jailbreak**.\n  - Malicious instructions embedded in external files, PDFs, or websites read by RAG $\\rightarrow$ **Indirect Prompt Injection**."
+          "trap": "- Phân biệt trong đề thi tiếng Anh:\n  - Input directly into the conversational prompt  &rarr;  **Direct Prompt Injection / Jailbreak**.\n  - Malicious instructions embedded in external files, PDFs, or websites read by RAG  &rarr;  **Indirect Prompt Injection**."
         },
         {
           "id": "d5-q4",
@@ -1974,7 +1974,7 @@
           "correctAnswer": "C. Classifying data, configuring IAM user permissions, and configuring content safety rules in Bedrock Guardrails.",
           "reason": "- Đối với dịch vụ AI Managed Serverless như **Amazon Bedrock**:\n  - AWS hoàn toàn chịu trách nhiệm về cơ sở hạ tầng vật lý, phần cứng GPU, hệ điều hành máy chủ và bảo vệ trọng số mô hình gốc.\n  - **Khách hàng chịu trách nhiệm** về mọi thứ liên quan đến dữ liệu và ứng dụng của họ: Cấu hình phân quyền truy cập danh tính (**AWS IAM**), mã hóa dữ liệu đầu vào/ra, cấu hình các chính sách lọc nội dung (**Bedrock Guardrails**) và quản lý khóa mã hóa **AWS KMS**.",
           "distractor": "- **Loại A:** Bảo trì phần cứng máy chủ GPU là trách nhiệm của AWS.\n- **Loại B:** Vá hệ điều hành của dịch vụ serverless Bedrock là trách nhiệm của AWS.\n- **Loại D:** Quản lý bản quyền cốt lõi của mô hình bên thứ ba là trách nhiệm giữa AWS và nhà cung cấp mô hình (Anthropic, Meta), không phải của khách hàng.",
-          "trap": "- Quy tắc bất biến: Dữ liệu của khách hàng, quyền truy cập IAM, cấu hình tham số bảo vệ ứng dụng $\\rightarrow$ Luôn luôn là **trách nhiệm của Khách hàng**."
+          "trap": "- Quy tắc bất biến: Dữ liệu của khách hàng, quyền truy cập IAM, cấu hình tham số bảo vệ ứng dụng  &rarr;  Luôn luôn là **trách nhiệm của Khách hàng**."
         },
         {
           "id": "d5-q5",
@@ -2003,7 +2003,7 @@
           "correctAnswer": "A. AWS Config",
           "reason": "- Yêu cầu bài toán: *\"continuously records resource configuration history\"*, *\"evaluate against compliance policies (rules)\"*, và *\"automatically flags non-compliant configurations\"*.\n- **AWS Config** là dịch vụ đo lường, kiểm toán và đánh giá cấu hình của các tài nguyên AWS. AWS Config ghi lại các thay đổi cấu hình theo thời gian thực và tự động so sánh với các quy tắc định sẵn (ví dụ quy tắc `s3-bucket-server-side-encryption-enabled`) để phát hiện và cảnh báo sai lệch cấu hình.",
           "distractor": "- **Loại B (AWS CloudTrail):** CloudTrail chỉ ghi lại nhật ký sự kiện \"Ai đã thực hiện hành động gì\" (API activity logs), không theo dõi trạng thái cấu hình của tài nguyên theo thời gian và không tự đánh giá xem cấu hình đó có hợp chuẩn hay không.\n- **Loại C (Amazon Inspector):** Quét lỗ hổng phần mềm bên trong hệ điều hành máy chủ và container images, không quản lý trạng thái cấu hình của các tài nguyên hạ tầng AWS như S3 hay Security Groups.\n- **Loại D (AWS Shield):** Dịch vụ chống tấn công DDoS, không liên quan đến kiểm toán cấu hình.",
-          "trap": "- Nhớ cặp đôi đối chiếu trong đề tiếng Anh:\n  - Audit **API activity / Who made what API call** $\\rightarrow$ **AWS CloudTrail**.\n  - Evaluate **resource configuration history & compliance rules** $\\rightarrow$ **AWS Config**."
+          "trap": "- Nhớ cặp đôi đối chiếu trong đề tiếng Anh:\n  - Audit **API activity / Who made what API call**  &rarr;  **AWS CloudTrail**.\n  - Evaluate **resource configuration history & compliance rules**  &rarr;  **AWS Config**."
         },
         {
           "id": "d5-q6",
@@ -2032,7 +2032,7 @@
           "correctAnswer": "C. High Risk (Rủi ro cao)",
           "reason": "- Tình huống: Hệ thống AI sử dụng trong hoạt động *\"evaluate consumer credit scores and determine eligibility for home mortgage loans\"*.\n- Theo quy định chính thức của **EU AI Act**, các hệ thống AI ảnh hưởng trực tiếp đến sinh kế, cơ hội tiếp cận tài chính, y tế, giáo dục hoặc tuyển dụng nhân sự được xếp vào nhóm **High Risk (Rủi ro cao)**. Các hệ thống này bắt buộc phải tuân thủ các yêu cầu nghiêm ngặt về chất lượng dữ liệu huấn luyện, lưu vết hồ sơ kỹ thuật, tính minh bạch và sự giám sát của con người.",
           "distractor": "- **Loại A (Minimal Risk):** Dành cho các ứng dụng vô hại như bộ lọc thư rác email hoặc trò chơi điện tử tích hợp AI.\n- **Loại B (Limited Risk):** Dành cho các hệ thống như chatbot thông thường, chỉ yêu cầu nghĩa vụ minh bạch thông báo cho người dùng biết họ đang tương tác với AI.\n- **Loại D (Unacceptable Risk):** Dành cho các hệ thống bị cấm hoàn toàn vì xâm phạm nhân quyền nghiêm trọng (như hệ thống chấm điểm công dân xã hội của chính phủ, thao túng hành vi tâm lý nguy hiểm).",
-          "trap": "- Trong đề thi AIF-C01 về EU AI Act:\n  - **Credit scoring, Employment recruitment, Critical healthcare** $\\rightarrow$ **High Risk**.\n  - **Social scoring, Real-time biometric surveillance in public** $\\rightarrow$ **Unacceptable Risk (Banned)**.\n  - **General conversational chatbots** $\\rightarrow$ **Limited Risk** (requires transparency notification)."
+          "trap": "- Trong đề thi AIF-C01 về EU AI Act:\n  - **Credit scoring, Employment recruitment, Critical healthcare**  &rarr;  **High Risk**.\n  - **Social scoring, Real-time biometric surveillance in public**  &rarr;  **Unacceptable Risk (Banned)**.\n  - **General conversational chatbots**  &rarr;  **Limited Risk** (requires transparency notification)."
         },
         {
           "id": "d5-q7",
@@ -2090,7 +2090,7 @@
           "correctAnswer": "A. Amazon Macie",
           "reason": "- Yêu cầu bài toán: *\"discover, classify, and protect sensitive Personally Identifiable Information (PII) in Amazon S3 buckets before feeding into AI pipelines\"*.\n- **Amazon Macie** là dịch vụ bảo mật dữ liệu sử dụng học máy và khớp mẫu để tự động khám phá, phân loại và bảo vệ dữ liệu nhạy cảm (PII, thông tin tài chính, thông tin định danh) được lưu trữ trong **Amazon S3**.",
           "distractor": "- **Loại B (AWS Artifact):** Cổng thông tin tải báo cáo kiểm toán tuân thủ (SOC, ISO) của AWS, không quét dữ liệu trong S3 bucket của khách hàng.\n- **Loại C (Amazon Inspector):** Quét lỗ hổng phần mềm trên EC2 và container images, không phân loại dữ liệu PII trong S3.\n- **Loại D (AWS Shield):** Dịch vụ chống tấn công DDoS.",
-          "trap": "- Cụm từ trong đề tiếng Anh: *\"Discover and classify sensitive PII data stored in Amazon S3 buckets\"* $\\rightarrow$ Luôn chọn **Amazon Macie**."
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Discover and classify sensitive PII data stored in Amazon S3 buckets\"*  &rarr;  Luôn chọn **Amazon Macie**."
         },
         {
           "id": "d5-q9",
@@ -2148,7 +2148,7 @@
           "correctAnswer": "A. AWS Audit Manager",
           "reason": "- Yêu cầu bài toán: *\"continuously audit AWS environment against regulatory standards\"*, *\"automate collection of configuration evidence\"*, *\"pre-built framework for Generative AI risk governance\"*.\n- **AWS Audit Manager** tự động hóa việc thu thập bằng chứng từ các tài nguyên AWS (CloudTrail, Config, Security Hub) để đối chiếu với các khung kiểm toán định sẵn (trong đó AWS cung cấp sẵn khung **Generative AI Best Practices Framework**), giúp đơn giản hóa quá trình báo cáo kiểm toán tuân thủ.",
           "distractor": "- **Loại B (AWS Artifact):** Là nơi tải về các chứng chỉ và báo cáo kiểm toán có sẵn của cơ sở hạ tầng AWS, không thể tự động thu thập chứng cứ cấu hình từ tài khoản của khách hàng.\n- **Loại C (AWS Secrets Manager):** Dịch vụ lưu trữ và luân chuyển mật khẩu, khóa API bí mật.\n- **Loại D (Amazon CloudWatch Logs):** Lưu trữ log ứng dụng thông thường, không có cơ chế tự động đối chiếu bằng chứng theo khung kiểm toán Generative AI.",
-          "trap": "- Từ khóa: *\"Automate evidence collection using pre-built frameworks (e.g. Generative AI framework)\"* $\\rightarrow$ Luôn chọn **AWS Audit Manager**."
+          "trap": "- Từ khóa: *\"Automate evidence collection using pre-built frameworks (e.g. Generative AI framework)\"*  &rarr;  Luôn chọn **AWS Audit Manager**."
         },
         {
           "id": "d5-q11",
@@ -2177,7 +2177,7 @@
           "correctAnswer": "A. AWS WAF (Web Application Firewall)",
           "reason": "- Yêu cầu bài toán: Bảo vệ ở tầng mạng và web ứng dụng trước ALB/CloudFront: *\"DDoS layer 7 attacks\"*, *\"malicious bot scrapers exhausting token quotas (rate limiting)\"*, *\"geographic IP blocking\"*.\n- **AWS WAF** là tường lửa ứng dụng web gắn trước ALB, CloudFront hoặc API Gateway để kiểm soát lưu lượng truy cập HTTP/HTTPS, thiết lập quy tắc giới hạn tốc độ truy cập (Rate-based rules), chặn IP theo quốc gia (Geo-match) và chống bot độc hại.",
           "distractor": "- **Loại B (Bedrock Guardrails alone):** Guardrails hoạt động ở tầng suy luận nội dung văn bản (kiểm tra PII, lọc từ cấm, chống ảo giác), không thể bảo vệ tầng mạng HTTP trước ALB hoặc chặn DDoS traffic.\n- **Loại C (SageMaker Model Monitor):** Giám sát độ lệch dữ liệu (data drift) và chất lượng mô hình sau triển khai, không phải công cụ bảo mật mạng.\n- **Loại D (AWS Config):** Đánh giá lịch sử cấu hình tài nguyên, không lọc gói tin traffic thời gian thực.",
-          "trap": "- Phân biệt các lớp bảo vệ AI:\n  - Bảo vệ **Tầng mạng / HTTP / DDoS / Rate limiting** $\\rightarrow$ **AWS WAF**.\n  - Bảo vệ **Tầng nội dung prompt / PII / Ảo giác / Từ cấm** $\\rightarrow$ **Amazon Bedrock Guardrails**."
+          "trap": "- Phân biệt các lớp bảo vệ AI:\n  - Bảo vệ **Tầng mạng / HTTP / DDoS / Rate limiting**  &rarr;  **AWS WAF**.\n  - Bảo vệ **Tầng nội dung prompt / PII / Ảo giác / Từ cấm**  &rarr;  **Amazon Bedrock Guardrails**."
         },
         {
           "id": "d5-q12",
@@ -2210,7 +2210,7 @@
           "correctAnswer": "B. Implementing data protection by managing customer-managed encryption keys in AWS KMS and securing user prompts.** và **D. Configuring identity and access management (IAM) policies to enforce least privilege access to Bedrock APIs.",
           "reason": "- Theo **Mô hình trách nhiệm chia sẻ (AWS Shared Responsibility Model)** đối với dịch vụ AI Managed / Serverless như **Amazon Bedrock**:\n  1. **Khách hàng quản lý bảo mật TRONG đám mây (Security IN the cloud)**:\n     - Quản lý và bảo vệ dữ liệu khách hàng: Mã hóa dữ liệu lưu trữ bằng khóa do khách hàng quản lý (**AWS KMS CMKs**) và bảo vệ nội dung prompt (**B**).\n     - Quản lý danh tính và quyền truy cập: Thiết lập các chính sách **AWS IAM** tuân thủ nguyên tắc quyền tối thiểu (Least Privilege) để kiểm soát ai được gọi API Bedrock nào (**D**).\n  2. **AWS quản lý bảo mật CỦA đám mây (Security OF the cloud)**:\n     - Cơ sở hạ tầng vật lý, an ninh data center, nguồn điện, phần cứng máy chủ GPU (A, E).\n     - Bản vá hệ điều hành, hypervisor và virtualization layer của dịch vụ serverless Bedrock (C).",
           "distractor": "- **Loại A và E:** An ninh vật lý trung tâm dữ liệu và phần cứng máy chủ luôn là trách nhiệm 100% của AWS.\n- **Loại C:** Bản vá hệ điều hành của dịch vụ serverless Bedrock do AWS tự động xử lý, khách hàng không có quyền truy cập vào máy chủ bên dưới.",
-          "trap": "- Bất kể dịch vụ đám mây nào:\n  - **Dữ liệu (Data), Mã hóa (KMS), Quyền truy cập (IAM)** $\\rightarrow$ Luôn là trách nhiệm của **Khách hàng (Customer)**.\n  - **Hạ tầng vật lý, Phần cứng GPU, Bản vá OS máy chủ managed** $\\rightarrow$ Luôn là trách nhiệm của **AWS**."
+          "trap": "- Bất kể dịch vụ đám mây nào:\n  - **Dữ liệu (Data), Mã hóa (KMS), Quyền truy cập (IAM)**  &rarr;  Luôn là trách nhiệm của **Khách hàng (Customer)**.\n  - **Hạ tầng vật lý, Phần cứng GPU, Bản vá OS máy chủ managed**  &rarr;  Luôn là trách nhiệm của **AWS**."
         }
       ]
     }
