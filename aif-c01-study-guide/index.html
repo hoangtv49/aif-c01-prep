@@ -209,31 +209,79 @@
       border-color: var(--primary);
     }
 
-    /* Master Reveal Button */
-    .master-btn {
-      background: linear-gradient(135deg, #2563eb, #6366f1);
-      color: #fff;
+    /* Mode Switcher Group */
+    .mode-switch-group {
+      display: flex;
+      background: #090e1a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+    .mode-btn {
+      background: transparent;
       border: none;
-      padding: 0.55rem 1.15rem;
-      border-radius: 8px;
+      color: var(--text-muted);
+      padding: 0.5rem 0.95rem;
       font-family: var(--font-sans);
-      font-size: 0.875rem;
+      font-size: 0.825rem;
       font-weight: 600;
+      border-radius: 8px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mode-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .mode-btn.active.exam-mode {
+      background: #1e293b;
+      color: #38bdf8;
+      border: 1px solid #0284c7;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.25);
+    }
+    .mode-btn.active.study-mode {
+      background: #312e81;
+      color: #c7d2fe;
+      border: 1px solid #6366f1;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+    }
+    .mode-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+    .mode-btn.active.exam-mode .mode-dot {
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+    }
+    .mode-btn.active.study-mode .mode-dot {
+      background: #818cf8;
+      box-shadow: 0 0 8px #818cf8;
+    }
+
+    /* Per-question toggle button */
+    .q-toggle-btn {
+      margin-left: auto;
+      background: #111a2e;
+      border: 1px solid var(--border);
+      color: #94a3b8;
+      font-family: var(--font-sans);
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
-    .master-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
-    }
-    .master-btn.active {
-      background: #374151;
-      color: #cbd5e1;
-      box-shadow: none;
+    .q-toggle-btn:hover {
+      color: #38bdf8;
+      border-color: #38bdf8;
+      background: #1e293b;
     }
 
     /* Question Cards */
@@ -415,7 +463,24 @@
       font-size: 0.885rem;
       color: #cbd5e1;
       line-height: 1.6;
-      white-space: pre-line;
+    }
+    .exp-body strong {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .exp-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .exp-bullet::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      flex-shrink: 0;
     }
 
     /* Concept Graph Container */
@@ -659,10 +724,16 @@
 
         <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
           <input type="text" id="quiz-search" class="search-box" placeholder="🔍 Tìm câu hỏi / từ khóa..." oninput="handleSearch(this.value)">
-          <button id="master-toggle-btn" class="master-btn" onclick="toggleAllExplanations()">
-            <span id="master-icon">👁️</span>
-            <span id="master-text">Hiện tất cả đáp án & giải thích</span>
-          </button>
+          <div class="mode-switch-group">
+            <button id="mode-exam-btn" class="mode-btn active exam-mode" onclick="setQuizMode('exam')" title="Ẩn đáp án để bạn tự luyện tập">
+              <span class="mode-dot"></span>
+              <span>📝 Chế độ Thi (Ẩn đáp án)</span>
+            </button>
+            <button id="mode-study-btn" class="mode-btn study-mode" onclick="setQuizMode('study')" title="Mở sẵn tất cả đáp án và giải thích để ôn tập nhanh">
+              <span class="mode-dot"></span>
+              <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
+            </button>
+          </div>
           <button class="filter-chip" style="background:#1e293b;" onclick="resetQuiz()">Làm lại bài thi</button>
         </div>
       </div>
@@ -726,7 +797,8 @@
     // State
     let currentDomainFilter = 'all';
     let searchQuery = '';
-    let isAllRevealed = false;
+    let quizMode = 'exam'; // 'exam' | 'study'
+    const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
 
     // Init App
@@ -801,33 +873,59 @@
       renderQuiz();
     }
 
-    // Master Toggle Button
-    function toggleAllExplanations() {
-      isAllRevealed = !isAllRevealed;
-      const btn = document.getElementById('master-toggle-btn');
-      const icon = document.getElementById('master-icon');
-      const text = document.getElementById('master-text');
+    // Quiz Mode Switcher
+    function setQuizMode(mode) {
+      quizMode = mode;
+      const examBtn = document.getElementById('mode-exam-btn');
+      const studyBtn = document.getElementById('mode-study-btn');
+      if (examBtn && studyBtn) {
+        if (mode === 'exam') {
+          examBtn.classList.add('active');
+          studyBtn.classList.remove('active');
+        } else {
+          studyBtn.classList.add('active');
+          examBtn.classList.remove('active');
+        }
+      }
+      renderQuiz();
+    }
 
-      if (isAllRevealed) {
-        btn.classList.add('active');
-        icon.textContent = '🙈';
-        text.textContent = 'Ẩn tất cả đáp án (Chế độ thi)';
+    function toggleCardExplanation(qId, event) {
+      if (event) event.stopPropagation();
+      if (revealedCards.has(qId)) {
+        revealedCards.delete(qId);
       } else {
-        btn.classList.remove('active');
-        icon.textContent = '👁️';
-        text.textContent = 'Hiện tất cả đáp án & giải thích';
+        revealedCards.add(qId);
       }
       renderQuiz();
     }
 
     function resetQuiz() {
       for (const k in userAnswers) delete userAnswers[k];
-      isAllRevealed = false;
-      document.getElementById('master-toggle-btn').classList.remove('active');
-      document.getElementById('master-icon').textContent = '👁️';
-      document.getElementById('master-text').textContent = 'Hiện tất cả đáp án & giải thích';
+      revealedCards.clear();
+      setQuizMode('exam');
       updateStats();
       renderQuiz();
+    }
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      return text
+        .replace(/\$\rightarrow\$/g, ' &rarr; ')
+        .replace(/\$\to\$/g, ' &rarr; ')
+        .replace(/\rightarrow/g, ' &rarr; ')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .split('\n')
+        .map(line => {
+          const trimmed = line.trim();
+          if (!trimmed) return '';
+          if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+            return `<div class="exp-bullet">${trimmed.substring(2)}</div>`;
+          }
+          return `<p style="margin-bottom:0.4rem;">${trimmed}</p>`;
+        })
+        .join('');
     }
 
     // Option Click Handler
@@ -897,7 +995,8 @@
         const userSel = userAnswers[q.id] || [];
         const isAttempted = userSel.length > 0;
         const correctLetters = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
-        const shouldShowExplanation = isAllRevealed || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
+        const isRevealedByCard = revealedCards.has(q.id);
+        const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
 
         const optionsHtml = q.options.map(opt => {
           const isSelected = userSel.includes(opt.key);
@@ -925,6 +1024,9 @@
               <span class="q-badge">#D${q.domainId}-Q${q.number}</span>
               <span class="q-domain-tag">Domain ${q.domainId}</span>
               <span class="q-type-tag">${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
+              <button class="q-toggle-btn" onclick="toggleCardExplanation('${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
+                ${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
+              </button>
             </div>
 
             <div class="q-stem">${q.stem}</div>
@@ -940,15 +1042,15 @@
               </div>
               <div class="exp-section">
                 <div class="exp-title reason">🎯 Lý do chọn (Keyword Triggers):</div>
-                <div class="exp-body">${q.reason}</div>
+                <div class="exp-body">${formatMarkdown(q.reason)}</div>
               </div>
               <div class="exp-section">
                 <div class="exp-title distractor">🔍 Phân tích bẫy (Distractor Analysis):</div>
-                <div class="exp-body">${q.distractor}</div>
+                <div class="exp-body">${formatMarkdown(q.distractor)}</div>
               </div>
               <div class="exp-section">
                 <div class="exp-title trap">⚠️ Cảnh báo bẫy phòng thi (Trap Alert):</div>
-                <div class="exp-body">${q.trap}</div>
+                <div class="exp-body">${formatMarkdown(q.trap)}</div>
               </div>
             </div>
           </div>
