@@ -1132,7 +1132,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       position: sticky;
-      top: 65px;
+      top: 96px;
       z-index: 30;
       backdrop-filter: blur(12px);
     }
@@ -1785,6 +1785,10 @@
         statsPill.style.display = tabId === 'quiz' ? 'flex' : 'none';
       }
 
+      if (tabId === 'topics') {
+        setTimeout(updateTopicScrollspy, 60);
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1797,42 +1801,97 @@
       });
       renderTopicDomain(domainId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(updateTopicScrollspy, 60);
     }
+
+    let isScrollspyManual = false;
 
     function switchTopicSubtab(subId) {
       currentTopicSubtab = subId;
+      isScrollspyManual = true;
+
+      // Update active state immediately
       document.querySelectorAll('.topic-subtab-btn').forEach(btn => {
-        if (btn.getAttribute('onclick').includes(subId)) btn.classList.add('active');
+        if (btn.id === 'subtab-' + subId) btn.classList.add('active');
         else btn.classList.remove('active');
       });
-      applyTopicSubtabVisibility();
 
-      // Smooth scroll back to subtab bar so user starts reading from top of the section
+      scrollToTopicSubtab(subId);
+
+      setTimeout(() => {
+        isScrollspyManual = false;
+        updateTopicScrollspy();
+      }, 700);
+    }
+
+    function scrollToTopicSubtab(subId) {
+      const headerEl = document.querySelector('.app-header');
       const subtabsEl = document.getElementById('topic-subtabs');
-      if (subtabsEl) {
-        const rect = subtabsEl.getBoundingClientRect();
-        if (rect.top < 60) {
-          const topOffset = window.pageYOffset + rect.top - 58;
-          window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      const isMobile = window.innerWidth <= 768;
+      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 48 : 95);
+      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 70 : 45);
+      const totalStickyH = headerH + subtabsH + 15;
+
+      if (subId === 'all') {
+        const domainHeader = document.querySelector('.topic-domain-header');
+        if (domainHeader) {
+          const targetY = domainHeader.getBoundingClientRect().top + window.pageYOffset - (headerH + 20);
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        const el = document.getElementById('topic-sec-' + subId);
+        if (el) {
+          const targetY = el.getBoundingClientRect().top + window.pageYOffset - totalStickyH;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
         }
       }
     }
 
-    function applyTopicSubtabVisibility() {
+    function updateTopicScrollspy() {
+      const topicsTab = document.getElementById('tab-topics');
+      if (!topicsTab || !topicsTab.classList.contains('active')) return;
+      if (isScrollspyManual) return;
+
+      const headerEl = document.querySelector('.app-header');
+      const subtabsEl = document.getElementById('topic-subtabs');
+      const isMobile = window.innerWidth <= 768;
+      const headerH = headerEl ? headerEl.offsetHeight : (isMobile ? 48 : 95);
+      const subtabsH = subtabsEl ? subtabsEl.offsetHeight : (isMobile ? 70 : 45);
+      const threshold = headerH + subtabsH + 60;
+
       const p1 = document.getElementById('topic-sec-p1');
       const p2 = document.getElementById('topic-sec-p2');
       const p3 = document.getElementById('topic-sec-p3');
+
       if (!p1 || !p2 || !p3) return;
 
-      if (currentTopicSubtab === 'all') {
-        p1.style.display = 'block';
-        p2.style.display = 'block';
-        p3.style.display = 'block';
+      const rect1 = p1.getBoundingClientRect();
+      const rect2 = p2.getBoundingClientRect();
+      const rect3 = p3.getBoundingClientRect();
+
+      const isBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
+
+      let activeId = 'all';
+
+      if (isBottom || rect3.top <= threshold) {
+        activeId = 'p3';
+      } else if (rect2.top <= threshold) {
+        activeId = 'p2';
+      } else if (rect1.top <= threshold) {
+        activeId = 'p1';
       } else {
-        p1.style.display = currentTopicSubtab === 'p1' ? 'block' : 'none';
-        p2.style.display = currentTopicSubtab === 'p2' ? 'block' : 'none';
-        p3.style.display = currentTopicSubtab === 'p3' ? 'block' : 'none';
+        activeId = 'all';
       }
+
+      document.querySelectorAll('.topic-subtab-btn').forEach(btn => {
+        if (btn.id === 'subtab-' + activeId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
     }
 
     // Floating Back-to-Top
@@ -1843,13 +1902,15 @@
     function initScrollListener() {
       window.addEventListener('scroll', () => {
         const btn = document.getElementById('back-to-top');
-        if (!btn) return;
-        if (window.scrollY > 280) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
+        if (btn) {
+          if (window.scrollY > 280) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
         }
-      });
+        updateTopicScrollspy();
+      }, { passive: true });
     }
 
     // Question Palette Functions
@@ -2065,7 +2126,7 @@
           </div>
         </div>
       `;
-      applyTopicSubtabVisibility();
+      updateTopicScrollspy();
     }
 
     function revealAllTopicQuestions(domainId) {
