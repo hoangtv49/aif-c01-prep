@@ -1,0 +1,19 @@
+aif-c01-study-guide/domain-3-fm-applications.md
+  s_a513f3f6851de5::t_dc62af343ea9ef 1-259
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dae305f824a66a41a58f901e239eedbfafe2fe69",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
