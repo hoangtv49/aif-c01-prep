@@ -1347,38 +1347,32 @@ const htmlContent = `<!DOCTYPE html>
     /* Comprehensive Mobile Responsive Styles */
     @media (max-width: 768px) {
       .header-inner {
-        padding: 0.75rem 1rem;
-        gap: 0.75rem;
-        flex-direction: column;
-        align-items: stretch;
+        padding: 0.65rem 1rem;
+        gap: 0.5rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
       .brand {
         justify-content: flex-start;
       }
       .brand-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       .brand-subtitle {
-        font-size: 0.75rem;
+        display: none; /* Ẩn phụ đề trên mobile để header siêu gọn gàng */
       }
       .nav-tabs {
-        width: 100%;
-        max-width: 100%;
-        padding: 0.25rem;
-        gap: 0.2rem;
-      }
-      .tab-btn {
-        padding: 0.45rem 0.75rem;
-        font-size: 0.8rem;
+        display: none !important; /* Ẩn hoàn toàn nav bar desktop trên mobile vì đã có Bottom Nav Bar */
       }
       .stats-pill {
-        width: 100%;
-        justify-content: space-between;
-        padding: 0.4rem 0.85rem;
-        font-size: 0.775rem;
+        width: auto;
+        padding: 0.3rem 0.65rem;
+        font-size: 0.725rem;
+        gap: 0.5rem;
       }
       .main-content {
-        padding: 1rem 0.85rem 4rem;
+        padding: 1rem 0.85rem 5.5rem; /* Tăng padding dưới để không bị thanh đáy che nội dung */
       }
       .topic-domain-nav {
         grid-template-columns: 1fr;
@@ -1394,14 +1388,14 @@ const htmlContent = `<!DOCTYPE html>
       .topic-domain-title {
         font-size: 1.2rem;
       }
-      .topic-anchor-bar {
-        top: 60px;
+      .topic-subtab-bar {
+        top: 52px;
         margin-bottom: 1.25rem;
-        padding: 0.4rem;
+        padding: 0.35rem;
       }
-      .topic-anchor-btn {
+      .topic-subtab-btn {
         font-size: 0.775rem;
-        padding: 0.4rem 0.75rem;
+        padding: 0.45rem 0.75rem;
       }
       .topic-section-card {
         padding: 1.25rem 0.85rem;
