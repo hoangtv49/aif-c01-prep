@@ -1,0 +1,29 @@
+aif-c01-study-guide/domain-4-responsible-ai.md
+  s_a513f3f6851de5::t_f3a384cc20d0cf 326-352
+aif-c01-study-guide/domain-5-security-compliance-governance.md
+  s_a513f3f6851de5::t_c8dfb28fc3ff63 368-397
+aif-c01-study-guide/README.md
+  s_a513f3f6851de5::t_e0e2b2ba61766e 24-28
+aif-c01-study-guide/domain-2-generative-ai.md
+  s_a513f3f6851de5::t_ee5c748a1e4116 346-371
+aif-c01-study-guide/domain-1-fundamentals-ai-ml.md
+  s_a513f3f6851de5::t_caacf297a26cae 355-379
+aif-c01-study-guide/domain-3-fm-applications.md
+  s_a513f3f6851de5::t_79e54e767c99fb 396-421
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cd81f4b47fb827869e27f75a9ae21bbdfd1e6e5c",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
