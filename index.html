@@ -551,24 +551,39 @@
       font-size: 0.885rem;
       color: #cbd5e1;
       line-height: 1.6;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .exp-body strong {
       color: #f8fafc;
       font-weight: 600;
     }
+    .exp-body em {
+      color: #e2e8f0;
+      font-style: italic;
+    }
     .exp-bullet {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      margin-bottom: 0.4rem;
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .exp-bullet::before {
       content: "•";
+      position: absolute;
+      left: 0.15rem;
+      top: 0;
       color: var(--primary);
       font-weight: 700;
-      font-size: 1.1rem;
-      line-height: 1.2;
-      flex-shrink: 0;
+      font-size: 1.15rem;
+      line-height: 1.5;
+    }
+    .exp-bullet-text {
+      display: inline;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     /* Concept Graph Container */
@@ -1526,7 +1541,27 @@
         font-size: 0.875rem;
       }
       .explanation-drawer {
-        padding: 1rem 0.85rem;
+        padding: 0.9rem 0.75rem !important;
+        border-radius: 8px !important;
+      }
+      .exp-title {
+        font-size: 0.775rem !important;
+        gap: 0.35rem !important;
+        margin-bottom: 0.35rem !important;
+        line-height: 1.4 !important;
+      }
+      .exp-body {
+        font-size: 0.825rem !important;
+        line-height: 1.55 !important;
+      }
+      .exp-bullet {
+        padding-left: 1.15rem !important;
+        margin-bottom: 0.45rem !important;
+        line-height: 1.55 !important;
+      }
+      .exp-bullet::before {
+        left: 0.1rem !important;
+        font-size: 1.05rem !important;
       }
       .graph-svg-wrapper {
         height: 520px;
@@ -2613,7 +2648,7 @@
           const trimmed = line.trim();
           if (!trimmed) return '';
           if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-            return `<div class="exp-bullet">${trimmed.substring(2)}</div>`;
+            return `<div class="exp-bullet"><span class="exp-bullet-text">${trimmed.substring(2)}</span></div>`;
           }
           return `<p style="margin-bottom:0.4rem;">${trimmed}</p>`;
         })
