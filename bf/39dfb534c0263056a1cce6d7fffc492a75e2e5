@@ -1,0 +1,19 @@
+aif-c01-study-guide/domain-5-security-compliance-governance.md
+  s_a513f3f6851de5::t_890486d94ba9ca 1-247
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bf39dfb534c0263056a1cce6d7fffc492a75e2e5",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
