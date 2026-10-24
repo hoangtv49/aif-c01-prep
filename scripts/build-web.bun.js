@@ -254,48 +254,56 @@ const htmlContent = `<!DOCTYPE html>
     .header-inner {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: nowrap;
+      gap: 0.85rem 1.5rem;
+      flex-wrap: wrap;
     }
     .brand {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      flex-direction: column;
+      gap: 0.2rem;
       min-width: 0;
       flex-shrink: 0;
+    }
+    .brand-heading {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
     }
     .brand-badge {
       background: linear-gradient(135deg, #00a4e4, #6366f1);
       color: #fff;
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      line-height: 1;
+      padding: 0.35rem 0.6rem;
+      border-radius: 5px;
       letter-spacing: 0.05em;
       white-space: nowrap;
       flex-shrink: 0;
-      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 2px 6px rgba(0, 164, 228, 0.25);
     }
-    .brand-text {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-    }
     .brand-title {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 700;
+      line-height: 1.2;
       letter-spacing: -0.02em;
       color: #fff;
       white-space: nowrap;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
     }
     .brand-subtitle {
-      font-size: 0.775rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
+      line-height: 1.35;
       white-space: nowrap;
     }
 
@@ -1395,44 +1403,22 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     /* Desktop Responsive Header & Layout */
-    @media (min-width: 769px) and (max-width: 1320px) {
+    @media (min-width: 769px) and (max-width: 1200px) {
       .header-inner {
-        padding: 0.65rem 1rem;
-        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        gap: 0.75rem 1rem;
       }
       .brand-title {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
       }
-      .brand-subtitle {
-        display: none; /* Hide subtitle on medium desktop so header remains single-row */
+      .brand-badge {
+        font-size: 0.76rem;
+        padding: 0.3rem 0.55rem;
       }
       .tab-btn {
         padding: 0.45rem 0.75rem;
         font-size: 0.825rem;
         gap: 0.35rem;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 1080px) {
-      .header-inner {
-        padding: 0.55rem 0.85rem;
-        gap: 0.5rem;
-      }
-      .brand-title {
-        font-size: 0.95rem;
-      }
-      .brand-badge {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.55rem;
-      }
-      .tab-btn {
-        padding: 0.4rem 0.55rem;
-        font-size: 0.775rem;
-      }
-      .stats-pill {
-        padding: 0.3rem 0.55rem;
-        font-size: 0.75rem;
-        gap: 0.45rem;
       }
     }
 
@@ -1448,8 +1434,16 @@ const htmlContent = `<!DOCTYPE html>
       .brand {
         justify-content: flex-start;
       }
+      .brand-heading {
+        gap: 0.5rem;
+      }
       .brand-title {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+      .brand-badge {
+        font-size: 0.72rem;
+        padding: 0.22rem 0.5rem;
       }
       .brand-subtitle {
         display: none; /* Ẩn phụ đề trên mobile để header siêu gọn gàng */
@@ -1642,11 +1636,11 @@ const htmlContent = `<!DOCTYPE html>
   <header class="app-header">
     <div class="header-inner">
       <div class="brand">
-        <span class="brand-badge">AIF-C01</span>
-        <div class="brand-text">
-          <div class="brand-title">AWS AI Practitioner Mastery Studio</div>
-          <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
+        <div class="brand-heading">
+          <span class="brand-badge">AIF-C01</span>
+          <span class="brand-title">AWS AI Practitioner Mastery Studio</span>
         </div>
+        <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
       </div>
 
       <nav class="nav-tabs">
