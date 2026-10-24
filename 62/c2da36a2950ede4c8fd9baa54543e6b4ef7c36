@@ -1,0 +1,19 @@
+docs/superpowers/plans/2026-10-24-confusing-pairs-and-flashcards.md
+  s_a513f3f6851de5::t_0b6987b360175c 43-47,60-64,74-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "62c2da36a2950ede4c8fd9baa54543e6b4ef7c36",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
