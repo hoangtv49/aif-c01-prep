@@ -1,0 +1,19 @@
+docs/superpowers/specs/2026-10-24-aif-c01-study-system-design.md
+  s_a513f3f6851de5::t_8413f6a4034569 1-94
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "da98cc15433c945bf13154259e5ab4b18fa891b4",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
