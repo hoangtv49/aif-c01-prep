@@ -1,0 +1,25 @@
+.gitignore
+  s_a513f3f6851de5::t_199eb52ad5f13a 1-4
+.github/workflows/deploy.yml
+  s_a513f3f6851de5::t_a8f64aee000415 1-39
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_955b934c0ca474 2048-2049
+index.html
+  s_a513f3f6851de5::t_c843d5cd3474bb 1-1844
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "270c72161d64dcdbdd33d349789f521fbbb145d6",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
