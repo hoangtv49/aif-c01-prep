@@ -556,7 +556,9 @@ const htmlContent = `<!DOCTYPE html>
       position: relative;
       display: flex;
       align-items: center;
-      width: 100%;
+      flex: 1 1 0%;
+      min-width: 0;
+      width: auto;
     }
     .search-input-box .search-icon {
       position: absolute;
@@ -568,6 +570,7 @@ const htmlContent = `<!DOCTYPE html>
     }
     .search-box.sticky-search {
       width: 100%;
+      min-width: 0;
       height: 38px;
       padding: 0.45rem 2rem 0.45rem 2.2rem;
       background: #111a2e;
@@ -577,6 +580,7 @@ const htmlContent = `<!DOCTYPE html>
       font-family: var(--font-sans);
       font-size: 0.85rem;
       transition: all 0.2s ease;
+      box-sizing: border-box;
     }
     .search-box.sticky-search:focus {
       border-color: #38bdf8;
@@ -608,6 +612,7 @@ const htmlContent = `<!DOCTYPE html>
     .palette-quick-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.35rem;
       padding: 0.45rem 0.75rem;
       height: 38px;
@@ -621,12 +626,19 @@ const htmlContent = `<!DOCTYPE html>
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.2s ease;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
     .palette-quick-btn:hover {
       background: #1e293b;
       border-color: #38bdf8;
       color: #fff;
+    }
+    .palette-btn-icon {
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    .palette-btn-text {
+      display: inline;
     }
 
     .filter-group {
@@ -1923,41 +1935,71 @@ const htmlContent = `<!DOCTYPE html>
       }
       .quiz-action-group {
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.4rem;
+        display: flex;
+        gap: 0.45rem;
       }
       .quiz-action-group .action-btn {
-        width: 100%;
-        padding: 0.45rem 0.2rem;
-        font-size: 0.725rem;
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 0.48rem 0.35rem;
+        font-size: 0.75rem;
         justify-content: center;
         text-align: center;
+        white-space: nowrap;
       }
       .smart-sticky-bar {
         top: var(--header-height, 42px) !important;
-        padding: 0.45rem 0.6rem;
+        padding: 0.45rem 0.6rem !important;
         margin-bottom: 1rem;
         border-radius: 10px;
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow: hidden;
       }
       .quiz-sticky-inner {
+        display: flex;
         flex-direction: column;
         gap: 0.45rem;
         align-items: stretch;
       }
       .quiz-sticky-right {
+        order: 1;
         max-width: none;
         width: 100%;
+        display: flex;
+        align-items: center;
         gap: 0.45rem;
       }
+      .quiz-sticky-right .search-input-box {
+        flex: 1 1 0%;
+        min-width: 0;
+        width: auto !important;
+      }
       .palette-quick-btn {
-        padding: 0.4rem 0.6rem;
-        height: 36px;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        flex: 0 0 38px;
+        justify-content: center;
+        border-radius: 8px;
       }
-      .palette-quick-btn span {
-        font-size: 0.825rem;
+      .palette-btn-text {
+        display: none !important;
       }
-      .quiz-filters, .ste-filters {
+      .palette-btn-icon {
+        font-size: 1.05rem;
+      }
+      .quiz-filters {
+        order: 2;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        padding-bottom: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .ste-filters {
         width: 100%;
         overflow-x: auto;
         white-space: nowrap;
@@ -1968,8 +2010,10 @@ const htmlContent = `<!DOCTYPE html>
       }
       .quiz-filters::-webkit-scrollbar, .ste-filters::-webkit-scrollbar { display: none; }
       .search-box.sticky-search {
-        height: 36px;
+        height: 38px;
         font-size: 0.825rem;
+        width: 100% !important;
+        min-width: 0;
       }
       .quiz-toolbar {
         flex-direction: column;
@@ -2349,7 +2393,8 @@ const htmlContent = `<!DOCTYPE html>
               <button id="quiz-search-clear" class="search-clear-btn" onclick="clearQuizSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
             </div>
             <button id="toggle-palette-btn" class="palette-quick-btn" onclick="togglePalette()" title="Mở bảng 57 câu hỏi để nhảy nhanh">
-              <span>🔢 Bảng câu hỏi</span>
+              <span class="palette-btn-icon">🔢</span>
+              <span class="palette-btn-text">Bảng câu hỏi</span>
             </button>
           </div>
         </div>
@@ -2673,6 +2718,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     function handleSmartScroll(currentY) {
+      if (isPaletteOpen) return;
       if (document.activeElement && document.activeElement.classList.contains('search-box')) {
         return;
       }
@@ -2681,9 +2727,9 @@ const htmlContent = `<!DOCTYPE html>
 
       if (currentY <= 100) {
         stickyBars.forEach(b => b.classList.remove('bar-hidden'));
-      } else if (diff > 8) {
+      } else if (diff > 12) {
         stickyBars.forEach(b => b.classList.add('bar-hidden'));
-      } else if (diff < -8) {
+      } else if (diff < -12) {
         stickyBars.forEach(b => b.classList.remove('bar-hidden'));
       }
       lastScrollY = currentY;
