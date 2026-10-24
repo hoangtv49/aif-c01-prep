@@ -1961,9 +1961,11 @@ const htmlContent = `<!DOCTYPE html>
         flex-direction: column;
         gap: 0.45rem;
         align-items: stretch;
+        justify-content: flex-start;
       }
       .quiz-sticky-right {
         order: 1;
+        flex: 0 0 auto;
         max-width: none;
         width: 100%;
         display: flex;
@@ -1991,6 +1993,7 @@ const htmlContent = `<!DOCTYPE html>
       }
       .quiz-filters {
         order: 2;
+        flex: 0 0 auto;
         width: 100%;
         overflow-x: auto;
         white-space: nowrap;
