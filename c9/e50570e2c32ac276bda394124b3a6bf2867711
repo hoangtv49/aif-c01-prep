@@ -1,0 +1,27 @@
+index.html
+  s_a513f3f6851de5::t_b154677a3de737 1121-1124,1129,1139,1141-1142,1294-1296,1299-1304,1773-1781,1784,1811-1812,1856-1858,1863,1885-1887
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_c8a47a8e0d7fdf 1321-1324,1329,1339,1341-1342
+  s_a513f3f6851de5::t_f66dab2f3f9632 2056-2058,2063,2085-2087
+  s_a513f3f6851de5::t_7e48689a8c11c0 1494-1496,1499-1504
+  s_a513f3f6851de5::t_bbe77d1a0a1bc3 1973-1981,1984,2011
+  s_a513f3f6851de5::t_a03ff5fc5c7c7b 2012
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_b154677a3de737 1121-1124,1129,1139,1141-1142,1294-1296,1299-1304,1773-1781,1784,1811-1812,1856-1858,1863,1885-1887
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c9e50570e2c32ac276bda394124b3a6bf2867711",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
