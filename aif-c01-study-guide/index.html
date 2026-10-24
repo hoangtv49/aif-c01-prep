@@ -625,12 +625,27 @@
     }
     .node-group {
       cursor: pointer;
-      transition: transform 0.2s ease;
+      pointer-events: all;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
-    .node-group:hover { transform: scale(1.05); }
+    .node-group:hover {
+      transform: scale(1.06);
+    }
+    .node-group.selected .node-rect {
+      stroke: #38bdf8 !important;
+      stroke-width: 3px !important;
+      fill: #1e3a5f !important;
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.85));
+    }
+    .node-group.selected .node-text {
+      fill: #ffffff !important;
+      font-weight: 700 !important;
+    }
     .node-rect {
       rx: 8;
       stroke-width: 1.5;
+      cursor: pointer;
+      pointer-events: all;
       transition: all 0.2s ease;
     }
     .node-text {
@@ -642,27 +657,34 @@
       text-anchor: middle;
     }
 
-    /* Inspector Drawer for Graph */
+    /* Inspector Floating Drawer for Graph */
     .graph-inspector {
-      position: absolute;
+      position: fixed;
       right: 2rem;
-      bottom: 2rem;
-      width: 380px;
-      background: #111a2e;
-      border: 1px solid #2b3b55;
-      border-radius: 12px;
-      padding: 1.25rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      top: 110px;
+      width: 400px;
+      max-width: calc(100vw - 4rem);
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
+      background: rgba(13, 21, 37, 0.97);
+      border: 1.5px solid #00a4e4;
+      border-radius: 14px;
+      padding: 1.4rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 164, 228, 0.25);
       display: none;
-      z-index: 10;
-      backdrop-filter: blur(10px);
+      z-index: 999;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .graph-inspector.open { display: block; animation: fadeIn 0.2s ease; }
-    .inspector-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-    .inspector-desc { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.8rem; }
-    .inspector-links-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-bottom: 0.4rem; }
-    .inspector-links { list-style: none; font-size: 0.8rem; color: #94a3b8; }
-    .inspector-links li { margin-bottom: 0.25rem; }
+    .graph-inspector.open {
+      display: block;
+    }
+    .inspector-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .inspector-desc { font-size: 0.875rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem; }
+    .inspector-links-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #38bdf8; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+    .inspector-links { list-style: none; font-size: 0.825rem; color: #94a3b8; }
+    .inspector-links li { margin-bottom: 0.35rem; }
 
     /* Responsive Table Container */
     .table-container {
@@ -1584,17 +1606,18 @@
             <g id="svg-nodes"></g>
           </svg>
 
-          <!-- Node Inspector Drawer -->
-          <div id="graph-inspector" class="graph-inspector">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-              <span id="inspect-domain" class="q-domain-tag">Domain 3</span>
-              <button onclick="closeInspector()" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.1rem;">✕</button>
-            </div>
-            <div id="inspect-title" class="inspector-title">Amazon Bedrock</div>
-            <div id="inspect-desc" class="inspector-desc">Mô tả</div>
-            <div class="inspector-links-title">Các liên kết thi cốt lõi:</div>
-            <ul id="inspect-links" class="inspector-links"></ul>
+        </div>
+
+        <!-- Node Inspector Floating Panel -->
+        <div id="graph-inspector" class="graph-inspector">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <span id="inspect-domain" class="q-domain-tag">Domain 3</span>
+            <button onclick="closeInspector()" style="background:rgba(255,255,255,0.08); border:none; color:#cbd5e1; cursor:pointer; width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:background 0.2s ease;">✕</button>
           </div>
+          <div id="inspect-title" class="inspector-title">Amazon Bedrock</div>
+          <div id="inspect-desc" class="inspector-desc">Mô tả</div>
+          <div class="inspector-links-title">Các liên kết thi cốt lõi:</div>
+          <ul id="inspect-links" class="inspector-links"></ul>
         </div>
       </div>
     </section>
@@ -2621,12 +2644,25 @@
         const height = 30;
 
         return `
-          <g class="node-group" id="node-${n.id}" transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${n.id}')">
+          <g class="node-group" id="node-${n.id}" data-id="${n.id}" transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${n.id}')">
             <rect class="node-rect" x="${-width/2}" y="${-height/2}" width="${width}" height="${height}" fill="#162032" stroke="${color}" />
             <text class="node-text" dy="4">${n.label}</text>
           </g>
         `;
       }).join('');
+
+      // Direct SVG Click Delegation
+      const svg = document.getElementById('concept-svg');
+      if (svg && !svg.hasAttribute('data-bound')) {
+        svg.setAttribute('data-bound', 'true');
+        svg.addEventListener('click', (e) => {
+          const nodeGroup = e.target.closest('.node-group');
+          if (nodeGroup) {
+            const nodeId = nodeGroup.getAttribute('data-id');
+            if (nodeId) selectGraphNode(nodeId);
+          }
+        });
+      }
     }
 
     function selectGraphNode(nodeId) {
@@ -2644,27 +2680,45 @@
         }
       });
 
+      // Highlight active node visually
+      document.querySelectorAll('.node-group').forEach(ng => {
+        if (ng.getAttribute('data-id') === nodeId || ng.id === 'node-' + nodeId) {
+          ng.classList.add('selected');
+        } else {
+          ng.classList.remove('selected');
+        }
+      });
+
       // Show Inspector
       const inspector = document.getElementById('graph-inspector');
-      document.getElementById('inspect-domain').textContent = 'Domain ' + node.domain;
-      document.getElementById('inspect-title').textContent = node.label;
-      document.getElementById('inspect-desc').textContent = node.desc;
+      if (inspector) {
+        document.getElementById('inspect-domain').textContent = 'Domain ' + node.domain;
+        document.getElementById('inspect-title').textContent = node.label;
+        document.getElementById('inspect-desc').textContent = node.desc;
 
-      // Find related links
-      const relatedEdges = GRAPH_DATA.edges.filter(e => e.from === nodeId || e.to === nodeId);
-      const linksUl = document.getElementById('inspect-links');
-      linksUl.innerHTML = relatedEdges.map(e => {
-        const otherId = e.from === nodeId ? e.to : e.from;
-        const otherNode = GRAPH_DATA.nodes.find(n => n.id === otherId);
-        return `<li><strong>${e.label}:</strong> ${otherNode ? otherNode.label : otherId}</li>`;
-      }).join('');
+        // Find related links
+        const relatedEdges = GRAPH_DATA.edges.filter(e => e.from === nodeId || e.to === nodeId);
+        const linksUl = document.getElementById('inspect-links');
+        if (linksUl) {
+          linksUl.innerHTML = relatedEdges.map(e => {
+            const otherId = e.from === nodeId ? e.to : e.from;
+            const otherNode = GRAPH_DATA.nodes.find(n => n.id === otherId);
+            const otherLabel = otherNode ? otherNode.label : otherId;
+            return `<li style="cursor: pointer; padding: 0.25rem 0;" onclick="selectGraphNode('${otherId}')" title="Nhấp để chuyển tới node này">
+              <span style="color:#38bdf8;">🔗 <strong>${e.label}:</strong></span> <span style="color:#e2e8f0; text-decoration: underline;">${otherLabel}</span>
+            </li>`;
+          }).join('') || '<li style="color:#64748b; font-style:italic;">Không có liên kết trực tiếp</li>';
+        }
 
-      inspector.classList.add('open');
+        inspector.classList.add('open');
+      }
     }
 
     function closeInspector() {
-      document.getElementById('graph-inspector').classList.remove('open');
+      const inspector = document.getElementById('graph-inspector');
+      if (inspector) inspector.classList.remove('open');
       document.querySelectorAll('.graph-edge').forEach(e => e.classList.remove('active'));
+      document.querySelectorAll('.node-group').forEach(ng => ng.classList.remove('selected'));
     }
   </script>
 </body>
