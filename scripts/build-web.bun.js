@@ -1128,6 +1128,222 @@ const htmlContent = `<!DOCTYPE html>
       font-size: 0.85rem;
     }
 
+    /* Floating Back-To-Top Button */
+    .back-to-top-btn {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 10px rgba(59, 130, 246, 0.25);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .back-to-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top-btn:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Bottom Navigation Bar */
+    .bottom-nav-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(13, 21, 34, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      z-index: 90;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 0.25rem;
+    }
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15rem;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.35rem 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      flex: 1;
+      transition: all 0.2s ease;
+    }
+    .bottom-nav-item .b-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .bottom-nav-item.active {
+      color: #38bdf8;
+    }
+    .bottom-nav-item.active .b-icon {
+      transform: scale(1.1);
+    }
+
+    /* Question Palette Styles */
+    .palette-container {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.75rem;
+      animation: fadeIn 0.25s ease;
+    }
+    .palette-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .palette-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .palette-filters {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .palette-filter-btn {
+      background: #162032;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .palette-filter-btn:hover {
+      color: #fff;
+      border-color: #475569;
+    }
+    .palette-filter-btn.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+      gap: 0.45rem;
+    }
+    .palette-pill {
+      height: 36px;
+      border-radius: 8px;
+      background: #111a2e;
+      border: 1px solid var(--border);
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .palette-pill:hover {
+      border-color: #38bdf8;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .palette-pill.correct {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #34d399;
+    }
+    .palette-pill.wrong {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #f87171;
+    }
+    .palette-pill.active-q {
+      box-shadow: 0 0 10px #38bdf8;
+      border-color: #38bdf8;
+      font-weight: 700;
+    }
+
+    /* Sub-tabs for Topic Study */
+    .topic-subtab-bar {
+      display: flex;
+      gap: 0.5rem;
+      background: #0d1522;
+      padding: 0.4rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      position: sticky;
+      top: 65px;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+    }
+    .topic-subtab-bar::-webkit-scrollbar { display: none; }
+    .topic-subtab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.55rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.825rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .topic-subtab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .topic-subtab-btn.active {
+      color: #fff;
+      background: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid #3b82f6;
+    }
+
     /* Comprehensive Mobile Responsive Styles */
     @media (max-width: 768px) {
       .header-inner {
@@ -1270,6 +1486,24 @@ const htmlContent = `<!DOCTYPE html>
         white-space: normal;
         text-align: center;
       }
+      .bottom-nav-bar {
+        display: flex;
+      }
+      .back-to-top-btn {
+        bottom: 4.8rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+        gap: 0.35rem;
+      }
+      .palette-pill {
+        height: 32px;
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -1354,16 +1588,19 @@ const htmlContent = `<!DOCTYPE html>
         </button>
       </div>
 
-      <!-- Quick Section Anchor Navigation for Active Domain -->
-      <div class="topic-anchor-bar">
-        <button class="topic-anchor-btn active" onclick="scrollToTopicSection('p1')">
-          <span>📌 Phần 1: Trọng tâm lý thuyết & Decision Trees</span>
+      <!-- Sub-Tabs for Active Domain -->
+      <div class="topic-subtab-bar" id="topic-subtabs">
+        <button id="subtab-p1" class="topic-subtab-btn active" onclick="switchTopicSubtab('p1')">
+          <span>📖 Phần 1: Lý thuyết & Decision Trees</span>
         </button>
-        <button class="topic-anchor-btn" onclick="scrollToTopicSection('p2')">
-          <span>📘 Phần 2: Bảng khái niệm thuật ngữ</span>
+        <button id="subtab-p2" class="topic-subtab-btn" onclick="switchTopicSubtab('p2')">
+          <span>📘 Phần 2: Bảng thuật ngữ</span>
         </button>
-        <button class="topic-anchor-btn" onclick="scrollToTopicSection('p3')">
-          <span>🎯 Phần 3: Bộ câu hỏi tình huống & Phân tích đáp án</span>
+        <button id="subtab-p3" class="topic-subtab-btn" onclick="switchTopicSubtab('p3')">
+          <span>🎯 Phần 3: Câu hỏi tình huống</span>
+        </button>
+        <button id="subtab-all" class="topic-subtab-btn" onclick="switchTopicSubtab('all')">
+          <span>📑 Xem toàn bộ</span>
         </button>
       </div>
 
@@ -1442,6 +1679,9 @@ const htmlContent = `<!DOCTYPE html>
               <span>👁️ Chế độ Ôn tập (Hiện tất cả)</span>
             </button>
           </div>
+          <button id="toggle-palette-btn" class="action-btn" onclick="togglePalette()" title="Mở bảng lưới 57 câu hỏi để nhảy nhanh và lọc câu đúng/sai">
+            <span>🔢 Bảng câu hỏi</span>
+          </button>
           <button id="shuffle-btn" class="action-btn" onclick="shuffleQuestions()" title="Trộn ngẫu nhiên thứ tự các câu hỏi để thi thử">
             <span>🔀 Trộn đề</span>
           </button>
@@ -1450,6 +1690,11 @@ const htmlContent = `<!DOCTYPE html>
           </button>
           <button class="filter-chip" style="background:#1e293b;" onclick="resetQuiz()" title="Xóa các đáp án đã chọn để làm lại">Làm lại bài thi</button>
         </div>
+      </div>
+
+      <!-- Question Palette Component -->
+      <div id="palette-drawer" class="palette-container" style="display: none;">
+        <!-- Rendered via JS -->
       </div>
 
       <!-- Questions List -->
@@ -1530,6 +1775,33 @@ const htmlContent = `<!DOCTYPE html>
       </div>
     </section>
 
+    <!-- Floating Back-to-Top Button -->
+    <button id="back-to-top" class="back-to-top-btn" onclick="scrollToTop()" title="Cuộn lên đầu trang">⬆️</button>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="bottom-nav-bar">
+      <button class="bottom-nav-item active" id="bnav-topics" onclick="switchTab('topics')">
+        <span class="b-icon">📚</span>
+        <span>Chủ đề</span>
+      </button>
+      <button class="bottom-nav-item" id="bnav-quiz" onclick="switchTab('quiz')">
+        <span class="b-icon">📝</span>
+        <span>Luyện đề</span>
+      </button>
+      <button class="bottom-nav-item" id="bnav-graph" onclick="switchTab('graph')">
+        <span class="b-icon">🧭</span>
+        <span>Bản đồ</span>
+      </button>
+      <button class="bottom-nav-item" id="bnav-matrix" onclick="switchTab('matrix')">
+        <span class="b-icon">⚡</span>
+        <span>Bảng bẫy</span>
+      </button>
+      <button class="bottom-nav-item" id="bnav-ste" onclick="switchTab('ste')">
+        <span class="b-icon">📖</span>
+        <span>Từ điển</span>
+      </button>
+    </nav>
+
   </main>
 
   <script>
@@ -1539,10 +1811,13 @@ const htmlContent = `<!DOCTYPE html>
 
     // State
     let currentTopicDomain = 1;
+    let currentTopicSubtab = 'p1'; // 'p1' | 'p2' | 'p3' | 'all'
     let currentDomainFilter = 'all';
     let searchQuery = '';
     let quizMode = 'exam'; // 'exam' | 'study'
     let isShuffled = false;
+    let isPaletteOpen = false;
+    let paletteFilter = 'all'; // 'all' | 'unanswered' | 'wrong' | 'correct'
     let customQuestionOrder = null;
     let matrixSearchQuery = '';
     let steSearchQuery = '';
@@ -1557,14 +1832,18 @@ const htmlContent = `<!DOCTYPE html>
       renderDecisionMatrix();
       renderSTEDictionary();
       renderConceptGraph();
+      initScrollListener();
     });
 
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
       
       const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
       if (targetBtn) targetBtn.classList.add('active');
+      const bottomBtn = document.getElementById('bnav-' + tabId);
+      if (bottomBtn) bottomBtn.classList.add('active');
       const panel = document.getElementById('tab-' + tabId);
       if (panel) panel.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1581,15 +1860,156 @@ const htmlContent = `<!DOCTYPE html>
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function scrollToTopicSection(secId) {
-      const el = document.getElementById('topic-sec-' + secId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        document.querySelectorAll('.topic-anchor-btn').forEach(btn => {
-          if (btn.getAttribute('onclick').includes(secId)) btn.classList.add('active');
-          else btn.classList.remove('active');
-        });
+    function switchTopicSubtab(subId) {
+      currentTopicSubtab = subId;
+      document.querySelectorAll('.topic-subtab-btn').forEach(btn => {
+        if (btn.getAttribute('onclick').includes(subId)) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      applyTopicSubtabVisibility();
+    }
+
+    function applyTopicSubtabVisibility() {
+      const p1 = document.getElementById('topic-sec-p1');
+      const p2 = document.getElementById('topic-sec-p2');
+      const p3 = document.getElementById('topic-sec-p3');
+      if (!p1 || !p2 || !p3) return;
+
+      if (currentTopicSubtab === 'all') {
+        p1.style.display = 'block';
+        p2.style.display = 'block';
+        p3.style.display = 'block';
+      } else {
+        p1.style.display = currentTopicSubtab === 'p1' ? 'block' : 'none';
+        p2.style.display = currentTopicSubtab === 'p2' ? 'block' : 'none';
+        p3.style.display = currentTopicSubtab === 'p3' ? 'block' : 'none';
       }
+    }
+
+    // Floating Back-to-Top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initScrollListener() {
+      window.addEventListener('scroll', () => {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        if (window.scrollY > 280) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      });
+    }
+
+    // Question Palette Functions
+    function togglePalette() {
+      isPaletteOpen = !isPaletteOpen;
+      const drawer = document.getElementById('palette-drawer');
+      const btn = document.getElementById('toggle-palette-btn');
+      if (!drawer) return;
+      if (isPaletteOpen) {
+        drawer.style.display = 'block';
+        if (btn) btn.classList.add('shuffle-active');
+        renderPalette();
+      } else {
+        drawer.style.display = 'none';
+        if (btn) btn.classList.remove('shuffle-active');
+      }
+    }
+
+    function setPaletteFilter(filter) {
+      paletteFilter = filter;
+      renderPalette();
+    }
+
+    function scrollToQuestion(qId) {
+      const el = document.getElementById('card-quiz-' + qId) || document.getElementById('card-' + qId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.style.borderColor = '#00a4e4';
+        el.style.boxShadow = '0 0 20px rgba(0, 164, 228, 0.45)';
+        setTimeout(() => {
+          el.style.borderColor = '';
+          el.style.boxShadow = '';
+        }, 1500);
+      }
+    }
+
+    function renderPalette() {
+      const drawer = document.getElementById('palette-drawer');
+      if (!drawer || !isPaletteOpen) return;
+
+      const allQs = getAllQuestions();
+      let answeredCount = 0;
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      const items = allQs.map((q, idx) => {
+        const userSel = userAnswers[q.id] || [];
+        const isAttempted = userSel.length > 0;
+        const correctLetters = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
+        const lettersSorted = correctLetters.sort().join('');
+        const userSorted = [...userSel].sort().join('');
+
+        let status = 'unanswered';
+        if (isAttempted) {
+          answeredCount++;
+          if (userSorted === lettersSorted) {
+            status = 'correct';
+            correctCount++;
+          } else {
+            status = 'wrong';
+            wrongCount++;
+          }
+        }
+
+        return {
+          id: q.id,
+          num: idx + 1,
+          domainId: q.domainId,
+          status
+        };
+      });
+
+      const unansweredCount = allQs.length - answeredCount;
+
+      const filteredItems = items.filter(item => {
+        if (paletteFilter === 'all') return true;
+        return item.status === paletteFilter;
+      });
+
+      const pillsHtml = filteredItems.map(item => \`
+        <button class="palette-pill \${item.status}" onclick="scrollToQuestion('\${item.id}')" title="Câu \${item.num} (Domain \${item.domainId})">
+          \${item.num}
+        </button>
+      \`).join('');
+
+      drawer.innerHTML = \`
+        <div class="palette-header">
+          <div class="palette-title">
+            <span>🔢 Bản đồ 57 câu hỏi (\${answeredCount}/\${allQs.length} đã làm)</span>
+          </div>
+          <div class="palette-filters">
+            <button class="palette-filter-btn \${paletteFilter === 'all' ? 'active' : ''}" onclick="setPaletteFilter('all')">
+              Tất cả (\${allQs.length})
+            </button>
+            <button class="palette-filter-btn \${paletteFilter === 'unanswered' ? 'active' : ''}" onclick="setPaletteFilter('unanswered')">
+              Chưa làm (\${unansweredCount})
+            </button>
+            <button class="palette-filter-btn \${paletteFilter === 'wrong' ? 'active' : ''}" style="color:#f87171;" onclick="setPaletteFilter('wrong')">
+              ❌ Sai (\${wrongCount})
+            </button>
+            <button class="palette-filter-btn \${paletteFilter === 'correct' ? 'active' : ''}" style="color:#34d399;" onclick="setPaletteFilter('correct')">
+              ✅ Đúng (\${correctCount})
+            </button>
+          </div>
+        </div>
+        <div class="palette-grid">
+          \${pillsHtml}
+        </div>
+      \`;
     }
 
     function renderTopicDomain(domainId) {
@@ -1696,6 +2116,7 @@ const htmlContent = `<!DOCTYPE html>
           </div>
         </div>
       \`;
+      applyTopicSubtabVisibility();
     }
 
     function revealAllTopicQuestions(domainId) {
@@ -1858,6 +2279,7 @@ const htmlContent = `<!DOCTYPE html>
       isShuffled = true;
       updateShuffleButtons();
       renderQuiz();
+      renderPalette();
       showToast('🔀 Đã xáo trộn ngẫu nhiên thứ tự 57 câu hỏi!');
     }
 
@@ -1866,6 +2288,7 @@ const htmlContent = `<!DOCTYPE html>
       customQuestionOrder = null;
       updateShuffleButtons();
       renderQuiz();
+      renderPalette();
       showToast('↩️ Đã khôi phục thứ tự chuẩn theo Domain!');
     }
 
@@ -1952,6 +2375,7 @@ const htmlContent = `<!DOCTYPE html>
       updateStats();
       renderQuiz();
       renderTopicDomain(currentTopicDomain);
+      renderPalette();
       showToast('🔄 Đã làm mới kết quả bài thi!');
     }
 
@@ -1997,6 +2421,7 @@ const htmlContent = `<!DOCTYPE html>
       updateStats();
       renderQuiz();
       renderTopicDomain(currentTopicDomain);
+      renderPalette();
     }
 
     function updateStats() {
