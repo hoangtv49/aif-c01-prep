@@ -1,0 +1,33 @@
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_0855b055439e1e 663-893,924,929,931,933,955-1014,1016,1129,1134,1138,1156,1172,1176,1190,1205-1349,1578,1587,1632,1656-1658,1665,1691,1730-1750
+  s_a513f3f6851de5::t_8ebcb54bb30366 1751
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_343222dacc8724 3,6-127
+  s_a513f3f6851de5::t_08e05c0a12e7b2 863-1093
+  s_a513f3f6851de5::t_02a3a2d6a81fcb 1405-1549,1950
+  s_a513f3f6851de5::t_2931fa7e3c1dbf 1376,1390
+  s_a513f3f6851de5::t_cba8a6b08b85f2 1778,1787,1832,1856-1858,1865,1891,1930-1949
+  s_a513f3f6851de5::t_65a18dca45f63f 1124,1133
+  s_a513f3f6851de5::t_0c3aaa214beeb5 1202
+  s_a513f3f6851de5::t_33d5cf4f91f41c 1329,1334,1338,1356
+  s_a513f3f6851de5::t_802874ecf4cc09 1129,1131,1155-1201,1203-1214,1216
+  s_a513f3f6851de5::t_6fafe91caf37ff 1951
+aif-c01-study-guide/data.json
+  s_a513f3f6851de5::t_0855b055439e1e 6,474,896,1365,1769
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6f9be9c34bc2fc8a99a6ed3a0c9cee0ac12dc521",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
