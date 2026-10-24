@@ -254,17 +254,19 @@ const htmlContent = `<!DOCTYPE html>
     .header-inner {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 0.75rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      min-width: 0;
+      flex-shrink: 0;
     }
     .brand-badge {
       background: linear-gradient(135deg, #00a4e4, #6366f1);
@@ -274,16 +276,27 @@ const htmlContent = `<!DOCTYPE html>
       padding: 0.35rem 0.65rem;
       border-radius: 6px;
       letter-spacing: 0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.2;
+      box-shadow: 0 2px 6px rgba(0, 164, 228, 0.25);
+    }
+    .brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
     .brand-title {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #fff;
+      white-space: nowrap;
     }
     .brand-subtitle {
-      font-size: 0.8rem;
+      font-size: 0.775rem;
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
     /* Nav Tabs */
@@ -1344,6 +1357,85 @@ const htmlContent = `<!DOCTYPE html>
       border: 1px solid #3b82f6;
     }
 
+    .subtab-text-short {
+      display: none;
+    }
+    .subtab-text-full {
+      display: inline;
+    }
+
+    /* Table & Search Header Bars */
+    .table-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .search-header-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .search-header-group .search-box {
+      width: 320px;
+    }
+    .search-count-badge {
+      font-size: 0.8rem;
+      padding: 0.45rem 0.75rem;
+      background: #162032;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Desktop Responsive Header & Layout */
+    @media (min-width: 769px) and (max-width: 1320px) {
+      .header-inner {
+        padding: 0.65rem 1rem;
+        gap: 0.75rem;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+      .brand-subtitle {
+        display: none; /* Hide subtitle on medium desktop so header remains single-row */
+      }
+      .tab-btn {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.825rem;
+        gap: 0.35rem;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1080px) {
+      .header-inner {
+        padding: 0.55rem 0.85rem;
+        gap: 0.5rem;
+      }
+      .brand-title {
+        font-size: 0.95rem;
+      }
+      .brand-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.55rem;
+      }
+      .tab-btn {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.775rem;
+      }
+      .stats-pill {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.75rem;
+        gap: 0.45rem;
+      }
+    }
+
     /* Comprehensive Mobile Responsive Styles */
     @media (max-width: 768px) {
       .header-inner {
@@ -1388,14 +1480,57 @@ const htmlContent = `<!DOCTYPE html>
       .topic-domain-title {
         font-size: 1.2rem;
       }
+      .subtab-text-full {
+        display: none;
+      }
+      .subtab-text-short {
+        display: inline;
+      }
       .topic-subtab-bar {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.4rem !important;
+        overflow-x: visible !important;
+        white-space: normal !important;
         top: 52px;
         margin-bottom: 1.25rem;
         padding: 0.35rem;
       }
       .topic-subtab-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.4rem;
         font-size: 0.775rem;
-        padding: 0.45rem 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+        text-align: center;
+        border-radius: 8px;
+      }
+      .table-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+      .search-header-group {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .search-header-group .search-box {
+        width: 100% !important;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .search-count-badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       .topic-section-card {
         padding: 1.25rem 0.85rem;
@@ -1508,7 +1643,7 @@ const htmlContent = `<!DOCTYPE html>
     <div class="header-inner">
       <div class="brand">
         <span class="brand-badge">AIF-C01</span>
-        <div>
+        <div class="brand-text">
           <div class="brand-title">AWS AI Practitioner Mastery Studio</div>
           <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
         </div>
@@ -1522,7 +1657,8 @@ const htmlContent = `<!DOCTYPE html>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
       </nav>
 
-      <div class="stats-pill">
+      <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
+      <div class="stats-pill" id="header-stats-pill" style="display: none;">
         <div class="stat-item">
           <span class="stat-label">Đã làm:</span>
           <span class="stat-value" id="stats-attempted">0/57</span>
@@ -1585,16 +1721,24 @@ const htmlContent = `<!DOCTYPE html>
       <!-- Sub-Tabs for Active Domain -->
       <div class="topic-subtab-bar" id="topic-subtabs">
         <button id="subtab-p1" class="topic-subtab-btn active" onclick="switchTopicSubtab('p1')">
-          <span>📖 Phần 1: Lý thuyết & Decision Trees</span>
+          <span>📖</span>
+          <span class="subtab-text-full">Phần 1: Lý thuyết & Decision Trees</span>
+          <span class="subtab-text-short">Phần 1: Lý thuyết</span>
         </button>
         <button id="subtab-p2" class="topic-subtab-btn" onclick="switchTopicSubtab('p2')">
-          <span>📘 Phần 2: Bảng thuật ngữ</span>
+          <span>📘</span>
+          <span class="subtab-text-full">Phần 2: Bảng thuật ngữ</span>
+          <span class="subtab-text-short">Phần 2: Thuật ngữ</span>
         </button>
         <button id="subtab-p3" class="topic-subtab-btn" onclick="switchTopicSubtab('p3')">
-          <span>🎯 Phần 3: Câu hỏi tình huống</span>
+          <span>🎯</span>
+          <span class="subtab-text-full">Phần 3: Câu hỏi tình huống</span>
+          <span class="subtab-text-short">Phần 3: Câu hỏi</span>
         </button>
         <button id="subtab-all" class="topic-subtab-btn" onclick="switchTopicSubtab('all')">
-          <span>📑 Xem toàn bộ</span>
+          <span>📑</span>
+          <span class="subtab-text-full">Xem toàn bộ</span>
+          <span class="subtab-text-short">Xem toàn bộ</span>
         </button>
       </div>
 
@@ -1700,14 +1844,14 @@ const htmlContent = `<!DOCTYPE html>
     <!-- TAB 3: DECISION MATRIX & TRAPS -->
     <section id="tab-matrix" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+        <div class="table-header-bar">
           <div>
             <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Tra Cứu Quyết Định Dịch Vụ Nhanh (Decision Matrix)</h2>
             <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <input type="text" id="matrix-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
-            <span id="matrix-count" class="q-badge" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">25 kết quả</span>
+          <div class="search-header-group">
+            <input type="text" id="matrix-search" class="search-box" placeholder="🔍 Tìm tình huống, dịch vụ AWS, bẫy..." oninput="handleMatrixSearch(this.value)">
+            <span id="matrix-count" class="search-count-badge">25/25 kết quả</span>
           </div>
         </div>
         
@@ -1731,14 +1875,14 @@ const htmlContent = `<!DOCTYPE html>
     <!-- TAB 4: DICTIONARY -->
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+        <div class="table-header-bar">
           <div>
             <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi</h2>
             <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <input type="text" id="ste-search" class="search-box" style="width: 320px;" placeholder="🔍 Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
-            <span id="ste-count" class="q-badge" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">82 thuật ngữ</span>
+          <div class="search-header-group">
+            <input type="text" id="ste-search" class="search-box" placeholder="🔍 Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
+            <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
           </div>
         </div>
 
@@ -1840,6 +1984,13 @@ const htmlContent = `<!DOCTYPE html>
       if (bottomBtn) bottomBtn.classList.add('active');
       const panel = document.getElementById('tab-' + tabId);
       if (panel) panel.classList.add('active');
+
+      // Only show exam live progress pill when practicing Quiz
+      const statsPill = document.getElementById('header-stats-pill');
+      if (statsPill) {
+        statsPill.style.display = tabId === 'quiz' ? 'flex' : 'none';
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1861,6 +2012,16 @@ const htmlContent = `<!DOCTYPE html>
         else btn.classList.remove('active');
       });
       applyTopicSubtabVisibility();
+
+      // Smooth scroll back to subtab bar so user starts reading from top of the section
+      const subtabsEl = document.getElementById('topic-subtabs');
+      if (subtabsEl) {
+        const rect = subtabsEl.getBoundingClientRect();
+        if (rect.top < 60) {
+          const topOffset = window.pageYOffset + rect.top - 58;
+          window.scrollTo({ top: topOffset, behavior: 'smooth' });
+        }
+      }
     }
 
     function applyTopicSubtabVisibility() {
