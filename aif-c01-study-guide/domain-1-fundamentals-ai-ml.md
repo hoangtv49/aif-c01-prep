@@ -234,3 +234,121 @@ A retail enterprise wants to group customers into segments based on similar purc
   - Dự đoán nhãn danh mục rời rạc $\rightarrow$ **Classification (Supervised)**.
   - Dự đoán con số liên tục $\rightarrow$ **Regression (Supervised)**.
   - Gom nhóm dữ liệu không nhãn $\rightarrow$ **Clustering (Unsupervised)**.
+
+---
+
+### Question 6
+A healthcare company is training a machine learning classification model to detect early-stage malignant tumors in medical imaging. The cost of failing to identify a patient with a malignant tumor (a false negative) is catastrophic, whereas referring a healthy patient for further screening (a false positive) incurs only minimal inconvenience. Which evaluation metric should the data science team optimize to minimize false negatives?
+- A. Precision
+- B. Recall
+- C. Accuracy
+- D. Specificity
+
+**Đáp án đúng:** **B. Recall**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Tình huống: Chi phí của việc bỏ sót ca bệnh (False Negative - dự đoán Không bệnh trong khi Thực tế Có bệnh) là thảm họa.
+- **Recall (Sensitivity / True Positive Rate)** đo lường tỷ lệ các ca thực sự dương tính được mô hình phát hiện chính xác: $\text{Recall} = \frac{TP}{TP + FN}$. Khi tối ưu hóa **Recall**, số lượng ca bỏ sót (FN) sẽ được kéo xuống mức thấp nhất có thể.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Precision):** Precision đo lường trong số những ca mô hình dự đoán là Có bệnh thì có bao nhiêu ca đúng thật: $\text{Precision} = \frac{TP}{TP + FP}$. Tối ưu Precision giúp giảm thiểu báo động giả (False Positives), phù hợp cho bài toán lọc spam hoặc chặn thẻ tín dụng nhầm, nhưng sẽ làm tăng nguy cơ bỏ sót ca bệnh (tăng FN).
+- **Loại C (Accuracy):** Accuracy đo tỷ lệ dự đoán đúng trên toàn bộ mẫu, dễ bị đánh lừa khi dữ liệu mất cân bằng (ví dụ 99% người không mắc bệnh thì đoán tất cả không bệnh vẫn đạt 99% accuracy).
+- **Loại D (Specificity):** Đo lường tỷ lệ các ca âm tính thật được dự đoán đúng (True Negative Rate), không tập trung vào việc giảm thiểu False Negatives ở nhóm người mắc bệnh.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Quy tắc vàng trong đề thi AIF-C01:
+  - Bỏ sót ca bệnh / gian lận gây hậu quả nghiêm trọng (**Minimize False Negatives**) $\rightarrow$ Chọn **Recall**.
+  - Báo động nhầm gây phiền toái cho khách hàng (**Minimize False Positives**) $\rightarrow$ Chọn **Precision**.
+  - Cần cân bằng hài hòa cả hai $\rightarrow$ Chọn **F1-Score**.
+
+---
+
+### Question 7
+A nationwide supermarket chain wants to predict product inventory demand for 500 store locations for the upcoming holiday season. The company needs a fully managed service that uses machine learning to combine historical daily sales data with external variables such as weather forecasts and holiday promotional calendars. Which AWS service should the company choose?
+- A. Amazon Personalize
+- B. Amazon Forecast
+- C. Amazon Polly
+- D. Amazon Rekognition
+
+**Đáp án đúng:** **B. Amazon Forecast**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"predict product inventory demand over time"* + *"combines historical time-series data with external variables (weather, holidays)"*.
+- **Amazon Forecast** là dịch vụ dự báo chuỗi thời gian (Time-series forecasting) được quản lý hoàn toàn, tự động áp dụng các thuật toán ML tiên tiến để dự báo nhu cầu hàng hóa trong tương lai kết hợp dữ liệu lịch sử và các yếu tố ngoại cảnh.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Amazon Personalize):** Personalize dùng để tạo hệ thống gợi ý sản phẩm cho từng cá nhân người dùng (Recommendation engine), không phải dịch vụ dự báo số lượng tồn kho theo chuỗi thời gian.
+- **Loại C (Amazon Polly):** Chuyển văn bản thành giọng nói (Text-to-Speech).
+- **Loại D (Amazon Rekognition):** Dịch vụ thị giác máy tính nhận diện hình ảnh/video.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Predict inventory demand / financial time-series forecasting"* $\rightarrow$ Luôn chọn **Amazon Forecast**.
+
+---
+
+### Question 8
+An online streaming platform wants to provide personalized movie and television show recommendations to users on its homepage in real time based on user watch history, ratings, and clickstream interactions. The development team wants to deploy a recommendation engine quickly without building custom collaborative filtering algorithms from scratch. Which AWS service provides this functionality?
+- A. Amazon Personalize
+- B. Amazon Forecast
+- C. Amazon Comprehend
+- D. AWS Glue DataBrew
+
+**Đáp án đúng:** **A. Amazon Personalize**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"personalized recommendations to users in real time based on clickstream, watch history, and ratings"*.
+- **Amazon Personalize** cho phép các nhà phát triển nhanh chóng xây dựng tính năng cá nhân hóa trải nghiệm người dùng theo thời gian thực (User Recommendations, Similar Items, Personalized Ranking) bằng công nghệ học máy được kế thừa từ Amazon.com.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Amazon Forecast):** Dùng cho bài toán dự báo nhu cầu tương lai theo chuỗi thời gian (như tồn kho, doanh thu), không phải gợi ý sở thích cho từng người dùng.
+- **Loại C (Amazon Comprehend):** Dịch vụ xử lý ngôn ngữ tự nhiên (NLP) phân tích cảm xúc văn bản, không phải công cụ gợi ý nội dung.
+- **Loại D (AWS Glue DataBrew):** Công cụ làm sạch và chuẩn bị dữ liệu bằng giao diện trực quan, không phải mô hình ML gợi ý sản phẩm.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Personalized product recommendations / Similar items ranking"* $\rightarrow$ Luôn chọn **Amazon Personalize**.
+
+---
+
+### Question 9
+A fintech payment processor wants to evaluate online credit card transactions in real time to detect fraudulent activities such as stolen credit card usage and account takeover attempts. The company wants to use machine learning models customized to its own transaction data alongside proven fraud detection techniques developed by AWS and Amazon.com. Which AWS service is designed specifically for this use case?
+- A. Amazon Inspector
+- B. Amazon Fraud Detector
+- C. AWS Shield Advanced
+- D. AWS WAF
+
+**Đáp án đúng:** **B. Amazon Fraud Detector**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"evaluate transactions in real time to detect fraudulent activities (stolen cards, account takeovers)"*.
+- **Amazon Fraud Detector** là dịch vụ chuyên biệt giúp doanh nghiệp xây dựng, huấn luyện và triển khai các mô hình phát hiện gian lận giao dịch trực tuyến nhanh chóng dựa trên kinh nghiệm thực tế của Amazon.com.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Amazon Inspector):** Dịch vụ quét lỗ hổng bảo mật hệ điều hành và container images, không phát hiện gian lận thanh toán tài chính.
+- **Loại C (AWS Shield Advanced):** Dịch vụ bảo vệ chống tấn công từ chối dịch vụ (DDoS) ở tầng mạng.
+- **Loại D (AWS WAF):** Tường lửa web lọc traffic HTTP độc hại (SQL Injection, XSS), không phân tích hành vi gian lận thẻ tín dụng của khách hàng.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Detect online payment fraud, stolen credit cards, fake account registrations"* $\rightarrow$ Luôn chọn **Amazon Fraud Detector**.
+
+---
+
+### Question 10
+A data engineering team needs to prepare, clean, and visualize a multi-gigabyte tabular customer dataset stored in Amazon S3 for an upcoming machine learning project. The team wants to inspect data distributions, identify missing values, and apply over 300 pre-built transformations using a point-and-click visual interface before exporting the workflow as executable Python code. Which Amazon SageMaker feature should the team use?
+- A. SageMaker Feature Store
+- B. SageMaker Data Wrangler
+- C. SageMaker Model Registry
+- D. SageMaker JumpStart
+
+**Đáp án đúng:** **B. SageMaker Data Wrangler**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu: *"prepare, clean, and visualize tabular dataset"*, *"point-and-click visual interface with 300+ pre-built transformations"*, *"export workflow as code"*.
+- **Amazon SageMaker Data Wrangler** là tính năng trong SageMaker Studio giúp giảm thời gian làm sạch và chuẩn bị dữ liệu từ nhiều tuần xuống vài phút nhờ giao diện trực quan và thư viện biến đổi dữ liệu đồ sộ.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (SageMaker Feature Store):** Kho lưu trữ tập trung để quản lý và tái sử dụng các đặc trưng (features) cho training và inference, không phải công cụ làm sạch dữ liệu trực quan.
+- **Loại C (SageMaker Model Registry):** Quản lý phiên bản và quy trình phê duyệt mô hình ML trước khi triển khai production.
+- **Loại D (SageMaker JumpStart):** Kho chứa các mô hình pre-trained và giải pháp mẫu, không dùng để làm sạch dữ liệu bảng biểu.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Visual point-and-click data preparation with 300+ transformations"* $\rightarrow$ Luôn chọn **SageMaker Data Wrangler**.

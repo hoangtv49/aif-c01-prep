@@ -222,3 +222,124 @@ A media company wants to analyze two-hour interview video recordings. The applic
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Cụm từ trong đề tiếng Anh: *"processes text, image, video, audio concurrently"* $\rightarrow$ Luôn trỏ tới **Multimodal Model**.
+
+---
+
+### Question 6
+A marketing company is building a generative AI application using a foundation model on Amazon Bedrock to draft creative, engaging email promotional copy. The company requires the generated emails to be highly creative, diverse, and short in length (under 150 words). Which configuration of inference parameters satisfies these requirements?
+- A. Set Temperature to 0.1, Top-P to 0.2, and Max Generation Length to 4096 tokens.
+- B. Set Temperature to 0.9, Top-P to 0.9, and Max Generation Length to 200 tokens.
+- C. Set Temperature to 0.0, Top-K to 1, and Stop Sequence to "STOP".
+- D. Set Temperature to 0.9, Top-P to 0.1, and Max Generation Length to 8192 tokens.
+
+**Đáp án đúng:** **B. Set Temperature to 0.9, Top-P to 0.9, and Max Generation Length to 200 tokens.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Hai yêu cầu đề bài:
+  1. *"highly creative and diverse text"* $\rightarrow$ Cần **Temperature cao** (gần 1.0, ví dụ 0.8–0.9) và **Top-P cao** (0.9) để mở rộng phân phối từ ngữ được lựa chọn.
+  2. *"short in length (under 150 words)"* $\rightarrow$ Cần giới hạn **Max Generation Length / Max Tokens** ở mức nhỏ (ví dụ 200 tokens $\approx$ 150 từ).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** Temperature 0.1 và Top-P 0.2 sẽ làm cho kết quả đầu ra rất đơn điệu, lặp lại và thiếu tính sáng tạo; Max Generation Length 4096 tokens không khống chế được độ dài ngắn của email.
+- **Loại C:** Temperature 0.0 và Top-K 1 biến mô hình thành greedy decoding (luôn chọn từ có xác suất cao nhất), triệt tiêu hoàn toàn tính sáng tạo.
+- **Loại D:** Top-P 0.1 giới hạn không gian lựa chọn quá hẹp và Max Tokens 8192 quá lớn so với yêu cầu email ngắn.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Thuộc lòng bảng suy luận tham số:
+  - Cần **Sáng tạo (Creative / Diverse)** $\rightarrow$ **High Temperature & High Top-P**.
+  - Cần **Chính xác, thực tế (Deterministic / Factual)** $\rightarrow$ **Low Temperature & Low Top-P**.
+  - Cần **Độ dài ngắn (Short length)** $\rightarrow$ **Low Max Generation Length / Max Tokens**.
+
+---
+
+### Question 7
+A financial services firm is selecting an Amazon Bedrock foundation model to power an interactive, customer-facing customer support chatbot. The chatbot must provide sub-second response times to user queries with minimal latency. High logical reasoning and complex mathematical calculations are not required for this workload. Which model selection strategy should the firm adopt?
+- A. Select the largest available frontier model with the highest parameter count to ensure maximum answer fluency.
+- B. Select a smaller, lightweight model designed for high throughput and low latency.
+- C. Fine-tune a 70-billion-parameter model using human feedback before deployment.
+- D. Implement chain-of-thought prompting with multiple reasoning iterations on a complex model.
+
+**Đáp án đúng:** **B. Select a smaller, lightweight model designed for high throughput and low latency.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Ràng buộc quan trọng: *"interactive customer support chatbot"*, *"sub-second response times with minimal latency"*, *"complex reasoning not required"*.
+- Trong kỳ thi AIF-C01, quy tắc chọn mô hình luôn yêu cầu cân đối giữa kích thước mô hình và độ trễ. Các mô hình nhỏ gọn (như Claude 3 Haiku, Amazon Titan Text Lite, Llama 8B) được tối ưu hóa đặc biệt cho **tốc độ phản hồi tức thì (low latency)** và **thông lượng cao (high throughput)** với chi phí rẻ hơn nhiều so với các mô hình khổng lồ.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** Các mô hình lớn (Frontier/70B+ models) có thời gian xử lý suy luận (Time-to-First-Token) cao hơn nhiều, không thể đảm bảo độ trễ dưới 1 giây cho chatbot tương tác.
+- **Loại C (Fine-tune 70B model):** Không giải quyết được bài toán độ trễ suy luận của mô hình lớn, gây lãng phí chi phí.
+- **Loại D (Chain-of-thought iterations):** CoT làm tăng số lượng token sinh ra qua nhiều bước suy luận, làm tăng đáng kể độ trễ phản hồi.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Khi đề bài nhấn mạnh: *"Real-time user interaction"*, *"Sub-second response"*, *"High throughput and lowest cost"* $\rightarrow$ Luôn ưu tiên chọn **Smaller / Lightweight models** (như Claude Haiku hay Titan Lite).
+
+---
+
+### Question 8
+An enterprise legal department needs an LLM to analyze corporate merger contracts that exceed 500 pages (approximately 300,000 words). The department discovers that passing the entire document directly into the prompt exceeds the model's maximum context window and results in an API error. Which technique should the team use to process this document effectively without losing critical information?
+- A. Increase the Temperature parameter to allow the model to extrapolate missing text.
+- B. Truncate the document by deleting all pages after the model's token limit.
+- C. Implement document chunking with a vector store and use Retrieval-Augmented Generation (RAG) to retrieve only relevant sections.
+- D. Convert the entire PDF contract into a single Base64 encoded string.
+
+**Đáp án đúng:** **C. Implement document chunking with a vector store and use Retrieval-Augmented Generation (RAG) to retrieve only relevant sections.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Tình huống: Tài liệu 500 trang vượt quá giới hạn **Context Window** của mô hình.
+- Giải pháp chuẩn công nghiệp: Áp dụng kỹ thuật **Document Chunking** (chia nhỏ tài liệu thành các đoạn văn ngắn có phần chồng lấn overlap), chuyển thành vector embedding và lưu vào Vector Store. Khi người dùng đặt câu hỏi, hệ thống **RAG** chỉ tìm kiếm và đưa các đoạn văn liên quan nhất vào prompt, hoàn toàn vượt qua giới hạn của Context Window mà không làm mất thông tin pháp lý quan trọng.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** Tham số Temperature chỉ điều chỉnh tính ngẫu nhiên, không thể giải quyết lỗi tràn Context Window hay tự bịa nội dung văn bản bị thiếu.
+- **Loại B (Truncate):** Cắt bỏ tài liệu sẽ làm mất vĩnh viễn các điều khoản pháp lý quan trọng ở các trang phía sau.
+- **Loại D (Base64):** Mã hóa Base64 không làm giảm dung lượng token mà còn làm tăng số lượng ký tự lên khoảng 33%, khiến mô hình hoàn toàn không đọc được.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Vấn đề *"Document exceeds context window"* $\rightarrow$ Luôn giải quyết bằng **Document Chunking + RAG (Vector retrieval)**.
+
+---
+
+### Question 9
+An online retail marketplace wants to allow users to search its product catalog using either text descriptions or by uploading a photo of an item they want to buy. The system needs to map both product images and text descriptions into the same semantic vector space so that image-to-text and text-to-image similarity searches can be performed directly. Which AWS foundation model provides this capability?
+- A. Amazon Titan Text Express
+- B. Amazon Titan Image Generator
+- C. Amazon Titan Multimodal Embeddings
+- D. Amazon Comprehend
+
+**Đáp án đúng:** **C. Amazon Titan Multimodal Embeddings**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"map both product images and text descriptions into the same semantic vector space for cross-modal similarity search (image-to-text, text-to-image)"*.
+- **Amazon Titan Multimodal Embeddings** được thiết kế chính xác cho tác vụ này: Chuyển đổi cả văn bản và hình ảnh thành các vector embedding có cùng số chiều trong một không gian ngữ nghĩa thống nhất, cho phép thực hiện tìm kiếm tương đồng vector giữa ảnh và chữ.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Amazon Titan Text Express):** Chỉ tạo text generation hoặc text-only embeddings, không xử lý được vector ảnh.
+- **Loại B (Amazon Titan Image Generator):** Dùng để sinh ảnh mới từ câu mô tả văn bản (Text-to-Image generation), không tạo vector embeddings để tìm kiếm tương đồng.
+- **Loại D (Amazon Comprehend):** Dịch vụ NLP truyền thống chỉ phân tích văn bản, không có chức năng tạo vector embedding đa phương thức.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Map images and text into the same vector embedding space for search"* $\rightarrow$ Luôn chọn **Amazon Titan Multimodal Embeddings**.
+
+---
+
+### Question 10
+A developer wants to limit the randomness of an LLM by instructing the model to consider only the top 50 most likely token candidates at each generation step, and then select among the candidate tokens whose cumulative probability equals 90%. Which two inference parameters should the developer configure?
+- A. Temperature and Stop Sequences
+- B. Top-K and Top-P (Nucleus Sampling)
+- C. Frequency Penalty and Presence Penalty
+- D. Max Tokens and System Prompt
+
+**Đáp án đúng:** **B. Top-K and Top-P (Nucleus Sampling)**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu 1: Giới hạn xem xét ở *"top 50 most likely token candidates"* $\rightarrow$ Đây chính là tham số **Top-K** ($K = 50$).
+- Yêu cầu 2: Lựa chọn trong nhóm từ có *"cumulative probability equals 90%"* $\rightarrow$ Đây chính là tham số **Top-P (Nucleus Sampling)** ($P = 0.90$).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** Temperature điều chỉnh độ phẳng của phân phối xác suất; Stop Sequences xác định chuỗi ký tự dừng sinh từ.
+- **Loại C:** Frequency Penalty và Presence Penalty dùng để phạt các từ lặp lại trong văn bản, không lọc theo số lượng ứng viên hay xác suất tích lũy.
+- **Loại D:** Max Tokens giới hạn số lượng token đầu ra; System Prompt là câu lệnh chỉ dẫn hệ thống.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Nhớ định nghĩa cốt lõi:
+  - **Top-K**: Giới hạn **số lượng cố định K từ** có xác suất cao nhất.
+  - **Top-P**: Giới hạn động các từ có **tổng xác suất tích lũy đạt ngưỡng P**.

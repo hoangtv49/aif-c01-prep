@@ -245,3 +245,123 @@ Under the European Union Artificial Intelligence Act (EU AI Act), an AI system u
   - **Credit scoring, Employment recruitment, Critical healthcare** $\rightarrow$ **High Risk**.
   - **Social scoring, Real-time biometric surveillance in public** $\rightarrow$ **Unacceptable Risk (Banned)**.
   - **General conversational chatbots** $\rightarrow$ **Limited Risk** (requires transparency notification).
+
+---
+
+### Question 7
+A healthcare company uses third-party foundation models on Amazon Bedrock (such as Anthropic Claude and Meta Llama) to process confidential medical records and patient correspondence. The company's compliance board is concerned about data privacy and intellectual property leakage. Which statement ACCURATELY describes how Amazon Bedrock protects customer data privacy?
+- A. Customer prompts and completions are anonymized and shared with third-party model providers to improve global base model performance.
+- B. Customer prompts and completions are NEVER used to train base foundation models of AWS or third-party providers, and all data remains encrypted within the customer's selected AWS Region.
+- C. Amazon Bedrock retains customer inputs in public caches for 90 days to speed up responses across multiple tenants.
+- D. Customer data privacy is only guaranteed if the customer purchases dedicated physical server hardware in an AWS data center.
+
+**Đáp án đúng:** **B. Customer prompts and completions are NEVER used to train base foundation models of AWS or third-party providers, and all data remains encrypted within the customer's selected AWS Region.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Cam kết bảo mật cốt lõi của AWS cho **Amazon Bedrock**:
+  1. Dữ liệu của khách hàng (prompts, completions, custom fine-tuning data) **tuyệt đối KHÔNG BAO GIỜ bị sử dụng để huấn luyện lại các mô hình nền tảng** của AWS hay bất kỳ nhà cung cấp bên thứ ba nào (Anthropic, Meta, v.v.).
+  2. Dữ liệu khách hàng **không được chia sẻ** với các bên thứ ba.
+  3. Mọi dữ liệu luôn được **mã hóa ở trạng thái nghỉ (in transit và at rest)** và chỉ nằm trong Region AWS do khách hàng chỉ định.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** AWS cam kết tuyệt đối không chia sẻ prompt và dữ liệu khách hàng cho nhà cung cấp mô hình để train mô hình công cộng.
+- **Loại C:** Bedrock không lưu trữ prompt của khách hàng trong bộ nhớ đệm công cộng đa người dùng.
+- **Loại D:** Quyền riêng tư dữ liệu là cam kết mặc định của kiến trúc serverless Bedrock, không yêu cầu mua máy chủ vật lý riêng biệt.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Câu hỏi về **Bedrock Data Privacy** là câu hỏi cho điểm quen thuộc nhất trong kỳ thi: Tìm ngay phương án khẳng định: *"Customer data is NOT used to train foundation models and is NOT shared with third parties"*.
+
+---
+
+### Question 8
+A media enterprise is preparing a multi-terabyte data lake stored in Amazon S3 to be used as a knowledge base for a generative AI application on Amazon Bedrock. Before indexing the data, the enterprise's security team must discover, classify, and inventory all sensitive Personally Identifiable Information (PII) such as credit card numbers, passport details, and national IDs stored in the S3 buckets. Which AWS service automates this sensitive data discovery process?
+- A. Amazon Macie
+- B. AWS Artifact
+- C. Amazon Inspector
+- D. AWS Shield
+
+**Đáp án đúng:** **A. Amazon Macie**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"discover, classify, and protect sensitive Personally Identifiable Information (PII) in Amazon S3 buckets before feeding into AI pipelines"*.
+- **Amazon Macie** là dịch vụ bảo mật dữ liệu sử dụng học máy và khớp mẫu để tự động khám phá, phân loại và bảo vệ dữ liệu nhạy cảm (PII, thông tin tài chính, thông tin định danh) được lưu trữ trong **Amazon S3**.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (AWS Artifact):** Cổng thông tin tải báo cáo kiểm toán tuân thủ (SOC, ISO) của AWS, không quét dữ liệu trong S3 bucket của khách hàng.
+- **Loại C (Amazon Inspector):** Quét lỗ hổng phần mềm trên EC2 và container images, không phân loại dữ liệu PII trong S3.
+- **Loại D (AWS Shield):** Dịch vụ chống tấn công DDoS.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Discover and classify sensitive PII data stored in Amazon S3 buckets"* $\rightarrow$ Luôn chọn **Amazon Macie**.
+
+---
+
+### Question 9
+A software developer is configuring an IAM role for an AWS Lambda function that powers a customer service generative AI chatbot. The chatbot only needs to invoke the "anthropic.claude-3-haiku-20240307-v1:0" model in the us-east-1 Region. Following the principle of least privilege, how should the IAM policy be configured?
+- A. Grant Action "bedrock:*" on Resource "*"
+- B. Grant Action "bedrock:InvokeModel" on Resource "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0"
+- C. Grant Action "bedrock:InvokeModel" on Resource "*"
+- D. Grant Action "iam:PassRole" on all Bedrock resources
+
+**Đáp án đúng:** **B. Grant Action "bedrock:InvokeModel" on Resource "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0"**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Nguyên tắc quyền tối thiểu (**Principle of Least Privilege**):
+  - Quyền hành động (Action) chỉ cấp đúng quyền thực thi cần thiết: `bedrock:InvokeModel` (thay vì toàn quyền quản trị `bedrock:*`).
+  - Tài nguyên (Resource) chỉ chỉ định đích danh mã định danh ARN của mô hình được phép gọi: `arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0` (thay vì ký tự đại diện `*` cho phép gọi mọi mô hình đắt tiền khác).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A:** Cấp quyền quản trị toàn bộ Bedrock (`bedrock:*`) trên mọi tài nguyên (`*`), vi phạm nghiêm trọng nguyên tắc quyền tối thiểu.
+- **Loại C:** Mặc dù giới hạn action là `InvokeModel`, việc để Resource là `*` cho phép Lambda gọi bất kỳ mô hình nào khác trong tài khoản (kể cả Claude Opus hay Custom models đắt đỏ).
+- **Loại D:** `iam:PassRole` dùng để chuyển giao role cho dịch vụ AWS khác, không cấp quyền gọi mô hình Bedrock.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Khi đề bài yêu cầu **Principle of Least Privilege for Bedrock**: Luôn tìm chính sách IAM chỉ định cụ thể hành động `bedrock:InvokeModel` trên chính xác **Model ARN** được yêu cầu.
+
+---
+
+### Question 10
+A company running enterprise AI workloads on Amazon Bedrock must undergo an external regulatory audit. The company needs to continuously audit its AWS environment against regulatory standards, automate the collection of configuration evidence, and use a pre-built framework specifically designed for generative AI risk governance. Which AWS service directly provides these capabilities?
+- A. AWS Audit Manager
+- B. AWS Artifact
+- C. AWS Secrets Manager
+- D. Amazon CloudWatch Logs
+
+**Đáp án đúng:** **A. AWS Audit Manager**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"continuously audit AWS environment against regulatory standards"*, *"automate collection of configuration evidence"*, *"pre-built framework for Generative AI risk governance"*.
+- **AWS Audit Manager** tự động hóa việc thu thập bằng chứng từ các tài nguyên AWS (CloudTrail, Config, Security Hub) để đối chiếu với các khung kiểm toán định sẵn (trong đó AWS cung cấp sẵn khung **Generative AI Best Practices Framework**), giúp đơn giản hóa quá trình báo cáo kiểm toán tuân thủ.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (AWS Artifact):** Là nơi tải về các chứng chỉ và báo cáo kiểm toán có sẵn của cơ sở hạ tầng AWS, không thể tự động thu thập chứng cứ cấu hình từ tài khoản của khách hàng.
+- **Loại C (AWS Secrets Manager):** Dịch vụ lưu trữ và luân chuyển mật khẩu, khóa API bí mật.
+- **Loại D (Amazon CloudWatch Logs):** Lưu trữ log ứng dụng thông thường, không có cơ chế tự động đối chiếu bằng chứng theo khung kiểm toán Generative AI.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Từ khóa: *"Automate evidence collection using pre-built frameworks (e.g. Generative AI framework)"* $\rightarrow$ Luôn chọn **AWS Audit Manager**.
+
+---
+
+### Question 11
+A company deploys an AI-powered conversational application exposed to the public internet via an Application Load Balancer (ALB) and Amazon CloudFront. The company wants to protect the application's API endpoints from distributed denial-of-service (DDoS) layer 7 attacks, prevent malicious bot web scrapers from exhausting Bedrock token quotas, and enforce geographic IP blocking. Which AWS service should the company deploy?
+- A. AWS WAF (Web Application Firewall)
+- B. Amazon Bedrock Guardrails alone
+- C. Amazon SageMaker Model Monitor
+- D. AWS Config
+
+**Đáp án đúng:** **A. AWS WAF (Web Application Firewall)**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: Bảo vệ ở tầng mạng và web ứng dụng trước ALB/CloudFront: *"DDoS layer 7 attacks"*, *"malicious bot scrapers exhausting token quotas (rate limiting)"*, *"geographic IP blocking"*.
+- **AWS WAF** là tường lửa ứng dụng web gắn trước ALB, CloudFront hoặc API Gateway để kiểm soát lưu lượng truy cập HTTP/HTTPS, thiết lập quy tắc giới hạn tốc độ truy cập (Rate-based rules), chặn IP theo quốc gia (Geo-match) và chống bot độc hại.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Bedrock Guardrails alone):** Guardrails hoạt động ở tầng suy luận nội dung văn bản (kiểm tra PII, lọc từ cấm, chống ảo giác), không thể bảo vệ tầng mạng HTTP trước ALB hoặc chặn DDoS traffic.
+- **Loại C (SageMaker Model Monitor):** Giám sát độ lệch dữ liệu (data drift) và chất lượng mô hình sau triển khai, không phải công cụ bảo mật mạng.
+- **Loại D (AWS Config):** Đánh giá lịch sử cấu hình tài nguyên, không lọc gói tin traffic thời gian thực.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Phân biệt các lớp bảo vệ AI:
+  - Bảo vệ **Tầng mạng / HTTP / DDoS / Rate limiting** $\rightarrow$ **AWS WAF**.
+  - Bảo vệ **Tầng nội dung prompt / PII / Ảo giác / Từ cấm** $\rightarrow$ **Amazon Bedrock Guardrails**.

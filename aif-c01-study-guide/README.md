@@ -21,11 +21,11 @@
 
 | Domain | Trọng số | Nội dung chính | File tài liệu ôn tập |
 | :--- | :---: | :--- | :--- |
-| **Domain 1** | **20%** | **Fundamentals of AI and ML**<br>Khái niệm AI/ML/DL, ML Lifecycle, Learning Types, AWS Core AI Managed Services, SageMaker Core. | [domain-1-fundamentals-ai-ml.md](./domain-1-fundamentals-ai-ml.md) |
-| **Domain 2** | **24%** | **Fundamentals of Generative AI**<br>Bản chất GenAI, Transformer Architecture, RAG vs Fine-Tuning, Lựa chọn Foundation Models, Rủi ro GenAI. | [domain-2-generative-ai.md](./domain-2-generative-ai.md) |
-| **Domain 3** | **28%** | **Applications of Foundation Models**<br>Amazon Bedrock (Knowledge Bases, Agents, Guardrails), Amazon Q, PartyRock, Prompt Engineering, Đánh giá FMs. | [domain-3-fm-applications.md](./domain-3-fm-applications.md) |
-| **Domain 4** | **14%** | **Guidelines for Responsible AI**<br>6 Trụ cột Responsible AI, Bias & Fairness, Model Transparency, SageMaker Clarify, AWS AI Service Cards. | [domain-4-responsible-ai.md](./domain-4-responsible-ai.md) |
-| **Domain 5** | **14%** | **Security, Compliance, and Governance for AI**<br>Shared Responsibility Model, Bảo mật dữ liệu & VPC, OWASP Top 10 for LLMs, AWS Artifact, Audit Manager, Config. | [domain-5-security-compliance-governance.md](./domain-5-security-compliance-governance.md) |
+| **Domain 1** | **20%** | **Fundamentals of AI and ML**<br>Khái niệm AI/ML/DL, ML Lifecycle, Learning Types, AWS Core AI Managed Services, SageMaker Core. | [domain-1-fundamentals-ai-ml.md](./domain-1-fundamentals-ai-ml.md) (10 câu hỏi) |
+| **Domain 2** | **24%** | **Fundamentals of Generative AI**<br>Bản chất GenAI, Transformer Architecture, RAG vs Fine-Tuning, Lựa chọn Foundation Models, Rủi ro GenAI. | [domain-2-generative-ai.md](./domain-2-generative-ai.md) (10 câu hỏi) |
+| **Domain 3** | **28%** | **Applications of Foundation Models**<br>Amazon Bedrock (Knowledge Bases, Agents, Guardrails), Amazon Q, PartyRock, Prompt Engineering, Đánh giá FMs. | [domain-3-fm-applications.md](./domain-3-fm-applications.md) (11 câu hỏi) |
+| **Domain 4** | **14%** | **Guidelines for Responsible AI**<br>6 Trụ cột Responsible AI, Bias & Fairness, Model Transparency, SageMaker Clarify, AWS AI Service Cards. | [domain-4-responsible-ai.md](./domain-4-responsible-ai.md) (10 câu hỏi) |
+| **Domain 5** | **14%** | **Security, Compliance, and Governance for AI**<br>Shared Responsibility Model, Bảo mật dữ liệu & VPC, OWASP Top 10 for LLMs, AWS Artifact, Audit Manager, Config. | [domain-5-security-compliance-governance.md](./domain-5-security-compliance-governance.md) (11 câu hỏi) |
 
 ---
 
@@ -47,8 +47,15 @@ Gặp từ khóa tình huống trong đề thi $\rightarrow$ Chọn ngay dịch 
 | Ghi âm cuộc gọi tổng đài chuyển thành văn bản (Speech-to-Text) | **Amazon Transcribe** | Amazon Polly (Text-to-Speech) |
 | Xây dựng chatbot theo kịch bản quy chuẩn (Intent, Utterance, Slot) kết hợp giọng nói/tin nhắn | **Amazon Lex** | Amazon Bedrock Agents (tự lập kế hoạch multi-step) |
 | Tự động hóa tác vụ nhiều bước (multi-step tasks), tự động gọi API hệ thống qua Open API schema | **Amazon Bedrock Agents** | AWS Step Functions (phải lập trình luồng thủ công) |
+| Gợi ý sản phẩm cá nhân hóa theo thời gian thực (Personalized recommendations) | **Amazon Personalize** | Amazon Forecast (dự báo chuỗi thời gian) |
+| Dự báo nhu cầu tồn kho tương lai kết hợp dữ liệu lịch sử và biến số ngoại cảnh (Thời tiết, Lễ hội) | **Amazon Forecast** | Amazon Personalize (gợi ý người dùng) |
+| Tự động phát hiện giao dịch trực tuyến gian lận, thẻ tín dụng bị đánh cắp | **Amazon Fraud Detector** | Amazon Inspector (quét lỗ hổng hệ điều hành) |
+| Khám phá, phân loại và bảo vệ dữ liệu nhạy cảm PII lưu trữ trong Amazon S3 | **Amazon Macie** | Amazon Bedrock Guardrails (lọc lúc suy luận) |
+| Quy trình đưa con người vào đánh giá các dự đoán ML có độ tin cậy thấp (Human-in-the-Loop) | **Amazon Augmented AI (A2I)** | Amazon CloudWatch Alarms (chỉ kích hoạt số liệu) |
+| Tài liệu quản trị ghi nhận mục đích, tham số và kết quả đánh giá cho Custom Models tự tạo | **SageMaker Model Cards** | AWS AI Service Cards (chỉ cho dịch vụ của AWS) |
 | Phát hiện thiên kiến (bias) trong bộ dữ liệu huấn luyện và giải thích thuộc tính mô hình (SHAP) | **Amazon SageMaker Clarify** | Amazon Inspector (chỉ quét lỗ hổng bảo mật hạ tầng) |
 | Kiểm soát an toàn nội dung GenAI, lọc từ cấm, chặn prompt injection, che giấu thông tin PII | **Amazon Bedrock Guardrails** | AWS WAF (chặn traffic mạng lớp 7 thông thường) |
+| Bảo vệ endpoint API khỏi DDoS layer 7, rate limiting chặn bot làm cạn kiệt Bedrock tokens | **AWS WAF** | Bedrock Guardrails (chỉ kiểm tra nội dung text) |
 | Tải báo cáo kiểm toán tuân thủ của bên thứ 3 (SOC reports, ISO certifications) của AWS | **AWS Artifact** | AWS Audit Manager (tự động thu thập chứng cứ) |
 | Tự động thu thập chứng cứ kỹ thuật để phục vụ kiểm toán tuân thủ quy định | **AWS Audit Manager** | AWS Artifact (chỉ là kho tải tài liệu tĩnh) |
 | Theo dõi lịch sử thay đổi cấu hình tài nguyên AWS và phát hiện sai lệch tuân thủ | **AWS Config** | AWS CloudTrail (ghi log gọi API của người dùng) |

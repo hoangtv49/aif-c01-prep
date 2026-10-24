@@ -273,3 +273,123 @@ A technology company wants to adapt a 70-billion-parameter foundation model for 
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Từ khóa trong đề tiếng Anh: *"Fine-tune large models with minimal compute/cost/memory"* hoặc *"freeze base model weights and train small parameter subset"* $\rightarrow$ Luôn chọn **PEFT** hoặc **LoRA**.
+
+---
+
+### Question 7
+A company is developing a proof-of-concept internal tool using Amazon Bedrock. The tool will be used sporadically by a team of 10 analysts with unpredictable query volumes. The company has a limited budget and wants maximum flexibility without making long-term financial commitments or paying for idle compute capacity. Which Amazon Bedrock pricing model should the company choose?
+- A. Provisioned Throughput with 6-month commitment
+- B. On-Demand pricing
+- C. Spot Instance pricing
+- D. Annual Reserved Instance pricing
+
+**Đáp án đúng:** **B. On-Demand pricing**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu bài toán: *"proof-of-concept with sporadic, unpredictable traffic"*, *"limited budget, no long-term commitment"*, *"no paying for idle compute"*.
+- **On-Demand pricing** của Amazon Bedrock cho phép người dùng chỉ trả tiền chính xác theo số lượng token đầu vào (input tokens) và token đầu ra (output tokens) đã xử lý (Pay-as-you-go). Đây là mô hình linh hoạt nhất, không đòi hỏi cam kết thời gian và không mất phí khi hệ thống không có yêu cầu nào.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Provisioned Throughput):** Yêu cầu cam kết mua Model Units trong 1 tháng hoặc 6 tháng, tạo ra chi phí cố định liên tục ngay cả khi không có lượt truy vấn, hoàn toàn không phù hợp cho thử nghiệm tải thấp ngắt quãng.
+- **Loại C (Spot Instance):** Spot Instance là mô hình giá của máy chủ ảo Amazon EC2, không tồn tại trong dịch vụ serverless Amazon Bedrock.
+- **Loại D (Reserved Instance):** Reserved Instance cũng là mô hình trả trước dành cho EC2 và RDS, không áp dụng cho Amazon Bedrock API.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Nhớ các hình thức giá của Amazon Bedrock:
+  - Tải ngắt quãng, thử nghiệm, trả theo token thực tế $\rightarrow$ **On-Demand**.
+  - Xử lý hàng loạt tài liệu lớn qua S3 với giá rẻ hơn 50% $\rightarrow$ **Batch Inference**.
+  - Cần đảm bảo thông lượng tối đa, độ trễ ổn định cho production $\rightarrow$ **Provisioned Throughput**.
+
+---
+
+### Question 8
+A healthcare company fine-tuned a custom foundation model on Amazon Bedrock using its own proprietary clinical notes dataset. The engineering team is now ready to deploy this custom model to serve production inference requests. Which Amazon Bedrock purchase option is REQUIRED to deploy and run inference on custom models?
+- A. On-Demand pricing
+- B. Provisioned Throughput
+- C. AWS Savings Plans
+- D. EC2 On-Demand Instances
+
+**Đáp án đúng:** **B. Provisioned Throughput**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Tình huống: *"deploy and run inference on custom fine-tuned foundation models in Amazon Bedrock"*.
+- **QUY TẮC BẮT BUỘC TRÊN AWS BEDROCK**: Để phục vụ suy luận (inference) cho các mô hình tùy chỉnh (**Custom Models** - được tạo ra qua Fine-Tuning hoặc Continued Pre-training), người dùng **bắt buộc phải mua Provisioned Throughput** (cấp phát các Model Units). Bedrock không hỗ trợ On-Demand pricing cho Custom Models.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (On-Demand pricing):** On-Demand chỉ áp dụng cho các mô hình cơ sở tiêu chuẩn (Base Models) có sẵn của AWS và bên thứ ba, không hỗ trợ Custom Fine-tuned Models.
+- **Loại C (AWS Savings Plans):** Là chương trình chiết khấu cam kết chi tiêu cho Compute (EC2, Fargate, Lambda), không phải cơ chế cấp phát tài nguyên chạy mô hình tùy chỉnh trong Bedrock.
+- **Loại D (EC2 On-Demand Instances):** Bedrock là dịch vụ serverless do AWS quản lý, người dùng không thể tự triển khai Bedrock model lên máy chủ EC2 thông thường.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Câu hỏi bẫy rất kinh điển trong đề thi AIF-C01: *"How do you deploy and consume a custom fine-tuned model in Amazon Bedrock?"* $\rightarrow$ Đáp án duy nhất đúng luôn là **Provisioned Throughput**.
+
+---
+
+### Question 9
+An enterprise in a highly regulated banking sector uses Amazon Bedrock foundation models to generate investment analysis reports. To comply with regulatory audits and risk management policies, the enterprise must maintain a comprehensive, tamper-proof audit trail of all input prompts, model inference responses, and metadata. Which native feature should the enterprise configure?
+- A. Enable Amazon Bedrock Model Invocation Logging and specify an Amazon S3 bucket or Amazon CloudWatch log group.
+- B. Write custom AWS Lambda functions to intercept all API calls and store logs in an Amazon DynamoDB table.
+- C. Configure AWS CloudTrail to record data event payloads of Bedrock invocations.
+- D. Enable Amazon GuardDuty for Bedrock.
+
+**Đáp án đúng:** **A. Enable Amazon Bedrock Model Invocation Logging and specify an Amazon S3 bucket or Amazon CloudWatch log group.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu: *"maintain an audit trail of all input prompts, model inference responses, and metadata for regulatory compliance"*.
+- **Amazon Bedrock Model Invocation Logging** là tính năng tích hợp sẵn của Bedrock cho phép ghi lại toàn bộ nội dung câu lệnh đầu vào (prompts), câu trả lời của mô hình (responses), dữ liệu hình ảnh/tài liệu và siêu dữ liệu (metadata) và tự động đẩy về **Amazon S3** (để lưu trữ lâu dài) hoặc **Amazon CloudWatch Logs** (để giám sát thời gian thực).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Custom Lambda + DynamoDB):** Đòi hỏi viết mã phức tạp, tăng độ trễ và chi phí bảo trì so với tính năng có sẵn của nền tảng (native feature).
+- **Loại C (AWS CloudTrail):** Mặc định CloudTrail chỉ ghi lại thông tin quản lý API (ai gọi, lúc nào, mã lỗi), nhưng CloudTrail không ghi lại toàn bộ nội dung văn bản chi tiết của Prompt và Response của mô hình.
+- **Loại D (Amazon GuardDuty):** Dịch vụ phát hiện mối đe dọa an ninh mạng thông minh (quét DNS, VPC flow logs), không dùng để lưu vết kiểm toán nội dung văn bản AI.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Log full prompts and completions for audit/compliance in Amazon Bedrock"* $\rightarrow$ Luôn chọn **Model Invocation Logging (S3 / CloudWatch Logs)**.
+
+---
+
+### Question 10
+A data science team needs to evaluate and compare three different foundation models on Amazon Bedrock (Anthropic Claude, Meta Llama, and Amazon Titan) for an automated text summarization pipeline. The team wants to run standardized benchmarks across multiple criteria such as accuracy, robustness, and toxicity using both built-in automated prompt datasets and human evaluation workforces. Which Amazon Bedrock feature directly provides this capability?
+- A. Amazon Bedrock Knowledge Bases
+- B. Amazon Bedrock Model Evaluation
+- C. Amazon Bedrock Playgrounds
+- D. Amazon Bedrock Guardrails
+
+**Đáp án đúng:** **B. Amazon Bedrock Model Evaluation**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Yêu cầu: *"evaluate and compare foundation models across criteria (accuracy, robustness, toxicity) using automated datasets and human workforces"*.
+- **Amazon Bedrock Model Evaluation** cung cấp công cụ có cấu trúc cho phép lựa chọn và so sánh nhiều mô hình nền tảng khác nhau bằng cách sử dụng các bộ dữ liệu prompt chuẩn hóa (curated datasets) hoặc dữ liệu tùy chỉnh, hỗ trợ cả đánh giá tự động (Automatic Evaluation) và đánh giá có sự tham gia của con người (Human-in-the-loop Evaluation).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Knowledge Bases):** Dùng để truy xuất dữ liệu doanh nghiệp phục vụ RAG, không phải công cụ đánh giá so sánh chất lượng mô hình.
+- **Loại C (Playgrounds):** Giao diện web thử nghiệm ad-hoc thủ công từng câu prompt một cách trực quan, không phải công cụ đánh giá định lượng theo các bộ benchmark chuẩn hóa.
+- **Loại D (Guardrails):** Hàng rào bảo vệ an toàn nội dung trong thời gian chạy (runtime filtering), không phải tính năng so sánh đánh giá hiệu năng mô hình.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Compare foundation model performance across metrics and datasets"* $\rightarrow$ Luôn chọn **Amazon Bedrock Model Evaluation**.
+
+---
+
+### Question 11
+An enterprise wants to improve employee productivity by implementing an intelligent search solution across its internal documentation repository stored in Amazon S3. The solution must provide employees with direct clickable links to the original source documents, support natural language queries, and return precise extracted document text passages rather than synthesizing new generated answers. Which AWS service is the MOST appropriate choice?
+- A. Amazon Bedrock Knowledge Bases with Claude 3
+- B. Amazon Kendra
+- C. Amazon Polly
+- D. Amazon Rekognition
+
+**Đáp án đúng:** **B. Amazon Kendra**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Ràng buộc quan trọng: *"intelligent enterprise search solution"*, *"provide direct clickable links to original source documents"*, *"return precise extracted document text passages rather than synthesizing new generated answers"*.
+- **Amazon Kendra** là công cụ tìm kiếm thông minh chuyên dụng dành cho doanh nghiệp (Intelligent Enterprise Search Engine). Kendra hiểu ngôn ngữ tự nhiên và trả về kết quả tìm kiếm gồm **các đoạn trích dẫn nguyên văn từ tài liệu nguồn và liên kết trực tiếp (clickable links) tới tệp tin gốc**, không sử dụng LLM để tổng hợp hay sinh văn bản mới.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Bedrock Knowledge Bases with Claude 3):** Knowledge Bases sử dụng LLM để sinh ra câu trả lời mới tự nhiên (synthesized generative answer), trong khi đề bài yêu cầu rõ ràng là trích xuất đoạn văn nguyên bản và cung cấp liên kết tài liệu nguồn chứ không sinh câu trả lời mới (*"rather than synthesizing new generated answers"*).
+- **Loại C (Amazon Polly):** Dịch vụ chuyển văn bản thành giọng nói.
+- **Loại D (Amazon Rekognition):** Dịch vụ phân tích hình ảnh/video.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Phân biệt điểm chốt trong phòng thi:
+  - Cần **Tìm kiếm tài liệu nội bộ, trả về link file gốc và trích đoạn chuẩn** $\rightarrow$ **Amazon Kendra**.
+  - Cần **Trợ lý LLM đọc tài liệu và viết câu trả lời tổng hợp** $\rightarrow$ **Bedrock Knowledge Bases / Amazon Q Business**.
