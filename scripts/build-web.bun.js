@@ -2554,6 +2554,120 @@ const htmlContent = `<!DOCTYPE html>
     }
     window.addEventListener('resize', syncHeaderHeight);
 
+    // Setup History and Route Handling
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    function parseHash(hashStr) {
+      let clean = (hashStr || window.location.hash || '').trim();
+      while (clean.startsWith('#') || clean.startsWith('/')) {
+        clean = clean.substring(1);
+      }
+      if (!clean) {
+        return { tab: 'topics', domain: 1, subtab: 'all', node: null, palette: false };
+      }
+      const parts = clean.split('/');
+      const tabCandidate = parts[0].toLowerCase();
+      const validTabs = ['topics', 'quiz', 'graph', 'matrix', 'ste'];
+      const tab = validTabs.includes(tabCandidate) ? tabCandidate : 'topics';
+
+      let domain = currentTopicDomain || 1;
+      let subtab = 'all';
+      let node = null;
+      let palette = false;
+
+      if (tab === 'topics') {
+        if (parts[1]) {
+          const dMatch = parts[1].match(/^d?([1-5])$/i);
+          if (dMatch) domain = parseInt(dMatch[1], 10);
+        }
+        if (parts[2]) {
+          const s = parts[2].toLowerCase();
+          if (['all', 'p1', 'p2', 'p3'].includes(s)) subtab = s;
+        }
+      } else if (tab === 'graph') {
+        if (parts[1]) {
+          node = parts[1];
+        }
+      } else if (tab === 'quiz') {
+        if (parts[1] === 'palette') {
+          palette = true;
+        }
+      }
+
+      return { tab, domain, subtab, node, palette };
+    }
+
+    function updatePageTitle(tab, domain) {
+      const baseTitle = 'AWS Certified AI Practitioner (AIF-C01) Mastery Studio';
+      const domainTitles = {
+        1: 'D1: ML Basics',
+        2: 'D2: GenAI & FMs',
+        3: 'D3: Applications & Bedrock',
+        4: 'D4: Responsible AI',
+        5: 'D5: Security & Governance'
+      };
+
+      switch (tab) {
+        case 'topics':
+          const dTitle = domainTitles[domain || currentTopicDomain] || ('Domain ' + (domain || currentTopicDomain));
+          document.title = '📚 ' + dTitle + ' | ' + baseTitle;
+          break;
+        case 'quiz':
+          document.title = '📝 Luyện đề 57 Câu | ' + baseTitle;
+          break;
+        case 'graph':
+          document.title = '🧭 Bản đồ Khái niệm | ' + baseTitle;
+          break;
+        case 'matrix':
+          document.title = '⚡ Ma trận Quyết định & Bẫy | ' + baseTitle;
+          break;
+        case 'ste':
+          document.title = '📖 Từ điển Thuật ngữ | ' + baseTitle;
+          break;
+        default:
+          document.title = baseTitle;
+      }
+    }
+
+    function handleRoute(hashStr, isPopState = false) {
+      const route = parseHash(hashStr);
+
+      switchTab(route.tab, false);
+
+      if (route.tab === 'topics') {
+        if (route.domain !== currentTopicDomain) {
+          switchTopicDomain(route.domain, false);
+        }
+        if (route.subtab && route.subtab !== 'all') {
+          setTimeout(() => {
+            switchTopicSubtab(route.subtab);
+          }, 80);
+        }
+      } else if (route.tab === 'graph') {
+        if (route.node) {
+          setTimeout(() => {
+            selectGraphNode(route.node, false);
+          }, 80);
+        } else {
+          closeInspector(false);
+        }
+      } else if (route.tab === 'quiz') {
+        const drawer = document.getElementById('palette-drawer');
+        const isCurrentlyOpen = drawer && drawer.style.display !== 'none';
+        if (route.palette && !isCurrentlyOpen) {
+          togglePalette(false);
+        } else if (!route.palette && isCurrentlyOpen) {
+          togglePalette(false);
+        }
+      }
+
+      if (route.tab !== 'graph') {
+        closeInspector(false);
+      }
+    }
+
     // Init App
     window.addEventListener('DOMContentLoaded', () => {
       syncHeaderHeight();
@@ -2563,14 +2677,29 @@ const htmlContent = `<!DOCTYPE html>
       renderSTEDictionary();
       renderConceptGraph();
       initScrollListener();
+
+      const initialHash = window.location.hash;
+      if (initialHash && initialHash !== '#' && initialHash !== '#/') {
+        handleRoute(initialHash, false);
+      } else {
+        history.replaceState({ tab: 'topics', domain: 1, subtab: 'all' }, '', '#topics/d1');
+        updatePageTitle('topics', 1);
+      }
     });
 
-    function switchTab(tabId) {
+    window.addEventListener('popstate', () => {
+      handleRoute(window.location.hash, true);
+    });
+
+    function switchTab(tabId, pushHistory = true) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
       
-      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => {
+        const oc = b.getAttribute('onclick') || '';
+        return oc.includes("switchTab('" + tabId + "')");
+      });
       if (targetBtn) targetBtn.classList.add('active');
       const bottomBtn = document.getElementById('bnav-' + tabId);
       if (bottomBtn) bottomBtn.classList.add('active');
@@ -2592,11 +2721,23 @@ const htmlContent = `<!DOCTYPE html>
       document.querySelectorAll('.smart-sticky-bar').forEach(b => b.classList.remove('bar-hidden'));
       lastScrollY = 0;
 
+      updatePageTitle(tabId, currentTopicDomain);
+
+      if (pushHistory) {
+        let targetHash = '#' + tabId;
+        if (tabId === 'topics') {
+          targetHash = '#topics/d' + (currentTopicDomain || 1);
+        }
+        if (window.location.hash !== targetHash) {
+          history.pushState({ tab: tabId, domain: currentTopicDomain }, '', targetHash);
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Topic-Based Study Functions
-    function switchTopicDomain(domainId) {
+    function switchTopicDomain(domainId, pushHistory = true) {
       currentTopicDomain = domainId;
       document.querySelectorAll('.topic-domain-btn').forEach((btn, idx) => {
         if (idx + 1 === domainId) btn.classList.add('active');
@@ -2605,6 +2746,14 @@ const htmlContent = `<!DOCTYPE html>
       renderTopicDomain(domainId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(updateTopicScrollspy, 60);
+      updatePageTitle('topics', domainId);
+
+      if (pushHistory) {
+        const targetHash = '#topics/d' + domainId;
+        if (window.location.hash !== targetHash) {
+          history.pushState({ tab: 'topics', domain: domainId }, '', targetHash);
+        }
+      }
     }
 
     let isScrollspyManual = false;
@@ -2625,6 +2774,11 @@ const htmlContent = `<!DOCTYPE html>
         isScrollspyManual = false;
         updateTopicScrollspy();
       }, 700);
+
+      const targetHash = '#topics/d' + currentTopicDomain + (subId !== 'all' ? '/' + subId : '');
+      if (window.location.hash !== targetHash) {
+        history.replaceState({ tab: 'topics', domain: currentTopicDomain, subtab: subId }, '', targetHash);
+      }
     }
 
     function scrollToTopicSubtab(subId) {
@@ -2739,7 +2893,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     // Question Palette Functions
-    function togglePalette() {
+    function togglePalette(pushHistory = true) {
       isPaletteOpen = !isPaletteOpen;
       const drawer = document.getElementById('palette-drawer');
       const btn = document.getElementById('toggle-palette-btn');
@@ -2748,9 +2902,15 @@ const htmlContent = `<!DOCTYPE html>
         drawer.style.display = 'block';
         if (btn) btn.classList.add('shuffle-active');
         renderPalette();
+        if (pushHistory && window.location.hash.startsWith('#quiz')) {
+          history.pushState({ tab: 'quiz', palette: true }, '', '#quiz/palette');
+        }
       } else {
         drawer.style.display = 'none';
         if (btn) btn.classList.remove('shuffle-active');
+        if (pushHistory && window.location.hash === '#quiz/palette') {
+          history.replaceState({ tab: 'quiz' }, '', '#quiz');
+        }
       }
     }
 
@@ -3542,8 +3702,18 @@ const htmlContent = `<!DOCTYPE html>
           }).join('') || '<li style="color:#64748b; font-style:italic;">Không có liên kết trực tiếp</li>';
         }
 
+        const wasAlreadyOpen = inspector.classList.contains('open');
         inspector.classList.add('open');
         showToast('🧭 ' + node.label);
+
+        if (pushHistory) {
+          const targetHash = '#graph/' + nodeId;
+          if (wasAlreadyOpen && window.location.hash.startsWith('#graph/')) {
+            history.replaceState({ tab: 'graph', node: nodeId }, '', targetHash);
+          } else {
+            history.pushState({ tab: 'graph', node: nodeId }, '', targetHash);
+          }
+        }
       }
     }
 
@@ -3553,20 +3723,24 @@ const htmlContent = `<!DOCTYPE html>
       const node = GRAPH_DATA.nodes.find(n => n.id === id);
       if (!node) return;
 
-      // 1. Switch to Topics tab
-      switchTab('topics');
+      // 1. Switch to Topics tab without separate history push
+      switchTab('topics', false);
 
-      // 2. Switch to Domain
-      switchTopicDomain(node.domain);
+      // 2. Switch to Domain without separate history push
+      switchTopicDomain(node.domain, false);
 
       // 3. Switch subtab
       const targetSubtab = node.docSubtab || 'p1';
       switchTopicSubtab(targetSubtab);
 
       // 4. Close inspector drawer
-      closeInspector();
+      closeInspector(false);
 
-      // 5. Scroll and highlight target element
+      // 5. Push history for this transition so user can click Back to return to Graph
+      const targetHash = '#topics/d' + node.domain + (targetSubtab !== 'all' ? '/' + targetSubtab : '');
+      history.pushState({ tab: 'topics', domain: node.domain, subtab: targetSubtab, fromGraph: true }, '', targetHash);
+
+      // 6. Scroll and highlight target element
       setTimeout(() => {
         const keyword = (node.docKeyword || node.label.replace(/\\(.*?\\)/g, '')).trim();
         const found = findDocTargetElement(keyword, targetSubtab);
@@ -3657,11 +3831,16 @@ const htmlContent = `<!DOCTYPE html>
       window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
     }
 
-    function closeInspector() {
+    function closeInspector(pushHistory = true) {
       const inspector = document.getElementById('graph-inspector');
       if (inspector) inspector.classList.remove('open');
       document.querySelectorAll('.graph-edge').forEach(e => e.classList.remove('active'));
       document.querySelectorAll('.node-group').forEach(ng => ng.classList.remove('selected'));
+      currentInspectedNodeId = null;
+
+      if (pushHistory && window.location.hash.startsWith('#graph/')) {
+        history.replaceState({ tab: 'graph' }, '', '#graph');
+      }
     }
   </script>
 </body>
