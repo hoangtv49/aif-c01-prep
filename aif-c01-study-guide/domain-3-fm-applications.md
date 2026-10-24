@@ -393,3 +393,29 @@ An enterprise wants to improve employee productivity by implementing an intellig
 - Phân biệt điểm chốt trong phòng thi:
   - Cần **Tìm kiếm tài liệu nội bộ, trả về link file gốc và trích đoạn chuẩn** $\rightarrow$ **Amazon Kendra**.
   - Cần **Trợ lý LLM đọc tài liệu và viết câu trả lời tổng hợp** $\rightarrow$ **Bedrock Knowledge Bases / Amazon Q Business**.
+
+---
+
+### Question 12
+A developer is configuring an autonomous AI agent in Amazon Bedrock to automate customer loan application workflows. The agent must orchestrate actions, break down user requests into multi-step reasoning plans, and interact with existing enterprise backend databases. Which TWO components are REQUIRED to configure an Action Group for an Amazon Bedrock Agent? (Choose two.)
+- A. An OpenAPI schema defining the agent's action group APIs in JSON or YAML format
+- B. An Amazon SageMaker Studio notebook instance
+- C. An AWS Lambda function that implements the business logic to execute the API operations
+- D. An Amazon Rekognition custom moderation model
+- E. An AWS Glue ETL crawler
+
+**Đáp án đúng:** **A. An OpenAPI schema defining the agent's action group APIs in JSON or YAML format** và **C. An AWS Lambda function that implements the business logic to execute the API operations**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Kiến trúc của **Amazon Bedrock Agents Action Groups**:
+  1. **OpenAPI Schema (A)**: Bản đặc tả API chuẩn (JSON/YAML) lưu trên Amazon S3, định nghĩa danh sách các hàm/API mà Agent có thể gọi, mô tả rõ các tham số đầu vào và kiểu dữ liệu trả về để Agent hiểu khi nào và làm thế nào để gọi.
+  2. **AWS Lambda Function (C)**: Mã nguồn thực thi logic nghiệp vụ. Khi Agent phân tích yêu cầu của người dùng và quyết định thực hiện hành động, Bedrock Agent sẽ truyền các tham số đã trích xuất vào hàm Lambda này để đọc/ghi dữ liệu trong hệ thống backend.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (SageMaker Studio notebook):** Môi trường phát triển ML truyền thống, không phải thành phần cấu hình Action Group trong Bedrock Agent.
+- **Loại D (Amazon Rekognition custom moderation):** Dịch vụ kiểm duyệt hình ảnh, không liên quan đến việc thực thi logic nghiệp vụ API của Agent.
+- **Loại E (AWS Glue ETL crawler):** Công cụ quét metadata cho catalog dữ liệu, không tham gia vào luồng thực thi action thời gian thực của Agent.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Công thức cốt lõi để xây dựng **Bedrock Agent Action Group**:
+  $$\text{Action Group} = \text{OpenAPI Schema (định nghĩa API)} + \text{AWS Lambda (thực thi API)}$$

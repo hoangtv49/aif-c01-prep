@@ -365,3 +365,33 @@ A company deploys an AI-powered conversational application exposed to the public
 - Phân biệt các lớp bảo vệ AI:
   - Bảo vệ **Tầng mạng / HTTP / DDoS / Rate limiting** $\rightarrow$ **AWS WAF**.
   - Bảo vệ **Tầng nội dung prompt / PII / Ảo giác / Từ cấm** $\rightarrow$ **Amazon Bedrock Guardrails**.
+
+---
+
+### Question 12
+A company wants to deploy a conversational chatbot to answer customer questions using a foundation model on Amazon Bedrock. Under the AWS Shared Responsibility Model, which security and governance controls are the direct responsibility of the CUSTOMER? (Choose two.)
+- A. Managing physical security and perimeter access controls of AWS data centers hosting GPU servers.
+- B. Implementing data protection by managing customer-managed encryption keys in AWS KMS and securing user prompts.
+- C. Patching the host operating system and hypervisor of the underlying Bedrock hosting infrastructure.
+- D. Configuring identity and access management (IAM) policies to enforce least privilege access to Bedrock APIs.
+- E. Ensuring continuous electrical power and hardware maintenance for physical server racks.
+
+**Đáp án đúng:** **B. Implementing data protection by managing customer-managed encryption keys in AWS KMS and securing user prompts.** và **D. Configuring identity and access management (IAM) policies to enforce least privilege access to Bedrock APIs.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Theo **Mô hình trách nhiệm chia sẻ (AWS Shared Responsibility Model)** đối với dịch vụ AI Managed / Serverless như **Amazon Bedrock**:
+  1. **Khách hàng quản lý bảo mật TRONG đám mây (Security IN the cloud)**:
+     - Quản lý và bảo vệ dữ liệu khách hàng: Mã hóa dữ liệu lưu trữ bằng khóa do khách hàng quản lý (**AWS KMS CMKs**) và bảo vệ nội dung prompt (**B**).
+     - Quản lý danh tính và quyền truy cập: Thiết lập các chính sách **AWS IAM** tuân thủ nguyên tắc quyền tối thiểu (Least Privilege) để kiểm soát ai được gọi API Bedrock nào (**D**).
+  2. **AWS quản lý bảo mật CỦA đám mây (Security OF the cloud)**:
+     - Cơ sở hạ tầng vật lý, an ninh data center, nguồn điện, phần cứng máy chủ GPU (A, E).
+     - Bản vá hệ điều hành, hypervisor và virtualization layer của dịch vụ serverless Bedrock (C).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A và E:** An ninh vật lý trung tâm dữ liệu và phần cứng máy chủ luôn là trách nhiệm 100% của AWS.
+- **Loại C:** Bản vá hệ điều hành của dịch vụ serverless Bedrock do AWS tự động xử lý, khách hàng không có quyền truy cập vào máy chủ bên dưới.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Bất kể dịch vụ đám mây nào:
+  - **Dữ liệu (Data), Mã hóa (KMS), Quyền truy cập (IAM)** $\rightarrow$ Luôn là trách nhiệm của **Khách hàng (Customer)**.
+  - **Hạ tầng vật lý, Phần cứng GPU, Bản vá OS máy chủ managed** $\rightarrow$ Luôn là trách nhiệm của **AWS**.

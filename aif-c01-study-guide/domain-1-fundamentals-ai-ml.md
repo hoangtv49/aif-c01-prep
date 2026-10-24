@@ -352,3 +352,28 @@ A data engineering team needs to prepare, clean, and visualize a multi-gigabyte 
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Cụm từ trong đề tiếng Anh: *"Visual point-and-click data preparation with 300+ transformations"* $\rightarrow$ Luôn chọn **SageMaker Data Wrangler**.
+
+---
+
+### Question 11
+An e-commerce company wants to build a solution to determine customer sentiment based on written customer product reviews. The company wants to evaluate both pre-trained natural language processing services and generative AI foundation models. Which AWS services meet these requirements? (Choose two.)
+- A. Amazon Lex
+- B. Amazon Comprehend
+- C. Amazon Polly
+- D. Amazon Bedrock
+- E. Amazon Rekognition
+
+**Đáp án đúng:** **B. Amazon Comprehend** và **D. Amazon Bedrock**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"determine customer sentiment based on written reviews"* bằng cả *"pre-trained NLP services"* và *"generative AI foundation models"*.
+- **Amazon Comprehend** là dịch vụ AI được quản lý sẵn (pre-trained NLP service) có API phân tích cảm xúc (Sentiment Analysis) chuyên dụng, trả về trực tiếp nhãn `POSITIVE`, `NEGATIVE`, `NEUTRAL` hoặc `MIXED`.
+- **Amazon Bedrock** cung cấp quyền truy cập các mô hình nền tảng (LLMs như Claude, Llama, Titan) có thể thực hiện phân tích cảm xúc chi tiết thông qua câu lệnh prompt.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Amazon Lex):** Dịch vụ xây dựng giao diện đàm thoại (chatbot theo kịch bản), không phải dịch vụ phân tích sắc thái hàng loạt cho văn bản tĩnh.
+- **Loại C (Amazon Polly):** Chuyển văn bản thành giọng nói (Text-to-Speech).
+- **Loại E (Amazon Rekognition):** Dịch vụ thị giác máy tính (Computer Vision), không xử lý văn bản đánh giá sản phẩm.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Câu hỏi dạng *"Choose two"* kiểm tra sự kết hợp giữa **Traditional AI Managed Services** (Comprehend) và **Generative AI Services** (Bedrock) cho cùng một bài toán NLP.

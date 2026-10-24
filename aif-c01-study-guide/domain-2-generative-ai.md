@@ -343,3 +343,29 @@ A developer wants to limit the randomness of an LLM by instructing the model to 
 - Nhớ định nghĩa cốt lõi:
   - **Top-K**: Giới hạn **số lượng cố định K từ** có xác suất cao nhất.
   - **Top-P**: Giới hạn động các từ có **tổng xác suất tích lũy đạt ngưỡng P**.
+
+---
+
+### Question 11
+A company is designing a generative AI application that uses an open-source foundation model (FM). The engineering team wants to compare the technical tradeoffs between using Retrieval-Augmented Generation (RAG) and performing model fine-tuning. What are TWO key advantages of using RAG compared to fine-tuning? (Choose two.)
+- A. RAG allows real-time integration of dynamic company data without requiring model retraining.
+- B. RAG permanently modifies and updates all underlying internal weights of the foundation model.
+- C. RAG provides transparent source citations so users can verify the factual origin of the information.
+- D. RAG teaches the foundation model specialized formatting syntax more effectively than fine-tuning.
+- E. RAG eliminates the need for any vector databases or text embedding models.
+
+**Đáp án đúng:** **A. RAG allows real-time integration of dynamic company data without requiring model retraining.** và **C. RAG provides transparent source citations so users can verify the factual origin of the information.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- So sánh cốt lõi giữa **RAG** và **Fine-Tuning**:
+  1. **Tích hợp dữ liệu động tức thì (A)**: RAG chỉ cần lưu trữ và lập chỉ mục tài liệu vào vector store. Khi tài liệu nội bộ thay đổi, RAG cập nhật ngay lập tức mà **không cần đào tạo lại mô hình (no model retraining)**.
+  2. **Minh bạch trích dẫn nguồn (C)**: RAG đính kèm đoạn văn gốc vào prompt, cho phép LLM chỉ ra chính xác tài liệu, trang hoặc liên kết nguồn (**source citations**), giúp giảm ảo giác và tăng độ tin cậy.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B:** RAG **không bao giờ thay đổi trọng số** của mô hình nền tảng. Thay đổi trọng số (weights modification) là định nghĩa của Fine-Tuning.
+- **Loại D:** Để dạy mô hình tuân thủ định dạng cú pháp đặc biệt hoặc phong cách hành văn chuyên sâu, **Fine-Tuning** hiệu quả hơn nhiều so với RAG.
+- **Loại E:** RAG phụ thuộc trực tiếp vào mô hình Embedding và Vector Database để truy xuất thông tin, do đó khẳng định "loại bỏ vector database" là hoàn toàn sai.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Trong các câu hỏi *"Choose two: Advantages of RAG"*:
+  - Luôn chọn: **Dữ liệu mới không cần train lại (Dynamic data without retraining)** + **Dẫn nguồn minh bạch (Source citation / Grounding)**.

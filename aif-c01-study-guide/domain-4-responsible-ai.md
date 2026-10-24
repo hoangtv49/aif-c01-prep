@@ -323,3 +323,30 @@ A commercial banking institution implements a customer service chatbot powered b
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Cụm từ trong đề tiếng Anh: *"Prevent discussion of specific topics using natural language definitions"* $\rightarrow$ Luôn chọn **Denied Topics**.
+
+---
+
+### Question 11
+A company wants to implement responsible AI principles for its machine learning and generative AI applications to ensure fair and impartial outcomes across all demographic user groups. Which actions will help achieve this objective? (Choose two.)
+- A. Include demographically diverse and representative training data sources to improve model fairness.
+- B. Obfuscate all model training logs and evaluation benchmarks from internal and external stakeholders.
+- C. Use Amazon SageMaker Clarify to compute pre-training and post-training bias metrics across sensitive attributes.
+- D. Remove all human reviewers from the evaluation loop to eliminate human subjectivity.
+- E. Ensure that the model only trains on historical data without updating for recent trends.
+
+**Đáp án đúng:** **A. Include demographically diverse and representative training data sources to improve model fairness.** và **C. Use Amazon SageMaker Clarify to compute pre-training and post-training bias metrics across sensitive attributes.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Mục tiêu: *"ensure fair and impartial outcomes across all demographic user groups (Responsible AI & Fairness)"*.
+  1. **Đa dạng hóa dữ liệu huấn luyện (A)**: Đảm bảo tập dữ liệu bao quát đầy đủ và cân bằng các nhóm nhân khẩu học khác nhau, ngăn chặn việc mô hình bị sai lệch do mất cân bằng dữ liệu lịch sử (Data Bias / Representation Bias).
+  2. **Đo lường thiên vị với SageMaker Clarify (C)**: Sử dụng Clarify để phát hiện và định lượng các chỉ số thiên vị (như Class Imbalance, DPPL, Disparate Impact) trên các thuộc tính nhạy cảm (tuổi tác, giới tính, chủng tộc) ở cả giai đoạn trước và sau khi huấn luyện.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Obfuscate logs and benchmarks):** Che giấu tài liệu và log vi phạm nghiêm trọng trụ cột **Minh bạch (Transparency)** của Responsible AI.
+- **Loại D (Remove all human reviewers):** Loại bỏ hoàn toàn sự giám sát của con người vi phạm trụ cột **Quản trị & Trách nhiệm giải trình (Governance & Accountability)**; các hệ thống AI có trách nhiệm luôn khuyến khích cơ chế Human-in-the-Loop.
+- **Loại E (Only train on historical data):** Dữ liệu lịch sử thường mang sẵn định kiến xã hội cũ (Historical bias), nếu không cập nhật sẽ làm trầm trọng thêm thiên kiến của mô hình.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Hai hành động tiêu chuẩn để đảm bảo **Fairness trong AI**:
+  - Dữ liệu đầu vào: **Đa dạng và có tính đại diện (Demographically diverse data)**.
+  - Công cụ kỹ thuật: **Đo lường chỉ số bias với Amazon SageMaker Clarify**.

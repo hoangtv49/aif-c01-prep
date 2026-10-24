@@ -21,11 +21,11 @@
 
 | Domain | Trọng số | Nội dung chính | File tài liệu ôn tập |
 | :--- | :---: | :--- | :--- |
-| **Domain 1** | **20%** | **Fundamentals of AI and ML**<br>Khái niệm AI/ML/DL, ML Lifecycle, Learning Types, AWS Core AI Managed Services, SageMaker Core. | [domain-1-fundamentals-ai-ml.md](./domain-1-fundamentals-ai-ml.md) (10 câu hỏi) |
-| **Domain 2** | **24%** | **Fundamentals of Generative AI**<br>Bản chất GenAI, Transformer Architecture, RAG vs Fine-Tuning, Lựa chọn Foundation Models, Rủi ro GenAI. | [domain-2-generative-ai.md](./domain-2-generative-ai.md) (10 câu hỏi) |
-| **Domain 3** | **28%** | **Applications of Foundation Models**<br>Amazon Bedrock (Knowledge Bases, Agents, Guardrails), Amazon Q, PartyRock, Prompt Engineering, Đánh giá FMs. | [domain-3-fm-applications.md](./domain-3-fm-applications.md) (11 câu hỏi) |
-| **Domain 4** | **14%** | **Guidelines for Responsible AI**<br>6 Trụ cột Responsible AI, Bias & Fairness, Model Transparency, SageMaker Clarify, AWS AI Service Cards. | [domain-4-responsible-ai.md](./domain-4-responsible-ai.md) (10 câu hỏi) |
-| **Domain 5** | **14%** | **Security, Compliance, and Governance for AI**<br>Shared Responsibility Model, Bảo mật dữ liệu & VPC, OWASP Top 10 for LLMs, AWS Artifact, Audit Manager, Config. | [domain-5-security-compliance-governance.md](./domain-5-security-compliance-governance.md) (11 câu hỏi) |
+| **Domain 1** | **20%** | **Fundamentals of AI and ML**<br>Khái niệm AI/ML/DL, ML Lifecycle, Learning Types, AWS Core AI Managed Services, SageMaker Core. | [domain-1-fundamentals-ai-ml.md](./domain-1-fundamentals-ai-ml.md) (11 câu hỏi) |
+| **Domain 2** | **24%** | **Fundamentals of Generative AI**<br>Bản chất GenAI, Transformer Architecture, RAG vs Fine-Tuning, Lựa chọn Foundation Models, Rủi ro GenAI. | [domain-2-generative-ai.md](./domain-2-generative-ai.md) (11 câu hỏi) |
+| **Domain 3** | **28%** | **Applications of Foundation Models**<br>Amazon Bedrock (Knowledge Bases, Agents, Guardrails), Amazon Q, PartyRock, Prompt Engineering, Đánh giá FMs. | [domain-3-fm-applications.md](./domain-3-fm-applications.md) (12 câu hỏi) |
+| **Domain 4** | **14%** | **Guidelines for Responsible AI**<br>6 Trụ cột Responsible AI, Bias & Fairness, Model Transparency, SageMaker Clarify, AWS AI Service Cards. | [domain-4-responsible-ai.md](./domain-4-responsible-ai.md) (11 câu hỏi) |
+| **Domain 5** | **14%** | **Security, Compliance, and Governance for AI**<br>Shared Responsibility Model, Bảo mật dữ liệu & VPC, OWASP Top 10 for LLMs, AWS Artifact, Audit Manager, Config. | [domain-5-security-compliance-governance.md](./domain-5-security-compliance-governance.md) (12 câu hỏi) |
 
 ---
 
