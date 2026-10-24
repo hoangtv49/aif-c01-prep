@@ -1,0 +1,19 @@
+aif-c01-study-guide/domain-1-fundamentals-ai-ml.md
+  s_a513f3f6851de5::t_7d077b4c85e454 1-230
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "db1fc32324a5bbaaa682f8206f4728cf0d61401c",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
