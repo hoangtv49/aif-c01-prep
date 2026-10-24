@@ -203,6 +203,9 @@ const htmlContent = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>AWS Certified AI Practitioner (AIF-C01) - Interactive Mastery Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -829,18 +832,17 @@ const htmlContent = `<!DOCTYPE html>
     }
     .node-group:hover .node-rect {
       stroke: #38bdf8 !important;
-      stroke-width: 2.5px;
-      fill: #1c2b44;
-      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+      stroke-width: 2.5px !important;
+      fill: #1c2b44 !important;
     }
     .node-group:hover .node-text {
-      fill: #ffffff;
+      fill: #ffffff !important;
+      font-weight: 700 !important;
     }
     .node-group.selected .node-rect {
-      stroke: #38bdf8 !important;
-      stroke-width: 3px !important;
+      stroke: #00a4e4 !important;
+      stroke-width: 3.5px !important;
       fill: #1e3a5f !important;
-      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
     }
     .node-group.selected .node-text {
       fill: #ffffff !important;
@@ -851,7 +853,7 @@ const htmlContent = `<!DOCTYPE html>
       stroke-width: 1.5;
       cursor: pointer;
       pointer-events: all;
-      transition: stroke 0.15s ease, fill 0.15s ease, filter 0.15s ease;
+      transition: stroke 0.15s ease, fill 0.15s ease;
     }
     .node-text {
       font-family: var(--font-sans);
@@ -2916,6 +2918,7 @@ const htmlContent = `<!DOCTYPE html>
         }
 
         inspector.classList.add('open');
+        showToast('🧭 ' + node.label);
       }
     }
 
