@@ -129,72 +129,163 @@ fs.writeFileSync(path.join(BASE_DIR, "data.json"), JSON.stringify(data, null, 2)
 // Define Concept Graph Nodes & Edges
 const graphData = {
   nodes: [
-    { id: "bedrock", label: "Amazon Bedrock", domain: 3, group: "platform", x: 420, y: 180, desc: "Serverless unified API for leading foundation models." },
-    { id: "knowledge_bases", label: "Bedrock Knowledge Bases", domain: 3, group: "rag", x: 200, y: 100, desc: "Fully managed RAG connecting FMs to enterprise data sources." },
-    { id: "bedrock_agents", label: "Bedrock Agents", domain: 3, group: "automation", x: 640, y: 100, desc: "Autonomous multi-step reasoning and API execution." },
-    { id: "bedrock_guardrails", label: "Bedrock Guardrails", domain: 4, group: "safety", x: 420, y: 320, desc: "Content moderation, PII masking, and hallucination filters." },
-    { id: "model_eval", label: "Bedrock Model Evaluation", domain: 3, group: "evaluation", x: 620, y: 260, desc: "Automatic and human-in-the-loop FM benchmarks." },
-    { id: "rag", label: "RAG Architecture", domain: 2, group: "rag", x: 80, y: 190, desc: "Retrieves external facts to ground responses without retraining." },
-    { id: "fine_tuning", label: "PEFT / LoRA Fine-Tuning", domain: 3, group: "customization", x: 640, y: 180, desc: "Parameter-efficient adaptation; requires Provisioned Throughput." },
-    { id: "vector_db", label: "Vector Database (OpenSearch)", domain: 2, group: "rag", x: 80, y: 290, desc: "Indexes high-dimensional vector embeddings for fast similarity search." },
-    { id: "s3", label: "Amazon S3 Data Lake", domain: 5, group: "storage", x: 220, y: 240, desc: "Object storage for training datasets, knowledge base docs, and audit logs." },
-    { id: "lambda", label: "AWS Lambda", domain: 3, group: "automation", x: 820, y: 80, desc: "Serverless code execution triggered by Bedrock Agents." },
-    { id: "openapi", label: "OpenAPI Schema", domain: 3, group: "automation", x: 820, y: 150, desc: "JSON/YAML API definition required by Bedrock Action Groups." },
-    { id: "pii_redaction", label: "PII Masking & Redaction", domain: 4, group: "safety", x: 240, y: 400, desc: "Automatically masks SSNs, credit cards, and sensitive identifiers." },
-    { id: "denied_topics", label: "Denied Topics", domain: 4, group: "safety", x: 420, y: 440, desc: "Natural language boundary rules prohibiting specific conversation subjects." },
-    { id: "grounding_check", label: "Contextual Grounding", domain: 4, group: "safety", x: 600, y: 400, desc: "Detects hallucinations by verifying factual backing against RAG sources." },
-    { id: "sagemaker", label: "Amazon SageMaker AI", domain: 1, group: "ml", x: 220, y: 550, desc: "End-to-end managed ML platform to build, train, and deploy models." },
-    { id: "data_wrangler", label: "SageMaker Data Wrangler", domain: 1, group: "ml", x: 80, y: 480, desc: "Visual data preparation with 300+ built-in transformations." },
-    { id: "jumpstart", label: "SageMaker JumpStart", domain: 1, group: "ml", x: 420, y: 550, desc: "Pre-trained open models deployed on dedicated EC2 ML instances in VPC." },
-    { id: "clarify", label: "SageMaker Clarify", domain: 4, group: "responsible", x: 220, y: 680, desc: "Measures pre/post-training bias metrics and explains decisions with SHAP." },
-    { id: "bias_detection", label: "Bias Metrics (DPPL / Disparate Impact)", domain: 4, group: "responsible", x: 80, y: 640, desc: "Quantifies algorithmic bias across sensitive demographic groups." },
-    { id: "shap", label: "SHAP Explainability", domain: 4, group: "responsible", x: 80, y: 730, desc: "Local and global feature attribution explaining prediction drivers." },
-    { id: "model_cards", label: "SageMaker Model Cards", domain: 4, group: "governance", x: 420, y: 680, desc: "Standardized governance documentation for custom ML models." },
-    { id: "service_cards", label: "AWS AI Service Cards", domain: 4, group: "governance", x: 600, y: 680, desc: "Official AWS transparency docs detailing intended use and limits." },
-    { id: "kms", label: "AWS KMS Encryption", domain: 5, group: "security", x: 420, y: 50, desc: "Envelope encryption for S3, Bedrock custom models, and EBS volumes." },
-    { id: "privatelink", label: "AWS PrivateLink (VPC Endpoints)", domain: 5, group: "security", x: 220, y: 30, desc: "Private connectivity to Bedrock APIs without traversing public internet." },
-    { id: "audit_manager", label: "AWS Audit Manager", domain: 5, group: "compliance", x: 780, y: 550, desc: "Automates continuous evidence collection for AI/ML compliance frameworks." },
-    { id: "artifact", label: "AWS Artifact", domain: 5, group: "compliance", x: 780, y: 650, desc: "On-demand portal to download AWS SOC 2, ISO, and PCI DSS audit reports." },
-    { id: "config", label: "AWS Config", domain: 5, group: "compliance", x: 620, y: 550, desc: "Tracks resource configuration changes and audits compliance rules." },
-    { id: "cloudtrail", label: "AWS CloudTrail", domain: 5, group: "compliance", x: 620, y: 620, desc: "Records all API calls made in the AWS account for forensic investigation." },
-    { id: "waf", label: "AWS WAF", domain: 5, group: "security", x: 600, y: 30, desc: "Layer 7 firewall defending AI endpoints from bot token exhaustion and DDoS." },
-    { id: "textract", label: "Amazon Textract", domain: 1, group: "core_ai", x: 80, y: 840, desc: "OCR and intelligent table extraction from scanned PDF documents." },
-    { id: "comprehend", label: "Amazon Comprehend", domain: 1, group: "core_ai", x: 260, y: 840, desc: "NLP sentiment analysis, entity extraction, and PII detection." },
-    { id: "transcribe", label: "Amazon Transcribe", domain: 1, group: "core_ai", x: 440, y: 840, desc: "Speech-to-text with speaker diarization and call analytics." },
-    { id: "polly", label: "Amazon Polly", domain: 1, group: "core_ai", x: 620, y: 840, desc: "Text-to-speech converting written words into natural lifelike voices." },
-    { id: "q_business", label: "Amazon Q Business", domain: 3, group: "enterprise", x: 800, y: 350, desc: "Enterprise conversational assistant with 40+ connectors and ACL enforcement." },
-    { id: "kendra", label: "Amazon Kendra", domain: 3, group: "search", x: 800, y: 440, desc: "Intelligent search engine returning source document excerpts and links." }
+    // --- ROW 1: SECURITY, STORAGE & NETWORK (y: 40) ---
+    { id: "macie", label: "Amazon Macie", domain: 5, group: "security", x: 120, y: 40, desc: "Tự động khám phá, phân loại và bảo vệ dữ liệu nhạy cảm PII lưu trữ trong Amazon S3 data lakes." },
+    { id: "s3", label: "Amazon S3 Data Lake", domain: 5, group: "storage", x: 340, y: 40, desc: "Kho lưu trữ đối tượng chứa tài liệu Knowledge Bases, dữ liệu huấn luyện ML, và audit logs." },
+    { id: "privatelink", label: "AWS PrivateLink (VPC Endpoints)", domain: 5, group: "security", x: 580, y: 40, desc: "Kết nối mạng riêng tư an toàn, đảm bảo lưu lượng gọi API Bedrock không bao giờ đi qua Internet công cộng." },
+    { id: "kms", label: "AWS KMS Encryption", domain: 5, group: "security", x: 820, y: 40, desc: "Mã hóa dữ liệu lưu trữ (Encryption at Rest) bằng Customer Managed Keys (CMKs) cho S3, Bedrock, EBS." },
+    { id: "waf", label: "AWS WAF", domain: 5, group: "security", x: 1040, y: 40, desc: "Tường lửa ứng dụng web lớp 7 bảo vệ AI endpoints khỏi DDoS và chặn bot làm cạn kiệt Bedrock tokens." },
+
+    // --- ROW 2: RAG, BEDROCK & AUTOMATION (y: 130 - 160) ---
+    { id: "rag", label: "RAG Architecture", domain: 2, group: "rag", x: 110, y: 140, desc: "Truy xuất thông tin thực tế từ bên ngoài đưa vào prompt, giúp LLM cập nhật tri thức mới mà không cần train lại." },
+    { id: "knowledge_bases", label: "Bedrock Knowledge Bases", domain: 3, group: "rag", x: 340, y: 140, desc: "Giải pháp RAG hoàn chỉnh tự động chunking, tạo vector embedding và truy xuất tài liệu từ S3." },
+    { id: "bedrock", label: "Amazon Bedrock", domain: 3, group: "platform", x: 580, y: 155, desc: "Dịch vụ Serverless cung cấp quyền truy cập các Foundation Models hàng đầu (Claude, Llama, Titan) qua 1 API duy nhất." },
+    { id: "bedrock_agents", label: "Bedrock Agents", domain: 3, group: "automation", x: 820, y: 140, desc: "Tác tử tự hành phân tích yêu cầu nhiều bước (ReAct), tự động lập kế hoạch và gọi API doanh nghiệp." },
+    { id: "openapi", label: "OpenAPI Schema", domain: 3, group: "automation", x: 1050, y: 115, desc: "Định dạng JSON/YAML chuẩn hóa mô tả API để Bedrock Action Groups hiểu tham số và thực thi." },
+
+    // --- ROW 3: VECTOR DB, PARAMS, TRANSFORMERS, TUNING & LAMBDA (y: 220 - 250) ---
+    { id: "vector_db", label: "Vector DB (OpenSearch)", domain: 2, group: "rag", x: 110, y: 230, desc: "Lưu trữ vector embeddings nhiều chiều, hỗ trợ tìm kiếm ngữ nghĩa tương đồng (Semantic Search) tốc độ cao." },
+    { id: "inference_params", label: "Inference Params (Temp/Top-P)", domain: 2, group: "genai_foundations", x: 340, y: 230, desc: "Siêu tham số suy luận: Temperature, Top-P, Top-K điều khiển mức độ ngẫu nhiên vs xác định của LLM." },
+    { id: "transformer", label: "Transformer (Self-Attention)", domain: 2, group: "genai_foundations", x: 580, y: 230, desc: "Kiến trúc mạng nơ-ron xử lý song song với cơ chế Self-Attention; xương sống cốt lõi của các LLMs như Claude, Llama, Titan." },
+    { id: "fine_tuning", label: "PEFT / LoRA Fine-Tuning", domain: 3, group: "customization", x: 820, y: 230, desc: "Tinh chỉnh tham số mô hình hiệu quả; bắt buộc dùng Provisioned Throughput khi suy luận trên Bedrock." },
+    { id: "lambda", label: "AWS Lambda", domain: 3, group: "automation", x: 1050, y: 185, desc: "Thực thi mã serverless chạy nghiệp vụ API khi được Bedrock Agents kích hoạt." },
+    { id: "rlhf", label: "RLHF Alignment", domain: 3, group: "customization", x: 1050, y: 255, desc: "Học tăng cường từ phản hồi con người, sử dụng reward model để căn chỉnh mô hình hữu ích và an toàn." },
+
+    // --- ROW 4: SAFETY, DIFFUSION & EVALUATION (y: 310 - 330) ---
+    { id: "prompt_injection", label: "Prompt Injection Defense", domain: 5, group: "safety", x: 110, y: 330, desc: "Phòng thủ lỗ hổng OWASP LLM01: Chặn Direct Jailbreaks và Indirect Prompt Poisoning từ tài liệu RAG." },
+    { id: "diffusion", label: "Diffusion Models", domain: 2, group: "genai_foundations", x: 340, y: 320, desc: "Mô hình sinh ảnh dựa trên quá trình thêm nhiễu và học cách khử nhiễu ngược (Stable Diffusion, Titan Image)." },
+    { id: "bedrock_guardrails", label: "Bedrock Guardrails", domain: 4, group: "safety", x: 580, y: 315, desc: "Hàng rào an toàn cho LLM: Lọc nội dung độc hại, che giấu PII, chặn chủ đề cấm và phát hiện ảo giác." },
+    { id: "model_eval", label: "Bedrock Model Evaluation", domain: 3, group: "evaluation", x: 820, y: 320, desc: "Đánh giá và so sánh chất lượng mô hình bằng benchmark tự động hoặc đánh giá có sự tham gia của con người." },
+    { id: "eval_metrics", label: "BLEU vs ROUGE Metrics", domain: 3, group: "evaluation", x: 1050, y: 330, desc: "BLEU đo độ chuẩn xác (Precision) cho Dịch máy; ROUGE đo độ bao phủ (Recall) cho Tóm tắt văn bản." },
+
+    // --- ROW 5: GUARDRAIL FILTERS & ENTERPRISE CHAT/SEARCH (y: 410 - 430) ---
+    { id: "pii_redaction", label: "PII Masking & Redaction", domain: 4, group: "safety", x: 120, y: 420, desc: "Tự động phát hiện và che giấu (mask) số thẻ tín dụng, CCCD/CMND, email trong prompt và output." },
+    { id: "denied_topics", label: "Denied Topics Policy", domain: 4, group: "safety", x: 350, y: 420, desc: "Định nghĩa quy tắc bằng ngôn ngữ tự nhiên cấm mô hình thảo luận các chủ đề nhạy cảm hoặc ngoài phạm vi." },
+    { id: "grounding_check", label: "Contextual Grounding", domain: 4, group: "safety", x: 580, y: 410, desc: "Kiểm tra mức độ bám sát tài liệu nguồn RAG (Grounding score) để phát hiện và ngăn chặn ảo giác." },
+    { id: "q_business", label: "Amazon Q Business", domain: 3, group: "enterprise", x: 820, y: 420, desc: "Trợ lý hội thoại doanh nghiệp kết nối hơn 40 kho dữ liệu nội bộ và tự động kế thừa phân quyền ACLs người dùng." },
+    { id: "q_developer", label: "Amazon Q Developer", domain: 3, group: "enterprise", x: 1050, y: 420, desc: "Trợ lý lập trình AI hỗ trợ viết code, quét lỗ hổng bảo mật và tự động nâng cấp mã nguồn trong IDE." },
+
+    // --- ROW 6: ML DATA PREP, JUMPSTART & AUDIT (y: 510 - 530) ---
+    { id: "data_wrangler", label: "SageMaker Data Wrangler", domain: 1, group: "ml", x: 120, y: 520, desc: "Công cụ trực quan chuẩn bị dữ liệu với hơn 300 phép biến đổi tích hợp cho bảng và hình ảnh." },
+    { id: "feature_store", label: "SageMaker Feature Store", domain: 1, group: "ml", x: 350, y: 520, desc: "Kho lưu trữ tập trung quản lý và tái sử dụng các đặc trưng (features) cho cả real-time inference và batch training." },
+    { id: "jumpstart", label: "SageMaker JumpStart", domain: 1, group: "ml", x: 580, y: 510, desc: "Thư viện mô hình pre-trained nguồn mở triển khai trên máy chủ EC2 ML chuyên dụng nằm trọn trong VPC khách hàng." },
+    { id: "kendra", label: "Amazon Kendra", domain: 3, group: "search", x: 820, y: 510, desc: "Công cụ tìm kiếm thông minh cho doanh nghiệp, trả về đoạn trích tài liệu chính xác nhất kèm liên kết nguồn gốc." },
+    { id: "audit_manager", label: "AWS Audit Manager", domain: 5, group: "compliance", x: 1050, y: 510, desc: "Tự động thu thập bằng chứng kỹ thuật liên tục trong tài khoản AWS để phục vụ kiểm toán các khung tuân thủ AI." },
+
+    // --- ROW 7: SAGEMAKER CORE, AUTOPILOT & COMPLIANCE (y: 610 - 630) ---
+    { id: "ground_truth", label: "SageMaker Ground Truth", domain: 1, group: "ml", x: 120, y: 620, desc: "Dịch vụ gán nhãn dữ liệu chất lượng cao kết hợp học chủ động (active learning) và lực lượng lao động con người." },
+    { id: "sagemaker", label: "Amazon SageMaker AI", domain: 1, group: "ml", x: 350, y: 620, desc: "Nền tảng MLOps toàn diện để chuẩn bị dữ liệu, xây dựng, huấn luyện, tối ưu và triển khai các mô hình học máy." },
+    { id: "autopilot", label: "SageMaker Autopilot", domain: 1, group: "ml", x: 580, y: 610, desc: "Nền tảng AutoML tự động khám phá dữ liệu, lựa chọn thuật toán tối ưu và tinh chỉnh siêu tham số." },
+    { id: "config", label: "AWS Config", domain: 5, group: "compliance", x: 820, y: 610, desc: "Theo dõi lịch sử thay đổi cấu hình tài nguyên và cảnh báo sai lệch tuân thủ so với các quy tắc đặt ra." },
+    { id: "artifact", label: "AWS Artifact", domain: 5, group: "compliance", x: 1050, y: 600, desc: "Cổng thông tin tự phục vụ cho phép tải về các báo cáo kiểm toán tuân thủ (SOC 2, ISO, PCI DSS) của AWS." },
+
+    // --- ROW 8: MODEL REGISTRY, CLARIFY, A2I & MODEL CARDS (y: 700 - 720) ---
+    { id: "model_registry", label: "SageMaker Model Registry", domain: 1, group: "ml", x: 130, y: 710, desc: "Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata nguồn gốc trước khi triển khai lên Production." },
+    { id: "clarify", label: "SageMaker Clarify", domain: 4, group: "responsible", x: 360, y: 720, desc: "Đo lường thiên kiến trước/sau huấn luyện (DPPL, Disparate Impact) và giải thích quyết định bằng SHAP." },
+    { id: "a2i", label: "Amazon Augmented AI (A2I)", domain: 4, group: "responsible", x: 590, y: 710, desc: "Quy trình Human-in-the-Loop đưa con người vào đánh giá lại các dự đoán ML có độ tin cậy thấp." },
+    { id: "model_cards", label: "SageMaker Model Cards", domain: 4, group: "governance", x: 820, y: 710, desc: "Tài liệu quản trị chuẩn mực lưu trữ thông tin huấn luyện, tham số và kết quả đánh giá cho Custom Models." },
+    { id: "service_cards", label: "AWS AI Service Cards", domain: 4, group: "governance", x: 1050, y: 700, desc: "Tài liệu minh bạch do AWS công bố nêu rõ mục đích sử dụng, hạn chế kỹ thuật và nguyên tắc thiết kế dịch vụ AI." },
+    { id: "cloudtrail", label: "AWS CloudTrail", domain: 5, group: "compliance", x: 1050, y: 770, desc: "Ghi log toàn bộ lịch sử các lệnh gọi API trong tài khoản phục vụ truy vết điều tra an ninh." },
+
+    // --- ROW 9: BIAS METRICS & SHAP EXPLAINABILITY (y: 810) ---
+    { id: "bias_detection", label: "Bias Metrics (DPPL / Impact)", domain: 4, group: "responsible", x: 230, y: 810, desc: "Lượng hóa sự mất cân bằng nhãn trước huấn luyện (DPPL) và tỷ lệ chấp thuận chênh lệch sau huấn luyện (Disparate Impact)." },
+    { id: "shap", label: "SHAP Explainability", domain: 4, group: "responsible", x: 490, y: 810, desc: "Giải thích cục bộ (từng dự đoán) và toàn cục (toàn bộ mô hình) thông qua giá trị phân bổ đặc trưng SHAP." },
+
+    // --- ROW 10: AWS CORE MANAGED AI SERVICES (y: 910) ---
+    { id: "rekognition", label: "Amazon Rekognition", domain: 1, group: "core_ai", x: 110, y: 910, desc: "Computer Vision: Nhận diện vật thể, khuôn mặt, chữ trong ảnh và kiểm duyệt nội dung nhạy cảm." },
+    { id: "textract", label: "Amazon Textract", domain: 1, group: "core_ai", x: 310, y: 910, desc: "OCR thông minh trích xuất văn bản có cấu trúc, bảng biểu (tables) và biểu mẫu (forms) từ tài liệu scan." },
+    { id: "comprehend", label: "Amazon Comprehend", domain: 1, group: "core_ai", x: 510, y: 910, desc: "Xử lý ngôn ngữ tự nhiên (NLP): Phân tích cảm xúc (sentiment), trích xuất thực thể và phát hiện thông tin PII." },
+    { id: "translate", label: "Amazon Translate", domain: 1, group: "core_ai", x: 710, y: 910, desc: "Dịch thuật máy móc thần kinh (Neural Machine Translation) đa ngôn ngữ chất lượng cao theo thời gian thực." },
+    { id: "transcribe", label: "Amazon Transcribe", domain: 1, group: "core_ai", x: 910, y: 910, desc: "Chuyển giọng nói thành văn bản (Speech-to-Text), phân biệt người nói (diarization) và phân tích cuộc gọi." },
+    { id: "polly", label: "Amazon Polly", domain: 1, group: "core_ai", x: 1090, y: 910, desc: "Chuyển văn bản thành giọng nói tự nhiên (Text-to-Speech) với giọng đọc sống động hỗ trợ SSML." },
+
+    // --- ROW 11: SPECIALIZED AI MANAGED SERVICES (y: 1010) ---
+    { id: "lex", label: "Amazon Lex", domain: 1, group: "specialized_ai", x: 180, y: 1010, desc: "Xây dựng giao diện đàm thoại (Chatbot & Voicebot) theo kịch bản quy chuẩn dựa trên Intents, Utterances và Slots." },
+    { id: "personalize", label: "Amazon Personalize", domain: 1, group: "specialized_ai", x: 460, y: 1010, desc: "Công cụ gợi ý cá nhân hóa (recommendations) theo thời gian thực dựa trên lịch sử tương tác người dùng." },
+    { id: "forecast", label: "Amazon Forecast", domain: 1, group: "specialized_ai", x: 740, y: 1010, desc: "Dự báo chuỗi thời gian (time-series forecasting) kết hợp dữ liệu quá khứ và biến số ngoại cảnh (thời tiết, ngày lễ)." },
+    { id: "fraud_detector", label: "Amazon Fraud Detector", domain: 1, group: "specialized_ai", x: 1020, y: 1010, desc: "Tự động phát hiện các giao dịch gian lận trực tuyến và tính điểm rủi ro tài khoản giả mạo." }
   ],
   edges: [
+    // Bedrock Core & Integrations
     { from: "bedrock", to: "knowledge_bases", label: "RAG Knowledge Base" },
     { from: "bedrock", to: "bedrock_agents", label: "Action Orchestration" },
     { from: "bedrock", to: "bedrock_guardrails", label: "Safety & Policy Filter" },
     { from: "bedrock", to: "model_eval", label: "Benchmark Evaluation" },
     { from: "bedrock", to: "fine_tuning", label: "Custom Models (Provisioned)" },
-    { from: "knowledge_bases", to: "rag", label: "Implements RAG" },
-    { from: "knowledge_bases", to: "vector_db", label: "Vector Search Queries" },
+    { from: "bedrock", to: "inference_params", label: "Temperature & Top-P Sampling" },
+    { from: "bedrock", to: "transformer", label: "Powered by Transformer LLMs" },
+    { from: "bedrock", to: "jumpstart", label: "Serverless API vs Dedicated EC2" },
+
+    // Transformers & Foundations
+    { from: "transformer", to: "fine_tuning", label: "Adapts Low-Rank Weights" },
+    { from: "transformer", to: "diffusion", label: "Text Generation vs Image Diffusion" },
+
+    // RAG Pipeline
+    { from: "knowledge_bases", to: "rag", label: "Implements Managed RAG" },
+    { from: "knowledge_bases", to: "vector_db", label: "Semantic Vector Search" },
     { from: "knowledge_bases", to: "s3", label: "Ingests S3 Documents" },
-    { from: "bedrock_agents", to: "openapi", label: "Defines API Schema" },
-    { from: "bedrock_agents", to: "lambda", label: "Executes API Business Logic" },
-    { from: "bedrock_guardrails", to: "pii_redaction", label: "Masks Sensitive Data" },
+
+    // Bedrock Agents & Automation
+    { from: "bedrock_agents", to: "openapi", label: "Defines Action Schema" },
+    { from: "bedrock_agents", to: "lambda", label: "Executes Business Logic" },
+    { from: "fine_tuning", to: "rlhf", label: "Human Alignment Tuning" },
+
+    // Evaluation
+    { from: "model_eval", to: "eval_metrics", label: "Automated Benchmark Scores" },
+    { from: "eval_metrics", to: "translate", label: "BLEU for Translation" },
+
+    // Safety & Guardrails
+    { from: "bedrock_guardrails", to: "pii_redaction", label: "Masks Sensitive PII" },
     { from: "bedrock_guardrails", to: "denied_topics", label: "Blocks Restricted Topics" },
     { from: "bedrock_guardrails", to: "grounding_check", label: "Detects Hallucinations" },
+    { from: "bedrock_guardrails", to: "prompt_injection", label: "Blocks Prompt Attacks" },
+    { from: "prompt_injection", to: "rag", label: "Indirect Injection via Docs" },
+
+    // Security & Data
+    { from: "kms", to: "s3", label: "Server-side Encryption (CMK)" },
+    { from: "kms", to: "bedrock", label: "Encrypts Custom Models & Data" },
+    { from: "privatelink", to: "bedrock", label: "Private VPC Traffic (No Internet)" },
+    { from: "waf", to: "bedrock", label: "Protects Endpoints & Rate Limits" },
+    { from: "macie", to: "s3", label: "Scans S3 PII Data Lake" },
+    { from: "macie", to: "pii_redaction", label: "Data Lake vs Inference PII" },
+
+    // SageMaker MLOps Lifecycle
     { from: "sagemaker", to: "data_wrangler", label: "Visual Data Preparation" },
+    { from: "sagemaker", to: "feature_store", label: "Feature Repository" },
+    { from: "sagemaker", to: "ground_truth", label: "Data Labeling Workflows" },
+    { from: "sagemaker", to: "autopilot", label: "AutoML Model Selection" },
     { from: "sagemaker", to: "jumpstart", label: "Model Hub (Dedicated EC2)" },
+    { from: "sagemaker", to: "model_registry", label: "Model Versioning & Approval" },
     { from: "sagemaker", to: "clarify", label: "Evaluates Bias & Explainability" },
+
+    // Clarify & Explainability
     { from: "clarify", to: "bias_detection", label: "Computes DPPL Metrics" },
     { from: "clarify", to: "shap", label: "Computes SHAP Values" },
     { from: "sagemaker", to: "model_cards", label: "Custom Model Documentation" },
     { from: "model_cards", to: "service_cards", label: "Contrast with AWS AI Cards" },
-    { from: "kms", to: "s3", label: "Server-side Encryption (CMK)" },
-    { from: "kms", to: "bedrock", label: "Encrypts Custom Models & Data" },
-    { from: "privatelink", to: "bedrock", label: "Private VPC Traffic (No Internet)" },
+
+    // Responsible AI & Human Review
+    { from: "a2i", to: "rekognition", label: "Human Review for Low Confidence" },
+    { from: "a2i", to: "textract", label: "Human Review for Complex Forms" },
+    { from: "a2i", to: "model_eval", label: "Human-in-the-Loop Benchmarking" },
+
+    // Governance & Compliance
     { from: "audit_manager", to: "artifact", label: "Active Evidence vs Static SOC Reports" },
     { from: "config", to: "cloudtrail", label: "Config Drift vs API Audit Logs" },
-    { from: "waf", to: "bedrock", label: "Protects Endpoints & Rate Limits" },
+
+    // Enterprise Assistants & Search
+    { from: "kendra", to: "q_business", label: "Search Index vs GenAI Chatbot" },
+    { from: "q_business", to: "q_developer", label: "Business Assistant vs Coding Assistant" },
+
+    // Core AI Pipelines
     { from: "transcribe", to: "comprehend", label: "Audio -> Text -> Sentiment" },
     { from: "transcribe", to: "polly", label: "Speech-to-Text & Text-to-Speech" },
-    { from: "kendra", to: "q_business", label: "Search Index vs GenAI Chatbot" }
+
+    // Specialized AI & Comparisons
+    { from: "lex", to: "bedrock_agents", label: "Intent/Slot Bot vs Autonomous Agent" },
+    { from: "personalize", to: "forecast", label: "User Recommendations vs Demand Forecast" },
+    { from: "fraud_detector", to: "comprehend", label: "Fraud Scoring & Identity Security" },
+    { from: "diffusion", to: "bedrock", label: "Image Gen (Titan Image / SD)" }
   ]
 };
 
@@ -799,7 +890,7 @@ const htmlContent = `<!DOCTYPE html>
 
     .graph-svg-wrapper {
       width: 100%;
-      height: 700px;
+      height: 760px;
       position: relative;
       background: radial-gradient(circle at center, #111d33 0%, #0a0f1d 100%);
       border-radius: 12px;
@@ -1643,7 +1734,7 @@ const htmlContent = `<!DOCTYPE html>
         padding: 1rem 0.85rem;
       }
       .graph-svg-wrapper {
-        height: 480px;
+        height: 520px;
       }
       .graph-inspector {
         position: fixed !important;
@@ -1830,16 +1921,20 @@ const htmlContent = `<!DOCTYPE html>
             <p style="font-size: 0.85rem; color: var(--text-muted);">Di chuột hoặc nhấp vào từng node để làm sáng các đường kết nối liên quan giữa các dịch vụ trong đề thi.</p>
           </div>
           <div class="graph-legend">
-            <div class="legend-item"><div class="legend-dot" style="background: #00a4e4;"></div><span>Platform / API</span></div>
-            <div class="legend-item"><div class="legend-dot" style="background: #10b981;"></div><span>RAG & Data</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #00a4e4;"></div><span>Platform (Bedrock)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #10b981;"></div><span>RAG & Vector Search</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #06b6d4;"></div><span>Core AI (Vision, OCR, NLP)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div><span>Specialized AI (Lex, Recs, Forecast)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #3b82f6;"></div><span>SageMaker MLOps</span></div>
             <div class="legend-item"><div class="legend-dot" style="background: #f59e0b;"></div><span>Safety & Guardrails</span></div>
-            <div class="legend-item"><div class="legend-dot" style="background: #6366f1;"></div><span>Responsible AI</span></div>
-            <div class="legend-item"><div class="legend-dot" style="background: #ec4899;"></div><span>Security & Compliance</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #6366f1;"></div><span>Responsible AI & A2I</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div><span>Security (KMS, VPC, Macie)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #ec4899;"></div><span>Governance & Compliance</span></div>
           </div>
         </div>
 
         <div class="graph-svg-wrapper">
-          <svg id="concept-svg" viewBox="0 0 950 900">
+          <svg id="concept-svg" viewBox="0 0 1200 1080">
             <defs>
               <linearGradient id="edge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#00a4e4" />
@@ -2859,8 +2954,13 @@ const htmlContent = `<!DOCTYPE html>
         automation: '#8b5cf6',
         security: '#ef4444',
         core_ai: '#06b6d4',
+        specialized_ai: '#f97316',
         enterprise: '#8b5cf6',
-        search: '#10b981'
+        search: '#10b981',
+        evaluation: '#eab308',
+        customization: '#a855f7',
+        genai_foundations: '#d946ef',
+        governance: '#a855f7'
       };
 
       // Draw Edges
