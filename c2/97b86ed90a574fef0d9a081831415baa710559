@@ -1,0 +1,19 @@
+docs/superpowers/plans/2026-10-24-aif-c01-study-system.md
+  s_a513f3f6851de5::t_e568924873dd2a 1-353
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c297b86ed90a574fef0d9a081831415baa710559",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
