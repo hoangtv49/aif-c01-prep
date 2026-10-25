@@ -1,0 +1,295 @@
+audio/cache/en/shared-responsibility-model.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/aws-cloudwatch.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/embeddings.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-textract.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/recall.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/underfitting.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-fraud-detector.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/prompt-injection.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-cloudtrail.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/diffusion.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/macie.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/chain-of-thought.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/diffusion-models.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-certified-ai-practitioner.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-22
+audio/cache/en/aws.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/transformer.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/sagemaker.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/aws-privatelink.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-polly.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/cloudtrail.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/machine-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/shield.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/ai-service-cards.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/tokenization.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/sagemaker-ground-truth.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/vector-search.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+scripts/generate-theory-audio.cjs
+  s_a513f3f6851de5::t_a878e4928d5857 214-218,224
+  s_a513f3f6851de5::t_e8f9b302327dd3 8,34-73,138-141,174-197,199-202,204-213,219-223,225-229,232-250,268,274-283,287-293,297-317,325,339-346,359,367-368
+  s_a513f3f6851de5::t_75db98222363e6 284-286,294-296
+audio/cache/en/embedding.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/accuracy.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/llm.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-personalize.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/bedrock-agents.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/foundation-model.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/context-window.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-bedrock.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/retrieval-augmented-generation.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/cosine-similarity.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/few-shot.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/large-language-model.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/max-tokens.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-audit-manager.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/provisioned-throughput.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/temperature.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-ec2.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-waf.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/f1-score.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/top-k.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/system-prompt.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/guardduty.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/aws-shield.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/artifact.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/hallucination.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/unsupervised-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-q-business.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/aws-artifact.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/bedrock-guardrails.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/discriminative-ai.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-s3.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/iam.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/precision.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/sagemaker-jumpstart.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/artificial-intelligence.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-kms.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/neural-networks.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-lex.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/fairness.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-q.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/llms.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/roc-auc.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/aws-ai-service-cards.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-22
+audio/cache/en/vpc.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/jailbreak.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/robustness.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-macie.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/privatelink.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-comprehend.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-config.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/overfitting.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/deep-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/transfer-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/transparency.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+aif-c01-study-guide/audio/theory/manifest.json
+  s_a513f3f6851de5::t_f8f28d63162420 4-5,9-10,14-15,19-20,24-25
+audio/cache/en/self-attention.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-forecast.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/foundation-models.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/stop-sequences.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/rag.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/user-prompt.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/tokens.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-opensearch.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-codewhisperer.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/token.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/kms.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/serverless.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/theory/manifest.json
+  s_a513f3f6851de5::t_f8f28d63162420 4-5,9-10,14-15,19-20,24-25
+audio/cache/en/config.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/explainability.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-sagemaker.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-translate.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/confusion-matrix.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/trainium.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/on-demand.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-guardduty.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-iam.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-kendra.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/audit-manager.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/sagemaker-data-wrangler.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/inferentia.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/top-p.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/sagemaker-canvas.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/text-to-image.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/bedrock-knowledge-bases.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/amazon-transcribe.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/partyrock.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/fine-tuning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/supervised-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/aws-lambda.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/large-language-models.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/data-poisoning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/owasp.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/sagemaker-clarify.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/vector-database.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-opensearch-service.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/multi-layer-neural-networks.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/sagemaker-model-cards.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/amazon-vpc.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/zero-shot.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/amazon-rekognition.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/pre-training.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/reinforcement-learning.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/generative-ai.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/waf.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/prompt-engineering.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/cloudwatch.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-7
+audio/cache/en/owasp-top-10-for-llms.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-27
+audio/cache/en/responsible-ai.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-12
+audio/cache/en/amazon-q-developer.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+audio/cache/en/eu-ai-act.mp3.json
+  s_a513f3f6851de5::t_a49d3c4df76cd4 1-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3758a011dbf16bf3c46bf07bf4dac2ddf5c20dbe",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
