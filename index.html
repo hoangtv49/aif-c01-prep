@@ -1586,6 +1586,117 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.12);
       transition: all 0.3s ease;
     }
+
+    /* Question Audio Player Styles */
+    .q-audio-btn {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-family: var(--font-sans);
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      line-height: 1.2;
+    }
+    .q-audio-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+    .q-audio-btn.playing {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.5);
+      animation: audioPulse 1.2s infinite alternate;
+    }
+    @keyframes audioPulse {
+      from { box-shadow: 0 0 4px rgba(56, 189, 248, 0.3); }
+      to { box-shadow: 0 0 16px rgba(56, 189, 248, 0.8); }
+    }
+    .q-mini-player {
+      background: #090e1a;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 1rem;
+      animation: expandDrawer 0.25s ease;
+    }
+    .q-player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.45rem;
+    }
+    .q-ctrl-btn {
+      background: #162032;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .q-ctrl-btn:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .q-ctrl-btn.play-pause {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .q-player-time {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #38bdf8;
+    }
+    .q-speed-group {
+      display: inline-flex;
+      gap: 0.25rem;
+      margin-left: auto;
+    }
+    .q-speed-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .q-speed-btn:hover, .q-speed-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .q-player-slider {
+      width: 100%;
+      height: 4px;
+      background: #1e293b;
+      outline: none;
+      border-radius: 4px;
+      accent-color: #38bdf8;
+      cursor: pointer;
+    }
+    .audio-active-card {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35) !important;
+    }
     .audio-demo-header {
       display: flex;
       justify-content: space-between;
@@ -4391,6 +4502,182 @@
       }, 100);
     }
 
+    // Global Question Audio Manager Singleton
+    class QuestionAudioManager {
+      constructor() {
+        this.audio = new Audio();
+        this.currentQId = null;
+        this.isAutoPlayNext = false;
+        this.speed = parseFloat(localStorage.getItem('aif_audio_speed') || '1.0');
+        this.audio.playbackRate = this.speed;
+
+        this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+        this.audio.addEventListener('ended', () => this.onEnded());
+        this.audio.addEventListener('error', (e) => this.onError(e));
+      }
+
+      formatTime(sec) {
+        if (!sec || isNaN(sec)) return '00:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }
+
+      onTimeUpdate() {
+        if (!this.currentQId) return;
+        const cur = this.audio.currentTime || 0;
+        const dur = this.audio.duration || 1;
+        const pct = Math.min(100, (cur / dur) * 100);
+
+        const timeLabels = document.querySelectorAll('#q-time-' + this.currentQId);
+        timeLabels.forEach(lbl => {
+          lbl.textContent = this.formatTime(cur) + ' / ' + this.formatTime(dur);
+        });
+
+        const sliders = document.querySelectorAll('#q-seek-' + this.currentQId);
+        sliders.forEach(slider => {
+          slider.value = pct;
+        });
+      }
+
+      onEnded() {
+        this.stopCurrentUI();
+        if (this.isAutoPlayNext) {
+          setTimeout(() => {
+            if (typeof playNextQuestion === 'function') {
+              playNextQuestion();
+            }
+          }, 1500);
+        }
+      }
+
+      onError(e) {
+        console.warn('Audio playback error:', e);
+        this.stopCurrentUI();
+      }
+
+      stopCurrentUI() {
+        if (this.currentQId) {
+          document.querySelectorAll('#btn-audio-' + this.currentQId).forEach(btn => {
+            btn.classList.remove('playing');
+            const txt = btn.querySelector('.q-audio-text');
+            if (txt) txt.textContent = 'Nghe (~45s)';
+          });
+          document.querySelectorAll('#q-player-box-' + this.currentQId).forEach(box => {
+            box.style.display = 'none';
+          });
+          document.querySelectorAll('.q-card').forEach(c => c.classList.remove('audio-active-card'));
+        }
+      }
+
+      toggle(qId) {
+        if (this.currentQId === qId) {
+          if (this.audio.paused) {
+            this.audio.play().catch(() => {});
+            this.updateButtonPlaying(qId, true);
+          } else {
+            this.audio.pause();
+            this.updateButtonPlaying(qId, false);
+          }
+          return;
+        }
+
+        // Switching to a new question
+        this.stopCurrentUI();
+        this.currentQId = qId;
+
+        this.audio.src = 'audio/questions/' + qId + '.mp3';
+        this.audio.playbackRate = this.speed;
+
+        this.updateButtonPlaying(qId, true);
+        document.querySelectorAll('#q-player-box-' + qId).forEach(box => {
+          box.style.display = 'block';
+        });
+
+        // Highlight card & auto-scroll
+        const card = document.getElementById('card-' + qId) || document.getElementById('card-topic-' + qId) || document.getElementById('card-quiz-' + qId);
+        if (card) {
+          card.classList.add('audio-active-card');
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        this.audio.play().catch(err => {
+          console.warn('Play interrupted:', err);
+        });
+
+        // MediaSession API integration
+        if ('mediaSession' in navigator) {
+          try {
+            navigator.mediaSession.metadata = new MediaMetadata({
+              title: 'Giải thích câu hỏi #' + qId.toUpperCase(),
+              artist: 'AWS AIF-C01 Prep (Nam Minh)',
+              album: 'AIF-C01 Audio Explanations'
+            });
+          } catch (e) {}
+        }
+      }
+
+      updateButtonPlaying(qId, isPlaying) {
+        document.querySelectorAll('#btn-audio-' + qId).forEach(btn => {
+          if (isPlaying) {
+            btn.classList.add('playing');
+            const txt = btn.querySelector('.q-audio-text');
+            if (txt) txt.textContent = 'Đang phát...';
+          } else {
+            btn.classList.remove('playing');
+            const txt = btn.querySelector('.q-audio-text');
+            if (txt) txt.textContent = 'Tiếp tục';
+          }
+        });
+        document.querySelectorAll('#q-play-pause-btn-' + qId).forEach(btn => {
+          btn.textContent = isPlaying ? '⏸️ Tạm dừng' : '▶️ Phát';
+        });
+      }
+
+      seek(offsetSec) {
+        if (!this.audio) return;
+        this.audio.currentTime = Math.max(0, Math.min(this.audio.duration || 0, this.audio.currentTime + offsetSec));
+      }
+
+      seekToPct(pct) {
+        if (!this.audio || !this.audio.duration) return;
+        this.audio.currentTime = (pct / 100) * this.audio.duration;
+      }
+
+      setSpeed(rate) {
+        this.speed = rate;
+        this.audio.playbackRate = rate;
+        localStorage.setItem('aif_audio_speed', rate);
+        document.querySelectorAll('.q-speed-btn').forEach(btn => {
+          if (btn.textContent.indexOf(rate + 'x') !== -1) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+      }
+    }
+
+    const questionAudioManager = new QuestionAudioManager();
+    window['audio-questions-manager'] = questionAudioManager;
+
+    function toggleQuestionAudio(qId, event) {
+      if (event) event.stopPropagation();
+      questionAudioManager.toggle(qId);
+    }
+
+    function seekQuestionAudio(offsetSec, event) {
+      if (event) event.stopPropagation();
+      questionAudioManager.seek(offsetSec);
+    }
+
+    function onSeekSliderChange(qId, val, event) {
+      if (event) event.stopPropagation();
+      questionAudioManager.seekToPct(parseFloat(val));
+    }
+
+    function setQuestionAudioSpeed(rate, event) {
+      if (event) event.stopPropagation();
+      questionAudioManager.setSpeed(rate);
+    }
+
     // Sync dynamic header height for sticky elements
     function syncHeaderHeight() {
       const header = document.querySelector('.app-header');
@@ -5775,9 +6062,29 @@
               <button class="q-toggle-btn" onclick="toggleCardExplanation('${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
                 ${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
               </button>
+              <button class="q-audio-btn" id="btn-audio-${q.id}" onclick="toggleQuestionAudio('${q.id}', event)" title="Nghe giải thích bằng giọng Nam Minh (~45s)">
+                <span class="q-audio-icon">🔊</span>
+                <span class="q-audio-text">Nghe (~45s)</span>
+              </button>
               <button class="q-bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${q.id}', event)" title="${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
                 <span>${isBookmarked ? '⭐' : '☆'}</span>
               </button>
+            </div>
+
+            <!-- Question Mini Audio Player Drawer -->
+            <div id="q-player-box-${q.id}" class="q-mini-player" style="display:none;">
+              <div class="q-player-controls">
+                <button class="q-ctrl-btn" onclick="seekQuestionAudio(-5, event)" title="Lùi 5 giây">⏪ 5s</button>
+                <button id="q-play-pause-btn-${q.id}" class="q-ctrl-btn play-pause" onclick="toggleQuestionAudio('${q.id}', event)">⏸️ Tạm dừng</button>
+                <button class="q-ctrl-btn" onclick="seekQuestionAudio(5, event)" title="Tua 5 giây">⏩ 5s</button>
+                <span id="q-time-${q.id}" class="q-player-time">00:00 / 00:45</span>
+                <div class="q-speed-group">
+                  <button class="q-speed-btn active" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
+                  <button class="q-speed-btn" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>
+                  <button class="q-speed-btn" onclick="setQuestionAudioSpeed(1.5, event)">1.5x</button>
+                </div>
+              </div>
+              <input type="range" id="q-seek-${q.id}" class="q-player-slider" min="0" max="100" value="0" oninput="onSeekSliderChange('${q.id}', this.value, event)">
             </div>
 
             <div class="q-stem">${q.stem}</div>

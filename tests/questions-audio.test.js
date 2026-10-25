@@ -43,3 +43,15 @@ test("Audio generation produces exactly 57 valid MP3 files and manifest", () => 
     expect(fs.statSync(rootPath).size).toBeGreaterThan(100000); // > 100KB
   });
 });
+
+test("index.html contains audio buttons and AudioManager for questions", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Question cards template should have toggleQuestionAudio call
+  expect(html).toContain("toggleQuestionAudio");
+  expect(html).toContain("toggleQuestionAudio('${q.id}', event)");
+
+  // Client JS AudioManager
+  expect(html).toContain("class QuestionAudioManager");
+  expect(html).toContain("audio-questions-manager");
+});
