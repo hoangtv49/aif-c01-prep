@@ -5930,9 +5930,9 @@ const htmlContent = `<!DOCTYPE html>
           <div class="theory-audio-toolbar" id="theory-audio-bar-\${d.domainId}">
             <div class="theory-audio-main-row">
               <div class="theory-audio-left">
-                <button class="theory-play-btn" id="theory-play-btn-\${d.domainId}" onclick="toggleTheoryAudio(\${d.domainId})" title="Nghe đọc lý thuyết bằng giọng AI Nam Minh">
+                <button class="theory-play-btn" id="theory-play-btn-\${d.domainId}" onclick="toggleTheoryAudio(\${d.domainId})" title="Nghe tóm tắt lý thuyết">
                   <span class="theory-play-icon" id="theory-play-icon-\${d.domainId}">▶️</span>
-                  <span class="theory-play-text" id="theory-play-text-\${d.domainId}">Nghe tóm tắt lý thuyết (giọng Nam Minh)</span>
+                  <span class="theory-play-text" id="theory-play-text-\${d.domainId}">Nghe tóm tắt lý thuyết</span>
                 </button>
                 <div class="theory-audio-meta">
                   <span class="theory-time-display" id="theory-time-\${d.domainId}">00:00 / --:--</span>
