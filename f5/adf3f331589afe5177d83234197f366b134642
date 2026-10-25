@@ -1,0 +1,23 @@
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_0e7713305bc548 5635,5637
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_2ea061e166a663 5933,5935
+index.html
+  s_a513f3f6851de5::t_0e7713305bc548 5635,5637
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f5adf3f331589afe5177d83234197f366b134642",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
