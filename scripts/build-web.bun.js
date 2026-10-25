@@ -2219,6 +2219,11 @@ const htmlContent = `<!DOCTYPE html>
       gap: 0.45rem;
       flex-shrink: 0;
     }
+    .theory-seek-btns {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
     .theory-ctrl-btn {
       background: #162032;
       border: 1px solid var(--border);
@@ -3243,12 +3248,17 @@ const htmlContent = `<!DOCTYPE html>
         align-items: center;
         justify-content: space-between;
       }
+      .theory-seek-btns {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
       .theory-play-btn {
         padding: 0.38rem 0.65rem;
         font-size: 0.75rem;
       }
       .theory-ctrl-btn {
-        padding: 0.3rem 0.5rem;
+        padding: 0.32rem 0.55rem;
         font-size: 0.72rem;
       }
       .theory-time-display {
@@ -6348,8 +6358,10 @@ const htmlContent = `<!DOCTYPE html>
                 </div>
               </div>
               <div class="theory-audio-controls">
-                <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, -10)" title="Lùi 10 giây">⏪ 10s</button>
-                <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, 10)" title="Tua 10 giây">⏩ 10s</button>
+                <div class="theory-seek-btns">
+                  <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, -10)" title="Lùi 10 giây">⏪ 10s</button>
+                  <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, 10)" title="Tua 10 giây">⏩ 10s</button>
+                </div>
                 <div class="theory-speed-chips">
                   <button class="theory-speed-btn active" data-speed="1.0" onclick="setTheorySpeed(1.0)">1.0x</button>
                   <button class="theory-speed-btn" data-speed="1.2" onclick="setTheorySpeed(1.2)">1.2x</button>

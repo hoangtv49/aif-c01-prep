@@ -53,6 +53,10 @@ test("Header logo/brand links back to topics home page and theory audio aligns c
 
   // Theory audio toolbar aligns play button and time display to both sides on mobile
   expect(html).toMatch(/\.theory-audio-left\s*\{[^}]*justify-content:\s*space-between/);
+
+  // 10s seek buttons are grouped together in .theory-seek-btns to avoid space-between separation
+  expect(html).toContain('class="theory-seek-btns"');
+  expect(html).toMatch(/\.theory-seek-btns\s*\{[^}]*gap:\s*0\.35rem/);
 });
 
 test("Exam timer does NOT auto-start on load, and header stats pill has responsive mobile layout", () => {
