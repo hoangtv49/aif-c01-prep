@@ -1,0 +1,19 @@
+docs/superpowers/specs/2026-10-25-aif-c01-audio-explanations-design.md
+  s_a513f3f6851de5::t_6e4c327728afeb 1-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b04658ea0fb64dade17870f99e8adc9002ef0cd9",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
