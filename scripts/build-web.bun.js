@@ -535,11 +535,11 @@ const htmlContent = `<!DOCTYPE html>
       flex-wrap: wrap;
     }
 
-    /* Smart Scroll-Aware Sticky Bar */
+    /* Sticky Filter & Search Bar */
     .smart-sticky-bar {
       position: sticky;
       top: var(--header-height, 96px);
-      z-index: 25;
+      z-index: 35;
       background: rgba(13, 21, 34, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -548,13 +548,6 @@ const htmlContent = `<!DOCTYPE html>
       padding: 0.55rem 0.85rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-      will-change: transform;
-    }
-    .smart-sticky-bar.bar-hidden {
-      transform: translateY(-130%);
-      pointer-events: none;
-      opacity: 0;
     }
 
     /* Inner Layout of Quiz Sticky Bar */
@@ -766,7 +759,6 @@ const htmlContent = `<!DOCTYPE html>
 
     /* Per-question toggle button */
     .q-toggle-btn {
-      margin-left: auto;
       background: #111a2e;
       border: 1px solid var(--border);
       color: #94a3b8;
@@ -776,7 +768,12 @@ const htmlContent = `<!DOCTYPE html>
       padding: 0.3rem 0.7rem;
       border-radius: 6px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
       transition: all 0.2s ease;
+      line-height: 1.2;
     }
     .q-toggle-btn:hover {
       color: #38bdf8;
@@ -860,9 +857,23 @@ const htmlContent = `<!DOCTYPE html>
     .q-meta {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.65rem;
       margin-bottom: 1rem;
       flex-wrap: wrap;
+    }
+    .q-meta-tags {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .q-meta-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-left: auto;
     }
     .q-badge {
       font-size: 0.75rem;
@@ -1953,6 +1964,16 @@ const htmlContent = `<!DOCTYPE html>
       gap: 0.5rem;
       flex-wrap: wrap;
       margin-bottom: 0.45rem;
+    }
+    .q-player-btns {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .q-player-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
     }
     .q-ctrl-btn {
       background: #162032;
@@ -3275,6 +3296,7 @@ const htmlContent = `<!DOCTYPE html>
       }
       .smart-sticky-bar {
         top: var(--header-height, 42px) !important;
+        z-index: 35 !important;
         padding: 0.45rem 0.6rem !important;
         margin-bottom: 1rem;
         border-radius: 10px;
@@ -3378,8 +3400,179 @@ const htmlContent = `<!DOCTYPE html>
         font-size: 0.75rem;
         text-align: center;
       }
+      .playlist-toolbar {
+        padding: 0.75rem 0.85rem;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .playlist-info {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .playlist-title {
+        font-size: 0.85rem;
+      }
+      .playlist-actions {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.4rem;
+      }
+      .playlist-btn {
+        flex: 1 1 auto;
+        padding: 0.38rem 0.5rem;
+        font-size: 0.75rem;
+        text-align: center;
+        justify-content: center;
+      }
+      .auto-next-label {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+      }
+      .view-subtabs-group {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.35rem !important;
+        padding: 0.25rem !important;
+        background: #090f1d !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 10px !important;
+        margin-bottom: 1rem !important;
+      }
+      .view-subtab-btn {
+        flex: none !important;
+        width: 100% !important;
+        height: 38px !important;
+        padding: 0 0.45rem !important;
+        font-size: 0.775rem !important;
+        font-weight: 600 !important;
+        border-radius: 7px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        text-align: center !important;
+        gap: 0.35rem !important;
+        border: 1px solid transparent !important;
+      }
+      .view-subtab-btn .reading-time-pill {
+        display: none !important;
+      }
+      .view-subtab-btn.active {
+        background: #1e293b !important;
+        color: #38bdf8 !important;
+        border-color: rgba(56, 189, 248, 0.45) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+      }
       .q-card {
         padding: 1.15rem 0.85rem;
+      }
+      .q-meta {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.6rem !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .q-meta-tags {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.38rem !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+      }
+      .q-meta-tags .q-badge,
+      .q-meta-tags .q-domain-tag,
+      .q-meta-tags .q-type-tag {
+        font-size: 0.72rem !important;
+        padding: 0.2rem 0.5rem !important;
+        border-radius: 5px !important;
+        line-height: 1.2 !important;
+      }
+      .q-meta-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 34px !important;
+        gap: 0.45rem !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+      .q-meta-actions .q-toggle-btn {
+        width: 100% !important;
+        height: 34px !important;
+        padding: 0 0.4rem !important;
+        font-size: 0.74rem !important;
+        font-weight: 600 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        border-radius: 7px !important;
+        box-sizing: border-box !important;
+      }
+      .q-meta-actions .q-audio-btn {
+        width: 100% !important;
+        height: 34px !important;
+        padding: 0 0.4rem !important;
+        font-size: 0.74rem !important;
+        font-weight: 600 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        border-radius: 7px !important;
+        box-sizing: border-box !important;
+      }
+      .q-meta-actions .q-bookmark-btn {
+        width: 34px !important;
+        height: 34px !important;
+        padding: 0 !important;
+        font-size: 1rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 7px !important;
+        box-sizing: border-box !important;
+      }
+      .q-mini-player {
+        padding: 0.55rem 0.65rem;
+      }
+      .q-player-controls {
+        gap: 0.45rem;
+      }
+      .q-player-btns {
+        display: flex;
+        gap: 0.35rem;
+        width: 100%;
+      }
+      .q-player-btns .q-ctrl-btn {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        padding: 0.28rem 0.4rem;
+        font-size: 0.72rem;
+      }
+      .q-player-btns .q-ctrl-btn.play-pause {
+        flex: 1.4;
+      }
+      .q-player-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      .q-player-time {
+        font-size: 0.72rem;
+      }
+      .q-speed-btn {
+        padding: 0.15rem 0.38rem;
+        font-size: 0.68rem;
       }
       .q-stem {
         font-size: 0.95rem;
@@ -3817,11 +4010,15 @@ const htmlContent = `<!DOCTYPE html>
         <!-- Subtab Switcher: Matrix vs Confusing Pairs -->
         <div class="view-subtabs-group">
           <button id="subtab-matrix-btn" class="view-subtab-btn active" onclick="switchMatrixSubtab('matrix')">
-            <span>📋 Ma trận Quyết định (25 Quy tắc)</span>
+            <span>📋 </span>
+            <span class="subtab-text-full">Ma trận Quyết định (25 Quy tắc)</span>
+            <span class="subtab-text-short">25 Quy tắc</span>
             <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~10p</span>
           </button>
           <button id="subtab-pairs-btn" class="view-subtab-btn" onclick="switchMatrixSubtab('pairs')">
-            <span>🥊 Top 10 Cặp Dịch Vụ Dễ Nhầm Lẫn (Versus Hub)</span>
+            <span>⚡ </span>
+            <span class="subtab-text-full">Cặp Dễ Nhầm Lẫn (Versus Hub)</span>
+            <span class="subtab-text-short">Cặp Dễ Nhầm</span>
             <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~12p</span>
           </button>
         </div>
@@ -3875,11 +4072,15 @@ const htmlContent = `<!DOCTYPE html>
         <!-- Subtab View Switcher: Table vs 3D Flashcards -->
         <div class="view-subtabs-group">
           <button id="subtab-ste-table-btn" class="view-subtab-btn active" onclick="setDictView('table')">
-            <span>📋 Tra cứu Từ điển (Dạng Bảng)</span>
+            <span>📋 </span>
+            <span class="subtab-text-full">Tra cứu Từ điển (Dạng Bảng)</span>
+            <span class="subtab-text-short">Dạng Bảng</span>
             <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~18p</span>
           </button>
           <button id="subtab-ste-cards-btn" class="view-subtab-btn" onclick="setDictView('cards')">
-            <span>🗂️ Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/82 đã thuộc)</span>
+            <span>🗂️ </span>
+            <span class="subtab-text-full">Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/82 đã thuộc)</span>
+            <span class="subtab-text-short">Flashcards (<span id="fc-mastered-count-subtab-short">0</span>/82)</span>
             <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~20p</span>
           </button>
         </div>
@@ -4103,7 +4304,6 @@ const htmlContent = `<!DOCTYPE html>
     let allFlashcardsList = [];
     let activeFlashcardDeck = [];
     let isScrollspyManual = false;
-    let lastScrollY = 0;
     let currentInspectedNodeId = null;
 
     // Confusing Pairs Hub Data (Top 10 High-Yield Head-to-Head Comparisons)
@@ -5436,6 +5636,7 @@ const htmlContent = `<!DOCTYPE html>
       }
     }
     window.addEventListener('resize', syncHeaderHeight);
+    window.addEventListener('orientationchange', syncHeaderHeight);
 
     // Setup History and Route Handling
     if ('scrollRestoration' in history) {
@@ -5648,9 +5849,6 @@ const htmlContent = `<!DOCTYPE html>
         else renderSTEDictionary();
       }
 
-      document.querySelectorAll('.smart-sticky-bar').forEach(b => b.classList.remove('bar-hidden'));
-      lastScrollY = 0;
-
       updatePageTitle(tabId, currentTopicDomain);
 
       if (pushHistory) {
@@ -5792,7 +5990,6 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     function initScrollListener() {
-      lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
         const currentY = window.scrollY;
         const btn = document.getElementById('back-to-top');
@@ -5804,26 +6001,7 @@ const htmlContent = `<!DOCTYPE html>
           }
         }
         updateTopicScrollspy();
-        handleSmartScroll(currentY);
       }, { passive: true });
-    }
-
-    function handleSmartScroll(currentY) {
-      if (isPaletteOpen) return;
-      if (document.activeElement && document.activeElement.classList.contains('search-box')) {
-        return;
-      }
-      const diff = currentY - lastScrollY;
-      const stickyBars = document.querySelectorAll('.smart-sticky-bar');
-
-      if (currentY <= 100) {
-        stickyBars.forEach(b => b.classList.remove('bar-hidden'));
-      } else if (diff > 12) {
-        stickyBars.forEach(b => b.classList.add('bar-hidden'));
-      } else if (diff < -12) {
-        stickyBars.forEach(b => b.classList.remove('bar-hidden'));
-      }
-      lastScrollY = currentY;
     }
 
     // Question Palette Functions
@@ -6403,6 +6581,8 @@ const htmlContent = `<!DOCTYPE html>
 
       const subtabCount = document.getElementById('fc-mastered-count-subtab');
       if (subtabCount) subtabCount.textContent = masteredCount;
+      const subtabCountShort = document.getElementById('fc-mastered-count-subtab-short');
+      if (subtabCountShort) subtabCountShort.textContent = masteredCount;
 
       const statMastered = document.getElementById('fc-mastered-stat');
       if (statMastered) statMastered.textContent = masteredCount;
@@ -6876,32 +7056,40 @@ const htmlContent = `<!DOCTYPE html>
         return \`
           <div class="q-card" id="card-\${prefix ? prefix + '-' : ''}\${q.id}">
             <div class="q-meta">
-              \${orderBadgeHtml}
-              <span class="q-domain-tag">Domain \${q.domainId}</span>
-              <span class="q-type-tag">\${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
-              <button class="q-toggle-btn" onclick="toggleCardExplanation('\${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
-                \${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
-              </button>
-              <button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe audio giải thích tình huống (\${qDurLabel})">
-                <span class="q-audio-icon">🔊</span>
-                <span class="q-audio-text">Nghe (\${qDurLabel})</span>
-              </button>
-              <button class="q-bookmark-btn \${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('\${q.id}', event)" title="\${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
-                <span>\${isBookmarked ? '⭐' : '☆'}</span>
-              </button>
+              <div class="q-meta-tags">
+                \${orderBadgeHtml}
+                <span class="q-domain-tag">Domain \${q.domainId}</span>
+                <span class="q-type-tag">\${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
+              </div>
+              <div class="q-meta-actions">
+                <button class="q-toggle-btn" onclick="toggleCardExplanation('\${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
+                  \${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
+                </button>
+                <button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe audio giải thích tình huống (\${qDurLabel})">
+                  <span class="q-audio-icon">🔊</span>
+                  <span class="q-audio-text">Nghe (\${qDurLabel})</span>
+                </button>
+                <button class="q-bookmark-btn \${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('\${q.id}', event)" title="\${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
+                  <span>\${isBookmarked ? '⭐' : '☆'}</span>
+                </button>
+              </div>
             </div>
 
             <!-- Question Mini Audio Player Drawer -->
             <div id="q-player-box-\${q.id}" class="q-mini-player" style="display:none;">
               <div class="q-player-controls">
-                <button class="q-ctrl-btn" onclick="seekQuestionAudio(-5, event)" title="Lùi 5 giây">⏪ 5s</button>
-                <button id="q-play-pause-btn-\${q.id}" class="q-ctrl-btn play-pause" onclick="toggleQuestionAudio('\${q.id}', event)">⏸️ Tạm dừng</button>
-                <button class="q-ctrl-btn" onclick="seekQuestionAudio(5, event)" title="Tua 5 giây">⏩ 5s</button>
-                <span id="q-time-\${q.id}" class="q-player-time">00:00 / \${qDurFormatted}</span>
-                <div class="q-speed-group">
-                  <button class="q-speed-btn \${curSpeed === 1.0 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
-                  <button class="q-speed-btn \${curSpeed === 1.2 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>
-                  <button class="q-speed-btn \${curSpeed === 1.5 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.5, event)">1.5x</button>
+                <div class="q-player-btns">
+                  <button class="q-ctrl-btn" onclick="seekQuestionAudio(-5, event)" title="Lùi 5 giây">⏪ 5s</button>
+                  <button id="q-play-pause-btn-\${q.id}" class="q-ctrl-btn play-pause" onclick="toggleQuestionAudio('\${q.id}', event)">⏸️ Tạm dừng</button>
+                  <button class="q-ctrl-btn" onclick="seekQuestionAudio(5, event)" title="Tua 5 giây">⏩ 5s</button>
+                </div>
+                <div class="q-player-meta">
+                  <span id="q-time-\${q.id}" class="q-player-time">00:00 / \${qDurFormatted}</span>
+                  <div class="q-speed-group">
+                    <button class="q-speed-btn \${curSpeed === 1.0 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
+                    <button class="q-speed-btn \${curSpeed === 1.2 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>
+                    <button class="q-speed-btn \${curSpeed === 1.5 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.5, event)">1.5x</button>
+                  </div>
                 </div>
               </div>
               <input type="range" id="q-seek-\${q.id}" class="q-player-slider" min="0" max="100" value="0" oninput="onSeekSliderChange('\${q.id}', this.value, event)">
