@@ -95,3 +95,18 @@ test("Topic domain navigation prevents focus conflict between domain cards", () 
   // switchTopicDomain blurs inactive buttons
   expect(html).toContain("btn.blur()");
 });
+
+test("Desktop header tabs are distributed evenly across .nav-tabs and exam timer widget has modern capsule styling", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Nav tabs distributed evenly across the bar on desktop
+  expect(html).toContain('.nav-tabs');
+  expect(html).toMatch(/\.tab-btn\s*\{[^}]*flex:\s*1\s*1\s*0/);
+  expect(html).toMatch(/\.tab-btn\s*\{[^}]*justify-content:\s*center/);
+
+  // Exam timer widget redesigned with elegant capsule layout
+  expect(html).toContain('class="timer-icon-wrap"');
+  expect(html).toContain('class="timer-divider"');
+  expect(html).toContain('class="timer-action-btn primary"');
+  expect(html).toContain('.exam-timer-widget.is-running');
+});

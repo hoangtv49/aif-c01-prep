@@ -448,6 +448,8 @@ const htmlContent = `<!DOCTYPE html>
     /* Nav Tabs */
     .nav-tabs {
       display: flex;
+      flex: 1 1 auto;
+      max-width: 980px;
       background: #0d1321;
       padding: 0.3rem;
       border-radius: 10px;
@@ -462,10 +464,13 @@ const htmlContent = `<!DOCTYPE html>
       display: none;
     }
     .tab-btn {
+      flex: 1 1 0;
+      justify-content: center;
+      text-align: center;
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.85rem;
       font-family: var(--font-sans);
       font-size: 0.875rem;
       font-weight: 600;
@@ -474,8 +479,7 @@ const htmlContent = `<!DOCTYPE html>
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
+      gap: 0.45rem;
       white-space: nowrap;
     }
     .tab-btn:hover {
@@ -2290,46 +2294,64 @@ const htmlContent = `<!DOCTYPE html>
     .exam-timer-widget {
       display: inline-flex;
       align-items: center;
-      justify-content: space-between;
       gap: 0.85rem;
-      background: #090e1a;
-      border: 1px solid #1e293b;
+      background: linear-gradient(145deg, #0c1424, #080d19);
+      border: 1px solid rgba(56, 189, 248, 0.22);
       border-radius: 10px;
-      padding: 0.4rem 0.85rem;
-      transition: all 0.25s ease;
+      padding: 0.4rem 0.75rem 0.4rem 0.85rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       box-sizing: border-box;
+    }
+    .exam-timer-widget.is-running {
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
     .exam-timer-widget.warning {
       border-color: #f59e0b;
-      background: rgba(245, 158, 11, 0.12);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), #0b1324);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
     }
     .exam-timer-widget.warning .timer-digits {
       color: #fbbf24;
     }
     .exam-timer-widget.danger {
       border-color: #ef4444;
-      background: rgba(239, 68, 68, 0.15);
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.16), #0b1324);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
       animation: timerPulse 1s infinite alternate;
     }
     .exam-timer-widget.danger .timer-digits {
       color: #f87171;
     }
     @keyframes timerPulse {
-      from { box-shadow: 0 0 4px rgba(239, 68, 68, 0.2); }
-      to { box-shadow: 0 0 16px rgba(239, 68, 68, 0.6); }
+      from { box-shadow: 0 0 8px rgba(239, 68, 68, 0.25); }
+      to { box-shadow: 0 0 22px rgba(239, 68, 68, 0.65); }
     }
     .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .timer-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
     .timer-icon {
-      font-size: 1.15rem;
       line-height: 1;
     }
     .timer-meta-box {
       display: flex;
       flex-direction: column;
+      gap: 0.15rem;
     }
     .timer-label {
       font-size: 0.65rem;
@@ -2337,48 +2359,67 @@ const htmlContent = `<!DOCTYPE html>
       letter-spacing: 0.05em;
       color: var(--text-dim);
       line-height: 1;
-      margin-bottom: 2px;
       white-space: nowrap;
     }
     .timer-digits {
       font-family: var(--font-mono);
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       color: #38bdf8;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       line-height: 1;
+    }
+    .timer-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.09);
+      margin: 0 0.15rem;
+      flex-shrink: 0;
     }
     .timer-actions-group {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
+      flex-shrink: 0;
     }
     .timer-action-btn {
-      background: #162032;
-      border: 1px solid var(--border);
+      background: #131c2e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #cbd5e1;
       cursor: pointer;
       font-family: var(--font-sans);
-      font-size: 0.775rem;
+      font-size: 0.78rem;
       font-weight: 600;
       height: 32px;
-      padding: 0 0.65rem;
-      border-radius: 6px;
+      padding: 0 0.75rem;
+      border-radius: 7px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.35rem;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
     }
-    .timer-action-btn:hover {
-      background: #1e293b;
+    .timer-action-btn.primary {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(3, 105, 161, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+    .timer-action-btn.primary:hover {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
       border-color: #38bdf8;
       color: #fff;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+      transform: translateY(-1px);
     }
     .timer-action-btn.reset-btn:hover {
-      border-color: #f59e0b;
+      background: #1e293b;
+      border-color: rgba(245, 158, 11, 0.5);
       color: #fbbf24;
+      transform: translateY(-1px);
+    }
+    .timer-action-btn:active {
+      transform: scale(0.97);
     }
 
     /* Scoreboard Modal */
@@ -3295,11 +3336,14 @@ const htmlContent = `<!DOCTYPE html>
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 0.75rem;
+        padding: 0.45rem 0.65rem;
         gap: 0.5rem;
         box-sizing: border-box;
       }
       .exam-timer-widget .reading-time-pill {
+        display: none !important;
+      }
+      .exam-timer-widget .timer-divider {
         display: none !important;
       }
       .timer-badge {
@@ -3308,6 +3352,11 @@ const htmlContent = `<!DOCTYPE html>
         gap: 0.45rem;
         flex: 1 1 auto;
         min-width: 0;
+      }
+      .timer-icon-wrap {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
       }
       .timer-meta-box {
         display: flex;
@@ -3331,6 +3380,10 @@ const htmlContent = `<!DOCTYPE html>
         flex-shrink: 0;
       }
       .timer-action-btn {
+        padding: 0 0.55rem;
+        font-size: 0.74rem;
+        height: 30px;
+      }
         height: 32px;
         padding: 0 0.55rem;
         font-size: 0.725rem;
@@ -3983,19 +4036,22 @@ const htmlContent = `<!DOCTYPE html>
           </button>
         </div>
         <!-- Timed Exam Simulator Widget -->
-        <div id="exam-timer-widget" class="exam-timer-widget" title="Thời gian thi mô phỏng (85 phút)">
+        <div id="exam-timer-widget" class="exam-timer-widget" title="Thời gian thi mô phỏng AWS AIF-C01 (85 phút)">
           <div class="timer-badge">
-            <span class="timer-icon">⏱️</span>
+            <div class="timer-icon-wrap">
+              <span class="timer-icon">⏱️</span>
+            </div>
             <div class="timer-meta-box">
+              <span class="timer-label">Thời gian thi</span>
               <div style="display:flex; align-items:center; gap:0.45rem;">
-                <span class="timer-label">Thời gian thi</span>
-                <span class="reading-time-pill" style="font-size:0.65rem; padding:0.1rem 0.45rem;">⏱️ ~85 phút (1.5p/câu)</span>
+                <span id="exam-timer-display" class="timer-digits">01:25:00</span>
+                <span class="reading-time-pill" style="font-size:0.68rem; padding:0.12rem 0.45rem;">~85 phút</span>
               </div>
-              <span id="exam-timer-display" class="timer-digits">01:25:00</span>
             </div>
           </div>
+          <div class="timer-divider"></div>
           <div class="timer-actions-group">
-            <button id="timer-toggle-btn" class="timer-action-btn" onclick="toggleTimerPause()" title="Bắt đầu tính giờ thi (85 phút)">
+            <button id="timer-toggle-btn" class="timer-action-btn primary" onclick="toggleTimerPause()" title="Bắt đầu tính giờ thi (85 phút)">
               <span id="timer-toggle-icon">▶️</span>
               <span id="timer-toggle-text" class="timer-btn-text">Bắt đầu</span>
             </button>
@@ -4910,19 +4966,23 @@ const htmlContent = `<!DOCTYPE html>
       const icon = document.getElementById('timer-toggle-icon');
       const text = document.getElementById('timer-toggle-text');
       const btn = document.getElementById('timer-toggle-btn');
+      const widget = document.getElementById('exam-timer-widget');
       if (!icon || !text) return;
       if (!isTimerStarted) {
         icon.textContent = '▶️';
         text.textContent = 'Bắt đầu';
         if (btn) btn.title = 'Bắt đầu tính giờ thi (85 phút)';
+        if (widget) widget.classList.remove('is-running');
       } else if (isTimerPaused) {
         icon.textContent = '▶️';
         text.textContent = 'Tiếp tục';
         if (btn) btn.title = 'Tiếp tục đếm giờ';
+        if (widget) widget.classList.remove('is-running');
       } else {
         icon.textContent = '⏸️';
         text.textContent = 'Tạm dừng';
         if (btn) btn.title = 'Tạm dừng đếm giờ';
+        if (widget) widget.classList.add('is-running');
       }
     }
 
