@@ -1,0 +1,29 @@
+audio/theory/manifest.json
+  s_a513f3f6851de5::t_edf529366517e0 4-7
+scripts/generate_theory_vieneu.py
+  s_a513f3f6851de5::t_1a41150d11403d 166-182
+  s_a513f3f6851de5::t_065c2d4e57abcb 148-149
+  s_a513f3f6851de5::t_dcd0c891e99113 145-147
+  s_a513f3f6851de5::t_d52d3e768d5ac4 150-152,163-165
+  s_a513f3f6851de5::t_10ec0f95fe5dbb 183-185
+tests/theory-audio.test.js
+  s_a513f3f6851de5::t_feeb23310633ed 40-41
+aif-c01-study-guide/audio/theory/manifest.json
+  s_a513f3f6851de5::t_4ca423e1536d63 4-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b6853ef858e688c93da99f6ba9363fac2fe05357",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
