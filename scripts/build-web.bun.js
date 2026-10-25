@@ -4993,16 +4993,34 @@ const htmlContent = `<!DOCTYPE html>
       }
     }
 
+    function getQuestionCorrectLetters(q) {
+      if (!q || !q.correctAnswer) return [];
+      const results = [];
+      const re = /(?:^|\\*\\*|\\s|\\b)([A-E])\\./g;
+      let m;
+      while ((m = re.exec(q.correctAnswer)) !== null) {
+        if (!results.includes(m[1])) results.push(m[1]);
+      }
+      if (results.length > 0) return results;
+      const fallback = q.correctAnswer.match(/^[A-E]/);
+      return fallback ? [fallback[0]] : [];
+    }
+
+    function isQuestionCorrect(q) {
+      const sel = userAnswers[q.id] || [];
+      if (sel.length === 0) return false;
+      const correct = getQuestionCorrectLetters(q);
+      if (q.isMultiple) {
+        return sel.length === correct.length && sel.every(k => correct.includes(k));
+      } else {
+        return sel.length === 1 && sel[0] === correct[0];
+      }
+    }
+
     function isQuestionWrong(q) {
       const sel = userAnswers[q.id] || [];
       if (sel.length === 0) return false;
-      const correct = (q.correctAnswer.match(/\b[A-E]\b/g) || []);
-      if (q.isMultiple) {
-        if (sel.length !== correct.length) return true;
-        return !sel.every(k => correct.includes(k));
-      } else {
-        return sel[0] !== correct[0];
-      }
+      return !isQuestionCorrect(q);
     }
 
     function toggleBookmark(qId, event) {
@@ -5154,16 +5172,11 @@ const htmlContent = `<!DOCTYPE html>
         const sel = userAnswers[q.id] || [];
         if (sel.length === 0) {
           unattemptedCount++;
-        } else if (isQuestionWrong(q)) {
-          wrongCount++;
+        } else if (isQuestionCorrect(q)) {
+          correctCount++;
+          domainScores[q.domainId].correct++;
         } else {
-          const correct = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
-          if (sel.length === correct.length && sel.every(k => correct.includes(k))) {
-            correctCount++;
-            domainScores[q.domainId].correct++;
-          } else {
-            wrongCount++;
-          }
+          wrongCount++;
         }
       });
 
@@ -6326,14 +6339,11 @@ const htmlContent = `<!DOCTYPE html>
       const items = allQs.map((q, idx) => {
         const userSel = userAnswers[q.id] || [];
         const isAttempted = userSel.length > 0;
-        const correctLetters = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
-        const lettersSorted = correctLetters.sort().join('');
-        const userSorted = [...userSel].sort().join('');
 
         let status = 'unanswered';
         if (isAttempted) {
           answeredCount++;
-          if (userSorted === lettersSorted) {
+          if (isQuestionCorrect(q)) {
             status = 'correct';
             correctCount++;
           } else {
@@ -7263,15 +7273,10 @@ const htmlContent = `<!DOCTYPE html>
       allQs.forEach(q => {
         const sel = userAnswers[q.id] || [];
         if (sel.length > 0) {
-          if (isQuestionWrong(q)) {
-            wrongCount++;
+          if (isQuestionCorrect(q)) {
+            correctCount++;
           } else {
-            const correct = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
-            if (sel.length === correct.length && sel.every(k => correct.includes(k))) {
-              correctCount++;
-            } else {
-              wrongCount++;
-            }
+            wrongCount++;
           }
         }
       });
@@ -7302,7 +7307,7 @@ const htmlContent = `<!DOCTYPE html>
       return questions.map((q, idx) => {
         const userSel = userAnswers[q.id] || [];
         const isAttempted = userSel.length > 0;
-        const correctLetters = (q.correctAnswer.match(/\\b[A-E]\\b/g) || []);
+        const correctLetters = getQuestionCorrectLetters(q);
         const isRevealedByCard = revealedCards.has(q.id);
         const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
         const isBookmarked = bookmarkedQuestions.has(q.id);

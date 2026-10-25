@@ -80,3 +80,40 @@ test("Timer widget mobile responsive styling prevents horizontal overflow", () =
   // Mobile CSS hides or optimizes verbose timer reading pill to preserve button visibility
   expect(html).toContain(".exam-timer-widget .reading-time-pill");
 });
+
+test("isQuestionCorrect and isQuestionWrong accurately identify correct and wrong questions", () => {
+  const fs = require("fs");
+  const html = fs.readFileSync("index.html", "utf8");
+  const fnMatch = html.match(/function getQuestionCorrectLetters[\s\S]*?function isQuestionWrong\(q\) \{[\s\S]*?\n    \}/)[0];
+  const { isQuestionCorrect, isQuestionWrong } = new Function(fnMatch + `
+    return { getQuestionCorrectLetters, isQuestionCorrect, isQuestionWrong };
+  `)();
+
+  const qSingle = { id: "d1-q1", correctAnswer: "B. Amazon Textract", isMultiple: false };
+  const qMulti = { id: "d1-q4", correctAnswer: "A. Amazon Polly** và **B. Amazon Transcribe", isMultiple: true };
+
+  // Correct single
+  globalThis.userAnswers = { "d1-q1": ["B"] };
+  expect(isQuestionCorrect(qSingle)).toBe(true);
+  expect(isQuestionWrong(qSingle)).toBe(false);
+
+  // Wrong single
+  globalThis.userAnswers = { "d1-q1": ["A"] };
+  expect(isQuestionCorrect(qSingle)).toBe(false);
+  expect(isQuestionWrong(qSingle)).toBe(true);
+
+  // Correct multi
+  globalThis.userAnswers = { "d1-q4": ["A", "B"] };
+  expect(isQuestionCorrect(qMulti)).toBe(true);
+  expect(isQuestionWrong(qMulti)).toBe(false);
+
+  // Wrong multi
+  globalThis.userAnswers = { "d1-q4": ["A", "C"] };
+  expect(isQuestionCorrect(qMulti)).toBe(false);
+  expect(isQuestionWrong(qMulti)).toBe(true);
+
+  // Unanswered
+  globalThis.userAnswers = {};
+  expect(isQuestionCorrect(qSingle)).toBe(false);
+  expect(isQuestionWrong(qSingle)).toBe(false);
+});
