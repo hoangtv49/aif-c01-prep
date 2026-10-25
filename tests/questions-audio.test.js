@@ -24,3 +24,22 @@ test("Speech script builder sanitizes markdown and formats Option 1 structure", 
   expect(script).toContain("suy ra");
   expect(script).toContain("Lưu ý bẫy thi");
 });
+
+test("Audio generation produces exactly 57 valid MP3 files and manifest", () => {
+  const manifestPath = path.resolve("audio/questions/manifest.json");
+  expect(fs.existsSync(manifestPath)).toBe(true);
+
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  const keys = Object.keys(manifest);
+  expect(keys.length).toBe(57);
+
+  // Check sample files
+  ["d1-q1", "d2-q1", "d3-q1", "d4-q1", "d5-q1"].forEach(qId => {
+    expect(manifest[qId]).toBeDefined();
+    const rootPath = path.resolve(`audio/questions/${qId}.mp3`);
+    const subPath = path.resolve(`aif-c01-study-guide/audio/questions/${qId}.mp3`);
+    expect(fs.existsSync(rootPath)).toBe(true);
+    expect(fs.existsSync(subPath)).toBe(true);
+    expect(fs.statSync(rootPath).size).toBeGreaterThan(100000); // > 100KB
+  });
+});
