@@ -65,4 +65,29 @@ test("Exam timer does NOT auto-start on load, and header stats pill has responsi
   // Header stats pill must have short labels for compact mobile display
   expect(html).toContain('stat-label-short');
   expect(html).toContain('stat-label-full');
+
+  // Stats pill must be hidden by default and only shown on quiz tab via .is-active (not overriding display:none with !important)
+  expect(html).toContain('.stats-pill.is-active');
+  expect(html).toContain("statsPill.classList.toggle('is-active', tabId === 'quiz')");
+});
+
+test("Quiz playlist toolbar removes 57 câu có sẵn badge and tightens headphone icon spacing", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Removed redundant 57 câu có sẵn badge from quiz playlist toolbar
+  expect(html).not.toContain('id="playlist-active-badge"');
+  expect(html).not.toContain('57 câu có sẵn');
+
+  // .playlist-info aligns headphone icon close to title
+  expect(html).toMatch(/\.playlist-info\s*\{[^}]*gap:\s*0\.45rem/);
+});
+
+test("Topic domain navigation prevents focus conflict between domain cards", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // .topic-domain-btn has outline: none on focus to avoid browser sticky outline
+  expect(html).toMatch(/\.topic-domain-btn:focus\s*\{[^}]*outline:\s*none/);
+
+  // switchTopicDomain blurs inactive buttons
+  expect(html).toContain("btn.blur()");
 });

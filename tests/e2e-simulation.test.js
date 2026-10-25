@@ -65,7 +65,13 @@ test("Full End-to-End simulation of all 3 study boost features in generated inde
           classes: new Set(),
           add(c) { this.classes.add(c); },
           remove(c) { this.classes.delete(c); },
-          contains(c) { return this.classes.has(c); }
+          contains(c) { return this.classes.has(c); },
+          toggle(c, force) {
+            const shouldAdd = force !== undefined ? force : !this.classes.has(c);
+            if (shouldAdd) this.classes.add(c);
+            else this.classes.delete(c);
+            return shouldAdd;
+          }
         },
         setAttribute() {},
         getAttribute() { return null; },

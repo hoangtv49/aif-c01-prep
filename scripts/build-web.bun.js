@@ -490,7 +490,7 @@ const htmlContent = `<!DOCTYPE html>
 
     /* Stats Pill */
     .stats-pill {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 1rem;
       background: #162032;
@@ -498,6 +498,9 @@ const htmlContent = `<!DOCTYPE html>
       padding: 0.4rem 0.85rem;
       border-radius: 9999px;
       font-size: 0.825rem;
+    }
+    .stats-pill.is-active {
+      display: flex;
     }
     .stat-item {
       display: flex;
@@ -1341,11 +1344,26 @@ const htmlContent = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
+      outline: none;
+    }
+    .topic-domain-btn:focus {
+      outline: none;
+    }
+    .topic-domain-btn:focus-visible {
+      outline: 2px solid #38bdf8;
+      outline-offset: 2px;
     }
     .topic-domain-btn:hover {
       background: #1b263b;
       border-color: #3b82f6;
       transform: translateY(-2px);
+    }
+    @media (hover: none) {
+      .topic-domain-btn:hover:not(.active) {
+        background: var(--bg-card);
+        border-color: var(--border);
+        transform: none;
+      }
     }
     .topic-domain-btn.active {
       background: linear-gradient(145deg, #162544, #121d33);
@@ -2064,7 +2082,7 @@ const htmlContent = `<!DOCTYPE html>
     .playlist-info {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
     }
     .playlist-icon {
@@ -3085,6 +3103,9 @@ const htmlContent = `<!DOCTYPE html>
         display: none !important; /* Ẩn hoàn toàn nav bar desktop trên mobile vì đã có Bottom Nav Bar */
       }
       .stats-pill {
+        display: none !important;
+      }
+      .stats-pill.is-active {
         width: 100% !important;
         display: flex !important;
         justify-content: space-between !important;
@@ -3452,7 +3473,8 @@ const htmlContent = `<!DOCTYPE html>
       }
       .playlist-info {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 0.45rem;
       }
       .playlist-title {
         font-size: 0.85rem;
@@ -3772,7 +3794,7 @@ const htmlContent = `<!DOCTYPE html>
       </nav>
 
       <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
-      <div class="stats-pill" id="header-stats-pill" style="display: none;">
+      <div class="stats-pill" id="header-stats-pill">
         <div class="stat-item">
           <span class="stat-label stat-label-full">Đã làm:</span>
           <span class="stat-label stat-label-short" title="Số câu đã làm">📝</span>
@@ -4029,7 +4051,6 @@ const htmlContent = `<!DOCTYPE html>
         <div class="playlist-info">
           <span class="playlist-icon">🎧</span>
           <span class="playlist-title">Chế độ Nghe Rảnh Tay (Podcast / Chạy xe)</span>
-          <span id="playlist-active-badge" class="playlist-badge">57 câu có sẵn</span>
         </div>
         <div class="playlist-actions">
           <button class="playlist-btn" onclick="playPrevQuestion()" title="Câu trước">⏮️ Trước</button>
@@ -5903,6 +5924,7 @@ const htmlContent = `<!DOCTYPE html>
       if (initialHash && initialHash !== '#' && initialHash !== '#/') {
         handleRoute(initialHash, false);
       } else {
+        switchTab('topics', false);
         history.replaceState({ tab: 'topics', domain: 1, subtab: 'all' }, '', '#topics/d1');
         updatePageTitle('topics', 1);
       }
@@ -5938,6 +5960,12 @@ const htmlContent = `<!DOCTYPE html>
       // Only show exam live progress pill when practicing Quiz
       const statsPill = document.getElementById('header-stats-pill');
       if (statsPill) {
+        if (statsPill.classList && statsPill.classList.toggle) {
+          statsPill.classList.toggle('is-active', tabId === 'quiz');
+        } else if (statsPill.classList) {
+          if (tabId === 'quiz') statsPill.classList.add('is-active');
+          else statsPill.classList.remove('is-active');
+        }
         statsPill.style.display = tabId === 'quiz' ? 'flex' : 'none';
       }
 
@@ -5981,9 +6009,16 @@ const htmlContent = `<!DOCTYPE html>
       }
       currentTopicDomain = domainId;
       document.querySelectorAll('.topic-domain-btn').forEach((btn, idx) => {
-        if (idx + 1 === domainId) btn.classList.add('active');
-        else btn.classList.remove('active');
+        if (idx + 1 === domainId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+          btn.blur();
+        }
       });
+      if (document.activeElement && document.activeElement.classList.contains('topic-domain-btn')) {
+        document.activeElement.blur();
+      }
       renderTopicDomain(domainId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(updateTopicScrollspy, 60);
