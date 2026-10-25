@@ -1,0 +1,38 @@
+aif-c01-study-guide/index.html
+  s_63a866569c4bfc::t_55eba30f4060ce 167,176-178,1021-1028,1035-1041,1759,2780-2782,3150-3151,3471,4019,5601,5686-5691,5693-5695
+  s_63a866569c4bfc::t_af15170260e252 5637-5642
+tests/mobile-responsive-sticky.test.js
+  s_63a866569c4bfc::t_b3d06fba45a141 72-92
+  s_63a866569c4bfc::t_d016f630d5cc3a 68-71
+index.html
+  s_63a866569c4bfc::t_55eba30f4060ce 167,176-178,1021-1028,1035-1041,1759,2780-2782,3150-3151,3471,4019,5601,5686-5691,5693-5695
+  s_63a866569c4bfc::t_af15170260e252 5637-5642
+tests/e2e-simulation.test.js
+  s_63a866569c4bfc::t_96fded8add2f36 68-74
+scripts/build-web.bun.js
+  s_63a866569c4bfc::t_382913bccd0a00 6012-6017,6019-6021
+  s_63a866569c4bfc::t_a06ad969b99398 2085
+  s_63a866569c4bfc::t_e32a9171323f46 5927
+  s_63a866569c4bfc::t_bead4fb3b6d176 3106-3108
+  s_63a866569c4bfc::t_95cab747006a29 504,1347-1354,1361-1367
+  s_63a866569c4bfc::t_819bf860d08d65 5963-5968
+  s_63a866569c4bfc::t_843df55749208e 493,502-503
+  s_63a866569c4bfc::t_2b944e9cdf6170 3797
+  s_63a866569c4bfc::t_3deac03e4da8e4 3476-3477
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "95ea88b17bd5cb3022e448ab094c90ca5d8ec992",
+  "prompts": {},
+  "sessions": {
+    "s_63a866569c4bfc": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e8bfd43b0ffeC6snX2puO8pbfJ",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
