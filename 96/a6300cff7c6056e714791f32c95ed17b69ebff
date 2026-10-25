@@ -1,0 +1,37 @@
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_a3f36b58415485 5874
+  s_a513f3f6851de5::t_dc5c07b4fb6665 6600
+  s_a513f3f6851de5::t_1ece3093ab5b60 4924,4931-4951,4981-4983,4996-4999,5014-5018,5042-5047,5050-5052,5059-5060,5102-5105,5107
+  s_a513f3f6851de5::t_5d42ede1797dbe 3713
+  s_a513f3f6851de5::t_e8b1ab9ce3eaad 5225
+  s_a513f3f6851de5::t_c79cff6a8e7a99 6653-6655
+audio/questions/manifest.json
+  s_a513f3f6851de5::t_00551582a0d195 4,14,33-34,44,53-54,58-59,73-74,93-94,99,113-114,118-119,133-134,163-164,174,178-179,184,199,203-204,228-229,233-234,243-244,283-284
+scripts/generate-questions-audio.cjs
+  s_a513f3f6851de5::t_cf154cf94f2a9a 26
+  s_a513f3f6851de5::t_85cc8270bdedfe 123-124,139-146
+tests/questions-audio.test.js
+  s_a513f3f6851de5::t_bee1bc6ea24b3a 68-116
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_640e3cf33afd39 3415,4626,4633-4653,4683-4685,4698-4701,4716-4720,4744-4749,4752-4754,4761-4762,4804-4807,4809,4927,5576,6302,6355-6357
+aif-c01-study-guide/audio/questions/manifest.json
+  s_a513f3f6851de5::t_00551582a0d195 4,14,33-34,44,53-54,58-59,73-74,93-94,99,113-114,118-119,133-134,163-164,174,178-179,184,199,203-204,228-229,233-234,243-244,283-284
+index.html
+  s_a513f3f6851de5::t_640e3cf33afd39 3415,4626,4633-4653,4683-4685,4698-4701,4716-4720,4744-4749,4752-4754,4761-4762,4804-4807,4809,4927,5576,6302,6355-6357
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "96a6300cff7c6056e714791f32c95ed17b69ebff",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
