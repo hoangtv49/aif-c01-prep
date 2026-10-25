@@ -1,0 +1,29 @@
+index.html
+  s_63a866569c4bfc::t_3d45c7a8281152 4144
+  s_63a866569c4bfc::t_a5f7103bc9b128 2287,2290,2292-2297,2301-2318,3093-3129,4085-4090
+scripts/build-web.bun.js
+  s_63a866569c4bfc::t_8dea706b8b9e78 3419-3455
+  s_63a866569c4bfc::t_82d646e91fc595 4411-4416
+  s_63a866569c4bfc::t_913ab50598c14f 2613,2616,2618-2623,2627-2644
+tests/mobile-responsive-sticky.test.js
+  s_63a866569c4bfc::t_530a40e3f9b738 114-124
+aif-c01-study-guide/index.html
+  s_63a866569c4bfc::t_a5f7103bc9b128 2287,2290,2292-2297,2301-2318,3093-3129,4085-4090
+  s_63a866569c4bfc::t_3d45c7a8281152 4144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5081ca9c9d7371066cc3f965b54150860621170c",
+  "prompts": {},
+  "sessions": {
+    "s_63a866569c4bfc": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e8bfd43b0ffeC6snX2puO8pbfJ",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
