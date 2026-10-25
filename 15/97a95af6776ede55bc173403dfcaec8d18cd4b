@@ -1,0 +1,37 @@
+tests/audio-demo.test.js
+  s_a513f3f6851de5::t_e050d2bc814bab 1-36
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_d74769546cb722 1579-1690,2953,3436-3499,4336-4392
+  s_a513f3f6851de5::t_7d033a9538efde 4393
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_79122c754d93c4 4634-4691
+  s_a513f3f6851de5::t_dec4c60f51bdc6 3251
+  s_a513f3f6851de5::t_096a9a3cd905b9 1877-1988
+  s_a513f3f6851de5::t_95390c227afbf6 3734-3797
+scripts/generate-demo-audio.cjs
+  s_a513f3f6851de5::t_3a9b195e8827d6 1-53
+package.json
+  s_a513f3f6851de5::t_69967f1b24bfee 1-2,4-6
+  s_a513f3f6851de5::t_46ee3db7cbc27d 3
+index.html
+  s_a513f3f6851de5::t_d74769546cb722 1579-1690,2953,3436-3499,4336-4392
+  s_a513f3f6851de5::t_36a3a473ebe18f 4393
+bun.lock
+  s_a513f3f6851de5::t_a95417ec96e597 1-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1597a95af6776ede55bc173403dfcaec8d18cd4b",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
