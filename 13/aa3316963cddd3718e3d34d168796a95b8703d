@@ -1,0 +1,23 @@
+tests/questions-audio.test.js
+  s_a513f3f6851de5::t_831c61594100a8 1-26
+.gitignore
+  s_a513f3f6851de5::t_a97c45cfef7ff1 5
+scripts/generate-questions-audio.cjs
+  s_a513f3f6851de5::t_9ba9fdf94427b3 1-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "13aa3316963cddd3718e3d34d168796a95b8703d",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
