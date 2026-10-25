@@ -3412,7 +3412,7 @@
         </div>
         <div class="playlist-actions">
           <button class="playlist-btn" onclick="playPrevQuestion()" title="Câu trước">⏮️ Trước</button>
-          <button id="playlist-global-toggle" class="playlist-btn primary" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe toàn bộ</button>
+          <button id="playlist-global-toggle" class="playlist-btn primary playlist-toggle-btn" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe toàn bộ</button>
           <button class="playlist-btn" onclick="playNextQuestion()" title="Câu tiếp theo">Tiếp ⏭️</button>
           <label class="auto-next-label">
             <input type="checkbox" id="auto-next-checkbox" onchange="toggleAutoPlayNext(this.checked)">
@@ -4623,12 +4623,34 @@
         };
         this.currentQId = null;
         this.isAutoPlayNext = false;
+        this.autoNextTimer = null;
         this.speed = typeof localStorage !== 'undefined' ? parseFloat(localStorage.getItem('aif_audio_speed') || '1.0') : 1.0;
         this.audio.playbackRate = this.speed;
 
         this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
         this.audio.addEventListener('ended', () => this.onEnded());
         this.audio.addEventListener('error', (e) => this.onError(e));
+
+        // MediaSession Action Handlers for Background & Earphone Controls
+        if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
+          try {
+            navigator.mediaSession.setActionHandler('play', () => {
+              if (this.currentQId) this.toggle(this.currentQId);
+              else if (typeof toggleCurrentOrFirstQuestion === 'function') toggleCurrentOrFirstQuestion();
+            });
+            navigator.mediaSession.setActionHandler('pause', () => {
+              if (this.currentQId) this.toggle(this.currentQId);
+            });
+            navigator.mediaSession.setActionHandler('nexttrack', () => {
+              if (typeof playNextQuestion === 'function') playNextQuestion();
+            });
+            navigator.mediaSession.setActionHandler('previoustrack', () => {
+              if (typeof playPrevQuestion === 'function') playPrevQuestion();
+            });
+            navigator.mediaSession.setActionHandler('seekforward', () => this.seek(5));
+            navigator.mediaSession.setActionHandler('seekbackward', () => this.seek(-5));
+          } catch (e) {}
+        }
       }
 
       formatTime(sec) {
@@ -4658,8 +4680,9 @@
       onEnded() {
         this.stopCurrentUI();
         if (this.isAutoPlayNext) {
-          setTimeout(() => {
-            if (typeof playNextQuestion === 'function') {
+          if (this.autoNextTimer) clearTimeout(this.autoNextTimer);
+          this.autoNextTimer = setTimeout(() => {
+            if (this.isAutoPlayNext && typeof playNextQuestion === 'function') {
               playNextQuestion();
             }
           }, 1500);
@@ -4672,6 +4695,10 @@
       }
 
       stopCurrentUI() {
+        if (this.autoNextTimer) {
+          clearTimeout(this.autoNextTimer);
+          this.autoNextTimer = null;
+        }
         if (this.currentQId) {
           document.querySelectorAll('#btn-audio-' + this.currentQId).forEach(btn => {
             btn.classList.remove('playing');
@@ -4686,6 +4713,11 @@
       }
 
       toggle(qId) {
+        if (this.autoNextTimer) {
+          clearTimeout(this.autoNextTimer);
+          this.autoNextTimer = null;
+        }
+
         if (this.currentQId === qId) {
           if (this.audio.paused) {
             this.audio.play().catch(() => {});
@@ -4709,19 +4741,25 @@
           box.style.display = 'block';
         });
 
-        // Highlight card & auto-scroll
-        const card = document.getElementById('card-' + qId) || document.getElementById('card-topic-' + qId) || document.getElementById('card-quiz-' + qId);
+        // Highlight card & auto-scroll scoped to currently active tab
+        const activePanel = document.querySelector('.tab-panel.active') || document;
+        const card = activePanel.querySelector('#card-' + qId) ||
+                     activePanel.querySelector('#card-quiz-' + qId) ||
+                     activePanel.querySelector('#card-topic-' + qId) ||
+                     document.getElementById('card-' + qId);
         if (card) {
           card.classList.add('audio-active-card');
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (card.offsetParent !== null) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
         }
 
         this.audio.play().catch(err => {
           console.warn('Play interrupted:', err);
         });
 
-        // MediaSession API integration
-        if ('mediaSession' in navigator) {
+        // MediaSession metadata
+        if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
           try {
             navigator.mediaSession.metadata = new MediaMetadata({
               title: 'Giải thích câu hỏi #' + qId.toUpperCase(),
@@ -4763,9 +4801,12 @@
       setSpeed(rate) {
         this.speed = rate;
         this.audio.playbackRate = rate;
-        localStorage.setItem('aif_audio_speed', rate);
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('aif_audio_speed', rate);
+        }
+        const label = rate.toFixed(1) + 'x';
         document.querySelectorAll('.q-speed-btn').forEach(btn => {
-          if (btn.textContent.indexOf(rate + 'x') !== -1) btn.classList.add('active');
+          if (btn.textContent.trim() === label || btn.textContent.indexOf(label) !== -1) btn.classList.add('active');
           else btn.classList.remove('active');
         });
       }
@@ -4883,7 +4924,7 @@
     }
 
     function updatePlaylistGlobalButton(isPlaying) {
-      document.querySelectorAll('#playlist-global-toggle').forEach(btn => {
+      document.querySelectorAll('#playlist-global-toggle, .playlist-toggle-btn').forEach(btn => {
         btn.textContent = isPlaying ? '⏸️ Tạm dừng' : '▶️ Nghe toàn bộ';
         if (isPlaying) btn.classList.add('playing');
         else btn.classList.remove('playing');
@@ -5532,7 +5573,7 @@
             </div>
             <div class="playlist-actions">
               <button class="playlist-btn" onclick="playPrevQuestion()" title="Câu trước">⏮️ Trước</button>
-              <button class="playlist-btn primary" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe phần này</button>
+              <button class="playlist-btn primary playlist-toggle-btn" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe phần này</button>
               <button class="playlist-btn" onclick="playNextQuestion()" title="Câu tiếp theo">Tiếp ⏭️</button>
               <label class="auto-next-label">
                 <input type="checkbox" id="auto-next-checkbox" onchange="toggleAutoPlayNext(this.checked)">
@@ -6258,6 +6299,7 @@
         const isRevealedByCard = revealedCards.has(q.id);
         const shouldShowExplanation = (quizMode === 'study') || isRevealedByCard || (q.isMultiple ? userSel.length === 2 : userSel.length === 1);
         const isBookmarked = bookmarkedQuestions.has(q.id);
+        const curSpeed = (typeof questionAudioManager !== 'undefined' && questionAudioManager.speed) ? questionAudioManager.speed : 1.0;
 
         const orderBadgeHtml = (prefix === 'quiz' && isShuffled)
           ? `<span class="q-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45);">Câu ${idx + 1}</span>
@@ -6310,9 +6352,9 @@
                 <button class="q-ctrl-btn" onclick="seekQuestionAudio(5, event)" title="Tua 5 giây">⏩ 5s</button>
                 <span id="q-time-${q.id}" class="q-player-time">00:00 / 00:45</span>
                 <div class="q-speed-group">
-                  <button class="q-speed-btn active" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
-                  <button class="q-speed-btn" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>
-                  <button class="q-speed-btn" onclick="setQuestionAudioSpeed(1.5, event)">1.5x</button>
+                  <button class="q-speed-btn ${curSpeed === 1.0 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
+                  <button class="q-speed-btn ${curSpeed === 1.2 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>
+                  <button class="q-speed-btn ${curSpeed === 1.5 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.5, event)">1.5x</button>
                 </div>
               </div>
               <input type="range" id="q-seek-${q.id}" class="q-player-slider" min="0" max="100" value="0" oninput="onSeekSliderChange('${q.id}', this.value, event)">

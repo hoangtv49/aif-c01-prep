@@ -65,3 +65,52 @@ test("Playlist Toolbar exists and controls auto-play next", () => {
   expect(html).toContain("playPrevQuestion");
   expect(html).toContain("Tự động chuyển câu");
 });
+
+test("formatQuestionSpeechScript never overrides correct answer with distractor option A", () => {
+  const { formatQuestionSpeechScript } = require("../scripts/generate-questions-audio.cjs");
+
+  const questionWithOptionAWordAmazon = {
+    id: "d1-q1",
+    domainId: 1,
+    number: 1,
+    stem: "A company needs to extract tabular data from PDF contracts...",
+    options: [
+      { key: "A", text: "Amazon Rekognition" },
+      { key: "B", text: "Amazon Textract" },
+      { key: "C", text: "Amazon Comprehend" },
+      { key: "D", text: "Amazon Transcribe" }
+    ],
+    correctAnswer: "B. Amazon Textract",
+    reason: "Amazon Textract là dịch vụ chuyên biệt...",
+    trap: "Đề bài nhắc đến ảnh scan rất dễ chọn Rekognition..."
+  };
+
+  const script = formatQuestionSpeechScript(questionWithOptionAWordAmazon, "Domain 1");
+  expect(script).toContain("Phương án đúng là: B");
+  expect(script).not.toContain("Phương án đúng là: A");
+});
+
+test("All 57 question audio files are complete and exceed 180KB", () => {
+  const manifest = JSON.parse(fs.readFileSync("audio/questions/manifest.json", "utf8"));
+  const keys = Object.keys(manifest);
+  expect(keys.length).toBe(57);
+
+  const truncated = [];
+  keys.forEach(qId => {
+    const rootPath = path.resolve(`audio/questions/${qId}.mp3`);
+    const size = fs.existsSync(rootPath) ? fs.statSync(rootPath).size : 0;
+    if (size <= 180000) {
+      truncated.push({ qId, size });
+    }
+  });
+
+  expect(truncated).toEqual([]);
+});
+
+test("index.html includes complete MediaSession handlers and fixed speed matching", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+  expect(html).toContain("setActionHandler('play'");
+  expect(html).toContain("setActionHandler('pause'");
+  expect(html).toContain("setActionHandler('nexttrack'");
+  expect(html).toContain("rate.toFixed(1) + 'x'");
+});

@@ -23,15 +23,7 @@ function sanitizeSpeechText(text) {
 function formatQuestionSpeechScript(q, domainTitle) {
   const domainClean = (domainTitle || `Domain ${q.domainId}`).replace(/\s*\(\d+%\)/, "").trim();
   const stemClean = sanitizeSpeechText(q.stem);
-  
-  // Format correct answer text
-  let answerClean = sanitizeSpeechText(q.correctAnswer);
-  if (q.options && q.options.length > 0) {
-    const matchedOpt = q.options.find(o => q.correctAnswer && q.correctAnswer.includes(o.key));
-    if (matchedOpt && !answerClean.toLowerCase().includes(matchedOpt.text.toLowerCase().slice(0, 15))) {
-      answerClean = `${matchedOpt.key}, ${matchedOpt.text}`;
-    }
-  }
+  const answerClean = sanitizeSpeechText(q.correctAnswer);
 
   const reasonClean = sanitizeSpeechText(q.reason)
     .replace(/^Từ khóa quan trọng:?/i, "Từ khóa quan trọng:")
@@ -128,8 +120,8 @@ async function synthesizeAllQuestions(force = false) {
       const targetFile = path.join(audioDir, `${qId}.mp3`);
       const subTargetFile = path.join(subAudioDir, `${qId}.mp3`);
 
-      // Check cache (>50KB)
-      if (!force && fs.existsSync(targetFile) && fs.statSync(targetFile).size > 50000) {
+      // Check cache (>180KB)
+      if (!force && fs.existsSync(targetFile) && fs.statSync(targetFile).size > 180000) {
         const size = fs.statSync(targetFile).size;
         const estDuration = Math.round(size / 6000); // 48kbps ~ 6KB/s
         manifest[qId] = { duration: estDuration, size, title: `Câu ${qNum} (Domain ${domainId})` };
@@ -144,8 +136,14 @@ async function synthesizeAllQuestions(force = false) {
         try {
           attempts++;
           await tts.ttsPromise(script, targetFile);
-          fs.copyFileSync(targetFile, subTargetFile);
-          success = true;
+          const size = fs.statSync(targetFile).size;
+          if (size > 180000) {
+            fs.copyFileSync(targetFile, subTargetFile);
+            success = true;
+          } else {
+            console.warn(`File ${qId} too small (${size} bytes), retrying...`);
+            await new Promise(r => setTimeout(r, 1200));
+          }
         } catch (e) {
           console.warn(`Retry ${qId} attempt ${attempts}:`, e.message);
           await new Promise(r => setTimeout(r, 1200));
