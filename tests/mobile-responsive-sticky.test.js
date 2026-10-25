@@ -43,3 +43,14 @@ test("Subtabs switcher (.view-subtabs-group) has sleek mobile layout without awk
   expect(html).toContain('.view-subtab-btn .reading-time-pill');
   expect(html).toContain('fc-mastered-count-subtab-short');
 });
+
+test("Header logo/brand links back to topics home page and theory audio aligns controls to both sides on mobile", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Header brand has link/click action to topics home
+  expect(html).toContain('goToHome');
+  expect(html).toMatch(/\.brand\s*\{[^}]*cursor:\s*pointer/);
+
+  // Theory audio toolbar aligns play button and time display to both sides on mobile
+  expect(html).toMatch(/\.theory-audio-left\s*\{[^}]*justify-content:\s*space-between/);
+});

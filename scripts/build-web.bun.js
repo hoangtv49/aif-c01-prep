@@ -396,6 +396,15 @@ const htmlContent = `<!DOCTYPE html>
       gap: 0.2rem;
       min-width: 0;
       flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+    .brand:hover {
+      opacity: 0.92;
+    }
+    .brand:active {
+      transform: scale(0.985);
     }
     .brand-heading {
       display: inline-flex;
@@ -3175,7 +3184,19 @@ const htmlContent = `<!DOCTYPE html>
         gap: 0.5rem;
       }
       .theory-audio-main-row {
-        gap: 0.45rem;
+        gap: 0.55rem;
+      }
+      .theory-audio-left {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .theory-audio-controls {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
       .theory-play-btn {
         padding: 0.38rem 0.65rem;
@@ -3709,7 +3730,7 @@ const htmlContent = `<!DOCTYPE html>
   <!-- App Header -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="brand">
+      <div class="brand" onclick="goToHome()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToHome();}" title="Về trang chủ đề (AIF-C01 Mastery Studio)" aria-label="Về trang chủ đề">
         <div class="brand-heading">
           <span class="brand-badge">AIF-C01</span>
           <span class="brand-title">AWS AI Practitioner Mastery Studio</span>
@@ -5810,6 +5831,11 @@ const htmlContent = `<!DOCTYPE html>
     window.addEventListener('popstate', () => {
       handleRoute(window.location.hash, true);
     });
+
+    function goToHome() {
+      switchTab('topics');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function switchTab(tabId, pushHistory = true) {
       if (typeof theoryAudioManager !== 'undefined' && tabId !== 'topics') {
