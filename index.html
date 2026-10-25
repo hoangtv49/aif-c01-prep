@@ -4613,10 +4613,17 @@
     // Global Question Audio Manager Singleton
     class QuestionAudioManager {
       constructor() {
-        this.audio = new Audio();
+        this.audio = typeof Audio !== 'undefined' ? new Audio() : {
+          addEventListener: function() {},
+          play: function() { return Promise.resolve(); },
+          pause: function() {},
+          playbackRate: 1.0,
+          currentTime: 0,
+          duration: 45
+        };
         this.currentQId = null;
         this.isAutoPlayNext = false;
-        this.speed = parseFloat(localStorage.getItem('aif_audio_speed') || '1.0');
+        this.speed = typeof localStorage !== 'undefined' ? parseFloat(localStorage.getItem('aif_audio_speed') || '1.0') : 1.0;
         this.audio.playbackRate = this.speed;
 
         this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());

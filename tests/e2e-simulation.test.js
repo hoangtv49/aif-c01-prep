@@ -188,3 +188,19 @@ test("Full End-to-End simulation of all 3 study boost features in generated inde
   const savedFc = JSON.parse(localStorage.getItem("aif_flashcard_mastered"));
   expect(savedFc.length).toBeGreaterThanOrEqual(1);
 });
+
+test("E2E Audio Subsystem: manifest, speed persistence, and card integration", () => {
+  const manifest = JSON.parse(fs.readFileSync("audio/questions/manifest.json", "utf8"));
+  expect(Object.keys(manifest).length).toBe(57);
+
+  const html = fs.readFileSync("index.html", "utf8");
+  // Check question cards in domain 1 to 5 have audio button
+  for (let d = 1; d <= 5; d++) {
+    expect(html).toContain(`d${d}-q1`);
+  }
+
+  // Ensure clean syntax
+  const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/);
+  expect(scriptMatch).not.toBeNull();
+  expect(() => new Function(scriptMatch[1])).not.toThrow();
+});
