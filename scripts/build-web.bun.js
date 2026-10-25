@@ -505,6 +505,8 @@ const htmlContent = `<!DOCTYPE html>
       gap: 0.35rem;
     }
     .stat-label { color: var(--text-dim); }
+    .stat-label-full { display: inline; }
+    .stat-label-short { display: none; }
     .stat-value { font-family: var(--font-mono); font-weight: 600; color: #fff; }
 
     /* Main Container */
@@ -3056,8 +3058,8 @@ const htmlContent = `<!DOCTYPE html>
     /* Comprehensive Mobile Responsive Styles */
     @media (max-width: 768px) {
       .header-inner {
-        padding: 0.65rem 1rem;
-        gap: 0.5rem;
+        padding: 0.55rem 0.85rem;
+        gap: 0.45rem;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
@@ -3066,15 +3068,15 @@ const htmlContent = `<!DOCTYPE html>
         justify-content: flex-start;
       }
       .brand-heading {
-        gap: 0.5rem;
+        gap: 0.45rem;
       }
       .brand-title {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         line-height: 1.2;
       }
       .brand-badge {
-        font-size: 0.72rem;
-        padding: 0.22rem 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.45rem;
       }
       .brand-subtitle {
         display: none; /* Ẩn phụ đề trên mobile để header siêu gọn gàng */
@@ -3083,10 +3085,32 @@ const htmlContent = `<!DOCTYPE html>
         display: none !important; /* Ẩn hoàn toàn nav bar desktop trên mobile vì đã có Bottom Nav Bar */
       }
       .stats-pill {
-        width: auto;
-        padding: 0.3rem 0.65rem;
-        font-size: 0.725rem;
-        gap: 0.5rem;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.75rem !important;
+        gap: 0.35rem !important;
+        box-sizing: border-box !important;
+        background: #111a2e !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 8px !important;
+      }
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+      }
+      .stat-label-full {
+        display: none !important;
+      }
+      .stat-label-short {
+        display: inline !important;
+        font-size: 0.825rem;
+      }
+      .stat-value {
+        font-size: 0.775rem !important;
       }
       .main-content {
         padding: 1rem 0.85rem 5.5rem; /* Tăng padding dưới để không bị thanh đáy che nội dung */
@@ -3750,19 +3774,23 @@ const htmlContent = `<!DOCTYPE html>
       <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
       <div class="stats-pill" id="header-stats-pill" style="display: none;">
         <div class="stat-item">
-          <span class="stat-label">Đã làm:</span>
+          <span class="stat-label stat-label-full">Đã làm:</span>
+          <span class="stat-label stat-label-short" title="Số câu đã làm">📝</span>
           <span class="stat-value" id="stats-attempted">0/57</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Đúng:</span>
+          <span class="stat-label stat-label-full">Đúng:</span>
+          <span class="stat-label stat-label-short" title="Số câu đúng">✅</span>
           <span class="stat-value" id="stats-correct" style="color: #34d399;">0</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Độ chính xác:</span>
+          <span class="stat-label stat-label-full">Độ chính xác:</span>
+          <span class="stat-label stat-label-short" title="Độ chính xác">🎯</span>
           <span class="stat-value" id="stats-accuracy">0%</span>
         </div>
         <div class="stat-item" id="header-timer-stat">
-          <span class="stat-label">Thời gian:</span>
+          <span class="stat-label stat-label-full">Thời gian:</span>
+          <span class="stat-label stat-label-short" title="Thời gian còn lại">⏱️</span>
           <span class="stat-value" id="header-timer-display" style="color: #38bdf8;">01:25:00</span>
         </div>
       </div>
@@ -3935,9 +3963,9 @@ const htmlContent = `<!DOCTYPE html>
             </div>
           </div>
           <div class="timer-actions-group">
-            <button id="timer-toggle-btn" class="timer-action-btn" onclick="toggleTimerPause()" title="Tạm dừng / Tiếp tục đếm giờ">
-              <span id="timer-toggle-icon">⏸️</span>
-              <span id="timer-toggle-text" class="timer-btn-text">Tạm dừng</span>
+            <button id="timer-toggle-btn" class="timer-action-btn" onclick="toggleTimerPause()" title="Bắt đầu tính giờ thi (85 phút)">
+              <span id="timer-toggle-icon">▶️</span>
+              <span id="timer-toggle-text" class="timer-btn-text">Bắt đầu</span>
             </button>
             <button class="timer-action-btn reset-btn" onclick="resetExamTimer()" title="Đặt lại 85 phút">
               <span>🔄</span>
@@ -4314,7 +4342,8 @@ const htmlContent = `<!DOCTYPE html>
     let bookmarkedQuestions = new Set();
     let examTimeRemaining = 85 * 60; // 85 mins in seconds = 5100
     let timerInterval = null;
-    let isTimerPaused = false;
+    let isTimerPaused = true;
+    let isTimerStarted = false;
     let currentCramFilter = 'all';
     let activeMatrixSubtab = 'matrix'; // 'matrix' | 'pairs'
     let dictView = 'table'; // 'table' | 'cards'
@@ -4775,11 +4804,22 @@ const htmlContent = `<!DOCTYPE html>
           const parsed = JSON.parse(savedRev);
           parsed.forEach(id => revealedCards.add(id));
         }
+        const savedStarted = localStorage.getItem('aif_exam_timer_started') === 'true';
         const savedTime = localStorage.getItem('aif_exam_time');
-        if (savedTime) {
+        if (savedStarted && savedTime) {
           const val = parseInt(savedTime, 10);
-          if (!isNaN(val) && val > 0) examTimeRemaining = val;
+          if (!isNaN(val) && val > 0) {
+            examTimeRemaining = val;
+            isTimerStarted = true;
+          } else {
+            examTimeRemaining = 85 * 60;
+            isTimerStarted = false;
+          }
+        } else {
+          examTimeRemaining = 85 * 60;
+          isTimerStarted = false;
         }
+        isTimerPaused = true;
         const savedFcMastered = localStorage.getItem('aif_flashcard_mastered');
         if (savedFcMastered) {
           const parsed = JSON.parse(savedFcMastered);
@@ -4796,6 +4836,11 @@ const htmlContent = `<!DOCTYPE html>
         localStorage.setItem('aif_bookmarked_ids', JSON.stringify(Array.from(bookmarkedQuestions)));
         localStorage.setItem('aif_revealed_cards', JSON.stringify(Array.from(revealedCards)));
         localStorage.setItem('aif_exam_time', String(examTimeRemaining));
+        if (isTimerStarted) {
+          localStorage.setItem('aif_exam_timer_started', 'true');
+        } else {
+          localStorage.removeItem('aif_exam_timer_started');
+        }
         localStorage.setItem('aif_flashcard_mastered', JSON.stringify(Array.from(masteredFlashcardIds)));
       } catch (e) {
         console.warn('localStorage save error:', e);
@@ -4830,11 +4875,32 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     // Timed Exam Simulator Functions
+    function updateTimerControlsUI() {
+      const icon = document.getElementById('timer-toggle-icon');
+      const text = document.getElementById('timer-toggle-text');
+      const btn = document.getElementById('timer-toggle-btn');
+      if (!icon || !text) return;
+      if (!isTimerStarted) {
+        icon.textContent = '▶️';
+        text.textContent = 'Bắt đầu';
+        if (btn) btn.title = 'Bắt đầu tính giờ thi (85 phút)';
+      } else if (isTimerPaused) {
+        icon.textContent = '▶️';
+        text.textContent = 'Tiếp tục';
+        if (btn) btn.title = 'Tiếp tục đếm giờ';
+      } else {
+        icon.textContent = '⏸️';
+        text.textContent = 'Tạm dừng';
+        if (btn) btn.title = 'Tạm dừng đếm giờ';
+      }
+    }
+
     function startExamTimer() {
       if (timerInterval) clearInterval(timerInterval);
       updateTimerDisplay();
+      updateTimerControlsUI();
       timerInterval = setInterval(() => {
-        if (!isTimerPaused && examTimeRemaining > 0) {
+        if (isTimerStarted && !isTimerPaused && examTimeRemaining > 0) {
           examTimeRemaining--;
           updateTimerDisplay();
           if (examTimeRemaining % 15 === 0) {
@@ -4842,6 +4908,9 @@ const htmlContent = `<!DOCTYPE html>
           }
           if (examTimeRemaining === 0) {
             clearInterval(timerInterval);
+            isTimerStarted = false;
+            isTimerPaused = true;
+            updateTimerControlsUI();
             showToast('⏰ Đã hết thời gian 85 phút làm bài!');
             submitExam();
           }
@@ -4875,23 +4944,27 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     function toggleTimerPause() {
+      if (!isTimerStarted) {
+        isTimerStarted = true;
+        isTimerPaused = false;
+        saveStateToStorage();
+        updateTimerControlsUI();
+        showToast('⏱️ Bắt đầu tính giờ thi thử (85 phút)!');
+        return;
+      }
       isTimerPaused = !isTimerPaused;
-      const icon = document.getElementById('timer-toggle-icon');
-      const text = document.getElementById('timer-toggle-text');
-      if (icon) icon.textContent = isTimerPaused ? '▶️' : '⏸️';
-      if (text) text.textContent = isTimerPaused ? 'Tiếp tục' : 'Tạm dừng';
+      updateTimerControlsUI();
+      saveStateToStorage();
       showToast(isTimerPaused ? '⏸️ Đã tạm dừng đồng hồ đếm giờ' : '▶️ Tiếp tục đếm giờ');
     }
 
     function resetExamTimer() {
       if (!confirm('Bạn có muốn đặt lại đồng hồ thi thử về 85 phút?')) return;
       examTimeRemaining = 85 * 60;
-      isTimerPaused = false;
-      const icon = document.getElementById('timer-toggle-icon');
-      const text = document.getElementById('timer-toggle-text');
-      if (icon) icon.textContent = '⏸️';
-      if (text) text.textContent = 'Tạm dừng';
+      isTimerPaused = true;
+      isTimerStarted = false;
       updateTimerDisplay();
+      updateTimerControlsUI();
       saveStateToStorage();
       showToast('🔄 Đã đặt lại thời gian thi về 85 phút!');
     }
@@ -5010,6 +5083,11 @@ const htmlContent = `<!DOCTYPE html>
 
       const modal = document.getElementById('scoreboard-modal');
       if (modal) modal.style.display = 'flex';
+
+      isTimerStarted = false;
+      isTimerPaused = true;
+      updateTimerControlsUI();
+      saveStateToStorage();
     }
 
     function closeScoreboardModal() {
@@ -5816,6 +5894,8 @@ const htmlContent = `<!DOCTYPE html>
       renderConceptGraph();
       renderCramSheet();
       initScrollListener();
+      updateTimerDisplay();
+      updateTimerControlsUI();
       startExamTimer();
       updateStats();
 
@@ -6940,6 +7020,11 @@ const htmlContent = `<!DOCTYPE html>
     function resetQuiz() {
       for (const k in userAnswers) delete userAnswers[k];
       revealedCards.clear();
+      isTimerStarted = false;
+      isTimerPaused = true;
+      examTimeRemaining = 85 * 60;
+      updateTimerDisplay();
+      updateTimerControlsUI();
       saveStateToStorage();
       setQuizMode('exam');
       updateStats();
@@ -6987,6 +7072,13 @@ const htmlContent = `<!DOCTYPE html>
         }
       } else {
         userAnswers[qId] = [key];
+      }
+
+      if (quizMode === 'exam' && !isTimerStarted) {
+        isTimerStarted = true;
+        isTimerPaused = false;
+        updateTimerControlsUI();
+        showToast('⏱️ Bắt đầu tính giờ thi thử (85 phút)!');
       }
       
       saveStateToStorage();
