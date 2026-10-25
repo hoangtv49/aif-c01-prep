@@ -114,3 +114,20 @@ test("index.html includes complete MediaSession handlers and fixed speed matchin
   expect(html).toContain("setActionHandler('nexttrack'");
   expect(html).toContain("rate.toFixed(1) + 'x'");
 });
+
+test("Speech scripts use 100% natural Vietnamese translations for all 57 question stems", () => {
+  const { getVietnameseScenario, VIETNAMESE_SCENARIOS } = require("../scripts/generate-questions-audio.cjs");
+
+  expect(typeof getVietnameseScenario).toBe("function");
+  expect(Object.keys(VIETNAMESE_SCENARIOS).length).toBe(57);
+
+  const manifest = JSON.parse(fs.readFileSync("audio/questions/manifest.json", "utf8"));
+  Object.keys(manifest).forEach(qId => {
+    const vnScenario = getVietnameseScenario(qId);
+    expect(vnScenario).toBeDefined();
+    expect(vnScenario.length).toBeGreaterThan(25);
+    expect(vnScenario).not.toContain("Which AWS service should");
+    expect(vnScenario).not.toContain("What should the company do");
+    expect(vnScenario).not.toContain("wants to automate");
+  });
+});

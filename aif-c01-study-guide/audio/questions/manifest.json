@@ -1,287 +1,287 @@
 {
   "d1-q1": {
-    "duration": 71,
-    "size": 423216,
+    "duration": 63,
+    "size": 375696,
     "title": "Câu 1 (Domain 1)"
   },
   "d1-q2": {
-    "duration": 74,
-    "size": 446688,
+    "duration": 68,
+    "size": 408672,
     "title": "Câu 2 (Domain 1)"
   },
   "d1-q3": {
-    "duration": 81,
-    "size": 484704,
+    "duration": 72,
+    "size": 429984,
     "title": "Câu 3 (Domain 1)"
   },
   "d1-q4": {
-    "duration": 74,
-    "size": 446688,
+    "duration": 62,
+    "size": 370512,
     "title": "Câu 4 (Domain 1)"
   },
   "d1-q5": {
-    "duration": 77,
-    "size": 462816,
+    "duration": 66,
+    "size": 395568,
     "title": "Câu 5 (Domain 1)"
   },
   "d1-q6": {
-    "duration": 84,
-    "size": 506736,
+    "duration": 69,
+    "size": 416736,
     "title": "Câu 6 (Domain 1)"
   },
   "d1-q7": {
-    "duration": 65,
-    "size": 389664,
+    "duration": 54,
+    "size": 326592,
     "title": "Câu 7 (Domain 1)"
   },
   "d1-q8": {
-    "duration": 67,
-    "size": 403920,
+    "duration": 56,
+    "size": 336096,
     "title": "Câu 8 (Domain 1)"
   },
   "d1-q9": {
-    "duration": 66,
-    "size": 397440,
+    "duration": 52,
+    "size": 314208,
     "title": "Câu 9 (Domain 1)"
   },
   "d1-q10": {
-    "duration": 70,
-    "size": 421344,
+    "duration": 56,
+    "size": 333216,
     "title": "Câu 10 (Domain 1)"
   },
   "d1-q11": {
-    "duration": 80,
-    "size": 479520,
+    "duration": 70,
+    "size": 419904,
     "title": "Câu 11 (Domain 1)"
   },
   "d2-q1": {
-    "duration": 82,
-    "size": 489168,
+    "duration": 71,
+    "size": 427680,
     "title": "Câu 1 (Domain 2)"
   },
   "d2-q2": {
-    "duration": 67,
-    "size": 400464,
+    "duration": 64,
+    "size": 381312,
     "title": "Câu 2 (Domain 2)"
   },
   "d2-q3": {
-    "duration": 67,
-    "size": 402480,
+    "duration": 64,
+    "size": 385776,
     "title": "Câu 3 (Domain 2)"
   },
   "d2-q4": {
-    "duration": 77,
-    "size": 459936,
+    "duration": 67,
+    "size": 404352,
     "title": "Câu 4 (Domain 2)"
   },
   "d2-q5": {
-    "duration": 67,
-    "size": 400752,
+    "duration": 59,
+    "size": 351072,
     "title": "Câu 5 (Domain 2)"
   },
   "d2-q6": {
-    "duration": 81,
-    "size": 486432,
+    "duration": 72,
+    "size": 430128,
     "title": "Câu 6 (Domain 2)"
   },
   "d2-q7": {
-    "duration": 85,
-    "size": 509760,
+    "duration": 74,
+    "size": 442944,
     "title": "Câu 7 (Domain 2)"
   },
   "d2-q8": {
-    "duration": 77,
-    "size": 464544,
+    "duration": 66,
+    "size": 394128,
     "title": "Câu 8 (Domain 2)"
   },
   "d2-q9": {
-    "duration": 71,
-    "size": 428256,
+    "duration": 59,
+    "size": 354528,
     "title": "Câu 9 (Domain 2)"
   },
   "d2-q10": {
-    "duration": 62,
-    "size": 370944,
+    "duration": 56,
+    "size": 333792,
     "title": "Câu 10 (Domain 2)"
   },
   "d2-q11": {
-    "duration": 88,
-    "size": 530208,
+    "duration": 73,
+    "size": 440640,
     "title": "Câu 11 (Domain 2)"
   },
   "d3-q1": {
-    "duration": 69,
-    "size": 414576,
+    "duration": 58,
+    "size": 347904,
     "title": "Câu 1 (Domain 3)"
   },
   "d3-q2": {
-    "duration": 81,
-    "size": 483840,
+    "duration": 64,
+    "size": 386208,
     "title": "Câu 2 (Domain 3)"
   },
   "d3-q3": {
-    "duration": 68,
-    "size": 408384,
+    "duration": 55,
+    "size": 328608,
     "title": "Câu 3 (Domain 3)"
   },
   "d3-q4": {
-    "duration": 70,
-    "size": 422208,
+    "duration": 60,
+    "size": 360432,
     "title": "Câu 4 (Domain 3)"
   },
   "d3-q5": {
-    "duration": 77,
-    "size": 464832,
+    "duration": 67,
+    "size": 403056,
     "title": "Câu 5 (Domain 3)"
   },
   "d3-q6": {
-    "duration": 78,
-    "size": 465552,
+    "duration": 67,
+    "size": 404352,
     "title": "Câu 6 (Domain 3)"
   },
   "d3-q7": {
-    "duration": 84,
-    "size": 505584,
+    "duration": 73,
+    "size": 436464,
     "title": "Câu 7 (Domain 3)"
   },
   "d3-q8": {
-    "duration": 72,
-    "size": 429984,
+    "duration": 63,
+    "size": 375120,
     "title": "Câu 8 (Domain 3)"
   },
   "d3-q9": {
-    "duration": 84,
-    "size": 505440,
+    "duration": 74,
+    "size": 444528,
     "title": "Câu 9 (Domain 3)"
   },
   "d3-q10": {
-    "duration": 82,
-    "size": 493200,
+    "duration": 65,
+    "size": 392976,
     "title": "Câu 10 (Domain 3)"
   },
   "d3-q11": {
-    "duration": 86,
-    "size": 517392,
+    "duration": 72,
+    "size": 431712,
     "title": "Câu 11 (Domain 3)"
   },
   "d3-q12": {
-    "duration": 93,
-    "size": 559008,
+    "duration": 80,
+    "size": 480960,
     "title": "Câu 12 (Domain 3)"
   },
   "d4-q1": {
-    "duration": 81,
-    "size": 486000,
+    "duration": 75,
+    "size": 451440,
     "title": "Câu 1 (Domain 4)"
   },
   "d4-q2": {
-    "duration": 87,
-    "size": 523296,
+    "duration": 72,
+    "size": 434880,
     "title": "Câu 2 (Domain 4)"
   },
   "d4-q3": {
-    "duration": 81,
-    "size": 483984,
+    "duration": 67,
+    "size": 403776,
     "title": "Câu 3 (Domain 4)"
   },
   "d4-q4": {
-    "duration": 86,
-    "size": 514368,
+    "duration": 73,
+    "size": 435744,
     "title": "Câu 4 (Domain 4)"
   },
   "d4-q5": {
-    "duration": 64,
-    "size": 384336,
+    "duration": 62,
+    "size": 372960,
     "title": "Câu 5 (Domain 4)"
   },
   "d4-q6": {
-    "duration": 91,
-    "size": 546048,
+    "duration": 72,
+    "size": 433440,
     "title": "Câu 6 (Domain 4)"
   },
   "d4-q7": {
-    "duration": 89,
-    "size": 532512,
+    "duration": 82,
+    "size": 494640,
     "title": "Câu 7 (Domain 4)"
   },
   "d4-q8": {
-    "duration": 82,
-    "size": 491904,
+    "duration": 71,
+    "size": 425088,
     "title": "Câu 8 (Domain 4)"
   },
   "d4-q9": {
-    "duration": 78,
-    "size": 465696,
+    "duration": 62,
+    "size": 370512,
     "title": "Câu 9 (Domain 4)"
   },
   "d4-q10": {
-    "duration": 77,
-    "size": 462240,
+    "duration": 63,
+    "size": 377568,
     "title": "Câu 10 (Domain 4)"
   },
   "d4-q11": {
-    "duration": 92,
-    "size": 552528,
+    "duration": 87,
+    "size": 520992,
     "title": "Câu 11 (Domain 4)"
   },
   "d5-q1": {
-    "duration": 80,
-    "size": 480240,
+    "duration": 71,
+    "size": 425376,
     "title": "Câu 1 (Domain 5)"
   },
   "d5-q2": {
-    "duration": 80,
-    "size": 482688,
+    "duration": 72,
+    "size": 433440,
     "title": "Câu 2 (Domain 5)"
   },
   "d5-q3": {
-    "duration": 93,
-    "size": 555552,
+    "duration": 67,
+    "size": 400176,
     "title": "Câu 3 (Domain 5)"
   },
   "d5-q4": {
-    "duration": 71,
-    "size": 423648,
+    "duration": 65,
+    "size": 389664,
     "title": "Câu 4 (Domain 5)"
   },
   "d5-q5": {
-    "duration": 87,
-    "size": 523872,
+    "duration": 72,
+    "size": 431424,
     "title": "Câu 5 (Domain 5)"
   },
   "d5-q6": {
-    "duration": 80,
-    "size": 479520,
+    "duration": 75,
+    "size": 450576,
     "title": "Câu 6 (Domain 5)"
   },
   "d5-q7": {
-    "duration": 88,
-    "size": 530640,
+    "duration": 75,
+    "size": 452880,
     "title": "Câu 7 (Domain 5)"
   },
   "d5-q8": {
-    "duration": 81,
-    "size": 484992,
+    "duration": 64,
+    "size": 382896,
     "title": "Câu 8 (Domain 5)"
   },
   "d5-q9": {
-    "duration": 88,
-    "size": 526752,
+    "duration": 75,
+    "size": 450144,
     "title": "Câu 9 (Domain 5)"
   },
   "d5-q10": {
-    "duration": 78,
-    "size": 469008,
+    "duration": 69,
+    "size": 411840,
     "title": "Câu 10 (Domain 5)"
   },
   "d5-q11": {
-    "duration": 90,
-    "size": 541152,
+    "duration": 77,
+    "size": 464400,
     "title": "Câu 11 (Domain 5)"
   },
   "d5-q12": {
-    "duration": 114,
-    "size": 685152,
+    "duration": 109,
+    "size": 651456,
     "title": "Câu 12 (Domain 5)"
   }
 }

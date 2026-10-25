@@ -1,0 +1,80 @@
+// Vietnamese Scenario Translations for all 57 AWS AIF-C01 questions
+// Enables 100% natural Vietnamese speech narration without awkward English reading
+
+const VIETNAMESE_SCENARIOS = {
+  // Domain 1: Fundamentals of AI and Machine Learning (11 questions)
+  "d1-q1": "Một công ty dịch vụ tài chính cần tự động trích xuất thông tin khách hàng và dữ liệu bảng biểu từ các bản hợp đồng scan PDF mà không cần tự phát triển mô hình OCR. Dịch vụ AWS nào là phù hợp nhất?",
+  "d1-q2": "Một nhóm khoa học dữ liệu huấn luyện mô hình phát hiện gian lận. Mô hình đạt độ chính xác 99% trên tập huấn luyện nhưng chỉ đạt 62% trên dữ liệu thực tế. Hiện tượng này là gì và giải pháp khắc phục là gì?",
+  "d1-q3": "Một công ty thương mại điện tử muốn phân tích hàng triệu đánh giá của khách hàng để tự động xác định cảm xúc tích cực hay tiêu cực và trích xuất các thực thể chính mà không cần tự huấn luyện mô hình. Dịch vụ AWS nào đáp ứng tốt nhất?",
+  "d1-q4": "Một ngân hàng bán lẻ ghi âm hàng nghìn cuộc gọi chăm sóc khách hàng mỗi ngày và muốn chuyển đổi các bản ghi âm giọng nói này thành văn bản để lưu trữ và phân tích. Dịch vụ AWS nào giải quyết trực tiếp nhu cầu này?",
+  "d1-q5": "Một doanh nghiệp bán lẻ muốn gom nhóm khách hàng thành các phân khúc dựa trên hành vi mua sắm tương đồng mà không có dữ liệu gán nhãn từ trước. Loại học máy nào phù hợp cho bài toán này?",
+  "d1-q6": "Một công ty y tế huấn luyện mô hình phân loại phát hiện bệnh hiểm nghèo giai đoạn sớm, với ưu tiên hàng đầu là giảm thiểu tối đa các ca bệnh bị bỏ sót tức là False Negatives. Chỉ số đánh giá mô hình nào là quan trọng nhất?",
+  "d1-q7": "Một chuỗi siêu thị muốn dự báo nhu cầu hàng tồn kho cho 500 cửa hàng trong 6 tháng tới dựa trên dữ liệu chuỗi thời gian lịch sử bán hàng và các chương trình khuyến mãi. Dịch vụ AWS nào tối ưu nhất?",
+  "d1-q8": "Một nền tảng xem phim trực tuyến muốn xây dựng hệ thống gợi ý phim và chương trình truyền hình cá nhân hóa theo sở thích của từng người dùng trong thời gian thực mà không cần đội ngũ chuyên gia học máy sâu. Dịch vụ AWS nào là tối ưu?",
+  "d1-q9": "Một cổng thanh toán trực tuyến cần đánh giá các giao dịch thẻ tín dụng trong thời gian thực để phát hiện các giao dịch lừa đảo và tài khoản giả mạo. Dịch vụ AI chuyên biệt nào của AWS được thiết kế riêng cho mục đích này?",
+  "d1-q10": "Một nhóm kỹ sư dữ liệu cần làm sạch, chuẩn hóa và trực quan hóa tập dữ liệu khách hàng dạng bảng lớn trong một giao diện trực quan trước khi đưa vào huấn luyện mô hình. Công cụ nào của Amazon SageMaker đáp ứng tốt nhất?",
+  "d1-q11": "Một công ty muốn xây dựng giải pháp phân loại cảm xúc khách hàng dựa trên văn bản đánh giá. Hãy chọn hai phương pháp kỹ thuật khả thi có thể triển khai trên AWS.",
+
+  // Domain 2: Fundamentals of Generative AI (11 questions)
+  "d2-q1": "Một công ty luật muốn xây dựng trợ lý AI trả lời câu hỏi dựa trên kho 50.000 tài liệu pháp lý cập nhật hàng tuần, yêu cầu phải trích dẫn số trang điều khoản cụ thể và tuyệt đối không bịa đặt thông tin. Phương pháp kỹ thuật nào tối ưu nhất?",
+  "d2-q2": "Một tổ chức nghiên cứu y sinh cần sinh hình ảnh minh họa chi tiết về cấu trúc tế bào từ các câu mô tả bằng văn bản. Họ mô hình học sâu nào phù hợp nhất cho tác vụ sinh ảnh từ văn bản Text-to-Image này?",
+  "d2-q3": "Một công ty bảo hiểm đang cân nhắc khi nào nên chọn phương pháp Fine-tuning thay vì Prompt Engineering với mô hình nền tảng có sẵn. Tình huống nào sau đây bắt buộc công ty nên chọn Fine-tuning?",
+  "d2-q4": "Khi thử nghiệm chatbot, nhóm phát triển nhận thấy mô hình tự tin khẳng định công ty hoàn tiền 200% trong khi chính sách thực tế chỉ là 100%. Hiện tượng này gọi là gì và cách khắc phục hiệu quả nhất là gì?",
+  "d2-q5": "Một công ty truyền thông cần phân tích các video phỏng vấn dài hai tiếng, bao gồm chuyển lời thoại thành chữ, nhận diện logo thương hiệu trên màn hình và phân tích cảm xúc khuôn mặt. Loại mô hình nền tảng nào phù hợp nhất?",
+  "d2-q6": "Một công ty quảng cáo sử dụng mô hình trên Amazon Bedrock để viết email tiếp thị sáng tạo, đa dạng ý tưởng nhưng yêu cầu độ dài phải ngắn gọn dưới 150 từ. Cấu hình tham số suy luận nào đáp ứng đúng yêu cầu này?",
+  "d2-q7": "Một công ty tài chính cần chọn mô hình trên Amazon Bedrock cho chatbot chăm sóc khách hàng với yêu cầu phản hồi tức thì dưới một giây, thông lượng cao, không cần tính toán suy luận toán học phức tạp. Chiến lược chọn mô hình nào là tối ưu?",
+  "d2-q8": "Một phòng pháp chế cần mô hình ngôn ngữ lớn phân tích các hợp đồng sáp nhập dài hơn 500 trang, vượt quá giới hạn Context Window của mô hình và gây lỗi API. Kỹ thuật nào xử lý hiệu quả tài liệu này mà không làm mất thông tin?",
+  "d2-q9": "Một sàn thương mại điện tử muốn cho phép khách hàng tìm kiếm sản phẩm bằng cả văn bản mô tả lẫn hình ảnh tải lên trong cùng một không gian vector ngữ nghĩa chung. Mô hình nền tảng nào của AWS hỗ trợ tính năng này?",
+  "d2-q10": "Một lập trình viên muốn giới hạn tính ngẫu nhiên của mô hình bằng cách chỉ xem xét 50 từ có xác suất cao nhất tại mỗi bước, và chọn trong nhóm từ có tổng xác suất tích lũy đạt 90%. Hai tham số nào cần cấu hình?",
+  "d2-q11": "Khi so sánh giữa kỹ thuật RAG và Fine-tuning mô hình ngôn ngữ lớn, hai ưu điểm vượt trội nhất của RAG so với Fine-tuning là gì?",
+
+  // Domain 3: Applications of Foundation Models (12 questions)
+  "d3-q1": "Một công ty công nghệ muốn tích hợp tính năng tóm tắt văn bản vào ứng dụng web bằng cách gọi API có sẵn mà không cần quản lý bất kỳ hạ tầng máy chủ GPU nào và chỉ trả tiền theo lượng sử dụng thực tế. Dịch vụ AWS nào phù hợp nhất?",
+  "d3-q2": "Một tập đoàn đa quốc gia muốn triển khai công cụ trò chuyện nội bộ cho nhân viên kết nối với hơn 40 nguồn dữ liệu doanh nghiệp và phải tuân thủ nghiêm ngặt quyền truy cập danh tính người dùng có sẵn. Giải pháp tối ưu nhất là gì?",
+  "d3-q3": "Một ứng dụng AI tóm tắt bệnh án cho bác sĩ thường xuyên bị người dùng chê là bản tóm tắt quá dài dòng và văn phong không giống báo cáo y khoa. Biện pháp kỹ nghệ câu lệnh nào giải quyết nhanh nhất vấn đề này?",
+  "d3-q4": "Một công ty tài chính muốn mô hình ngôn ngữ lớn thực hiện các phép tính thuế thu nhập cá nhân nhiều bước phức tạp đòi hỏi suy luận logic tuần tự. Kỹ thuật Prompting nào giúp mô hình tính toán chính xác nhất?",
+  "d3-q5": "Một doanh nghiệp muốn triển khai trợ lý AI có khả năng tự động phân tích yêu cầu của khách hàng, tự lập kế hoạch nhiều bước và gọi API hệ thống bên ngoài để đặt lịch hẹn. Tính năng nào của Amazon Bedrock đáp ứng trực tiếp nhu cầu này?",
+  "d3-q6": "Một công ty công nghệ muốn tinh chỉnh một mô hình nền tảng 70 tỷ tham số theo phong cách riêng nhưng bị hạn chế nghiêm trọng về ngân sách GPU. Kỹ thuật tinh chỉnh tham số hiệu quả nào là giải pháp tối ưu?",
+  "d3-q7": "Một nhóm phát triển đang xây dựng bản thử nghiệm nội bộ trên Amazon Bedrock với lưu lượng biến động không ổn định và muốn giảm thiểu tối đa chi phí ban đầu. Mô hình định giá nào của Amazon Bedrock là phù hợp nhất?",
+  "d3-q8": "Một tổ chức y tế đã hoàn tất việc Fine-tune một mô hình tùy chỉnh riêng trên Amazon Bedrock và cần đưa vào môi trường Production phục vụ người dùng thực tế với độ trễ ổn định. Hình thức định giá nào bắt buộc phải sử dụng?",
+  "d3-q9": "Một ngân hàng sử dụng Amazon Bedrock để sinh email gửi khách hàng, cần đảm bảo tuyệt đối chặn các nội dung độc hại, che giấu thông tin cá nhân PII và ngăn bot bàn luận về các chủ đề tài chính bị cấm. Tính năng nào của Bedrock giải quyết yêu cầu này?",
+  "d3-q10": "Một nhóm khoa học dữ liệu cần đánh giá và so sánh chất lượng câu trả lời giữa ba mô hình nền tảng khác nhau trên Amazon Bedrock dựa trên độ thân thiện và mức độ liên quan. Tính năng nào của Bedrock hỗ trợ quy trình này?",
+  "d3-q11": "Một doanh nghiệp muốn nâng cao năng suất bằng công cụ tìm kiếm tài liệu thông minh giúp nhân viên tra cứu file hợp đồng và trả về liên kết trích đoạn gốc chính xác mà không cần sinh văn bản mới. Dịch vụ AWS nào phù hợp nhất?",
+  "d3-q12": "Một lập trình viên cấu hình tác tử AI tự hành Bedrock Agents để xử lý hồ sơ vay vốn. Thành phần nào định nghĩa cấu trúc dữ liệu đầu vào và kết nối logic thực thi với hàm AWS Lambda?",
+
+  // Domain 4: Guidelines for Responsible AI (11 questions)
+  "d4-q1": "Một ngân hàng bán lẻ triển khai mô hình học máy tự động duyệt khoản vay. Để tuân thủ quy định pháp luật về tín dụng công bằng, ngân hàng cần giải thích lý do cụ thể vì sao một hồ sơ bị từ chối và kiểm tra thiên kiến dữ liệu. Công cụ nào của Amazon SageMaker đáp ứng yêu cầu này?",
+  "d4-q2": "Một công ty y tế muốn triển khai chatbot tư vấn thông tin cho bệnh nhân trên Amazon Bedrock, cần tự động phát hiện và che giấu các thông tin định danh cá nhân nhạy cảm như số căn cước, bệnh án và tên người dùng. Giải pháp tối ưu nhất là gì?",
+  "d4-q3": "Một đội ngũ kỹ thuật sử dụng Amazon Rekognition để nhận diện khuôn mặt ra vào tòa nhà, nhưng tỷ lệ từ chối sai đối với một số nhóm người lại cao hơn rõ rệt so với người khác. Đây là loại rủi ro nào trong AI có trách nhiệm?",
+  "d4-q4": "Một ứng dụng RAG sử dụng Amazon Bedrock để trả lời khách hàng. Nhóm phát triển muốn xác minh xem câu trả lời của mô hình có thực sự bắt nguồn từ tài liệu gốc được cung cấp hay là do mô hình tự bịa ra. Kỹ thuật kiểm tra nào giúp phát hiện điều này?",
+  "d4-q5": "Một chuyên viên phân tích sử dụng Amazon SageMaker Clarify để giải thích lý do từ chối khoản vay của một khách hàng cụ thể dựa trên mức độ đóng góp của từng thuộc tính như thu nhập và lịch sử nợ. Phương pháp phân tích nào được áp dụng?",
+  "d4-q6": "Một bệnh viện phát triển mô hình dự đoán khả năng tái nhập viện của bệnh nhân nhưng phát hiện tập dữ liệu huấn luyện có tỷ lệ bệnh nhân cao tuổi chiếm tới 90%. Vấn đề thiên kiến dữ liệu nào đang xảy ra?",
+  "d4-q7": "Một công ty xây dựng ứng dụng chatbot hỗ trợ khách hàng và muốn đảm bảo người dùng luôn biết rõ họ đang tương tác với trí tuệ nhân tạo chứ không phải con người. Nguyên tắc AI có trách nhiệm nào đang được thực thi?",
+  "d4-q8": "Một công ty bảo hiểm sử dụng Amazon Textract để đọc đơn yêu cầu bồi thường. Với các đơn có độ tin cậy thấp dưới 80%, công ty muốn tự động chuyển cho nhân viên kiểm tra lại bằng mắt trước khi chi trả. Dịch vụ nào của AWS quản lý quy trình kết hợp con người này?",
+  "d4-q9": "Trong quá trình kiểm thử bảo mật ứng dụng LLM, một chuyên gia cố tình nhập câu lệnh chỉ dẫn giả mạo để lừa mô hình bỏ qua các quy tắc kiểm duyệt an toàn hệ thống. Hình thức tấn công này được gọi là gì?",
+  "d4-q10": "Một ngân hàng triển khai chatbot trên Amazon Bedrock và phát hiện kẻ tấn công chèn các câu lệnh độc hại vào các trang web bên ngoài để lừa mô hình đọc và thực thi trái phép. Đây là kỹ thuật tấn công nào?",
+  "d4-q11": "Một doanh nghiệp muốn ban hành các nguyên tắc phát triển AI có trách nhiệm cho toàn bộ tổ chức. Sáu trụ cột cốt lõi của AI có trách nhiệm theo tiêu chuẩn AWS bao gồm những yếu tố nào?",
+
+  // Domain 5: Security, Compliance, and Governance for AI Solutions (12 questions)
+  "d5-q1": "Một doanh nghiệp tài chính chuẩn bị kiểm toán bảo mật hàng năm và cần tải về các báo cáo tuân thủ của AWS như SOC, PCI DSS và ISO để chứng minh hạ tầng đám mây đáp ứng quy chuẩn. Dịch vụ AWS nào cung cấp các báo cáo này miễn phí?",
+  "d5-q2": "Một cơ quan y tế chính phủ sử dụng Amazon Bedrock để tóm tắt hồ sơ bệnh án và yêu cầu toàn bộ lưu lượng mạng giữa mạng nội bộ VPC với dịch vụ Bedrock phải đi hoàn toàn qua mạng riêng của AWS, tuyệt đối không ra ngoài internet công cộng. Giải pháp kỹ thuật nào đáp ứng yêu cầu này?",
+  "d5-q3": "Một công ty công nghệ xây dựng hệ thống tuyển dụng tự động sử dụng RAG trên cơ sở dữ liệu hồ sơ ứng viên. Để đảm bảo tuân thủ quyền riêng tư dữ liệu, biện pháp bảo vệ nào là cấp thiết nhất?",
+  "d5-q4": "Theo Mô hình trách nhiệm chia sẻ của AWS đối với dịch vụ Serverless như Amazon Bedrock, trách nhiệm bảo mật nào thuộc về phía KHÁCH HÀNG?",
+  "d5-q5": "Một doanh nghiệp muốn liên tục giám sát và tự động đánh giá các tài nguyên AI và lưu trữ trong tài khoản AWS để phát hiện các cấu hình sai lệch chuẩn bảo mật như S3 bucket bị mở công khai. Dịch vụ AWS nào quản lý việc này?",
+  "d5-q6": "Theo Đạo luật Trí tuệ Nhân tạo của Liên minh Châu Âu (EU AI Act), hệ thống AI sử dụng trong đánh giá tín dụng và chấm điểm hồ sơ vay vốn được xếp vào cấp độ rủi ro nào?",
+  "d5-q7": "Một công ty y tế sử dụng các mô hình bên thứ ba như Anthropic Claude trên Amazon Bedrock. AWS cam kết chính sách bảo mật dữ liệu khách hàng như thế nào khi sử dụng Bedrock?",
+  "d5-q8": "Một doanh nghiệp truyền thông chuẩn bị kho dữ liệu lớn trên Amazon S3 để làm cơ sở tri thức cho RAG, và muốn tự động quét tìm các dữ liệu nhạy cảm như thẻ tín dụng hay số an sinh xã hội để che giấu trước khi nạp vào AI. Dịch vụ AWS nào thực hiện việc này?",
+  "d5-q9": "Một lập trình viên cấu hình quyền IAM Role cho hàm Lambda gọi Amazon Bedrock. Nguyên tắc bảo mật IAM nào bắt buộc phải tuân thủ để đảm bảo chỉ cấp đúng các quyền tối thiểu cần thiết?",
+  "d5-q10": "Một công ty chạy khối lượng công việc AI trên Amazon Bedrock cần kiểm toán các lệnh gọi API, xác định rõ ai đã gọi mô hình nào, từ địa chỉ IP nào và vào thời điểm nào. Dịch vụ AWS nào ghi lại toàn bộ nhật ký kiểm toán này?",
+  "d5-q11": "Một công ty triển khai ứng dụng hội thoại AI ra internet công cộng thông qua Application Load Balancer và muốn bảo vệ ứng dụng khỏi các cuộc tấn công DDoS quy mô lớn cũng như các lỗ hổng web phổ biến. Hai dịch vụ bảo mật nào của AWS nên kết hợp sử dụng?",
+  "d5-q12": "Một công ty triển khai chatbot sử dụng mô hình nền tảng trên Amazon Bedrock. Theo Mô hình trách nhiệm chia sẻ của AWS, hai trách nhiệm bảo mật và quản trị nào thuộc quyền kiểm soát trực tiếp của KHÁCH HÀNG?"
+};
+
+function getVietnameseScenario(qId) {
+  return VIETNAMESE_SCENARIOS[qId] || null;
+}
+
+module.exports = {
+  VIETNAMESE_SCENARIOS,
+  getVietnameseScenario
+};

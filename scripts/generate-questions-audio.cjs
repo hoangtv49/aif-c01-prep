@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { EdgeTTS } = require("node-edge-tts");
+const { getVietnameseScenario, VIETNAMESE_SCENARIOS } = require("./question-translations.cjs");
 
 function sanitizeSpeechText(text) {
   if (!text) return "";
@@ -22,16 +23,19 @@ function sanitizeSpeechText(text) {
 
 function formatQuestionSpeechScript(q, domainTitle) {
   const domainClean = (domainTitle || `Domain ${q.domainId}`).replace(/\s*\(\d+%\)/, "").trim();
-  const stemClean = sanitizeSpeechText(q.stem);
-  const answerClean = sanitizeSpeechText(q.correctAnswer);
+  
+  // Prefer natural 100% Vietnamese scenario translation if available
+  const vnScenario = getVietnameseScenario(q.id);
+  const stemText = vnScenario ? vnScenario : sanitizeSpeechText(q.stem);
 
+  const answerClean = sanitizeSpeechText(q.correctAnswer);
   const reasonClean = sanitizeSpeechText(q.reason)
     .replace(/^Từ khóa quan trọng:?/i, "Từ khóa quan trọng:")
     .replace(/^-\s*/gm, "");
   const trapClean = sanitizeSpeechText(q.trap || q.distractor || "");
 
   let script = `Câu hỏi số ${q.number} của ${domainClean}. `;
-  script += `Tình huống: ${stemClean}. `;
+  script += `Tình huống như sau: ${stemText} `;
   script += `Phương án đúng là: ${answerClean}. `;
   if (reasonClean) {
     script += `Phân tích: ${reasonClean}. `;
@@ -169,7 +173,9 @@ async function synthesizeAllQuestions(force = false) {
 module.exports = {
   sanitizeSpeechText,
   formatQuestionSpeechScript,
-  synthesizeAllQuestions
+  synthesizeAllQuestions,
+  getVietnameseScenario,
+  VIETNAMESE_SCENARIOS
 };
 
 if (require.main === module) {
