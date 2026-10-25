@@ -1697,6 +1697,96 @@
       border-color: #38bdf8 !important;
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.35) !important;
     }
+
+    /* Continuous Playlist Toolbar */
+    .playlist-toolbar {
+      background: linear-gradient(135deg, #111a2e 0%, #0c1424 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .playlist-info {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .playlist-icon {
+      font-size: 1.25rem;
+      color: #38bdf8;
+    }
+    .playlist-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .playlist-badge {
+      font-size: 0.725rem;
+      font-family: var(--font-mono);
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+    .playlist-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+    .playlist-btn {
+      background: #162032;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+    .playlist-btn:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .playlist-btn.primary {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .playlist-btn.primary:hover {
+      background: #0369a1;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+    .auto-next-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      cursor: pointer;
+      user-select: none;
+      margin-left: 0.5rem;
+    }
+    .auto-next-label input[type="checkbox"] {
+      accent-color: #38bdf8;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
     .audio-demo-header {
       display: flex;
       justify-content: space-between;
@@ -3313,6 +3403,24 @@
         <!-- Rendered via JS -->
       </div>
 
+      <!-- Continuous Playlist Toolbar (Podcast / Hands-free Audio Mode) -->
+      <div class="playlist-toolbar">
+        <div class="playlist-info">
+          <span class="playlist-icon">🎧</span>
+          <span class="playlist-title">Chế độ Nghe Rảnh Tay (Podcast / Chạy xe)</span>
+          <span id="playlist-active-badge" class="playlist-badge">57 câu có sẵn</span>
+        </div>
+        <div class="playlist-actions">
+          <button class="playlist-btn" onclick="playPrevQuestion()" title="Câu trước">⏮️ Trước</button>
+          <button id="playlist-global-toggle" class="playlist-btn primary" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe toàn bộ</button>
+          <button class="playlist-btn" onclick="playNextQuestion()" title="Câu tiếp theo">Tiếp ⏭️</button>
+          <label class="auto-next-label">
+            <input type="checkbox" id="auto-next-checkbox" onchange="toggleAutoPlayNext(this.checked)">
+            <span>Tự động chuyển câu</span>
+          </label>
+        </div>
+      </div>
+
       <!-- Questions List -->
       <div class="questions-grid" id="questions-container">
         <!-- Rendered via JS -->
@@ -4632,6 +4740,7 @@
         document.querySelectorAll('#q-play-pause-btn-' + qId).forEach(btn => {
           btn.textContent = isPlaying ? '⏸️ Tạm dừng' : '▶️ Phát';
         });
+        updatePlaylistGlobalButton(isPlaying);
       }
 
       seek(offsetSec) {
@@ -4676,6 +4785,102 @@
     function setQuestionAudioSpeed(rate, event) {
       if (event) event.stopPropagation();
       questionAudioManager.setSpeed(rate);
+    }
+
+    // Playlist Controller Logic
+    function toggleAutoPlayNext(isChecked) {
+      questionAudioManager.isAutoPlayNext = isChecked;
+      document.querySelectorAll('#auto-next-checkbox').forEach(cb => {
+        cb.checked = isChecked;
+      });
+    }
+
+    function getVisibleQuestionIds() {
+      const activePanel = document.querySelector('.tab-panel.active');
+      if (!activePanel) return [];
+      const cards = activePanel.querySelectorAll('.q-card');
+      const ids = [];
+      cards.forEach(c => {
+        const idMatch = c.id.match(/dd+-qd+/);
+        if (idMatch && !ids.includes(idMatch[0])) ids.push(idMatch[0]);
+      });
+      if (ids.length > 0) return ids;
+
+      // Fallback: all questions across APP_DATA
+      const all = [];
+      APP_DATA.domains.forEach(d => {
+        d.questions.forEach(q => all.push(q.id));
+      });
+      return all;
+    }
+
+    function playNextQuestion() {
+      const ids = getVisibleQuestionIds();
+      if (!ids || ids.length === 0) return;
+
+      const curId = questionAudioManager.currentQId;
+      if (!curId) {
+        questionAudioManager.toggle(ids[0]);
+        return;
+      }
+
+      const idx = ids.indexOf(curId);
+      if (idx !== -1 && idx < ids.length - 1) {
+        questionAudioManager.toggle(ids[idx + 1]);
+      } else {
+        // Reached end of playlist
+        questionAudioManager.stopCurrentUI();
+        questionAudioManager.currentQId = null;
+        updatePlaylistGlobalButton(false);
+      }
+    }
+
+    function playPrevQuestion() {
+      const ids = getVisibleQuestionIds();
+      if (!ids || ids.length === 0) return;
+
+      const curId = questionAudioManager.currentQId;
+      if (!curId) {
+        questionAudioManager.toggle(ids[0]);
+        return;
+      }
+
+      const idx = ids.indexOf(curId);
+      if (idx > 0) {
+        questionAudioManager.toggle(ids[idx - 1]);
+      } else {
+        questionAudioManager.toggle(ids[0]);
+      }
+    }
+
+    function toggleCurrentOrFirstQuestion() {
+      if (questionAudioManager.currentQId && !questionAudioManager.audio.paused) {
+        questionAudioManager.audio.pause();
+        questionAudioManager.updateButtonPlaying(questionAudioManager.currentQId, false);
+        updatePlaylistGlobalButton(false);
+        return;
+      }
+
+      if (questionAudioManager.currentQId && questionAudioManager.audio.paused) {
+        questionAudioManager.audio.play().catch(function() {});
+        questionAudioManager.updateButtonPlaying(questionAudioManager.currentQId, true);
+        updatePlaylistGlobalButton(true);
+        return;
+      }
+
+      const ids = getVisibleQuestionIds();
+      if (ids.length > 0) {
+        questionAudioManager.toggle(ids[0]);
+        updatePlaylistGlobalButton(true);
+      }
+    }
+
+    function updatePlaylistGlobalButton(isPlaying) {
+      document.querySelectorAll('#playlist-global-toggle').forEach(btn => {
+        btn.textContent = isPlaying ? '⏸️ Tạm dừng' : '▶️ Nghe toàn bộ';
+        if (isPlaying) btn.classList.add('playing');
+        else btn.classList.remove('playing');
+      });
     }
 
     // Sync dynamic header height for sticky elements
@@ -5310,6 +5515,25 @@
               </button>
             </div>
           </div>
+
+          <!-- Continuous Playlist Toolbar (Domain Part 3) -->
+          <div class="playlist-toolbar">
+            <div class="playlist-info">
+              <span class="playlist-icon">🎧</span>
+              <span class="playlist-title">Nghe Rảnh Tay Domain ${d.domainId}</span>
+              <span class="playlist-badge">${d.questions.length} câu</span>
+            </div>
+            <div class="playlist-actions">
+              <button class="playlist-btn" onclick="playPrevQuestion()" title="Câu trước">⏮️ Trước</button>
+              <button class="playlist-btn primary" onclick="toggleCurrentOrFirstQuestion()">▶️ Nghe phần này</button>
+              <button class="playlist-btn" onclick="playNextQuestion()" title="Câu tiếp theo">Tiếp ⏭️</button>
+              <label class="auto-next-label">
+                <input type="checkbox" id="auto-next-checkbox" onchange="toggleAutoPlayNext(this.checked)">
+                <span>Tự động chuyển câu</span>
+              </label>
+            </div>
+          </div>
+
           <div class="questions-grid">
             ${questionsHtml}
           </div>

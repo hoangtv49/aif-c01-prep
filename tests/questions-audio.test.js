@@ -55,3 +55,13 @@ test("index.html contains audio buttons and AudioManager for questions", () => {
   expect(html).toContain("class QuestionAudioManager");
   expect(html).toContain("audio-questions-manager");
 });
+
+test("Playlist Toolbar exists and controls auto-play next", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  expect(html).toContain("playlist-toolbar");
+  expect(html).toContain("toggleAutoPlayNext");
+  expect(html).toContain("playNextQuestion");
+  expect(html).toContain("playPrevQuestion");
+  expect(html).toContain("Tự động chuyển câu");
+});
