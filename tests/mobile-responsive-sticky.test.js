@@ -111,3 +111,14 @@ test("Desktop header tabs are distributed evenly across .nav-tabs and exam timer
   expect(html).toContain('class="timer-action-btn primary"');
   expect(html).toContain('.exam-timer-widget.is-running');
 });
+
+test("Mobile bottom-nav-bar is strictly hidden on desktop, and Cram Sheet header is responsive", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // .bottom-nav-bar must have display: none in desktop base styles
+  expect(html).toMatch(/\.bottom-nav-bar\s*\{[^}]*display:\s*none/);
+
+  // Cram sheet header uses responsive badge group and full-width title
+  expect(html).toContain('class="cram-badge-group"');
+  expect(html).toContain('class="cram-header-top"');
+});

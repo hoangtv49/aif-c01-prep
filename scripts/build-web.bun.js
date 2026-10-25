@@ -2610,17 +2610,37 @@ const htmlContent = `<!DOCTYPE html>
       background: linear-gradient(180deg, #131d31 0%, #0d1522 100%);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1.5rem 1.75rem;
+      padding: 1.35rem 1.6rem;
       margin-bottom: 1.5rem;
     }
-    .cram-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.35rem;
+    .cram-header-top {
       display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 0.45rem;
+    }
+    .cram-badge-group {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+    }
+    .cram-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      line-height: 1;
+    }
+    .cram-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin: 0;
     }
     .cram-subtitle {
       font-size: 0.85rem;
@@ -3389,18 +3409,49 @@ const htmlContent = `<!DOCTYPE html>
         font-size: 0.74rem;
         height: 30px;
       }
-        height: 32px;
-        padding: 0 0.55rem;
-        font-size: 0.725rem;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
       .scoreboard-card {
         padding: 1.25rem 1rem;
       }
       .score-stats-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.4rem;
+      }
+      .cram-header {
+        padding: 1.1rem 0.95rem;
+        border-radius: 12px;
+        margin-bottom: 1.25rem;
+      }
+      .cram-header-top {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        margin-bottom: 0.45rem;
+      }
+      .cram-badge-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.45rem;
+      }
+      .cram-title {
+        font-size: 1.15rem;
+        line-height: 1.35;
+        display: block;
+        width: 100%;
+      }
+      .cram-subtitle {
+        font-size: 0.8rem;
+        line-height: 1.45;
+        margin-bottom: 0.75rem;
+      }
+      .cram-filters {
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+      }
+      .cram-filter-chip {
+        padding: 0.32rem 0.65rem;
+        font-size: 0.75rem;
       }
       .cram-grid {
         grid-template-columns: 1fr;
@@ -4357,9 +4408,12 @@ const htmlContent = `<!DOCTYPE html>
     <!-- TAB 6: CRAM SHEET (CHEAT SHEET 10 PHÚT TRƯỚC GIỜ THI) -->
     <section id="tab-cram" class="tab-panel">
       <div class="cram-header">
-        <div class="cram-title">
-          <span>⚡ Bảng Tra Cứu "Thần Chú" 10 Phút Trước Giờ Thi (Cram Sheet)</span>
-          <span class="reading-time-pill accent" style="font-size:0.75rem; padding:0.18rem 0.55rem; margin-left:0.5rem;">⏱️ ~10 phút đọc quét</span>
+        <div class="cram-header-top">
+          <div class="cram-badge-group">
+            <span class="cram-badge">⚡ CRAM SHEET</span>
+            <span class="reading-time-pill accent" style="font-size:0.7rem; padding:0.18rem 0.5rem;">⏱️ ~10 phút đọc quét</span>
+          </div>
+          <h2 class="cram-title">Bảng Tra Cứu "Thần Chú" 10 Phút Trước Giờ Thi</h2>
         </div>
         <p class="cram-subtitle">
           Tổng hợp ngắn gọn các cặp từ khóa then chốt trong đề thi tiếng Anh &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án bẫy gây nhầm lẫn.
