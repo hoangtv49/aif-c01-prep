@@ -391,6 +391,7 @@ const htmlContent = `<!DOCTYPE html>
       flex-wrap: wrap;
     }
     .brand {
+      order: 1;
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
@@ -447,18 +448,20 @@ const htmlContent = `<!DOCTYPE html>
 
     /* Nav Tabs */
     .nav-tabs {
+      order: 3;
+      width: 100%;
+      flex-basis: 100%;
       display: flex;
-      flex: 1 1 auto;
-      max-width: 980px;
       background: #0d1321;
-      padding: 0.3rem;
+      padding: 0.35rem;
       border-radius: 10px;
       border: 1px solid var(--border);
-      gap: 0.25rem;
+      gap: 0.35rem;
       overflow-x: auto;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      box-sizing: border-box;
     }
     .nav-tabs::-webkit-scrollbar {
       display: none;
@@ -470,7 +473,7 @@ const htmlContent = `<!DOCTYPE html>
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 0.5rem 0.85rem;
+      padding: 0.55rem 0.85rem;
       font-family: var(--font-sans);
       font-size: 0.875rem;
       font-weight: 600;
@@ -494,7 +497,9 @@ const htmlContent = `<!DOCTYPE html>
 
     /* Stats Pill */
     .stats-pill {
+      order: 2;
       display: none;
+      margin-left: auto;
       align-items: center;
       gap: 1rem;
       background: #162032;

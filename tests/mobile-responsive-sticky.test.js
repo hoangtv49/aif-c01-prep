@@ -99,8 +99,9 @@ test("Topic domain navigation prevents focus conflict between domain cards", () 
 test("Desktop header tabs are distributed evenly across .nav-tabs and exam timer widget has modern capsule styling", () => {
   const html = fs.readFileSync("index.html", "utf8");
 
-  // Nav tabs distributed evenly across the bar on desktop
+  // Nav tabs distributed evenly across the bar on desktop with 100% width matching the content below
   expect(html).toContain('.nav-tabs');
+  expect(html).toMatch(/\.nav-tabs\s*\{[^}]*width:\s*100%/);
   expect(html).toMatch(/\.tab-btn\s*\{[^}]*flex:\s*1\s*1\s*0/);
   expect(html).toMatch(/\.tab-btn\s*\{[^}]*justify-content:\s*center/);
 
