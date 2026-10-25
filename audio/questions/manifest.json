@@ -2,331 +2,514 @@
   "d1-q1": {
     "domainId": 1,
     "number": 1,
-    "size": 325944,
-    "duration": 54,
+    "size": 377352,
+    "duration": 63,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q2": {
     "domainId": 1,
     "number": 2,
-    "size": 345816,
-    "duration": 58,
+    "size": 486864,
+    "duration": 81,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q3": {
     "domainId": 1,
     "number": 3,
-    "size": 406080,
-    "duration": 68,
+    "size": 467424,
+    "duration": 78,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q4": {
     "domainId": 1,
     "number": 4,
-    "size": 323352,
-    "duration": 54,
+    "size": 388800,
+    "duration": 65,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q5": {
     "domainId": 1,
     "number": 5,
-    "size": 370656,
-    "duration": 62,
+    "size": 532440,
+    "duration": 89,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q6": {
     "domainId": 1,
     "number": 6,
-    "size": 355536,
-    "duration": 59,
+    "size": 397656,
+    "duration": 66,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q7": {
     "domainId": 1,
     "number": 7,
-    "size": 303048,
-    "duration": 50,
+    "size": 362664,
+    "duration": 60,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q8": {
     "domainId": 1,
     "number": 8,
-    "size": 305640,
-    "duration": 51,
+    "size": 373032,
+    "duration": 62,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q9": {
     "domainId": 1,
     "number": 9,
-    "size": 282096,
-    "duration": 47,
+    "size": 363960,
+    "duration": 61,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q10": {
     "domainId": 1,
     "number": 10,
-    "size": 297216,
-    "duration": 50,
+    "size": 377568,
+    "duration": 63,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d1-q11": {
     "domainId": 1,
     "number": 11,
-    "size": 397440,
-    "duration": 66,
+    "size": 463104,
+    "duration": 77,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q1": {
     "domainId": 2,
     "number": 1,
-    "size": 393120,
-    "duration": 65,
+    "size": 552960,
+    "duration": 92,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q2": {
     "domainId": 2,
     "number": 2,
-    "size": 348840,
-    "duration": 58,
+    "size": 427896,
+    "duration": 71,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q3": {
     "domainId": 2,
     "number": 3,
-    "size": 352944,
-    "duration": 59,
+    "size": 513432,
+    "duration": 86,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q4": {
     "domainId": 2,
     "number": 4,
-    "size": 352944,
-    "duration": 59,
+    "size": 480384,
+    "duration": 80,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "H\u1ea3i \u0110\u0103ng"
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q5": {
-    "duration": 59,
-    "size": 351072,
-    "title": "C\u00e2u 5 (Domain 2)"
+    "domainId": 2,
+    "number": 5,
+    "size": 377352,
+    "duration": 63,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q6": {
-    "duration": 72,
-    "size": 430128,
-    "title": "C\u00e2u 6 (Domain 2)"
+    "domainId": 2,
+    "number": 6,
+    "size": 571320,
+    "duration": 95,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q7": {
-    "duration": 74,
-    "size": 442944,
-    "title": "C\u00e2u 7 (Domain 2)"
+    "domainId": 2,
+    "number": 7,
+    "size": 543888,
+    "duration": 91,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q8": {
-    "duration": 66,
-    "size": 394128,
-    "title": "C\u00e2u 8 (Domain 2)"
+    "domainId": 2,
+    "number": 8,
+    "size": 519048,
+    "duration": 86,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q9": {
-    "duration": 59,
-    "size": 354528,
-    "title": "C\u00e2u 9 (Domain 2)"
+    "domainId": 2,
+    "number": 9,
+    "size": 408672,
+    "duration": 68,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q10": {
-    "duration": 56,
-    "size": 333792,
-    "title": "C\u00e2u 10 (Domain 2)"
+    "domainId": 2,
+    "number": 10,
+    "size": 372816,
+    "duration": 62,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d2-q11": {
-    "duration": 73,
-    "size": 440640,
-    "title": "C\u00e2u 11 (Domain 2)"
+    "domainId": 2,
+    "number": 11,
+    "size": 589896,
+    "duration": 98,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q1": {
-    "duration": 58,
-    "size": 347904,
-    "title": "C\u00e2u 1 (Domain 3)"
+    "domainId": 3,
+    "number": 1,
+    "size": 388584,
+    "duration": 65,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q2": {
-    "duration": 64,
-    "size": 386208,
-    "title": "C\u00e2u 2 (Domain 3)"
+    "domainId": 3,
+    "number": 2,
+    "size": 570888,
+    "duration": 95,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q3": {
-    "duration": 55,
-    "size": 328608,
-    "title": "C\u00e2u 3 (Domain 3)"
+    "domainId": 3,
+    "number": 3,
+    "size": 343224,
+    "duration": 57,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q4": {
-    "duration": 60,
-    "size": 360432,
-    "title": "C\u00e2u 4 (Domain 3)"
+    "domainId": 3,
+    "number": 4,
+    "size": 426168,
+    "duration": 71,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q5": {
-    "duration": 67,
-    "size": 403056,
-    "title": "C\u00e2u 5 (Domain 3)"
+    "domainId": 3,
+    "number": 5,
+    "size": 433944,
+    "duration": 72,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q6": {
-    "duration": 67,
-    "size": 404352,
-    "title": "C\u00e2u 6 (Domain 3)"
+    "domainId": 3,
+    "number": 6,
+    "size": 479088,
+    "duration": 80,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q7": {
+    "domainId": 3,
+    "number": 7,
+    "size": 437616,
     "duration": 73,
-    "size": 436464,
-    "title": "C\u00e2u 7 (Domain 3)"
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q8": {
-    "duration": 63,
-    "size": 375120,
-    "title": "C\u00e2u 8 (Domain 3)"
+    "domainId": 3,
+    "number": 8,
+    "size": 388800,
+    "duration": 65,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q9": {
-    "duration": 74,
-    "size": 444528,
-    "title": "C\u00e2u 9 (Domain 3)"
+    "domainId": 3,
+    "number": 9,
+    "size": 584496,
+    "duration": 97,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q10": {
-    "duration": 65,
-    "size": 392976,
-    "title": "C\u00e2u 10 (Domain 3)"
+    "domainId": 3,
+    "number": 10,
+    "size": 438264,
+    "duration": 73,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q11": {
-    "duration": 72,
-    "size": 431712,
-    "title": "C\u00e2u 11 (Domain 3)"
+    "domainId": 3,
+    "number": 11,
+    "size": 476280,
+    "duration": 79,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d3-q12": {
-    "duration": 80,
-    "size": 480960,
-    "title": "C\u00e2u 12 (Domain 3)"
+    "domainId": 3,
+    "number": 12,
+    "size": 622296,
+    "duration": 104,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q1": {
-    "duration": 75,
-    "size": 451440,
-    "title": "C\u00e2u 1 (Domain 4)"
+    "domainId": 4,
+    "number": 1,
+    "size": 479088,
+    "duration": 80,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q2": {
-    "duration": 72,
-    "size": 434880,
-    "title": "C\u00e2u 2 (Domain 4)"
+    "domainId": 4,
+    "number": 2,
+    "size": 585360,
+    "duration": 97,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q3": {
-    "duration": 67,
-    "size": 403776,
-    "title": "C\u00e2u 3 (Domain 4)"
+    "domainId": 4,
+    "number": 3,
+    "size": 454248,
+    "duration": 76,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q4": {
-    "duration": 73,
-    "size": 435744,
-    "title": "C\u00e2u 4 (Domain 4)"
+    "domainId": 4,
+    "number": 4,
+    "size": 445824,
+    "duration": 74,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q5": {
-    "duration": 62,
-    "size": 372960,
-    "title": "C\u00e2u 5 (Domain 4)"
+    "domainId": 4,
+    "number": 5,
+    "size": 416016,
+    "duration": 69,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q6": {
-    "duration": 72,
-    "size": 433440,
-    "title": "C\u00e2u 6 (Domain 4)"
+    "domainId": 4,
+    "number": 6,
+    "size": 483624,
+    "duration": 81,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q7": {
-    "duration": 82,
-    "size": 494640,
-    "title": "C\u00e2u 7 (Domain 4)"
+    "domainId": 4,
+    "number": 7,
+    "size": 645624,
+    "duration": 108,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q8": {
-    "duration": 71,
-    "size": 425088,
-    "title": "C\u00e2u 8 (Domain 4)"
+    "domainId": 4,
+    "number": 8,
+    "size": 468936,
+    "duration": 78,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q9": {
-    "duration": 62,
-    "size": 370512,
-    "title": "C\u00e2u 9 (Domain 4)"
+    "domainId": 4,
+    "number": 9,
+    "size": 412992,
+    "duration": 69,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q10": {
-    "duration": 63,
-    "size": 377568,
-    "title": "C\u00e2u 10 (Domain 4)"
+    "domainId": 4,
+    "number": 10,
+    "size": 404352,
+    "duration": 67,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d4-q11": {
-    "duration": 87,
-    "size": 520992,
-    "title": "C\u00e2u 11 (Domain 4)"
+    "domainId": 4,
+    "number": 11,
+    "size": 708912,
+    "duration": 118,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q1": {
-    "duration": 71,
-    "size": 425376,
-    "title": "C\u00e2u 1 (Domain 5)"
+    "domainId": 5,
+    "number": 1,
+    "size": 463752,
+    "duration": 77,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q2": {
-    "duration": 72,
-    "size": 433440,
-    "title": "C\u00e2u 2 (Domain 5)"
+    "domainId": 5,
+    "number": 2,
+    "size": 572184,
+    "duration": 95,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q3": {
-    "duration": 67,
-    "size": 400176,
-    "title": "C\u00e2u 3 (Domain 5)"
+    "domainId": 5,
+    "number": 3,
+    "size": 430056,
+    "duration": 72,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q4": {
-    "duration": 65,
-    "size": 389664,
-    "title": "C\u00e2u 4 (Domain 5)"
+    "domainId": 5,
+    "number": 4,
+    "size": 514080,
+    "duration": 86,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q5": {
-    "duration": 72,
-    "size": 431424,
-    "title": "C\u00e2u 5 (Domain 5)"
+    "domainId": 5,
+    "number": 5,
+    "size": 468072,
+    "duration": 78,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q6": {
-    "duration": 75,
-    "size": 450576,
-    "title": "C\u00e2u 6 (Domain 5)"
+    "domainId": 5,
+    "number": 6,
+    "size": 444096,
+    "duration": 74,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q7": {
-    "duration": 75,
-    "size": 452880,
-    "title": "C\u00e2u 7 (Domain 5)"
+    "domainId": 5,
+    "number": 7,
+    "size": 694008,
+    "duration": 116,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q8": {
-    "duration": 64,
-    "size": 382896,
-    "title": "C\u00e2u 8 (Domain 5)"
+    "domainId": 5,
+    "number": 8,
+    "size": 394848,
+    "duration": 66,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q9": {
-    "duration": 75,
-    "size": 450144,
-    "title": "C\u00e2u 9 (Domain 5)"
+    "domainId": 5,
+    "number": 9,
+    "size": 603288,
+    "duration": 100,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q10": {
-    "duration": 69,
-    "size": 411840,
-    "title": "C\u00e2u 10 (Domain 5)"
+    "domainId": 5,
+    "number": 10,
+    "size": 454680,
+    "duration": 76,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q11": {
-    "duration": 77,
-    "size": 464400,
-    "title": "C\u00e2u 11 (Domain 5)"
+    "domainId": 5,
+    "number": 11,
+    "size": 503712,
+    "duration": 84,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   },
   "d5-q12": {
-    "duration": 109,
-    "size": 651456,
-    "title": "C\u00e2u 12 (Domain 5)"
+    "domainId": 5,
+    "number": 12,
+    "size": 841968,
+    "duration": 140,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "H\u1ea3i \u0110\u0103ng",
+    "includesOptions": true
   }
 }

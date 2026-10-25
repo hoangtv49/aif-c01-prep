@@ -34,8 +34,32 @@ function formatQuestionSpeechScript(q, domainTitle) {
     .replace(/^-\s*/gm, "");
   const trapClean = sanitizeSpeechText(q.trap || q.distractor || "");
 
+  let optionsText = "";
+  if (Array.isArray(q.options) && q.options.length > 0) {
+    const optsSpeech = q.options.map(opt => {
+      if (typeof opt === "object" && opt.key && opt.text) {
+        let t = sanitizeSpeechText(opt.text).trim();
+        if (!t.endsWith(".")) t += ".";
+        return `Phương án ${opt.key}: ${t}`;
+      } else {
+        const optClean = sanitizeSpeechText(String(opt)).trim();
+        const m = optClean.match(/^([A-E])\.\s*(.*)/);
+        if (m) {
+          let body = m[2].trim();
+          if (!body.endsWith(".")) body += ".";
+          return `Phương án ${m[1]}: ${body}`;
+        }
+        return `${optClean}.`;
+      }
+    });
+    optionsText = "Các phương án lựa chọn: " + optsSpeech.join(" ");
+  }
+
   let script = `Câu hỏi số ${q.number} của ${domainClean}. `;
   script += `Tình huống như sau: ${stemText} `;
+  if (optionsText) {
+    script += `${optionsText} `;
+  }
   script += `Phương án đúng là: ${answerClean}. `;
   if (reasonClean) {
     script += `Phân tích: ${reasonClean}. `;
