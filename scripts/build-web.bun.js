@@ -4,6 +4,26 @@ import { marked } from "marked";
 
 const BASE_DIR = path.resolve("aif-c01-study-guide");
 
+const THEORY_MANIFEST_PATH = path.resolve("audio/theory/manifest.json");
+let theoryManifest = {};
+if (fs.existsSync(THEORY_MANIFEST_PATH)) {
+  try {
+    theoryManifest = JSON.parse(fs.readFileSync(THEORY_MANIFEST_PATH, "utf8"));
+  } catch (e) {
+    console.warn("Failed to load theory manifest:", e);
+  }
+}
+
+const QUESTIONS_MANIFEST_PATH = path.resolve("audio/questions/manifest.json");
+let questionsManifest = {};
+if (fs.existsSync(QUESTIONS_MANIFEST_PATH)) {
+  try {
+    questionsManifest = JSON.parse(fs.readFileSync(QUESTIONS_MANIFEST_PATH, "utf8"));
+  } catch (e) {
+    console.warn("Failed to load questions manifest:", e);
+  }
+}
+
 function cleanMath(text) {
   if (!text) return "";
   return text
@@ -83,11 +103,16 @@ function parseDomainFile(filename) {
     const trapMatch = answerPart.match(/\*\*Cảnh báo.*?\*\*([\s\S]*?)(?=---|###|$)/i);
     const trap = trapMatch ? trapMatch[1].trim() : "";
 
+    const qId = `d${domainId}-q${qNum}`;
+    const qAudio = questionsManifest[qId];
+    const audioDuration = qAudio ? qAudio.duration : 0;
+
     questions.push({
-      id: `d${domainId}-q${qNum}`,
+      id: qId,
       domainId,
       number: qNum,
       isMultiple,
+      audioDuration,
       stem: cleanMath(stemLines.join(" ")),
       options: optionLines.map(opt => {
         const key = opt.slice(0, 1);
@@ -101,7 +126,10 @@ function parseDomainFile(filename) {
     });
   });
 
-  return { domainId, title, theoryHtml, steTerms, questions };
+  const tAudio = theoryManifest[`domain-${domainId}`];
+  const theoryDuration = tAudio ? tAudio.duration : 0;
+
+  return { domainId, title, theoryHtml, steTerms, questions, theoryDuration };
 }
 
 const domains = [1, 2, 3, 4, 5].map(id => {
@@ -4855,6 +4883,7 @@ const htmlContent = `<!DOCTYPE html>
         this.audio.playbackRate = this.speed;
 
         this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+        this.audio.addEventListener('loadedmetadata', () => this.onTimeUpdate());
         this.audio.addEventListener('ended', () => this.onEnded());
         this.audio.addEventListener('error', (e) => this.onError(e));
         this.audio.addEventListener('play', () => this.updateUI(true));
@@ -4878,12 +4907,16 @@ const htmlContent = `<!DOCTYPE html>
       onTimeUpdate() {
         if (!this.currentDomainId) return;
         const cur = this.audio.currentTime || 0;
-        const dur = this.audio.duration || 1;
-        const pct = Math.min(100, (cur / dur) * 100);
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const dObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ? APP_DATA.domains.find(x => x.domainId === this.currentDomainId) : null;
+          dur = (dObj && dObj.theoryDuration) ? dObj.theoryDuration : 0;
+        }
+        const pct = dur > 0 ? Math.min(100, (cur / dur) * 100) : 0;
 
         const timeEl = document.getElementById('theory-time-' + this.currentDomainId);
         if (timeEl) {
-          timeEl.textContent = this.formatTime(cur) + ' / ' + this.formatTime(dur);
+          timeEl.textContent = this.formatTime(cur) + ' / ' + (dur > 0 ? this.formatTime(dur) : '--:--');
         }
 
         const slider = document.getElementById('theory-seek-' + this.currentDomainId);
@@ -4939,7 +4972,7 @@ const htmlContent = `<!DOCTYPE html>
             navigator.mediaSession.metadata = new MediaMetadata({
               title: 'Lý thuyết trọng tâm Domain ' + domainId,
               artist: 'AWS Certified AI Practitioner (AIF-C01)',
-              album: 'Nam Minh Neural Voice - Studio Mastery',
+              album: 'VieNeu-TTS 48kHz - Studio Mastery',
               artwork: [{ src: 'favicon.svg', sizes: '96x96', type: 'image/svg+xml' }]
             });
           } catch (e) {}
@@ -4947,16 +4980,34 @@ const htmlContent = `<!DOCTYPE html>
       }
 
       seek(sec) {
-        if (!this.audio.src) return;
+        if (!this.currentDomainId) return;
+        if (!this.audio.src) {
+          this.audio.src = 'audio/theory/domain-' + this.currentDomainId + '.mp3';
+        }
         const cur = this.audio.currentTime || 0;
-        const dur = this.audio.duration || 600;
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const dObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ? APP_DATA.domains.find(x => x.domainId === this.currentDomainId) : null;
+          dur = (dObj && dObj.theoryDuration) ? dObj.theoryDuration : 600;
+        }
         this.audio.currentTime = Math.max(0, Math.min(dur, cur + sec));
+        this.onTimeUpdate();
       }
 
       seekPercent(pct) {
-        if (!this.audio.src) return;
-        const dur = this.audio.duration || 1;
-        this.audio.currentTime = (pct / 100) * dur;
+        if (!this.currentDomainId) return;
+        if (!this.audio.src) {
+          this.audio.src = 'audio/theory/domain-' + this.currentDomainId + '.mp3';
+        }
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const dObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ? APP_DATA.domains.find(x => x.domainId === this.currentDomainId) : null;
+          dur = (dObj && dObj.theoryDuration) ? dObj.theoryDuration : 0;
+        }
+        if (dur > 0) {
+          this.audio.currentTime = (pct / 100) * dur;
+          this.onTimeUpdate();
+        }
       }
 
       setSpeed(rate) {
@@ -5001,9 +5052,17 @@ const htmlContent = `<!DOCTYPE html>
       theoryAudioManager.toggle(domainId);
     }
     function seekTheoryAudio(domainId, sec) {
+      if (theoryAudioManager.currentDomainId !== domainId) {
+        theoryAudioManager.currentDomainId = domainId;
+        theoryAudioManager.audio.src = 'audio/theory/domain-' + domainId + '.mp3';
+      }
       theoryAudioManager.seek(sec);
     }
     function onTheorySeekChange(domainId, val) {
+      if (theoryAudioManager.currentDomainId !== domainId) {
+        theoryAudioManager.currentDomainId = domainId;
+        theoryAudioManager.audio.src = 'audio/theory/domain-' + domainId + '.mp3';
+      }
       theoryAudioManager.seekPercent(parseFloat(val));
     }
     function setTheorySpeed(rate) {
@@ -5028,6 +5087,7 @@ const htmlContent = `<!DOCTYPE html>
         this.audio.playbackRate = this.speed;
 
         this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+        this.audio.addEventListener('loadedmetadata', () => this.onTimeUpdate());
         this.audio.addEventListener('ended', () => this.onEnded());
         this.audio.addEventListener('error', (e) => this.onError(e));
 
@@ -5063,8 +5123,13 @@ const htmlContent = `<!DOCTYPE html>
       onTimeUpdate() {
         if (!this.currentQId) return;
         const cur = this.audio.currentTime || 0;
-        const dur = this.audio.duration || 1;
-        const pct = Math.min(100, (cur / dur) * 100);
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const qObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ?
+            APP_DATA.domains.flatMap(d => d.questions).find(x => x.id === this.currentQId) : null;
+          dur = (qObj && qObj.audioDuration) ? qObj.audioDuration : 50;
+        }
+        const pct = dur > 0 ? Math.min(100, (cur / dur) * 100) : 0;
 
         const timeLabels = document.querySelectorAll('#q-time-' + this.currentQId);
         timeLabels.forEach(lbl => {
@@ -5100,10 +5165,14 @@ const htmlContent = `<!DOCTYPE html>
           this.autoNextTimer = null;
         }
         if (this.currentQId) {
+          const qObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ?
+            APP_DATA.domains.flatMap(d => d.questions).find(x => x.id === this.currentQId) : null;
+          const durStr = (qObj && qObj.audioDuration) ? ('~' + qObj.audioDuration + 's') : '~50s';
+
           document.querySelectorAll('#btn-audio-' + this.currentQId).forEach(btn => {
             btn.classList.remove('playing');
             const txt = btn.querySelector('.q-audio-text');
-            if (txt) txt.textContent = 'Nghe (~45s)';
+            if (txt) txt.textContent = 'Nghe (' + durStr + ')';
           });
           document.querySelectorAll('#q-player-box-' + this.currentQId).forEach(box => {
             box.style.display = 'none';
@@ -5175,7 +5244,7 @@ const htmlContent = `<!DOCTYPE html>
           try {
             navigator.mediaSession.metadata = new MediaMetadata({
               title: 'Giải thích câu hỏi #' + qId.toUpperCase(),
-              artist: 'AWS AIF-C01 Prep (Nam Minh)',
+              artist: 'AWS AIF-C01 Prep (VieNeu-TTS)',
               album: 'AIF-C01 Audio Explanations'
             });
           } catch (e) {}
@@ -5202,12 +5271,28 @@ const htmlContent = `<!DOCTYPE html>
 
       seek(offsetSec) {
         if (!this.audio) return;
-        this.audio.currentTime = Math.max(0, Math.min(this.audio.duration || 0, this.audio.currentTime + offsetSec));
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const qObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ?
+            APP_DATA.domains.flatMap(d => d.questions).find(x => x.id === this.currentQId) : null;
+          dur = (qObj && qObj.audioDuration) ? qObj.audioDuration : 60;
+        }
+        this.audio.currentTime = Math.max(0, Math.min(dur, (this.audio.currentTime || 0) + offsetSec));
+        this.onTimeUpdate();
       }
 
       seekToPct(pct) {
-        if (!this.audio || !this.audio.duration) return;
-        this.audio.currentTime = (pct / 100) * this.audio.duration;
+        if (!this.audio) return;
+        let dur = this.audio.duration;
+        if (!dur || isNaN(dur) || !isFinite(dur)) {
+          const qObj = (typeof APP_DATA !== 'undefined' && APP_DATA.domains) ?
+            APP_DATA.domains.flatMap(d => d.questions).find(x => x.id === this.currentQId) : null;
+          dur = (qObj && qObj.audioDuration) ? qObj.audioDuration : 60;
+        }
+        if (dur > 0) {
+          this.audio.currentTime = (pct / 100) * dur;
+          this.onTimeUpdate();
+        }
       }
 
       setSpeed(rate) {
@@ -5874,6 +5959,11 @@ const htmlContent = `<!DOCTYPE html>
       const p3Minutes = Math.round(d.questions.length * 1.5);
       const totalMinutes = p1Minutes + p2Minutes + p3Minutes;
 
+      const theorySec = d.theoryDuration || 0;
+      const theoryDurationFormatted = theorySec > 0
+        ? (String(Math.floor(theorySec / 60)).padStart(2, '0') + ':' + String(Math.floor(theorySec % 60)).padStart(2, '0'))
+        : '--:--';
+
       // Update subtab buttons with dynamic estimated minutes
       const subP1 = document.getElementById('subtab-p1');
       if (subP1) {
@@ -5935,7 +6025,7 @@ const htmlContent = `<!DOCTYPE html>
                   <span class="theory-play-text" id="theory-play-text-\${d.domainId}">Nghe tóm tắt lý thuyết</span>
                 </button>
                 <div class="theory-audio-meta">
-                  <span class="theory-time-display" id="theory-time-\${d.domainId}">00:00 / --:--</span>
+                  <span class="theory-time-display" id="theory-time-\${d.domainId}">00:00 / \${theoryDurationFormatted}</span>
                 </div>
               </div>
               <div class="theory-audio-controls">
@@ -6035,7 +6125,11 @@ const htmlContent = `<!DOCTYPE html>
       \`;
       updateTopicScrollspy();
       if (typeof theoryAudioManager !== 'undefined') {
-        theoryAudioManager.updateUI(theoryAudioManager.currentDomainId === domainId && !theoryAudioManager.audio.paused);
+        const isCurrent = theoryAudioManager.currentDomainId === domainId;
+        theoryAudioManager.updateUI(isCurrent && !theoryAudioManager.audio.paused);
+        if (isCurrent) {
+          theoryAudioManager.onTimeUpdate();
+        }
       }
     }
 
@@ -6775,6 +6869,10 @@ const htmlContent = `<!DOCTYPE html>
           \`;
         }).join('');
 
+        const qDurSec = q.audioDuration || 50;
+        const qDurLabel = q.audioDuration ? ('~' + q.audioDuration + 's') : '~50s';
+        const qDurFormatted = String(Math.floor(qDurSec / 60)).padStart(2, '0') + ':' + String(Math.floor(qDurSec % 60)).padStart(2, '0');
+
         return \`
           <div class="q-card" id="card-\${prefix ? prefix + '-' : ''}\${q.id}">
             <div class="q-meta">
@@ -6784,9 +6882,9 @@ const htmlContent = `<!DOCTYPE html>
               <button class="q-toggle-btn" onclick="toggleCardExplanation('\${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
                 \${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
               </button>
-              <button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe giải thích bằng giọng Nam Minh (~45s)">
+              <button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe audio giải thích tình huống (\${qDurLabel})">
                 <span class="q-audio-icon">🔊</span>
-                <span class="q-audio-text">Nghe (~45s)</span>
+                <span class="q-audio-text">Nghe (\${qDurLabel})</span>
               </button>
               <button class="q-bookmark-btn \${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('\${q.id}', event)" title="\${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
                 <span>\${isBookmarked ? '⭐' : '☆'}</span>
@@ -6799,7 +6897,7 @@ const htmlContent = `<!DOCTYPE html>
                 <button class="q-ctrl-btn" onclick="seekQuestionAudio(-5, event)" title="Lùi 5 giây">⏪ 5s</button>
                 <button id="q-play-pause-btn-\${q.id}" class="q-ctrl-btn play-pause" onclick="toggleQuestionAudio('\${q.id}', event)">⏸️ Tạm dừng</button>
                 <button class="q-ctrl-btn" onclick="seekQuestionAudio(5, event)" title="Tua 5 giây">⏩ 5s</button>
-                <span id="q-time-\${q.id}" class="q-player-time">00:00 / 00:45</span>
+                <span id="q-time-\${q.id}" class="q-player-time">00:00 / \${qDurFormatted}</span>
                 <div class="q-speed-group">
                   <button class="q-speed-btn \${curSpeed === 1.0 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.0, event)">1.0x</button>
                   <button class="q-speed-btn \${curSpeed === 1.2 ? 'active' : ''}" onclick="setQuestionAudioSpeed(1.2, event)">1.2x</button>

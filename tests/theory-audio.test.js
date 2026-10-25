@@ -66,4 +66,27 @@ test("Deprecated audio demo is removed from index.html and Theory Audio Player i
   expect(html).toContain("toggleTheoryAudio");
   expect(html).toContain("theoryAudioManager");
   expect(html).toContain("TheoryAudioManager");
+
+  // Theory time display should pre-populate duration from manifest, not hardcode --:--
+  expect(html).not.toContain("00:00 / --:--");
+  expect(html).toContain("theoryDurationFormatted");
+});
+
+test("Embedded APP_DATA contains valid theory audio durations and question durations", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+  const match = html.match(/const APP_DATA = (\{[\s\S]*?\});/);
+  expect(match).not.toBeNull();
+
+  const data = JSON.parse(match[1]);
+  expect(data.domains.length).toBe(5);
+
+  data.domains.forEach(d => {
+    // Each domain must have a non-zero theory audio duration in seconds
+    expect(d.theoryDuration).toBeGreaterThan(300);
+    // Each question must have an audioDuration
+    expect(d.questions.length).toBeGreaterThan(0);
+    d.questions.forEach(q => {
+      expect(q.audioDuration).toBeGreaterThan(30);
+    });
+  });
 });
