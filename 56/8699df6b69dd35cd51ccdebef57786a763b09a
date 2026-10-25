@@ -1,0 +1,25 @@
+tests/e2e-simulation.test.js
+  s_a513f3f6851de5::t_7c329c946e39cf 191-206
+aif-c01-study-guide/index.html
+  s_a513f3f6851de5::t_4b82294bda2808 4616-4623,4626
+index.html
+  s_a513f3f6851de5::t_4b82294bda2808 4616-4623,4626
+scripts/build-web.bun.js
+  s_a513f3f6851de5::t_9ff738ef438d39 4914-4921,4924
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "568699df6b69dd35cd51ccdebef57786a763b09a",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
