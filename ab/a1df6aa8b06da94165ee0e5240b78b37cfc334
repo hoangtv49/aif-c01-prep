@@ -1,0 +1,25 @@
+scripts/generate-questions-audio.cjs
+  s_a513f3f6851de5::t_38274224b2b9ee 18,26-35,53-170,173-174,176-183
+aif-c01-study-guide/audio/questions/manifest.json
+  s_a513f3f6851de5::t_59c39bccaa4154 1-287
+audio/questions/manifest.json
+  s_a513f3f6851de5::t_59c39bccaa4154 1-287
+tests/questions-audio.test.js
+  s_a513f3f6851de5::t_2355bf01082371 27-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aba1df6aa8b06da94165ee0e5240b78b37cfc334",
+  "prompts": {},
+  "sessions": {
+    "s_a513f3f6851de5": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e947c4a27ffeD1FFbiExv4LgEK",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
