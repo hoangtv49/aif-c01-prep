@@ -1554,6 +1554,28 @@
       color: #fff;
     }
 
+    /* Reading Time Estimator Pills */
+    .reading-time-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+    .reading-time-pill.accent {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+
     /* Timed Exam Simulator Widget */
     .exam-timer-widget {
       display: inline-flex;
@@ -2998,7 +3020,10 @@
           <div class="timer-badge">
             <span class="timer-icon">⏱️</span>
             <div class="timer-meta-box">
-              <span class="timer-label">Thời gian thi</span>
+              <div style="display:flex; align-items:center; gap:0.45rem;">
+                <span class="timer-label">Thời gian thi</span>
+                <span class="reading-time-pill" style="font-size:0.65rem; padding:0.1rem 0.45rem;">⏱️ ~85 phút (1.5p/câu)</span>
+              </div>
               <span id="exam-timer-display" class="timer-digits">01:25:00</span>
             </div>
           </div>
@@ -3082,9 +3107,11 @@
         <div class="view-subtabs-group">
           <button id="subtab-matrix-btn" class="view-subtab-btn active" onclick="switchMatrixSubtab('matrix')">
             <span>📋 Ma trận Quyết định (25 Quy tắc)</span>
+            <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~10p</span>
           </button>
           <button id="subtab-pairs-btn" class="view-subtab-btn" onclick="switchMatrixSubtab('pairs')">
             <span>🥊 Top 10 Cặp Dịch Vụ Dễ Nhầm Lẫn (Versus Hub)</span>
+            <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~12p</span>
           </button>
         </div>
 
@@ -3138,9 +3165,11 @@
         <div class="view-subtabs-group">
           <button id="subtab-ste-table-btn" class="view-subtab-btn active" onclick="setDictView('table')">
             <span>📋 Tra cứu Từ điển (Dạng Bảng)</span>
+            <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~18p</span>
           </button>
           <button id="subtab-ste-cards-btn" class="view-subtab-btn" onclick="setDictView('cards')">
             <span>🗂️ Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/82 đã thuộc)</span>
+            <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~20p</span>
           </button>
         </div>
 
@@ -3275,7 +3304,10 @@
     <!-- TAB 6: CRAM SHEET (CHEAT SHEET 10 PHÚT TRƯỚC GIỜ THI) -->
     <section id="tab-cram" class="tab-panel">
       <div class="cram-header">
-        <div class="cram-title">⚡ Bảng Tra Cứu "Thần Chú" 10 Phút Trước Giờ Thi (Cram Sheet)</div>
+        <div class="cram-title">
+          <span>⚡ Bảng Tra Cứu "Thần Chú" 10 Phút Trước Giờ Thi (Cram Sheet)</span>
+          <span class="reading-time-pill accent" style="font-size:0.75rem; padding:0.18rem 0.55rem; margin-left:0.5rem;">⏱️ ~10 phút đọc quét</span>
+        </div>
         <p class="cram-subtitle">
           Tổng hợp ngắn gọn các cặp từ khóa then chốt trong đề thi tiếng Anh &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án bẫy gây nhầm lẫn.
         </p>
@@ -4641,6 +4673,28 @@
       const weightMatch = d.title.match(/\((\d+%)\)/);
       const weightText = weightMatch ? weightMatch[1] : '';
 
+      // Reading time estimations
+      const rawText = (d.theoryHtml || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const wordCount = rawText ? rawText.split(' ').length : 0;
+      const p1Minutes = Math.max(4, Math.round(wordCount / 190));
+      const p2Minutes = Math.max(3, Math.round(d.steTerms.length * 0.45));
+      const p3Minutes = Math.round(d.questions.length * 1.5);
+      const totalMinutes = p1Minutes + p2Minutes + p3Minutes;
+
+      // Update subtab buttons with dynamic estimated minutes
+      const subP1 = document.getElementById('subtab-p1');
+      if (subP1) {
+        subP1.innerHTML = '<span>📖</span><span class="subtab-text-full">Phần 1: Lý thuyết (~' + p1Minutes + 'p)</span><span class="subtab-text-short">P1: Lý thuyết (~' + p1Minutes + 'p)</span>';
+      }
+      const subP2 = document.getElementById('subtab-p2');
+      if (subP2) {
+        subP2.innerHTML = '<span>📘</span><span class="subtab-text-full">Phần 2: Thuật ngữ (~' + p2Minutes + 'p)</span><span class="subtab-text-short">P2: Thuật ngữ (~' + p2Minutes + 'p)</span>';
+      }
+      const subP3 = document.getElementById('subtab-p3');
+      if (subP3) {
+        subP3.innerHTML = '<span>🎯</span><span class="subtab-text-full">Phần 3: Tình huống (~' + p3Minutes + 'p)</span><span class="subtab-text-short">P3: Tình huống (~' + p3Minutes + 'p)</span>';
+      }
+
       // STE terms table rows
       const steRows = d.steTerms.map(t => `
         <tr>
@@ -4661,6 +4715,7 @@
             <span class="q-type-tag">${weightText} Trọng số bài thi</span>
             <span class="q-domain-tag">${d.questions.length} câu hỏi tình huống</span>
             <span class="q-domain-tag" style="background:rgba(16,185,129,0.15); color:#34d399; border-color:rgba(16,185,129,0.3);">${d.steTerms.length} thuật ngữ</span>
+            <span class="reading-time-pill accent">⏱️ Ước tính: ~${totalMinutes} phút học</span>
           </div>
           <h1 class="topic-domain-title">${d.title}</h1>
         </div>
@@ -4671,6 +4726,7 @@
             <div class="topic-sec-title">
               <span class="topic-sec-num">Phần 1</span>
               <span>Trọng tâm lý thuyết & Decision Trees</span>
+              <span class="reading-time-pill" style="margin-left:auto;">⏱️ ~${p1Minutes} phút đọc</span>
             </div>
             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
               Kiến thức cốt lõi, sơ đồ phân cấp, ma trận quyết định và bảng đối chiếu các dịch vụ AWS.
@@ -4687,6 +4743,7 @@
             <div class="topic-sec-title">
               <span class="topic-sec-num" style="background:#059669;">Phần 2</span>
               <span>Bảng khái niệm thuật ngữ (${d.steTerms.length} thuật ngữ)</span>
+              <span class="reading-time-pill" style="margin-left:auto;">⏱️ ~${p2Minutes} phút đọc</span>
             </div>
             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
               Định nghĩa tiếng Anh kỹ thuật đơn giản kèm từ khóa kích hoạt câu hỏi trong đề thi.
@@ -4716,6 +4773,7 @@
               <div class="topic-sec-title">
                 <span class="topic-sec-num" style="background:#7c3aed;">Phần 3</span>
                 <span>Bộ câu hỏi tình huống & Phân tích đáp án (${d.questions.length} câu)</span>
+                <span class="reading-time-pill" style="margin-left:0.5rem;">⏱️ ~${p3Minutes} phút luyện</span>
               </div>
               <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
                 Tình huống thực tế sát đề thi AIF-C01. Bấm vào từng phương án để kiểm tra đúng/sai và xem phân tích bẫy 4 bước.
