@@ -68,3 +68,15 @@ test("Domain breakdown computes correct domain percentages", () => {
   expect(domainStats[2].total).toBe(2);
   expect(Math.round((domainStats[2].correct / domainStats[2].total) * 100)).toBe(100);
 });
+
+test("Timer widget mobile responsive styling prevents horizontal overflow", () => {
+  const fs = require("fs");
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Timer label must have white-space: nowrap to avoid wrapping into 3 lines
+  expect(html).toContain(".timer-label");
+  expect(html).toContain("white-space: nowrap");
+
+  // Mobile CSS hides or optimizes verbose timer reading pill to preserve button visibility
+  expect(html).toContain(".exam-timer-widget .reading-time-pill");
+});

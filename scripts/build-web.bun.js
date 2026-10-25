@@ -2239,6 +2239,7 @@ const htmlContent = `<!DOCTYPE html>
       color: var(--text-dim);
       line-height: 1;
       margin-bottom: 2px;
+      white-space: nowrap;
     }
     .timer-digits {
       font-family: var(--font-mono);
@@ -3135,28 +3136,47 @@ const htmlContent = `<!DOCTYPE html>
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.55rem 0.85rem;
+        padding: 0.5rem 0.75rem;
         gap: 0.5rem;
+        box-sizing: border-box;
+      }
+      .exam-timer-widget .reading-time-pill {
+        display: none !important;
       }
       .timer-badge {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.45rem;
         flex: 1 1 auto;
+        min-width: 0;
+      }
+      .timer-meta-box {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .timer-label {
+        font-size: 0.62rem;
+        white-space: nowrap;
+        line-height: 1.1;
       }
       .timer-digits {
-        font-size: 1.15rem;
+        font-size: 1.05rem;
+        white-space: nowrap;
+        line-height: 1.1;
       }
       .timer-actions-group {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.35rem;
         flex-shrink: 0;
       }
       .timer-action-btn {
-        height: 34px;
-        padding: 0 0.65rem;
-        font-size: 0.75rem;
+        height: 32px;
+        padding: 0 0.55rem;
+        font-size: 0.725rem;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       .scoreboard-card {
         padding: 1.25rem 1rem;
