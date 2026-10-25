@@ -1,8 +1,10 @@
 {
   "domain-1": {
     "domainId": 1,
-    "size": 3419568,
-    "duration": 570
+    "size": 487296,
+    "duration": 61,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "voice": "Hải Đăng"
   },
   "domain-2": {
     "domainId": 2,
