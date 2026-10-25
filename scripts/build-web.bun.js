@@ -1874,16 +1874,7 @@ const htmlContent = `<!DOCTYPE html>
       color: #fbbf24;
     }
 
-    /* Audio Demo Preview Card */
-    .audio-demo-card {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 14px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.12);
-      transition: all 0.3s ease;
-    }
+
 
     /* Question Audio Player Styles */
     .q-audio-btn {
@@ -2085,106 +2076,131 @@ const htmlContent = `<!DOCTYPE html>
       height: 15px;
       cursor: pointer;
     }
-    .audio-demo-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .audio-demo-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .voice-selector-group {
-      display: flex;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-    }
-    .voice-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #94a3b8;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.5rem 0.95rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .voice-btn:hover {
-      border-color: #38bdf8;
-      color: #e2e8f0;
-    }
-    .voice-btn.active {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: #38bdf8;
-      color: #38bdf8;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
-    }
-    .audio-player-wrapper {
-      background: #090e1a;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
+    /* Theory Audio Toolbar */
+    .theory-audio-toolbar {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
+      gap: 0.65rem;
+      background: #090e1a;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    .audio-player-element {
-      width: 100%;
-      height: 40px;
-      outline: none;
-      border-radius: 6px;
+    .theory-audio-toolbar.is-playing {
+      border-color: #38bdf8;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.22);
+      background: #0d1627;
     }
-    .audio-speed-chips {
+    .theory-audio-main-row {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      justify-content: space-between;
+      gap: 0.85rem;
+      flex-wrap: wrap;
     }
-    .speed-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #334155;
-      color: #cbd5e1;
-      border-radius: 4px;
-      padding: 0.15rem 0.5rem;
+    .theory-audio-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .theory-play-btn {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: 1px solid #38bdf8;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.825rem;
+      font-weight: 600;
+      border-radius: 7px;
+      padding: 0.42rem 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
       cursor: pointer;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
       transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .speed-chip:hover, .speed-chip.active {
-      background: #0284c7;
+    .theory-play-btn:hover {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+    .theory-time-display {
+      font-family: var(--font-mono);
+      font-size: 0.825rem;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+    .theory-audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-shrink: 0;
+    }
+    .theory-ctrl-btn {
+      background: #162032;
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 0.35rem 0.6rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .theory-ctrl-btn:hover {
+      background: #1e293b;
       border-color: #38bdf8;
       color: #fff;
     }
-    .audio-transcript-box {
-      background: rgba(15, 23, 42, 0.6);
+    .theory-speed-chips {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: #0f172a;
+      padding: 2px 4px;
+      border-radius: 6px;
       border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 1rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #cbd5e1;
     }
-    .audio-transcript-box mark {
-      background: rgba(56, 189, 248, 0.2);
-      color: #38bdf8;
-      padding: 0.1rem 0.3rem;
-      border-radius: 4px;
+    .theory-speed-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.725rem;
       font-weight: 600;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .theory-speed-btn:hover {
+      color: #fff;
+    }
+    .theory-speed-btn.active {
+      background: #0284c7;
+      color: #fff;
+    }
+    .theory-seek-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .theory-seek-slider {
+      width: 100%;
+      height: 6px;
+      accent-color: #38bdf8;
+      cursor: pointer;
+      border-radius: 4px;
     }
 
     /* Timed Exam Simulator Widget */
@@ -3105,6 +3121,24 @@ const htmlContent = `<!DOCTYPE html>
         padding: 1.25rem 0.85rem;
         margin-bottom: 1.5rem;
       }
+      .theory-audio-toolbar {
+        padding: 0.65rem 0.75rem;
+        gap: 0.5rem;
+      }
+      .theory-audio-main-row {
+        gap: 0.45rem;
+      }
+      .theory-play-btn {
+        padding: 0.38rem 0.65rem;
+        font-size: 0.75rem;
+      }
+      .theory-ctrl-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.72rem;
+      }
+      .theory-time-display {
+        font-size: 0.75rem;
+      }
       .topic-sec-title {
         font-size: 1.1rem;
         flex-wrap: wrap;
@@ -3469,7 +3503,6 @@ const htmlContent = `<!DOCTYPE html>
         <button class="tab-btn" onclick="switchTab('matrix')">⚡ Bảng Quyết định & Bẫy</button>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
         <button class="tab-btn" onclick="switchTab('cram')">⚡ Cram Sheet (10 Phút)</button>
-        <button class="tab-btn" onclick="openAudioDemo()" style="color:#38bdf8; border-color:rgba(56,189,248,0.35); background:rgba(56,189,248,0.08);" title="Nghe thử giọng đọc AI Neural">🎧 Nghe giọng AI</button>
       </nav>
 
       <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
@@ -3967,70 +4000,6 @@ const htmlContent = `<!DOCTYPE html>
           <button class="cram-filter-chip" data-cram="sagemaker" onclick="filterCramCategory('sagemaker')">Amazon SageMaker (ML)</button>
           <button class="cram-filter-chip" data-cram="core" onclick="filterCramCategory('core')">Dịch vụ AI Chuyên biệt</button>
           <button class="cram-filter-chip" data-cram="governance" onclick="filterCramCategory('governance')">Bảo mật & Trách nhiệm</button>
-        </div>
-      </div>
-
-      <!-- Neural Audio Demo Player (Spike Preview) -->
-      <div id="audio-demo-section" class="audio-demo-card">
-        <div class="audio-demo-header">
-          <div>
-            <div class="audio-demo-title">
-              <span>🎧 Thử Nghiệm Giọng Đọc AI (Neural Audio Preview)</span>
-              <span class="reading-time-pill accent">⚡ 67 giây</span>
-            </div>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
-              Nghe thử phân tích tình huống <strong>Amazon Bedrock & RAG</strong> với 2 lựa chọn giọng đọc AI tự nhiên, ấm áp, không bị máy móc.
-            </p>
-          </div>
-          <div class="voice-selector-group">
-            <button id="voice-btn-hoaimy" class="voice-btn active" onclick="switchAudioVoice('hoaimy')">
-              <span>👩</span>
-              <span>Hoài My (Nữ - Truyền cảm)</span>
-            </button>
-            <button id="voice-btn-namminh" class="voice-btn" onclick="switchAudioVoice('namminh')">
-              <span>👨</span>
-              <span>Nam Minh (Nam - Ấm áp)</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="audio-player-wrapper">
-          <audio id="audio-demo-player" class="audio-player-element" controls preload="metadata">
-            <source id="audio-source-mp3" src="audio/demo-hoaimy.mp3" type="audio/mpeg">
-            Trình duyệt của bạn không hỗ trợ phát âm thanh HTML5.
-          </audio>
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.35rem;">
-            <div class="audio-speed-chips">
-              <span>Tốc độ:</span>
-              <button class="speed-chip" onclick="setAudioSpeed(0.9)">0.9x</button>
-              <button class="speed-chip active" id="speed-chip-1" onclick="setAudioSpeed(1.0)">1.0x</button>
-              <button class="speed-chip" onclick="setAudioSpeed(1.2)">1.2x</button>
-              <button class="speed-chip" onclick="setAudioSpeed(1.5)">1.5x</button>
-            </div>
-            <div style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono);">
-              Định dạng: MP3 24kHz • Microsoft Neural Voice
-            </div>
-          </div>
-        </div>
-
-        <!-- Transcript Content Box -->
-        <div class="audio-transcript-box">
-          <div style="font-weight:600; color:#38bdf8; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem;">
-            <span>📜 Lời thoại đồng bộ (Transcript):</span>
-          </div>
-          <p style="margin-bottom:0.6rem;">
-            <em>"Chào bạn! Chào mừng bạn đến với chuyên mục Ôn thi cấp tốc AWS Certified AI Practitioner. Hôm nay chúng ta cùng phân tích một tình huống cốt lõi rất hay gặp trong đề thi nhé!"</em>
-          </p>
-          <p style="margin-bottom:0.6rem;">
-            <strong>🎯 Tình huống:</strong> Một công ty muốn triển khai trợ lý AI để trả lời câu hỏi của nhân viên dựa trên kho tài liệu mật nội bộ. Yêu cầu là câu trả lời phải trích dẫn chính xác, giảm thiểu hiện tượng bịa đặt thông tin, và chi phí vận hành phải tối ưu nhất.
-          </p>
-          <p style="margin-bottom:0.6rem;">
-            <strong>✅ Giải pháp:</strong> Hoàn hảo ở đây chính là <mark>Amazon Bedrock Knowledge Bases</mark> kết hợp với kỹ thuật <mark>RAG (Retrieval-Augmented Generation)</mark>. 
-            Vì sao lại như vậy? Thứ nhất, RAG cho phép truy xuất kiến thức cập nhật từ tài liệu nội bộ mà không cần tốn hàng tuần lễ để Fine-tuning lại mô hình. Thứ hai, Bedrock là dịch vụ Serverless, giúp bạn bắt đầu ngay lập tức mà không phải lo chi phí quản lý hạ tầng máy chủ.
-          </p>
-          <p style="margin-bottom:0;">
-            💡 <strong>Mẹo thi đắt giá:</strong> Cứ thấy từ khóa <em>'kết nối dữ liệu riêng của công ty'</em> và <em>'hạn chế hallucination với chi phí thấp'</em>, bạn hãy tự tin chọn ngay <strong>RAG và Bedrock Knowledge Bases</strong> nhé!
-          </p>
         </div>
       </div>
 
@@ -4870,62 +4839,175 @@ const htmlContent = `<!DOCTYPE html>
       renderCramSheet();
     }
 
-    // Audio Demo Preview Controls
-    let currentAudioVoice = 'hoaimy';
-    function switchAudioVoice(voiceKey) {
-      currentAudioVoice = voiceKey;
-      const player = document.getElementById('audio-demo-player');
-      const source = document.getElementById('audio-source-mp3');
-      const btnHoaiMy = document.getElementById('voice-btn-hoaimy');
-      const btnNamMinh = document.getElementById('voice-btn-namminh');
+    // Global Theory Audio Manager Singleton
+    class TheoryAudioManager {
+      constructor() {
+        this.audio = typeof Audio !== 'undefined' ? new Audio() : {
+          addEventListener: function() {},
+          play: function() { return Promise.resolve(); },
+          pause: function() {},
+          playbackRate: 1.0,
+          currentTime: 0,
+          duration: 480
+        };
+        this.currentDomainId = null;
+        this.speed = typeof localStorage !== 'undefined' ? parseFloat(localStorage.getItem('aif_audio_speed') || '1.0') : 1.0;
+        this.audio.playbackRate = this.speed;
 
-      if (!player || !source) return;
+        this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+        this.audio.addEventListener('ended', () => this.onEnded());
+        this.audio.addEventListener('error', (e) => this.onError(e));
+        this.audio.addEventListener('play', () => this.updateUI(true));
+        this.audio.addEventListener('pause', () => this.updateUI(false));
 
-      const wasPlaying = !player.paused;
-      const currentTime = player.currentTime;
-
-      if (voiceKey === 'namminh') {
-        source.src = 'audio/demo-namminh.mp3';
-        if (btnNamMinh) btnNamMinh.classList.add('active');
-        if (btnHoaiMy) btnHoaiMy.classList.remove('active');
-      } else {
-        source.src = 'audio/demo-hoaimy.mp3';
-        if (btnHoaiMy) btnHoaiMy.classList.add('active');
-        if (btnNamMinh) btnNamMinh.classList.remove('active');
+        if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
+          try {
+            navigator.mediaSession.setActionHandler('seekforward', () => this.seek(10));
+            navigator.mediaSession.setActionHandler('seekbackward', () => this.seek(-10));
+          } catch (e) {}
+        }
       }
 
-      player.load();
-      player.currentTime = currentTime;
-      if (wasPlaying) {
-        player.play().catch(function() {});
+      formatTime(sec) {
+        if (!sec || isNaN(sec)) return '00:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }
+
+      onTimeUpdate() {
+        if (!this.currentDomainId) return;
+        const cur = this.audio.currentTime || 0;
+        const dur = this.audio.duration || 1;
+        const pct = Math.min(100, (cur / dur) * 100);
+
+        const timeEl = document.getElementById('theory-time-' + this.currentDomainId);
+        if (timeEl) {
+          timeEl.textContent = this.formatTime(cur) + ' / ' + this.formatTime(dur);
+        }
+
+        const slider = document.getElementById('theory-seek-' + this.currentDomainId);
+        if (slider) {
+          slider.value = pct;
+        }
+      }
+
+      onEnded() {
+        this.updateUI(false);
+      }
+
+      onError(e) {
+        console.warn('Theory audio error:', e);
+        this.updateUI(false);
+      }
+
+      pause() {
+        if (this.audio && !this.audio.paused) {
+          this.audio.pause();
+          this.updateUI(false);
+        }
+      }
+
+      stop() {
+        this.pause();
+        this.currentDomainId = null;
+      }
+
+      toggle(domainId) {
+        if (typeof questionAudioManager !== 'undefined') {
+          questionAudioManager.stop();
+        }
+
+        if (this.currentDomainId === domainId) {
+          if (this.audio.paused) {
+            this.audio.playbackRate = this.speed;
+            this.audio.play().catch(() => {});
+          } else {
+            this.audio.pause();
+          }
+          return;
+        }
+
+        this.currentDomainId = domainId;
+        this.audio.src = 'audio/theory/domain-' + domainId + '.mp3';
+        this.audio.playbackRate = this.speed;
+        this.audio.currentTime = 0;
+        this.audio.play().catch(e => console.warn(e));
+
+        if (typeof navigator !== 'undefined' && 'mediaSession' in navigator) {
+          try {
+            navigator.mediaSession.metadata = new MediaMetadata({
+              title: 'Lý thuyết trọng tâm Domain ' + domainId,
+              artist: 'AWS Certified AI Practitioner (AIF-C01)',
+              album: 'Nam Minh Neural Voice - Studio Mastery',
+              artwork: [{ src: 'favicon.svg', sizes: '96x96', type: 'image/svg+xml' }]
+            });
+          } catch (e) {}
+        }
+      }
+
+      seek(sec) {
+        if (!this.audio.src) return;
+        const cur = this.audio.currentTime || 0;
+        const dur = this.audio.duration || 600;
+        this.audio.currentTime = Math.max(0, Math.min(dur, cur + sec));
+      }
+
+      seekPercent(pct) {
+        if (!this.audio.src) return;
+        const dur = this.audio.duration || 1;
+        this.audio.currentTime = (pct / 100) * dur;
+      }
+
+      setSpeed(rate) {
+        this.speed = rate;
+        this.audio.playbackRate = rate;
+        try {
+          localStorage.setItem('aif_audio_speed', String(rate));
+        } catch (e) {}
+        this.updateSpeedUI();
+      }
+
+      updateSpeedUI() {
+        document.querySelectorAll('.theory-speed-btn').forEach(btn => {
+          const r = parseFloat(btn.getAttribute('data-speed'));
+          if (r === this.speed) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+      }
+
+      updateUI(isPlaying) {
+        if (!this.currentDomainId) return;
+        const bar = document.getElementById('theory-audio-bar-' + this.currentDomainId);
+        const icon = document.getElementById('theory-play-icon-' + this.currentDomainId);
+        const txt = document.getElementById('theory-play-text-' + this.currentDomainId);
+
+        if (isPlaying) {
+          if (bar) bar.classList.add('is-playing');
+          if (icon) icon.textContent = '⏸️';
+          if (txt) txt.textContent = 'Tạm dừng bài đọc';
+        } else {
+          if (bar) bar.classList.remove('is-playing');
+          if (icon) icon.textContent = '▶️';
+          if (txt) txt.textContent = 'Nghe tóm tắt lý thuyết';
+        }
+        this.updateSpeedUI();
       }
     }
 
-    function setAudioSpeed(rate) {
-      const player = document.getElementById('audio-demo-player');
-      if (!player) return;
-      player.playbackRate = rate;
+    const theoryAudioManager = new TheoryAudioManager();
 
-      document.querySelectorAll('.speed-chip').forEach(function(btn) {
-        btn.classList.remove('active');
-        if (btn.innerText.indexOf(rate + 'x') !== -1) {
-          btn.classList.add('active');
-        }
-      });
+    function toggleTheoryAudio(domainId) {
+      theoryAudioManager.toggle(domainId);
     }
-
-    function openAudioDemo() {
-      switchTab('cram');
-      setTimeout(function() {
-        const el = document.getElementById('audio-demo-section');
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          el.style.boxShadow = '0 0 25px rgba(56, 189, 248, 0.5)';
-          setTimeout(function() {
-            el.style.boxShadow = '';
-          }, 2000);
-        }
-      }, 100);
+    function seekTheoryAudio(domainId, sec) {
+      theoryAudioManager.seek(sec);
+    }
+    function onTheorySeekChange(domainId, val) {
+      theoryAudioManager.seekPercent(parseFloat(val));
+    }
+    function setTheorySpeed(rate) {
+      theoryAudioManager.setSpeed(rate);
     }
 
     // Global Question Audio Manager Singleton
@@ -5030,7 +5112,19 @@ const htmlContent = `<!DOCTYPE html>
         }
       }
 
+      stop() {
+        if (this.audio && !this.audio.paused) {
+          this.audio.pause();
+        }
+        this.stopCurrentUI();
+        this.currentQId = null;
+      }
+
       toggle(qId) {
+        if (typeof theoryAudioManager !== 'undefined') {
+          theoryAudioManager.pause();
+        }
+
         if (this.autoNextTimer) {
           clearTimeout(this.autoNextTimer);
           this.autoNextTimer = null;
@@ -5432,6 +5526,9 @@ const htmlContent = `<!DOCTYPE html>
     });
 
     function switchTab(tabId, pushHistory = true) {
+      if (typeof theoryAudioManager !== 'undefined' && tabId !== 'topics') {
+        theoryAudioManager.pause();
+      }
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
@@ -5490,6 +5587,9 @@ const htmlContent = `<!DOCTYPE html>
 
     // Topic-Based Study Functions
     function switchTopicDomain(domainId, pushHistory = true) {
+      if (typeof theoryAudioManager !== 'undefined') {
+        theoryAudioManager.pause();
+      }
       currentTopicDomain = domainId;
       document.querySelectorAll('.topic-domain-btn').forEach((btn, idx) => {
         if (idx + 1 === domainId) btn.classList.add('active');
@@ -5825,6 +5925,34 @@ const htmlContent = `<!DOCTYPE html>
               Kiến thức cốt lõi, sơ đồ phân cấp, ma trận quyết định và bảng đối chiếu các dịch vụ AWS.
             </p>
           </div>
+
+          <!-- Theory Audio Player Bar -->
+          <div class="theory-audio-toolbar" id="theory-audio-bar-\${d.domainId}">
+            <div class="theory-audio-main-row">
+              <div class="theory-audio-left">
+                <button class="theory-play-btn" id="theory-play-btn-\${d.domainId}" onclick="toggleTheoryAudio(\${d.domainId})" title="Nghe đọc lý thuyết bằng giọng AI Nam Minh">
+                  <span class="theory-play-icon" id="theory-play-icon-\${d.domainId}">▶️</span>
+                  <span class="theory-play-text" id="theory-play-text-\${d.domainId}">Nghe tóm tắt lý thuyết (giọng Nam Minh)</span>
+                </button>
+                <div class="theory-audio-meta">
+                  <span class="theory-time-display" id="theory-time-\${d.domainId}">00:00 / --:--</span>
+                </div>
+              </div>
+              <div class="theory-audio-controls">
+                <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, -10)" title="Lùi 10 giây">⏪ 10s</button>
+                <button class="theory-ctrl-btn" onclick="seekTheoryAudio(\${d.domainId}, 10)" title="Tua 10 giây">⏩ 10s</button>
+                <div class="theory-speed-chips">
+                  <button class="theory-speed-btn active" data-speed="1.0" onclick="setTheorySpeed(1.0)">1.0x</button>
+                  <button class="theory-speed-btn" data-speed="1.2" onclick="setTheorySpeed(1.2)">1.2x</button>
+                  <button class="theory-speed-btn" data-speed="1.5" onclick="setTheorySpeed(1.5)">1.5x</button>
+                </div>
+              </div>
+            </div>
+            <div class="theory-seek-row">
+              <input type="range" class="theory-seek-slider" id="theory-seek-\${d.domainId}" min="0" max="100" value="0" oninput="onTheorySeekChange(\${d.domainId}, this.value)" aria-label="Thanh thời gian đọc lý thuyết">
+            </div>
+          </div>
+
           <div class="theory-content">
             \${d.theoryHtml}
           </div>
@@ -5906,6 +6034,9 @@ const htmlContent = `<!DOCTYPE html>
         </div>
       \`;
       updateTopicScrollspy();
+      if (typeof theoryAudioManager !== 'undefined') {
+        theoryAudioManager.updateUI(theoryAudioManager.currentDomainId === domainId && !theoryAudioManager.audio.paused);
+      }
     }
 
     function revealAllTopicQuestions(domainId) {
