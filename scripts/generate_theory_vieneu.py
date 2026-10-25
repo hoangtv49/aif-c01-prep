@@ -6,14 +6,14 @@ import argparse
 from pathlib import Path
 import numpy as np
 
-# Ensure dependencies: vieneu, lameenc
 from vieneu import Vieneu
 import lameenc
 
-BASE_DIR = Path(__file__).resolve().parent.parent / "aif-c01-study-guide"
-AUDIO_DIR = Path(__file__).resolve().parent.parent / "audio" / "theory"
-SUB_AUDIO_DIR = Path(__file__).resolve().parent.parent / "aif-c01-study-guide" / "audio" / "theory"
-REF_AUDIO = Path(__file__).resolve().parent.parent / "audio" / "demo-namminh.mp3"
+ROOT_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = ROOT_DIR / "aif-c01-study-guide"
+AUDIO_DIR = ROOT_DIR / "audio" / "theory"
+SUB_AUDIO_DIR = ROOT_DIR / "aif-c01-study-guide" / "audio" / "theory"
+CACHE_DIR = Path("/tmp/opencode/vieneu-cache/theory")
 
 DOMAIN_FILES = {
   1: "domain-1-fundamentals-ai-ml.md",
@@ -46,7 +46,6 @@ def clean_theory_markdown(domain_id: int):
     # Extract Part 1
     p1 = content.split("## Phần 1: Trọng tâm lý thuyết & Decision Trees")[1].split("## Phần 2")[0]
     
-    # Replace ASCII art
     import re
     p1 = re.sub(r"```[\s\S]*?```", DIAGRAM_TRANSCRIPTIONS.get(domain_id, ""), p1)
     
@@ -113,12 +112,12 @@ def clean_theory_markdown(domain_id: int):
         
         prefix = (intro if s_idx == 0 else "") + f"Mục {s_idx + 1}: {title}. "
         
-        # Split into readable paragraphs (~600 - 1000 chars for optimal audio flow)
-        if len(body_clean) > 1200:
+        # Split into readable paragraphs (~600 - 900 chars)
+        if len(body_clean) > 900:
             sentences = re.findall(r"[^.!?]+[.!?]+", body_clean) or [body_clean]
             cur = prefix
             for s in sentences:
-                if len(cur + s) > 1000:
+                if len(cur + s) > 800:
                     chunks.append(cur.strip())
                     cur = s + " "
                 else:
@@ -141,44 +140,34 @@ def encode_pcm_to_mp3(audio_np: np.ndarray, sample_rate: int = 48000, bitrate: i
     mp3 += encoder.flush()
     return mp3
 
-def synthesize_domain_vieneu(domain_id: int, voice_name: str = "Nam Minh"):
-    print(f"=== Synthesizing Domain {domain_id} with VieNeu-TTS (48 kHz) ===")
+def synthesize_domain_theory(domain_id: int, vieneu_engine=None, voice_name: str = "Hải Đăng", force: bool = False):
+    print(f"\n=======================================================")
+    print(f"=== Synthesizing Domain {domain_id} with VieNeu-TTS (48 kHz, Voice: {voice_name}) ===")
+    print(f"=======================================================")
     t0 = time.time()
     
-    # Initialize engine with 12 threads for AMD Ryzen 7 8840HS
-    vieneu = Vieneu(precision="int8", threads=12)
-    
-    # Enroll voice if cloning
-    if voice_name == "Nam Minh":
-        if REF_AUDIO.exists():
-            print(f"Enrolling cloned voice from {REF_AUDIO}...")
-            vieneu.add_voice("Nam Minh", str(REF_AUDIO))
-            selected_voice = "Nam Minh"
-        else:
-            print("Reference audio not found, falling back to preset Hải Đăng.")
-            selected_voice = "Hải Đăng"
-    else:
-        selected_voice = voice_name
+    if vieneu_engine is None:
+        vieneu_engine = Vieneu(precision="int8", threads=8)
         
     chunks = clean_theory_markdown(domain_id)
-    print(f"Cleaned text divided into {len(chunks)} chunks.")
+    print(f"Domain {domain_id}: {len(chunks)} chunks, {sum(len(c) for c in chunks)} total characters.")
     
-    cache_dir = Path(f"/tmp/opencode/vieneu-d{domain_id}")
-    cache_dir.mkdir(parents=True, exist_ok=True)
+    domain_cache_dir = CACHE_DIR / f"d{domain_id}"
+    domain_cache_dir.mkdir(parents=True, exist_ok=True)
     
     all_waveforms = []
     
     for idx, chunk in enumerate(chunks):
-        chunk_file = cache_dir / f"chunk_{idx}.npy"
-        if chunk_file.exists():
+        chunk_file = domain_cache_dir / f"chunk_{idx}.npy"
+        if not force and chunk_file.exists():
             wav = np.load(chunk_file)
-            print(f"  Chunk {idx + 1}/{len(chunks)} loaded from cache ({len(wav)/48000:.1f}s)")
+            print(f"  [Cache hit] Chunk {idx + 1}/{len(chunks)} ({len(wav)/48000:.1f}s audio)")
             all_waveforms.append(wav)
             continue
             
         c_t0 = time.time()
         print(f"  Synthesizing chunk {idx + 1}/{len(chunks)} ({len(chunk)} chars)...", end="", flush=True)
-        wav = vieneu.infer(chunk, voice=selected_voice)
+        wav = vieneu_engine.infer(chunk, voice=voice_name)
         np.save(chunk_file, wav)
         all_waveforms.append(wav)
         c_dur = len(wav) / 48000
@@ -186,7 +175,7 @@ def synthesize_domain_vieneu(domain_id: int, voice_name: str = "Nam Minh"):
         
     full_audio = np.concatenate(all_waveforms)
     duration_sec = round(len(full_audio) / 48000)
-    print(f"All chunks generated! Total duration: {duration_sec}s (~{duration_sec/60:.1f} mins). Encoding to MP3...")
+    print(f"Domain {domain_id} finished! Audio duration: {duration_sec}s (~{duration_sec/60:.1f} mins). Encoding MP3...")
     
     mp3_bytes = encode_pcm_to_mp3(full_audio, sample_rate=48000, bitrate=64)
     
@@ -214,20 +203,31 @@ def synthesize_domain_vieneu(domain_id: int, voice_name: str = "Nam Minh"):
         "duration": duration_sec,
         "engine": "VieNeu-TTS-v3-Turbo",
         "sampleRate": 48000,
-        "voice": selected_voice
+        "voice": voice_name
     }
     
     manifest_file.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     (SUB_AUDIO_DIR / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     
     elapsed = time.time() - t0
-    print(f"✅ Domain {domain_id} completed successfully in {elapsed:.1f}s! Saved {len(mp3_bytes)} bytes to {target_file}")
+    print(f"✅ Domain {domain_id} saved: {len(mp3_bytes)} bytes to {target_file} (Total time: {elapsed:.1f}s)")
     return manifest[f"domain-{domain_id}"]
+
+def synthesize_all_theory(voice_name: str = "Hải Đăng", force: bool = False):
+    print(">>> Starting batch VieNeu-TTS synthesis for all 5 Theory Domains...")
+    engine = Vieneu(precision="int8", threads=10)
+    for d in range(1, 6):
+        synthesize_domain_theory(d, vieneu_engine=engine, voice_name=voice_name, force=force)
+    print(">>> All 5 Theory Domains completed successfully!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--domain", type=int, default=1, help="Domain ID to synthesize (1-5)")
-    parser.add_argument("--voice", type=str, default="Nam Minh", help="Voice to use (Nam Minh / Hải Đăng / Thiện Minh)")
+    parser.add_argument("--domain", type=int, default=0, help="Domain ID (1-5), or 0 for all")
+    parser.add_argument("--voice", type=str, default="Hải Đăng", help="VieNeu-TTS voice name")
+    parser.add_argument("--force", action="store_true", help="Force regenerate without cache")
     args = parser.parse_args()
     
-    synthesize_domain_vieneu(args.domain, args.voice)
+    if args.domain > 0:
+        synthesize_domain_theory(args.domain, voice_name=args.voice, force=args.force)
+    else:
+        synthesize_all_theory(voice_name=args.voice, force=args.force)

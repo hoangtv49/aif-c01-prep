@@ -1,29 +1,42 @@
 {
   "domain-1": {
     "domainId": 1,
-    "size": 487296,
-    "duration": 61,
+    "size": 3719040,
+    "duration": 465,
     "engine": "VieNeu-TTS-v3-Turbo",
-    "voice": "Hải Đăng"
+    "sampleRate": 48000,
+    "voice": "H\u1ea3i \u0110\u0103ng"
   },
   "domain-2": {
     "domainId": 2,
-    "size": 3281328,
-    "duration": 547
+    "size": 3619200,
+    "duration": 452,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "sampleRate": 48000,
+    "voice": "H\u1ea3i \u0110\u0103ng"
   },
   "domain-3": {
     "domainId": 3,
-    "size": 3591648,
-    "duration": 599
+    "size": 4081920,
+    "duration": 510,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "sampleRate": 48000,
+    "voice": "H\u1ea3i \u0110\u0103ng"
   },
   "domain-4": {
     "domainId": 4,
-    "size": 2528784,
-    "duration": 421
+    "size": 2949504,
+    "duration": 369,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "sampleRate": 48000,
+    "voice": "H\u1ea3i \u0110\u0103ng"
   },
   "domain-5": {
     "domainId": 5,
-    "size": 2855376,
-    "duration": 476
+    "size": 3250560,
+    "duration": 406,
+    "engine": "VieNeu-TTS-v3-Turbo",
+    "sampleRate": 48000,
+    "voice": "H\u1ea3i \u0110\u0103ng"
   }
 }
