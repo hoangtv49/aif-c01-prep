@@ -1576,6 +1576,118 @@
       color: #fbbf24;
     }
 
+    /* Audio Demo Preview Card */
+    .audio-demo-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.12);
+      transition: all 0.3s ease;
+    }
+    .audio-demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .audio-demo-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .voice-selector-group {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .voice-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .voice-btn:hover {
+      border-color: #38bdf8;
+      color: #e2e8f0;
+    }
+    .voice-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .audio-player-wrapper {
+      background: #090e1a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .audio-player-element {
+      width: 100%;
+      height: 40px;
+      outline: none;
+      border-radius: 6px;
+    }
+    .audio-speed-chips {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .speed-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    .speed-chip:hover, .speed-chip.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .audio-transcript-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .audio-transcript-box mark {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
     /* Timed Exam Simulator Widget */
     .exam-timer-widget {
       display: inline-flex;
@@ -2838,6 +2950,7 @@
         <button class="tab-btn" onclick="switchTab('matrix')">⚡ Bảng Quyết định & Bẫy</button>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
         <button class="tab-btn" onclick="switchTab('cram')">⚡ Cram Sheet (10 Phút)</button>
+        <button class="tab-btn" onclick="openAudioDemo()" style="color:#38bdf8; border-color:rgba(56,189,248,0.35); background:rgba(56,189,248,0.08);" title="Nghe thử giọng đọc AI Neural">🎧 Nghe giọng AI</button>
       </nav>
 
       <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
@@ -3317,6 +3430,70 @@
           <button class="cram-filter-chip" data-cram="sagemaker" onclick="filterCramCategory('sagemaker')">Amazon SageMaker (ML)</button>
           <button class="cram-filter-chip" data-cram="core" onclick="filterCramCategory('core')">Dịch vụ AI Chuyên biệt</button>
           <button class="cram-filter-chip" data-cram="governance" onclick="filterCramCategory('governance')">Bảo mật & Trách nhiệm</button>
+        </div>
+      </div>
+
+      <!-- Neural Audio Demo Player (Spike Preview) -->
+      <div id="audio-demo-section" class="audio-demo-card">
+        <div class="audio-demo-header">
+          <div>
+            <div class="audio-demo-title">
+              <span>🎧 Thử Nghiệm Giọng Đọc AI (Neural Audio Preview)</span>
+              <span class="reading-time-pill accent">⚡ 67 giây</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              Nghe thử phân tích tình huống <strong>Amazon Bedrock & RAG</strong> với 2 lựa chọn giọng đọc AI tự nhiên, ấm áp, không bị máy móc.
+            </p>
+          </div>
+          <div class="voice-selector-group">
+            <button id="voice-btn-hoaimy" class="voice-btn active" onclick="switchAudioVoice('hoaimy')">
+              <span>👩</span>
+              <span>Hoài My (Nữ - Truyền cảm)</span>
+            </button>
+            <button id="voice-btn-namminh" class="voice-btn" onclick="switchAudioVoice('namminh')">
+              <span>👨</span>
+              <span>Nam Minh (Nam - Ấm áp)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="audio-player-wrapper">
+          <audio id="audio-demo-player" class="audio-player-element" controls preload="metadata">
+            <source id="audio-source-mp3" src="audio/demo-hoaimy.mp3" type="audio/mpeg">
+            Trình duyệt của bạn không hỗ trợ phát âm thanh HTML5.
+          </audio>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.35rem;">
+            <div class="audio-speed-chips">
+              <span>Tốc độ:</span>
+              <button class="speed-chip" onclick="setAudioSpeed(0.9)">0.9x</button>
+              <button class="speed-chip active" id="speed-chip-1" onclick="setAudioSpeed(1.0)">1.0x</button>
+              <button class="speed-chip" onclick="setAudioSpeed(1.2)">1.2x</button>
+              <button class="speed-chip" onclick="setAudioSpeed(1.5)">1.5x</button>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono);">
+              Định dạng: MP3 24kHz • Microsoft Neural Voice
+            </div>
+          </div>
+        </div>
+
+        <!-- Transcript Content Box -->
+        <div class="audio-transcript-box">
+          <div style="font-weight:600; color:#38bdf8; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem;">
+            <span>📜 Lời thoại đồng bộ (Transcript):</span>
+          </div>
+          <p style="margin-bottom:0.6rem;">
+            <em>"Chào bạn! Chào mừng bạn đến với chuyên mục Ôn thi cấp tốc AWS Certified AI Practitioner. Hôm nay chúng ta cùng phân tích một tình huống cốt lõi rất hay gặp trong đề thi nhé!"</em>
+          </p>
+          <p style="margin-bottom:0.6rem;">
+            <strong>🎯 Tình huống:</strong> Một công ty muốn triển khai trợ lý AI để trả lời câu hỏi của nhân viên dựa trên kho tài liệu mật nội bộ. Yêu cầu là câu trả lời phải trích dẫn chính xác, giảm thiểu hiện tượng bịa đặt thông tin, và chi phí vận hành phải tối ưu nhất.
+          </p>
+          <p style="margin-bottom:0.6rem;">
+            <strong>✅ Giải pháp:</strong> Hoàn hảo ở đây chính là <mark>Amazon Bedrock Knowledge Bases</mark> kết hợp với kỹ thuật <mark>RAG (Retrieval-Augmented Generation)</mark>. 
+            Vì sao lại như vậy? Thứ nhất, RAG cho phép truy xuất kiến thức cập nhật từ tài liệu nội bộ mà không cần tốn hàng tuần lễ để Fine-tuning lại mô hình. Thứ hai, Bedrock là dịch vụ Serverless, giúp bạn bắt đầu ngay lập tức mà không phải lo chi phí quản lý hạ tầng máy chủ.
+          </p>
+          <p style="margin-bottom:0;">
+            💡 <strong>Mẹo thi đắt giá:</strong> Cứ thấy từ khóa <em>'kết nối dữ liệu riêng của công ty'</em> và <em>'hạn chế hallucination với chi phí thấp'</em>, bạn hãy tự tin chọn ngay <strong>RAG và Bedrock Knowledge Bases</strong> nhé!
+          </p>
         </div>
       </div>
 
@@ -4154,6 +4331,64 @@
         else c.classList.remove('active');
       });
       renderCramSheet();
+    }
+
+    // Audio Demo Preview Controls
+    let currentAudioVoice = 'hoaimy';
+    function switchAudioVoice(voiceKey) {
+      currentAudioVoice = voiceKey;
+      const player = document.getElementById('audio-demo-player');
+      const source = document.getElementById('audio-source-mp3');
+      const btnHoaiMy = document.getElementById('voice-btn-hoaimy');
+      const btnNamMinh = document.getElementById('voice-btn-namminh');
+
+      if (!player || !source) return;
+
+      const wasPlaying = !player.paused;
+      const currentTime = player.currentTime;
+
+      if (voiceKey === 'namminh') {
+        source.src = 'audio/demo-namminh.mp3';
+        if (btnNamMinh) btnNamMinh.classList.add('active');
+        if (btnHoaiMy) btnHoaiMy.classList.remove('active');
+      } else {
+        source.src = 'audio/demo-hoaimy.mp3';
+        if (btnHoaiMy) btnHoaiMy.classList.add('active');
+        if (btnNamMinh) btnNamMinh.classList.remove('active');
+      }
+
+      player.load();
+      player.currentTime = currentTime;
+      if (wasPlaying) {
+        player.play().catch(function() {});
+      }
+    }
+
+    function setAudioSpeed(rate) {
+      const player = document.getElementById('audio-demo-player');
+      if (!player) return;
+      player.playbackRate = rate;
+
+      document.querySelectorAll('.speed-chip').forEach(function(btn) {
+        btn.classList.remove('active');
+        if (btn.innerText.indexOf(rate + 'x') !== -1) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    function openAudioDemo() {
+      switchTab('cram');
+      setTimeout(function() {
+        const el = document.getElementById('audio-demo-section');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.style.boxShadow = '0 0 25px rgba(56, 189, 248, 0.5)';
+          setTimeout(function() {
+            el.style.boxShadow = '';
+          }, 2000);
+        }
+      }, 100);
     }
 
     // Sync dynamic header height for sticky elements
