@@ -1,0 +1,22 @@
+[
+  {
+    "part": "AWS ",
+    "start": 50,
+    "end": 900
+  },
+  {
+    "part": "Certified ",
+    "start": 925,
+    "end": 1450
+  },
+  {
+    "part": "AI ",
+    "start": 1462,
+    "end": 1737
+  },
+  {
+    "part": "Practitioner",
+    "start": 1762,
+    "end": 2600
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "part": "User ",
+    "start": 50,
+    "end": 525
+  },
+  {
+    "part": "Prompt",
+    "start": 550,
+    "end": 1125
+  }
+]

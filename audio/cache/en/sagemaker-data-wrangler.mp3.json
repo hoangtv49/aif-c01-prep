@@ -1,0 +1,17 @@
+[
+  {
+    "part": "SageMaker ",
+    "start": 50,
+    "end": 837
+  },
+  {
+    "part": "Data ",
+    "start": 850,
+    "end": 1137
+  },
+  {
+    "part": "Wrangler",
+    "start": 1162,
+    "end": 1712
+  }
+]

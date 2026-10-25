@@ -1,0 +1,12 @@
+[
+  {
+    "part": "Bedrock ",
+    "start": 50,
+    "end": 600
+  },
+  {
+    "part": "Agents",
+    "start": 612,
+    "end": 1175
+  }
+]

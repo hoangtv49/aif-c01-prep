@@ -1,0 +1,22 @@
+[
+  {
+    "part": "AWS ",
+    "start": 50,
+    "end": 925
+  },
+  {
+    "part": "AI ",
+    "start": 937,
+    "end": 1250
+  },
+  {
+    "part": "Service ",
+    "start": 1275,
+    "end": 1675
+  },
+  {
+    "part": "Cards",
+    "start": 1687,
+    "end": 2150
+  }
+]

@@ -1,27 +1,27 @@
 {
   "domain-1": {
     "domainId": 1,
-    "size": 3461040,
-    "duration": 577
+    "size": 3419568,
+    "duration": 570
   },
   "domain-2": {
     "domainId": 2,
-    "size": 3206016,
-    "duration": 534
+    "size": 3281328,
+    "duration": 547
   },
   "domain-3": {
     "domainId": 3,
-    "size": 3580560,
-    "duration": 597
+    "size": 3591648,
+    "duration": 599
   },
   "domain-4": {
     "domainId": 4,
-    "size": 2468736,
-    "duration": 411
+    "size": 2528784,
+    "duration": 421
   },
   "domain-5": {
     "domainId": 5,
-    "size": 2801520,
-    "duration": 467
+    "size": 2855376,
+    "duration": 476
   }
 }

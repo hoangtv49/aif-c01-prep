@@ -1,0 +1,12 @@
+[
+  {
+    "part": "Amazon ",
+    "start": 50,
+    "end": 600
+  },
+  {
+    "part": "EC2",
+    "start": 612,
+    "end": 1437
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "part": "AWS ",
+    "start": 50,
+    "end": 1037
+  },
+  {
+    "part": "Audit ",
+    "start": 1050,
+    "end": 1350
+  },
+  {
+    "part": "Manager",
+    "start": 1375,
+    "end": 1975
+  }
+]

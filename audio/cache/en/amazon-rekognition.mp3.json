@@ -1,0 +1,12 @@
+[
+  {
+    "part": "Amazon ",
+    "start": 50,
+    "end": 625
+  },
+  {
+    "part": "Rekognition",
+    "start": 650,
+    "end": 1500
+  }
+]

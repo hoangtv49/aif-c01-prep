@@ -1,0 +1,17 @@
+[
+  {
+    "part": "Multi-layer ",
+    "start": 50,
+    "end": 850
+  },
+  {
+    "part": "Neural ",
+    "start": 875,
+    "end": 1250
+  },
+  {
+    "part": "Networks",
+    "start": 1275,
+    "end": 1900
+  }
+]

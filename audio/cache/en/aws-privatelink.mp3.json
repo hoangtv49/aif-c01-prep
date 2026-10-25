@@ -1,0 +1,12 @@
+[
+  {
+    "part": "AWS ",
+    "start": 50,
+    "end": 950
+  },
+  {
+    "part": "PrivateLink",
+    "start": 975,
+    "end": 1725
+  }
+]

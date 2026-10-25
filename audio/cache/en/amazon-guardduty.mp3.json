@@ -1,0 +1,12 @@
+[
+  {
+    "part": "Amazon ",
+    "start": 50,
+    "end": 587
+  },
+  {
+    "part": "GuardDuty",
+    "start": 612,
+    "end": 1337
+  }
+]

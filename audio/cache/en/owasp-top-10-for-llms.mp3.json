@@ -1,0 +1,27 @@
+[
+  {
+    "part": "OWASP ",
+    "start": 50,
+    "end": 562
+  },
+  {
+    "part": "Top ",
+    "start": 587,
+    "end": 812
+  },
+  {
+    "part": "10 ",
+    "start": 837,
+    "end": 1100
+  },
+  {
+    "part": "for ",
+    "start": 1125,
+    "end": 1312
+  },
+  {
+    "part": "LLMs",
+    "start": 1337,
+    "end": 2025
+  }
+]

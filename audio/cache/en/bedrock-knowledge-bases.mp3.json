@@ -1,0 +1,17 @@
+[
+  {
+    "part": "Bedrock ",
+    "start": 50,
+    "end": 525
+  },
+  {
+    "part": "Knowledge ",
+    "start": 550,
+    "end": 912
+  },
+  {
+    "part": "Bases",
+    "start": 937,
+    "end": 1512
+  }
+]

@@ -5,6 +5,7 @@ const { EdgeTTS } = require("node-edge-tts");
 const BASE_DIR = path.resolve(__dirname, "../aif-c01-study-guide");
 const AUDIO_DIR = path.resolve(__dirname, "../audio/theory");
 const SUB_AUDIO_DIR = path.resolve(__dirname, "../aif-c01-study-guide/audio/theory");
+const EN_CACHE_DIR = path.resolve(__dirname, "../audio/cache/en");
 
 const DOMAIN_FILES = {
   1: "domain-1-fundamentals-ai-ml.md",
@@ -29,6 +30,46 @@ const DIAGRAM_TRANSCRIPTIONS = {
   4: "Sơ đồ luồng hoạt động của Amazon Bedrock Guardrails: Khi người dùng nhập câu lệnh, Guardrails sẽ kiểm duyệt bộ lọc nội dung, chặn chủ đề cấm, che giấu thông tin cá nhân nhạy cảm PII trước khi gửi đến mô hình, và sau đó kiểm tra tính trung thực của câu trả lời trước khi gửi lại cho người dùng.",
   5: "Sơ đồ Mô hình trách nhiệm chia sẻ theo ba nhóm dịch vụ: Với AI Services Serverless như Amazon Rekognition hay Amazon Bedrock, AWS quản lý toàn bộ hạ tầng và mô hình nền tảng, khách hàng quản lý dữ liệu đầu vào và phân quyền IAM. Với ML Services như SageMaker, AWS quản lý nền tảng tính toán, khách hàng quản lý mã nguồn, cấu hình mô hình và dữ liệu."
 };
+
+const ENGLISH_TERMS = [
+  // AWS Services & Tools
+  "AWS Certified AI Practitioner", "Amazon Bedrock", "Bedrock Knowledge Bases",
+  "Bedrock Guardrails", "Bedrock Agents", "Amazon SageMaker", "SageMaker JumpStart",
+  "SageMaker Canvas", "SageMaker Clarify", "SageMaker Data Wrangler", "SageMaker Ground Truth",
+  "SageMaker Model Cards", "SageMaker", "Amazon Kendra", "Amazon Q Business", "Amazon Q Developer",
+  "Amazon Q", "PartyRock", "Amazon Rekognition", "Amazon Textract", "Amazon Transcribe",
+  "Amazon Polly", "Amazon Comprehend", "Amazon Translate", "Amazon Lex", "Amazon Personalize",
+  "Amazon Forecast", "Amazon Fraud Detector", "Amazon CodeWhisperer", "Amazon OpenSearch Service",
+  "Amazon OpenSearch", "Amazon S3", "Amazon EC2", "AWS Lambda", "AWS CloudTrail", "CloudTrail",
+  "AWS CloudWatch", "CloudWatch", "AWS Config", "Config", "AWS Artifact", "Artifact",
+  "AWS Audit Manager", "Audit Manager", "AWS IAM", "IAM", "AWS KMS", "KMS", "Amazon Macie",
+  "Macie", "Amazon GuardDuty", "GuardDuty", "AWS WAF", "WAF", "AWS Shield", "Shield",
+  "AWS PrivateLink", "PrivateLink", "Amazon VPC", "VPC", "AWS AI Service Cards", "AI Service Cards",
+  "AWS", "Trainium", "Inferentia",
+
+  // Core AI / ML / GenAI Concepts
+  "Artificial Intelligence", "Machine Learning", "Deep Learning", "Generative AI",
+  "Discriminative AI", "Foundation Models", "Foundation Model", "Large Language Models",
+  "Large Language Model", "LLMs", "LLM", "Retrieval-Augmented Generation", "RAG",
+  "Prompt Engineering", "Fine-Tuning", "Pre-training", "Transfer Learning", "Supervised Learning",
+  "Unsupervised Learning", "Reinforcement Learning", "Overfitting", "Underfitting",
+  "Confusion Matrix", "Precision", "Recall", "F1-score", "ROC-AUC", "Accuracy", "Serverless",
+  "Provisioned Throughput", "On-Demand", "Context Window", "Tokenization", "Tokens", "Token",
+  "Embeddings", "Embedding", "Vector Database", "Vector Search", "Cosine Similarity",
+  "Temperature", "Top-P", "Top-K", "Max Tokens", "Stop Sequences", "System Prompt",
+  "User Prompt", "Few-shot", "Zero-shot", "Chain-of-Thought", "Hallucination", "Jailbreak",
+  "Prompt Injection", "Data Poisoning", "Responsible AI", "Explainability", "Transparency",
+  "Fairness", "Robustness", "EU AI Act", "OWASP Top 10 for LLMs", "OWASP",
+  "Shared Responsibility Model", "Multi-layer Neural Networks", "Neural Networks",
+  "Transformer", "Self-Attention", "Text-to-Image", "Diffusion Models", "Diffusion"
+];
+
+// Sort terms descending by length so longer phrases match first
+ENGLISH_TERMS.sort((a, b) => b.length - a.length);
+const termRegex = new RegExp(`\\b(${ENGLISH_TERMS.map(t => t.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")).join("|")})\\b`, "gi");
+
+const ttsVN = new EdgeTTS({ voice: "vi-VN-NamMinhNeural", lang: "vi-VN", outputFormat: "audio-24khz-48kbitrate-mono-mp3", saveSubtitles: true });
+const ttsEN = new EdgeTTS({ voice: "en-US-GuyNeural", lang: "en-US", outputFormat: "audio-24khz-48kbitrate-mono-mp3", saveSubtitles: true });
 
 function parseDomainTheoryChunks(domainId) {
   const filePath = path.join(BASE_DIR, DOMAIN_FILES[domainId]);
@@ -94,6 +135,10 @@ function parseDomainTheoryChunks(domainId) {
       .replace(/\\to\b/g, " suy ra ")
       .replace(/\$\\le\s*(\d+)\$/g, " nhỏ hơn hoặc bằng $1 ")
       .replace(/\$([^\$]+)\$/g, "$1")
+      .replace(/\\text\{([^}]+)\}/g, "$1")
+      .replace(/\bvs\b/gi, "so với")
+      .replace(/\(\s*([A-Za-z\s]+)\s*-\s*([A-Za-z]+)\s*\)/g, ", $1, $2,")
+      .replace(/\(\s*([A-Za-z\s]+)\s*\)/g, ", $1,")
       .replace(/\*\*(.*?)\*\*/g, "$1")
       .replace(/\*(.*?)\*/g, "$1")
       .replace(/`([^`]+)`/g, "$1")
@@ -126,21 +171,83 @@ function parseDomainTheoryChunks(domainId) {
   return chunks;
 }
 
-async function synthesizeChunkWithRetry(tts, text, outputPath, maxRetries = 3) {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      await tts.ttsPromise(text, outputPath);
-      if (fs.existsSync(outputPath) && fs.statSync(outputPath).size > 1000) {
-        return;
+async function getOrSynthesizeEn(term, maxRetries = 3) {
+  fs.mkdirSync(EN_CACHE_DIR, { recursive: true });
+  const safe = term.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const mp3File = path.join(EN_CACHE_DIR, `${safe}.mp3`);
+  const jsonFile = `${mp3File}.json`;
+
+  if (!fs.existsSync(mp3File)) {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        await ttsEN.ttsPromise(term, mp3File);
+        if (fs.existsSync(mp3File) && fs.statSync(mp3File).size > 1000) break;
+        throw new Error("File empty");
+      } catch (e) {
+        if (attempt === maxRetries) throw e;
+        await new Promise(r => setTimeout(r, attempt * 1000));
       }
-      throw new Error(`File output empty: ${outputPath}`);
-    } catch (err) {
-      if (attempt === maxRetries) throw err;
-      const waitTime = attempt * 2000;
-      console.warn(`Retry chunk attempt ${attempt} in ${waitTime}ms: ${err.message}`);
-      await new Promise(r => setTimeout(r, waitTime));
     }
   }
+
+  const rawBuf = fs.readFileSync(mp3File);
+  let startMs = 0;
+  let endMs = (rawBuf.length / 6000) * 1000;
+
+  if (fs.existsSync(jsonFile)) {
+    try {
+      const subs = JSON.parse(fs.readFileSync(jsonFile, "utf8"));
+      if (subs && subs.length > 0) {
+        startMs = Math.max(0, subs[0].start - 25);
+        endMs = subs[subs.length - 1].end + 35;
+      }
+    } catch (e) {}
+  }
+
+  const frameSize = 144;
+  const startByte = Math.max(0, Math.floor(startMs / 24) * frameSize);
+  const endByte = Math.min(rawBuf.length, Math.ceil(endMs / 24) * frameSize);
+  return rawBuf.subarray(startByte, endByte);
+}
+
+async function synthesizeViTrimmed(text, tempPrefix, maxRetries = 3) {
+  const clean = text.replace(/^[,:\s-]+/, "").replace(/[,:\s-]+$/, "").trim();
+  if (!clean || !/[a-zA-Z0-9\u00C0-\u1EF9]/.test(clean)) {
+    return Buffer.alloc(0);
+  }
+
+  const mp3File = `${tempPrefix}.mp3`;
+  const jsonFile = `${mp3File}.json`;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      await ttsVN.ttsPromise(clean, mp3File);
+      if (fs.existsSync(mp3File) && fs.statSync(mp3File).size > 1000) break;
+      throw new Error("File empty");
+    } catch (e) {
+      if (attempt === maxRetries) throw e;
+      await new Promise(r => setTimeout(r, attempt * 1200));
+    }
+  }
+
+  const rawBuf = fs.readFileSync(mp3File);
+  let startMs = 0;
+  let endMs = (rawBuf.length / 6000) * 1000;
+
+  if (fs.existsSync(jsonFile)) {
+    try {
+      const subs = JSON.parse(fs.readFileSync(jsonFile, "utf8"));
+      if (subs && subs.length > 0) {
+        startMs = Math.max(0, subs[0].start - 25);
+        endMs = subs[subs.length - 1].end + 45;
+      }
+    } catch (e) {}
+  }
+
+  const frameSize = 144;
+  const startByte = Math.max(0, Math.floor(startMs / 24) * frameSize);
+  const endByte = Math.min(rawBuf.length, Math.ceil(endMs / 24) * frameSize);
+  return rawBuf.subarray(startByte, endByte);
 }
 
 async function synthesizeDomainTheory(domainId, force = false) {
@@ -158,40 +265,64 @@ async function synthesizeDomainTheory(domainId, force = false) {
   }
 
   const chunks = parseDomainTheoryChunks(domainId);
-  console.log(`Synthesizing Domain ${domainId} (${chunks.length} chunks)...`);
-
-  const tts = new EdgeTTS({
-    voice: "vi-VN-NamMinhNeural",
-    lang: "vi-VN",
-    outputFormat: "audio-24khz-48kbitrate-mono-mp3"
-  });
+  console.log(`Synthesizing Domain ${domainId} with Dual-Voice (${chunks.length} chunks)...`);
 
   const tempDir = "/tmp/opencode/theory-build";
   fs.mkdirSync(tempDir, { recursive: true });
 
   const chunkBuffers = [];
-  for (let i = 0; i < chunks.length; i++) {
-    const chunkFile = path.join(tempDir, `d${domainId}-c${i}.mp3`);
-    process.stdout.write(`  Chunk ${i + 1}/${chunks.length}... `);
-    await synthesizeChunkWithRetry(tts, chunks[i].text, chunkFile);
-    chunkBuffers.push(fs.readFileSync(chunkFile));
-    process.stdout.write(`done (${fs.statSync(chunkFile).size} bytes)\n`);
-    // Brief throttle to avoid rate-limiting
-    await new Promise(r => setTimeout(r, 600));
+
+  for (let cIdx = 0; cIdx < chunks.length; cIdx++) {
+    const chunkText = chunks[cIdx].text;
+    const segments = [];
+    let lastIdx = 0;
+    let match;
+
+    while ((match = termRegex.exec(chunkText)) !== null) {
+      if (match.index > lastIdx) {
+        const vi = chunkText.substring(lastIdx, match.index).trim();
+        if (vi && /[a-zA-Z0-9\u00C0-\u1EF9]/.test(vi)) {
+          segments.push({ lang: "vi", text: vi });
+        }
+      }
+      segments.push({ lang: "en", text: match[0].trim() });
+      lastIdx = termRegex.lastIndex;
+    }
+
+    if (lastIdx < chunkText.length) {
+      const vi = chunkText.substring(lastIdx).trim();
+      if (vi && /[a-zA-Z0-9\u00C0-\u1EF9]/.test(vi)) {
+        segments.push({ lang: "vi", text: vi });
+      }
+    }
+
+    process.stdout.write(`  Domain ${domainId} Chunk ${cIdx + 1}/${chunks.length} (${segments.length} segments)... `);
+    const segBuffers = [];
+
+    for (let sIdx = 0; sIdx < segments.length; sIdx++) {
+      const seg = segments[sIdx];
+      if (seg.lang === "en") {
+        const b = await getOrSynthesizeEn(seg.text);
+        segBuffers.push(b);
+      } else {
+        const p = path.join(tempDir, `d${domainId}-c${cIdx}-s${sIdx}`);
+        const b = await synthesizeViTrimmed(seg.text, p);
+        segBuffers.push(b);
+        await new Promise(r => setTimeout(r, 100));
+      }
+    }
+
+    const chunkMerged = Buffer.concat(segBuffers);
+    chunkBuffers.push(chunkMerged);
+    process.stdout.write(`done (${chunkMerged.length} bytes)\n`);
   }
 
   const mergedBuffer = Buffer.concat(chunkBuffers);
   fs.writeFileSync(targetFile, mergedBuffer);
   fs.writeFileSync(subTargetFile, mergedBuffer);
 
-  // Clean up temp files
-  for (let i = 0; i < chunks.length; i++) {
-    const chunkFile = path.join(tempDir, `d${domainId}-c${i}.mp3`);
-    if (fs.existsSync(chunkFile)) fs.unlinkSync(chunkFile);
-  }
-
   const durationSec = Math.round(mergedBuffer.length / 6000);
-  console.log(`Domain ${domainId} theory audio finished: ${mergedBuffer.length} bytes (~${durationSec}s)`);
+  console.log(`Domain ${domainId} Dual-Voice theory audio finished: ${mergedBuffer.length} bytes (~${durationSec}s)`);
 
   return {
     domainId,
@@ -205,7 +336,14 @@ async function synthesizeAllTheoryDomains(force = false) {
   fs.mkdirSync(SUB_AUDIO_DIR, { recursive: true });
 
   const manifest = {};
-  console.log("Starting batch theory audio synthesis for 5 domains...");
+  console.log("Starting batch Dual-Voice theory audio synthesis for 5 domains...");
+
+  // Pre-cache all unique English terms first
+  console.log("Pre-caching unique English terms with American English voice (en-US-GuyNeural)...");
+  for (const term of ENGLISH_TERMS) {
+    await getOrSynthesizeEn(term);
+  }
+  console.log(`Pre-cached ${ENGLISH_TERMS.length} English terms successfully!`);
 
   for (let id = 1; id <= 5; id++) {
     const meta = await synthesizeDomainTheory(id, force);
@@ -218,7 +356,7 @@ async function synthesizeAllTheoryDomains(force = false) {
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   fs.writeFileSync(subManifestPath, JSON.stringify(manifest, null, 2));
 
-  console.log("All 5 theory audio tracks synthesized successfully!");
+  console.log("All 5 Dual-Voice theory audio tracks synthesized successfully!");
   return manifest;
 }
 
@@ -226,6 +364,8 @@ module.exports = {
   parseDomainTheoryChunks,
   synthesizeDomainTheory,
   synthesizeAllTheoryDomains,
+  getOrSynthesizeEn,
+  ENGLISH_TERMS,
   DOMAIN_TITLES,
   DIAGRAM_TRANSCRIPTIONS
 };

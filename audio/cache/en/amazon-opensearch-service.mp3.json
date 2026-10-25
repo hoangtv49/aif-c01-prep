@@ -1,0 +1,17 @@
+[
+  {
+    "part": "Amazon ",
+    "start": 50,
+    "end": 612
+  },
+  {
+    "part": "OpenSearch ",
+    "start": 637,
+    "end": 1237
+  },
+  {
+    "part": "Service",
+    "start": 1262,
+    "end": 1825
+  }
+]
