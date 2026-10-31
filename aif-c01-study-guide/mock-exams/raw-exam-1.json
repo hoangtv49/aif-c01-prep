@@ -1,0 +1,2370 @@
+{
+  "extractedAt": "2026-10-31T09:02:55.026Z",
+  "sourceUrl": "https://cloudexam.pro/course-review?course=6&exam=50&attempt=22120",
+  "examName": "Practice Test 01 - AWS AIF-C01",
+  "totalQuestions": 65,
+  "questions": [
+    {
+      "number": 1,
+      "status": "Correct",
+      "stem": "A customer service team is developing an application to analyze customer feedback and automatically classify the feedback into different categories. The categories include product quality, customer service, and delivery experience. Which AI concept does this scenario present?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Recommendation systems"
+        },
+        {
+          "key": "B",
+          "text": "Computer vision"
+        },
+        {
+          "key": "C",
+          "text": "Natural language processing (NLP)"
+        },
+        {
+          "key": "D",
+          "text": "Fraud detection"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Đội dịch vụ khách hàng phát triển ứng dụng để phân tích phản hồi khách hàng (analyze customer feedback) và tự động phân loại (automatically classify) phản hồi vào các danh mục.\n\nDanh mục: Chất lượng sản phẩm, dịch vụ khách hàng, và trải nghiệm giao hàng.\n\nCâu hỏi: Khái niệm AI nào thể hiện kịch bản này?",
+        "correct": "Natural language processing\n\n→ Phản hồi của khách hàng là dữ liệu văn bản/ngôn ngữ tự nhiên (text/natural language). Việc phân tích và phân loại văn bản (Text Classification) là một tác vụ cốt lõi của Xử lý ngôn ngữ tự nhiên (NLP).",
+        "incorrect": [
+          "❌ Computer vision\n→ Sai. Computer vision (Thị giác máy) tập trung vào phân tích hình ảnh và video, không phải văn bản.",
+          "❌ Recommendation systems\n→ Sai. Recommendation systems (Hệ thống gợi ý) được dùng để đề xuất sản phẩm/dịch vụ/nội dung, không phải để phân loại phản hồi.",
+          "❌ Fraud detection\n→ Sai. Fraud detection (Phát hiện gian lận) là một ứng dụng của ML (thường trong bài toán phân loại)."
+        ],
+        "tips": "Phân tích văn bản/ngôn ngữ (analyze text/language) + Phân loại văn bản (Text Classification) / Dịch (Translation) / Tóm tắt (Summarization) → Natural Language Processing (NLP).\n\nPhân tích hình ảnh/video (analyze images/videos) / Nhận dạng đối tượng (Object Recognition) → Computer Vision.\n\nĐề xuất sản phẩm/phim/nội dung (Recommend products/movies/content) → Recommendation Systems.\n\nPhát hiện hành vi không mong muốn/bất thường (Detect undesirable/abnormal behavior) → Fraud Detection (Phát hiện gian lận) hoặc Anomaly Detection (Phát hiện bất thường)."
+      }
+    },
+    {
+      "number": 2,
+      "status": "Skipped",
+      "stem": "An education company is building a chatbot whose target audience is teenagers. The company is training a custom large language model (LLM). The company wants the chatbot to speak in the target audience's language style by using creative spelling and shortened words. Which metric will assess the LLM's performance?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bilingual Evaluation Understudy (BLEU) score"
+        },
+        {
+          "key": "B",
+          "text": "BERTScore"
+        },
+        {
+          "key": "C",
+          "text": "F1 score"
+        },
+        {
+          "key": "D",
+          "text": "Recall-Oriented Understudy for Gisting Evaluation (ROUGE)"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Xây dựng chatbot cho đối tượng thanh thiếu niên (teenagers).\n\nĐặc điểm: Cần huấn luyện LLM để nói theo phong cách ngôn ngữ mục tiêu (target audience's language style) bằng cách sử dụng chính tả sáng tạo (creative spelling) và từ rút gọn (shortened words).\n\nYêu cầu: Chỉ số (metric) nào sẽ đánh giá hiệu suất (assess performance) của LLM?",
+        "correct": "BERTScore\n\n→ BERTScore là một chỉ số hiện đại sử dụng các nhúng ngôn ngữ (language embeddings) của mô hình BERT để đo lường tính tương đồng ngữ nghĩa (semantic similarity) giữa phản hồi được tạo ra và phản hồi tham chiếu. Nó tốt hơn các chỉ số dựa trên từ khóa như BLEU/ROUGE khi đánh giá ngôn ngữ có từ vựng và cấu trúc không chuẩn (non-standard vocabulary and structure) như chính tả sáng tạo và từ rút gọn của giới trẻ.",
+        "incorrect": [
+          "❌ F1 score\n→ Sai. F1 Score thường được sử dụng cho các bài toán phân loại (classification) hoặc phát hiện đối tượng (object detection), không phải để đánh giá chất lượng văn bản được tạo ra (text generation).",
+          "❌ Recall-Oriented Understudy for Gisting Evaluation (ROUGE)\n→ Sai. ROUGE chủ yếu dùng để đánh giá tóm tắt (summarization).",
+          "❌ Bilingual Evaluation Understudy (BLEU) score\n→ Sai. BLEU chủ yếu dùng để đánh giá dịch máy (machine translation)."
+        ],
+        "tips": "Đánh giá tính tương đồng ngữ nghĩa (semantic similarity) + văn phong không chuẩn/chính tả sáng tạo (non-standard style/creative spelling) → BERTScore.\n\nĐánh giá dịch máy (Machine Translation) hoặc văn bản chuẩn (Standard text generation) → BLEU score.\n\nĐánh giá tóm tắt (Summarization) → ROUGE.\n\nĐánh giá phân loại (Classification) (độ chính xác/hồi tưởng) → F1 Score hoặc Accuracy/Precision/Recall."
+      }
+    },
+    {
+      "number": 3,
+      "status": "Skipped",
+      "stem": "A company wants to create a chatbot that answers questions about human resources policies. The company is using a large language model (LLM) and has a large digital documentation base. Which technique should the company use to optimize the generated responses?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use Retrieval Augmented Generation (RAG)."
+        },
+        {
+          "key": "B",
+          "text": "Use few-shot prompting."
+        },
+        {
+          "key": "C",
+          "text": "Set the temperature to 1."
+        },
+        {
+          "key": "D",
+          "text": "Decrease the token size."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Tạo một chatbot trả lời câu hỏi về chính sách nhân sự (human resources policies).\n\nĐặc điểm: Sử dụng LLM và có một cơ sở tài liệu kỹ thuật số lớn (large digital documentation base).\n\nYêu cầu: Kỹ thuật nào nên được sử dụng để tối ưu hóa phản hồi (optimize the generated responses)?",
+        "correct": "Use Retrieval Augmented Generation (RAG)\n\n→ Kỹ thuật RAG (Tăng cường Truy xuất) là phương pháp chuẩn để giúp LLM trả lời các câu hỏi dựa trên cơ sở dữ liệu lớn, độc quyền (large, proprietary knowledge base - tài liệu nhân sự) bằng cách tìm kiếm thông tin liên quan và sử dụng nó làm ngữ cảnh trước khi tạo câu trả lời.",
+        "incorrect": [
+          "❌ Use few-shot prompting\n→ Sai. Few-shot prompting chỉ cung cấp một vài ví dụ trong lời nhắc (prompt) để hướng dẫn LLM, không đủ để trả lời các câu hỏi phức tạp dựa trên một cơ sở tài liệu lớn và cụ thể như chính sách HR.",
+          "❌ Set the temperature to 1\n→ Sai. Đặt Temperature cao (ví dụ: 1) làm cho phản hồi ngẫu nhiên và sáng tạo hơn (diverse), không phù hợp để tạo câu trả lời chính xác và dựa trên sự kiện (fact-based) từ chính sách.",
+          "❌ Decrease the token size\n→ Sai. Giảm kích thước token (độ dài phản hồi) sẽ làm cho câu trả lời ngắn hơn, không giúp tối ưu hóa sự chính xác hoặc tính liên quan của phản hồi."
+        ],
+        "tips": "LLM + trả lời dựa trên tài liệu/dữ liệu độc quyền/lớn/riêng tư (proprietary/large/private documentation/data) → Retrieval Augmented Generation (RAG).\n\nAccuracy (độ chính xác) + Fact-based (dựa trên sự kiện) + Context (ngữ cảnh từ dữ liệu ngoài) → RAG.\n\nCần tạo ra phản hồi ngẫu nhiên/sáng tạo/đa dạng (random/creative/diverse) → Tăng Temperature (Increase Temperature).\n\nCần tạo ra phản hồi chính xác/dựa trên sự kiện (accurate/fact-based) → Giảm Temperature (Decrease Temperature) (hoặc RAG)."
+      }
+    },
+    {
+      "number": 4,
+      "status": "Skipped",
+      "stem": "A food service company wants to collect a dataset to predict customer food preferences. The company wants to ensure that the food preferences of all demographics are included in the data. Which dataset characteristic does this scenario present?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Reliability"
+        },
+        {
+          "key": "B",
+          "text": "Recency bias"
+        },
+        {
+          "key": "C",
+          "text": "Diversity"
+        },
+        {
+          "key": "D",
+          "text": "Accuracy"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Thu thập tập dữ liệu để dự đoán sở thích ẩm thực của khách hàng (predict customer food preferences).\n\nYêu cầu: Đảm bảo rằng sở thích ẩm thực của TẤT CẢ các nhóm nhân khẩu học (food preferences of all demographics) được bao gồm trong dữ liệu.\n\nCâu hỏi: Đặc điểm tập dữ liệu nào thể hiện kịch bản này?",
+        "correct": "Diversity\n\n→ Diversity (Tính đa dạng) trong tập dữ liệu đề cập đến việc bao gồm đầy đủ các nhóm và trường hợp khác nhau (tức là tất cả các nhóm nhân khẩu học) để mô hình có thể khái quát hóa tốt và không bị chệch (bias) theo một nhóm cụ thể.",
+        "incorrect": [
+          "❌ Accuracy\n→ Sai. Accuracy (Độ chính xác) là thước đo chất lượng của từng điểm dữ liệu (data point quality - dữ liệu có đúng sự thật không), không phải là thước đo tính bao hàm (inclusiveness) của toàn bộ tập dữ liệu.",
+          "❌ Recency bias\n→ Sai. Recency bias là một loại bias mà dữ liệu mới hơn có trọng lượng cao hơn. Đây là một vấn đề cần tránh, không phải là một đặc điểm mong muốn để bao gồm tất cả các nhóm nhân khẩu học.",
+          "❌ Reliability\n→ Sai. Reliability (Độ tin cậy) đề cập đến sự ổn định/nhất quán (consistency) của dữ liệu hoặc phép đo, không phải tính bao hàm của các nhóm nhân khẩu học."
+        ],
+        "tips": "Bao gồm tất cả các nhóm/trường hợp/nhân khẩu học (all demographics/groups/cases) + Không thiên vị (No bias) → Diversity (Tính đa dạng).\n\nDữ liệu đúng/không có lỗi (correct/error-free) → Accuracy (Độ chính xác).\n\nSự ổn định/nhất quán (consistency/stability) của dữ liệu → Reliability (Độ tin cậy).\n\nMô hình ưu tiên dữ liệu gần đây/mới hơn (recent/newer data) → Recency Bias."
+      }
+    },
+    {
+      "number": 5,
+      "status": "Skipped",
+      "stem": "A company has a generative AI application that uses a pre-trained foundation model (FM) on Amazon Bedrock. The company wants the FM to include more context by using company information. Which solution meets these requirements MOST cost-effectively?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Choose a different FM on Amazon Bedrock."
+        },
+        {
+          "key": "B",
+          "text": "Deploy a custom model on Amazon Bedrock."
+        },
+        {
+          "key": "C",
+          "text": "Use Amazon Bedrock Knowledge Bases."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon Bedrock Agents."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Công ty có ứng dụng GenAI sử dụng mô hình nền tảng (FM) được huấn luyện trước trên Amazon Bedrock. Công ty muốn mô hình FM này hiểu nhiều ngữ cảnh hơn bằng cách sử dụng thông tin của công ty. Chọn giải pháp hợp lí nhất?",
+        "correct": "Use Amazon Bedrock Knowledge Bases\n\n→ Knowledge Bases trên Amazon Bedrock cung cấp giải pháp Retrieval Augmented Generation (RAG) được quản lý hoàn toàn. Đây là cách hiệu quả chi phí nhất và ít tốn công sức nhất để cung cấp ngữ cảnh cụ thể cho FM mà không cần tinh chỉnh (finetuning) hoặc huấn luyện lại mô hình.",
+        "incorrect": [
+          "❌ Choose a different FM on Amazon Bedrock\n→ Sai. Chọn FM khác không giải quyết được vấn đề thiếu thông tin cụ thể của công ty.",
+          "❌ Use Amazon Bedrock Agents\n→ Sai. Agents được dùng để thực hiện các hành động đa bước (multi-step tasks) và gọi API, không phải là giải pháp cơ bản và hiệu quả chi phí nhất để chỉ thêm ngữ cảnh tĩnh (company information).",
+          "❌ Deploy a custom model on Amazon Bedrock\n→ Sai. Việc triển khai một mô hình tùy chỉnh (Custom model) hoặc tinh chỉnh (finetuning) một FM là cực kỳ tốn kém so với việc sử dụng RAG thông qua Knowledge Bases."
+        ],
+        "tips": "FM + thêm ngữ cảnh cụ thể/thông tin riêng (specific context/private data) + hiệu quả chi phí (cost-effective) → Knowledge Bases (sử dụng RAG).\n\nThực hiện hành động/tác vụ đa bước (multi-step action/task) + gọi API → Amazon Bedrock Agents.\n\nMuốn thay đổi hành vi/phong cách (behavior/style) cốt lõi của FM (tốn kém) → Fin-tuning (tinh chỉnh) hoặc Custom Model (mô hình tùy chỉnh).\n\nChi phí thấp nhất/Nhanh nhất để đưa dữ liệu riêng vào FM → Knowledge Bases (RAG)."
+      }
+    },
+    {
+      "number": 6,
+      "status": "Skipped",
+      "stem": "A financial company has deployed an ML model to predict customer churn. The model has been running in production for 1 week. The company wants to evaluate how accurately the model predicts churn compared to actual customer behavior. Which metric meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Return on investment (ROI)"
+        },
+        {
+          "key": "B",
+          "text": "Root mean squared error (RMSE)"
+        },
+        {
+          "key": "C",
+          "text": "F1 score"
+        },
+        {
+          "key": "D",
+          "text": "Bilingual Evaluation Understudy (BLEU) score"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Mô hình ML được triển khai để dự đoán tỷ lệ khách hàng rời bỏ (predict customer churn).\n\nYêu cầu: Chỉ số (metric) nào đáp ứng yêu cầu đánh giá độ chính xác (evaluate how accurately the model predicts churn) so với hành vi thực tế (actual customer behavior)?",
+        "correct": "F1 score\n\n→ Dự đoán khách hàng rời bỏ (Customer Churn Prediction) là một bài toán phân loại nhị phân (binary classification). F1 Score (là trung bình điều hòa của Precision và Recall) là chỉ số tốt nhất để đánh giá hiệu suất của mô hình phân loại, đặc biệt là khi lớp dữ liệu không cân bằng (imbalanced classes - số lượng khách hàng rời bỏ thường ít hơn số lượng khách hàng ở lại).",
+        "incorrect": [
+          "❌ Root mean squared error (RMSE)\n→ Sai. RMSE là chỉ số dùng cho các bài toán hồi quy (regression), không phải phân loại.",
+          "❌ Return on investment (ROI)\n→ Sai. ROI là chỉ số kinh doanh (business metric) để đánh giá lợi ích tài chính, không phải chỉ số kỹ thuật/thống kê (technical/statistical metric) để đánh giá độ chính xác của mô hình ML.",
+          "❌ Bilingual Evaluation Understudy (BLEU) score\n→ Sai. BLEU là chỉ số dùng cho các bài toán xử lý ngôn ngữ tự nhiên (NLP) như dịch máy (machine translation), không phải phân loại nhị phân."
+        ],
+        "tips": "Bài toán Phân loại (Classification) + Khách hàng rời bỏ (Churn) / Gian lận (Fraud) / Phân loại ảnh (Image classification) → F1 Score (hoặc Accuracy, Precision, Recall).\n\nBài toán Hồi quy/Dự đoán giá trị liên tục (Regression/Continuous value prediction) → RMSE hoặc MAE/MSE.\n\nBài toán Tạo văn bản/Dịch máy (Text Generation/Machine Translation) → BLEU hoặc BERTScore.\n\nĐánh giá lợi ích tài chính/hiệu suất kinh doanh (financial benefit/business performance) → ROI."
+      }
+    },
+    {
+      "number": 7,
+      "status": "Skipped",
+      "stem": "A company is integrating AI into its employee recruitment and hiring solution. The company wants to mitigate bias risks and ensure responsible AI practices while prioritizing equitable hiring decisions. Which core dimensions of responsible AI should the company consider? (Choose two.)",
+      "options": [
+        {
+          "key": "A",
+          "text": "Transparency"
+        },
+        {
+          "key": "B",
+          "text": "Open source"
+        },
+        {
+          "key": "C",
+          "text": "Flexibility"
+        },
+        {
+          "key": "D",
+          "text": "Tolerance"
+        },
+        {
+          "key": "E",
+          "text": "Fairness"
+        }
+      ],
+      "correctAnswer": [
+        "E"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty tích hợp AI vào giải pháp tuyển dụng và thuê nhân sự (employee recruitment and hiring solution).\n\nMục tiêu: Giảm thiểu rủi ro thiên kiến (mitigate bias risks) + đảm bảo thực hành AI có trách nhiệm (responsible AI practices) + ưu tiên quyết định tuyển dụng công bằng (prioritizing equitable hiring decisions).\n\nYêu cầu: Chọn HAI (Choose two) khía cạnh cốt lõi của Responsible AI (AI có trách nhiệm) nên được xem xét.",
+        "correct": "Fairness\n\n→ Fairness (Tính công bằng): Trực tiếp giải quyết vấn đề giảm thiểu thiên kiến (mitigate bias) và đảm bảo quyết định tuyển dụng công bằng (equitable hiring decisions).\n\nTransparency\n\n→ Transparency (Tính minh bạch): Là một yếu tố cốt lõi của Responsible AI, liên quan đến khả năng giải thích (explainability) về cách mô hình đưa ra quyết định (ví dụ: tại sao một ứng viên bị từ chối), giúp xây dựng lòng tin và phát hiện các vấn đề về công bằng.",
+        "incorrect": [
+          "❌ Tolerance\n→ Sai. Tolerance (Khoan dung) không phải là một trong các khía cạnh cốt lõi tiêu chuẩn của Responsible AI trong bối cảnh ML.",
+          "❌ Flexibility\n→ Sai. Flexibility (Linh hoạt) không phải là một khía cạnh cốt lõi của Responsible AI, mà là một đặc điểm thiết kế hệ thống.",
+          "❌ Open source\n→ Sai. Open source (Mã nguồn mở) không phải là một khía cạnh cốt lõi bắt buộc của Responsible AI."
+        ],
+        "tips": "Responsible AI Core Dimensions (Các khía cạnh cốt lõi của AI có trách nhiệm) → Fairness (Công bằng), Accountability (Trách nhiệm giải trình), Transparency (Minh bạch), Robustness (Mạnh mẽ/Bền vững), Privacy (Quyền riêng tư).\n\nGiảm thiểu thiên kiến (Mitigate bias) + Công bằng (Equitable) → Fairness.\n\nGiải thích quyết định (Explain decisions) + Xây dựng lòng tin (Build trust) → Transparency (Minh bạch) hoặc Explainability (Khả năng giải thích)."
+      }
+    },
+    {
+      "number": 8,
+      "status": "Skipped",
+      "stem": "A company has developed custom computer vision models. The company needs a user-friendly interface for data labeling to minimize model mistakes on new real-world data. Which AWS service, feature, or tool meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon SageMaker Ground Truth"
+        },
+        {
+          "key": "B",
+          "text": "Amazon Bedrock playground"
+        },
+        {
+          "key": "C",
+          "text": "Amazon Bedrock Agents"
+        },
+        {
+          "key": "D",
+          "text": "Amazon SageMaker Canvas"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty phát triển mô hình thị giác máy tùy chỉnh (custom computer vision models).\n\nYêu cầu: Cần một giao diện thân thiện với người dùng (user-friendly interface) để gắn nhãn dữ liệu (data labeling) nhằm giảm thiểu lỗi (minimize mistakes) trên dữ liệu thực tế mới.\n\nCâu hỏi: Dịch vụ, tính năng hoặc công cụ AWS nào đáp ứng các yêu cầu này?",
+        "correct": "Amazon SageMaker Ground Truth\n\n→ Amazon SageMaker Ground Truth là dịch vụ được thiết kế để xây dựng các tập dữ liệu huấn luyện chất lượng cao thông qua gắn nhãn dữ liệu (data labeling), bao gồm cả các tác vụ thị giác máy (computer vision). Nó cung cấp các công cụ và giao diện người dùng để tạo nhãn chính xác và giảm thiểu lỗi.",
+        "incorrect": [
+          "❌ Amazon SageMaker Canvas\n→ Sai. SageMaker Canvas là giao diện no-code/low-code cho người dùng doanh nghiệp (business users) để xây dựng và sử dụng mô hình ML (build and use ML models), không phải để gắn nhãn dữ liệu (data labeling).",
+          "❌ Amazon Bedrock playground\n→ Sai. Bedrock playground là giao diện để thử nghiệm và tinh chỉnh prompt cho các Mô hình nền tảng (Foundation Models), không liên quan đến gắn nhãn dữ liệu (data labeling) cho mô hình Thị giác máy.",
+          "❌ Amazon Bedrock Agents\n→ Sai. Bedrock Agents được dùng để cho phép LLM thực hiện hành động (perform actions) và gọi API (call APIs), không phải để gắn nhãn dữ liệu."
+        ],
+        "tips": "Gắn nhãn dữ liệu (Data labeling) + Tập dữ liệu huấn luyện (Training dataset) + Thị giác máy (Computer Vision) → Amazon SageMaker Ground Truth.\n\nXây dựng mô hình không mã (No-code) + Dành cho người dùng doanh nghiệp (For business users) → Amazon SageMaker Canvas.\n\nThử nghiệm/Tinh chỉnh Prompt (Prompt experimentation/tuning) + Mô hình nền tảng (Foundation Models) → Amazon Bedrock Playground.\n\nLLM thực hiện tác vụ đa bước/hành động (multi-step tasks/actions) + Gọi API (Call APIs) → Amazon Bedrock Agents."
+      }
+    },
+    {
+      "number": 9,
+      "status": "Skipped",
+      "stem": "An AI practitioner wants to generate more diverse and more creative outputs from a large language model (LLM). How should the AI practitioner adjust the inference parameter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Increase the temperature value."
+        },
+        {
+          "key": "B",
+          "text": "Decrease the Top K value."
+        },
+        {
+          "key": "C",
+          "text": "Increase the response length."
+        },
+        {
+          "key": "D",
+          "text": "Decrease the prompt length."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Muốn tạo ra kết quả đầu ra đa dạng (more diverse) và sáng tạo (more creative outputs) từ LLM.\n\nYêu cầu: Cần điều chỉnh thông số nào?",
+        "correct": "Increase the temperature value.\n\n→ Temperature là một tham số điều chỉnh tính ngẫu nhiên (randomness) của đầu ra. Tăng giá trị temperature sẽ làm tăng khả năng LLM chọn các từ ít có khả năng xảy ra hơn, dẫn đến các phản hồi đa dạng và sáng tạo hơn.",
+        "incorrect": [
+          "❌ Decrease the Top K value\n→ Sai. Top K giới hạn việc lấy mẫu (sampling) từ K từ có xác suất cao nhất. Giảm K sẽ làm cho đầu ra ít đa dạng hơn và dự đoán được hơn.",
+          "❌ Increase the response length\n→ Sai. Tăng độ dài chỉ làm cho phản hồi dài hơn, không nhất thiết làm cho nó đa dạng hoặc sáng tạo hơn.",
+          "❌ Decrease the prompt length\n→ Sai. Giảm độ dài prompt không phải là thông số để kiểm soát tính sáng tạo của mô hình."
+        ],
+        "tips": "Muốn phản hồi đa dạng/sáng tạo/ngẫu nhiên (diverse/creative/random) → Tăng Temperature (Increase Temperature).\n\nMuốn phản hồi chính xác/dựa trên sự kiện/ít ngẫu nhiên (accurate/fact-based/less random) → Giảm Temperature (Decrease Temperature) (gần 0).\n\nKiểm soát độ dài tối đa của phản hồi → Max Token/Response Length.\n\nKiểm soát tập hợp các từ có thể lấy mẫu (sampling) → Top K và Top P."
+      }
+    },
+    {
+      "number": 10,
+      "status": "Skipped",
+      "stem": "A company has set up a translation tool to help its customer service team handle issues from customers around the world. The company wants to evaluate the performance of the translation tool. The company sets up a parallel data process that compares the responses from the tool to responses from actual humans. Both sets of responses are generated on the same set of documents. Which strategy should the company use to evaluate the translation tool?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use the BERTScore to estimate the absolute translation quality of the two methods."
+        },
+        {
+          "key": "B",
+          "text": "Use the Bilingual Evaluation Understudy (BLEU) score to estimate the relative translation quality of the two methods."
+        },
+        {
+          "key": "C",
+          "text": "Use the BERTScore to estimate the relative translation quality of the two methods."
+        },
+        {
+          "key": "D",
+          "text": "Use the Bilingual Evaluation Understudy (BLEU) score to estimate the absolute translation quality of the two methods."
+        }
+      ],
+      "correctAnswer": [
+        "B",
+        "D"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty thiết lập công cụ dịch thuật (translation tool) và muốn đánh giá hiệu suất (evaluate the performance).\n\nChiến lược: Thiết lập một quy trình song song so sánh phản hồi từ công cụ với phản hồi từ người thật (responses from actual humans) trên cùng một tài liệu.\n\nYêu cầu: Chiến lược nào nên được sử dụng để đánh giá công cụ dịch thuật?",
+        "correct": "Use the Bilingual Evaluation Understudy (BLEU) score to estimate the relative translation quality of the two methods.\n\n→ BLEU Score là chỉ số tiêu chuẩn (standard metric) cho việc đánh giá dịch máy (machine translation). Khi so sánh hai phương pháp (Công cụ dịch thuật vs. Người thật) với cùng một tài liệu, mục tiêu là ước tính chất lượng tương đối (relative quality) của công cụ so với chuẩn mực (người thật). BLEU đo lường mức độ trùng lặp (overlap) giữa đầu ra của công cụ và bản dịch tham chiếu (người thật).",
+        "incorrect": [
+          "❌ Use the Bilingual Evaluation Understudy (BLEU) score to estimate the absolute translation quality of the two methods.\n→ Sai. Các chỉ số tự động (như BLEU) thường không thể ước tính chất lượng tuyệt đối (absolute quality) của một bản dịch. Chúng chỉ hiệu quả trong việc so sánh tương đối (relative comparison) giữa các hệ thống hoặc so với bản dịch tham chiếu.",
+          "❌ Use the BERTScore to estimate the absolute translation quality of the two methods.",
+          "❌ Use the BERTScore to estimate the relative translation quality of the two methods.\n→ Sai. Mặc dù BERTScore là một chỉ số hiện đại và thường tốt hơn BLEU trong việc đánh giá tính tương đồng ngữ nghĩa (semantic similarity), nhưng BLEU vẫn là chỉ số tiêu chuẩn ngành (industry standard) và được chấp nhận rộng rãi nhất khi so sánh các hệ thống dịch thuật."
+        ],
+        "tips": "Đánh giá dịch máy (Evaluate machine translation) → BLEU score.\n\nĐánh giá chất lượng tương đối (Estimate relative quality) giữa các hệ thống/phương pháp → Hầu hết các chỉ số tự động (BLEU, BERTScore) đều làm điều này tốt hơn việc ước tính chất lượng tuyệt đối.\n\nĐánh giá tính tương đồng ngữ nghĩa (Semantic similarity) cho tạo văn bản (Text generation) → BERTScore."
+      }
+    },
+    {
+      "number": 11,
+      "status": "Skipped",
+      "stem": "A company wants to control employee access to publicly available foundation models (FMs). Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Analyze cost and usage reports in AWS Cost Explorer."
+        },
+        {
+          "key": "B",
+          "text": "Download AWS security and compliance documents from AWS Artifact."
+        },
+        {
+          "key": "C",
+          "text": "Configure Amazon SageMaker JumpStart to restrict discoverable FMs."
+        },
+        {
+          "key": "D",
+          "text": "Build a hybrid search solution by using Amazon OpenSearch Service."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Công ty muốn kiểm soát quyền truy cập (control employee access) của nhân viên vào các mô hình nền tảng (FMs) có sẵn công khai.\n\nYêu cầu: Giải pháp nào đáp ứng yêu cầu này?",
+        "correct": "Configure Amazon SageMaker JumpStart to restrict discoverable FMs.\n\n→ Amazon SageMaker JumpStart là trung tâm nơi các nhà phát triển khám phá (discover), triển khai (deploy) và tinh chỉnh (fine-tune) các mô hình nền tảng có sẵn công khai. AWS cho phép các tổ chức cấu hình JumpStart để hạn chế (restrict) những mô hình nào hiển thị và có thể truy cập được cho nhân viên, do đó kiểm soát quyền truy cập.",
+        "incorrect": [
+          "❌ Analyze cost and usage reports in AWS Cost Explorer.\n→ Sai. Cost Explorer dùng để phân tích chi phí và sử dụng, không phải để kiểm soát quyền truy cập (access control).",
+          "❌ Download AWS security and compliance documents from AWS Artifact.\n→ Sai. AWS Artifact chứa các tài liệu tuân thủ/bảo mật, không phải công cụ để kiểm soát quyền truy cập vào mô hình.",
+          "❌ Build a hybrid search solution by using Amazon OpenSearch Service.\n→ Sai. OpenSearch là dịch vụ tìm kiếm và phân tích, không phải là công cụ kiểm soát quyền truy cập vào các mô hình LLM."
+        ],
+        "tips": "Khám phá/Triển khai/Tinh chỉnh mô hình công khai (Discover/Deploy/Fine-tune public FMs) + Kiểm soát quyền truy cập/Hiển thị (Control access/visibility) → Amazon SageMaker JumpStart.\n\nPhân tích chi phí (Analyze cost) → AWS Cost Explorer.\n\nKiểm soát quyền truy cập tổng thể (General access control) → AWS IAM."
+      }
+    },
+    {
+      "number": 12,
+      "status": "Skipped",
+      "stem": "An ecommerce company wants to group customers based on their purchase history and preferences to personalize the user experience of the company's application. Which ML technique should the company use?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Classification"
+        },
+        {
+          "key": "B",
+          "text": "Clustering"
+        },
+        {
+          "key": "C",
+          "text": "Content generation"
+        },
+        {
+          "key": "D",
+          "text": "Regression"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty thương mại điện tử muốn nhóm khách hàng (group customers) dựa trên lịch sử mua hàng (purchase history) và sở thích (preferences).\n\nMục tiêu: Cá nhân hóa trải nghiệm người dùng (personalize the user experience).\n\nYêu cầu: Kỹ thuật ML nào nên được sử dụng?",
+        "correct": "Clustering\n\n→ Clustering (Phân cụm) là một kỹ thuật học không giám sát (Unsupervised Learning) được sử dụng để tự động nhóm các điểm dữ liệu (khách hàng) tương tự nhau lại với nhau (dựa trên lịch sử mua hàng, sở thích) mà không có nhãn (no labels) định trước. Đây là cách chuẩn để phân khúc khách hàng (customer segmentation) cho mục đích cá nhân hóa.",
+        "incorrect": [
+          "❌ Classification\n→ Sai. Classification (Phân loại) là một kỹ thuật học có giám sát (Supervised Learning) được sử dụng để dự đoán một nhãn (label) đã biết (ví dụ: Khách hàng rời bỏ hay không), yêu cầu dữ liệu phải có nhãn sẵn. Ở đây, công ty muốn tìm ra các nhóm (find groups) mới.",
+          "❌ Regression\n→ Sai. Regression (Hồi quy) là một kỹ thuật học có giám sát được sử dụng để dự đoán một giá trị liên tục (continuous value - ví dụ: doanh thu), không phải để nhóm khách hàng.",
+          "❌ Content generation\n→ Sai. Content generation là một nhiệm vụ của AI tạo sinh (Generative AI), không phải là kỹ thuật để nhóm khách hàng dựa trên dữ liệu lịch sử."
+        ],
+        "tips": "Nhóm/Phân khúc khách hàng (Group/Segment customers) + Không có nhãn (No pre-defined labels) + Tự động tìm kiếm các mẫu (Find patterns automatically) → Clustering (Phân cụm).\n\nDự đoán nhãn/danh mục (Predict label/category) (ví dụ: A, B, C) → Classification (Phân loại).\n\nDự đoán giá trị liên tục/số (Predict continuous/numeric value) (ví dụ: giá, doanh thu) → Regression (Hồi quy)."
+      }
+    },
+    {
+      "number": 13,
+      "status": "Skipped",
+      "stem": "An animation company wants to provide subtitles for its content. Which AWS service meets this requirement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon Translate"
+        },
+        {
+          "key": "B",
+          "text": "Amazon Transcribe"
+        },
+        {
+          "key": "C",
+          "text": "Amazon Polly"
+        },
+        {
+          "key": "D",
+          "text": "Amazon Comprehend"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Công ty hoạt hình muốn cung cấp phụ đề (provide subtitles) cho nội dung của mình.\n\nYêu cầu: Dịch vụ AWS nào đáp ứng yêu cầu này?",
+        "correct": "Amazon Transcribe\n\n→ Amazon Transcribe là dịch vụ chuyển giọng nói thành văn bản (Speech-to-Text). Phụ đề (subtitles) yêu cầu chuyển đổi âm thanh (giọng nói) thành văn bản để hiển thị.",
+        "incorrect": [
+          "❌ Amazon Comprehend\n→ Sai. Amazon Comprehend là dịch vụ phân tích văn bản (text analytics - ví dụ: tìm thực thể, cảm xúc), không phải chuyển giọng nói thành văn bản.",
+          "❌ Amazon Polly\n→ Sai. Amazon Polly là dịch vụ chuyển văn bản thành giọng nói (Text-to-Speech), ngược lại với yêu cầu tạo phụ đề.",
+          "❌ Amazon Translate\n→ Sai. Amazon Translate là dịch vụ dịch văn bản (text translation), không phải chuyển âm thanh thành văn bản."
+        ],
+        "tips": "Phụ đề (Subtitles) / Chép lại (Transcription) / Giọng nói thành văn bản (Speech-to-Text) → Amazon Transcribe.\n\nVăn bản thành giọng nói (Text-to-Speech) / Tạo giọng nói tổng hợp (Synthesize speech) → Amazon Polly.\n\nDịch văn bản (Text translation) → Amazon Translate.\n\nPhân tích văn bản (Text analysis) / Cảm xúc (Sentiment) / Thực thể (Entities) → Amazon Comprehend."
+      }
+    },
+    {
+      "number": 14,
+      "status": "Skipped",
+      "stem": "A company uses a third-party model on Amazon Bedrock to analyze confidential documents. The company is concerned about data privacy. Which statement describes how Amazon Bedrock protects data privacy?",
+      "options": [
+        {
+          "key": "A",
+          "text": "User inputs and model outputs are anonymized and shared with third-party model providers."
+        },
+        {
+          "key": "B",
+          "text": "User inputs and model outputs are redacted before the inputs and outputs are shared with third-party model providers."
+        },
+        {
+          "key": "C",
+          "text": "User inputs and model outputs are not shared with any third-party model providers."
+        },
+        {
+          "key": "D",
+          "text": "User inputs are kept confidential, but model outputs are shared with third-party model providers."
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty sử dụng mô hình bên thứ ba (third-party model) trên Amazon Bedrock để phân tích tài liệu bí mật (confidential documents).\n\nMối quan tâm: Quyền riêng tư dữ liệu (data privacy).\n\nCâu hỏi: Tuyên bố nào mô tả cách Amazon Bedrock bảo vệ quyền riêng tư dữ liệu?",
+        "correct": "User inputs and model outputs are not shared with any third-party model providers.\n\n→ Amazon Bedrock đảm bảo rằng dữ liệu đầu vào của người dùng (User inputs) và đầu ra của mô hình (model outputs) không bao giờ được sử dụng để đào tạo thêm các mô hình của bên thứ ba, và không được chia sẻ với nhà cung cấp mô hình. Điều này là cốt lõi để bảo vệ dữ liệu bí mật và quyền riêng tư.",
+        "incorrect": [
+          "❌ User inputs and model outputs are anonymized and shared with third-party model providers.\n→ Sai. Bedrock KHÔNG chia sẻ dữ liệu với bên thứ ba (cho dù được ẩn danh hay không) vì mục đích quyền riêng tư.",
+          "❌ User inputs are kept confidential, but model outputs are shared with third-party model providers.\n→ Sai. Cả đầu vào và đầu ra đều không được chia sẻ.",
+          "❌ User inputs and model outputs are redacted before the inputs and outputs are shared with third-party model providers.\n→ Sai. Tương tự câu trên, Bedrock KHÔNG chia sẻ dữ liệu với bên thứ ba."
+        ],
+        "tips": "Amazon Bedrock + Quyền riêng tư dữ liệu (Data Privacy) + Mô hình bên thứ ba (Third-party Model) → Dữ liệu KHÔNG được chia sẻ (Data is NOT shared) với nhà cung cấp mô hình.\n\nĐảm bảo dữ liệu không bị rò rỉ (Data isolation) và không được dùng để huấn luyện thêm (No data used for further training) → Core guarantee của Bedrock."
+      }
+    },
+    {
+      "number": 15,
+      "status": "Skipped",
+      "stem": "A grocery store wants to create a chatbot to help customers find products in the store. The chatbot must check the inventory in real time and provide the product location in the store. Which prompt engineering technique should the store use to build the chatbot?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Reasoning and acting (ReAct) prompting"
+        },
+        {
+          "key": "B",
+          "text": "Zero-shot prompting"
+        },
+        {
+          "key": "C",
+          "text": "Few-shot prompting"
+        },
+        {
+          "key": "D",
+          "text": "Least-to-most prompting"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Tạo một chatbot giúp khách hàng tìm sản phẩm trong cửa hàng (find products in the store).\n\nYêu cầu: Chatbot phải kiểm tra kho hàng theo thời gian thực (check the inventory in real time) và cung cấp vị trí sản phẩm (product location).\n\nCâu hỏi: Kỹ thuật prompt engineering nào nên được sử dụng để xây dựng chatbot?",
+        "correct": "Reasoning and acting (ReAct) prompting\n\n→ Chatbot này cần phải Lý luận (Reasoning) để xác định nhu cầu của người dùng (tìm sản phẩm), sau đó Hành động (Acting) bằng cách gọi một công cụ bên ngoài (External tool/API call) để kiểm tra kho hàng theo thời gian thực (check inventory in real time) và lấy vị trí. ReAct (Reasoning and Acting) là kỹ thuật được thiết kế để kích hoạt các bước lý luận và hành động bên ngoài tuần tự này.",
+        "incorrect": [
+          "❌ Zero-shot prompting",
+          "❌ Few-shot prompting\n→ Sai. Các kỹ thuật này chỉ cung cấp ngữ cảnh hoặc ví dụ nhưng không kích hoạt khả năng gọi công cụ bên ngoài (tool-calling/API calling) để tương tác với dữ liệu thời gian thực (real-time data) bên ngoài LLM.",
+          "❌ Least-to-most prompting\n→ Sai. Kỹ thuật này phân chia vấn đề lớn thành nhiều bước suy luận nhỏ (smaller reasoning steps). Nó không liên quan trực tiếp đến việc gọi API/công cụ bên ngoài để truy vấn dữ liệu thời gian thực."
+        ],
+        "tips": "LLM cần kiểm tra dữ liệu bên ngoài/thời gian thực (check external/real-time data) + Tương tác với API/Hành động (Interact with API/Act) + Lý luận (Reasoning) → ReAct (Reasoning and Acting) prompting.\n\nCần lý luận phức tạp/đa bước (complex/multi-step reasoning) → Chain-of-Thought (CoT) hoặc ReAct.\n\nCần gọi API/Công cụ bên ngoài (Tool/API calling) → ReAct hoặc Agents (như Amazon Bedrock Agents)."
+      }
+    },
+    {
+      "number": 16,
+      "status": "Skipped",
+      "stem": "A bank is fine-tuning a large language model (LLM) on Amazon Bedrock to assist customers with questions about their loans. The bank wants to ensure that the model does not reveal any private customer data. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Store customer data in Amazon S3. Encrypt the data before fine-tuning the LLM."
+        },
+        {
+          "key": "B",
+          "text": "Increase the Top-K parameter of the LLM."
+        },
+        {
+          "key": "C",
+          "text": "Remove personally identifiable information (PII) from the customer data before fine-tuning the LLM."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon Bedrock Guardrails."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Ngân hàng tinh chỉnh (fine-tuning) một LLM trên Amazon Bedrock để hỗ trợ khách hàng về các câu hỏi về khoản vay.\n\nYêu cầu: Đảm bảo mô hình KHÔNG tiết lộ bất kỳ dữ liệu khách hàng riêng tư (does NOT reveal any private customer data).\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu này?",
+        "correct": "Remove personally identifiable information (PII) from the customer data before fine-tuning the LLM.\n\n→ Vấn đề chính là mô hình LLM (khi được tinh chỉnh) có thể ghi nhớ (memorize) và tiết lộ (reveal) dữ liệu riêng tư từ tập dữ liệu huấn luyện. Giải pháp cơ bản nhất để ngăn chặn điều này là loại bỏ (hoặc ẩn danh/che giấu - anonymize/redact) thông tin nhận dạng cá nhân (PII) trước khi đưa dữ liệu vào quá trình tinh chỉnh (pre-processing).",
+        "incorrect": [
+          "❌ Use Amazon Bedrock Guardrails.\n→ Sai. Guardrails (Rào chắn) được sử dụng để áp đặt các chính sách về nội dung (content policies) trong thời gian suy luận (inference - ví dụ: ngăn chặn nội dung độc hại), không phải để ngăn chặn LLM ghi nhớ và tiết lộ PII từ tập dữ liệu tinh chỉnh (fine-tuning data).",
+          "❌ Increase the Top-K parameter of the LLM.\n→ Sai. Top-K là tham số suy luận kiểm soát tính đa dạng (diversity), không liên quan đến việc ngăn chặn LLM tiết lộ PII từ tập dữ liệu huấn luyện.",
+          "❌ Store customer data in Amazon S3. Encrypt the data before fine-tuning the LLM.\n→ Sai. Mã hóa dữ liệu (Encryption) trong S3 bảo vệ dữ liệu at rest và in transit, nhưng KHÔNG ngăn chặn LLM học (learn) và tiết lộ PII sau khi dữ liệu được giải mã và sử dụng trong quá trình huấn luyện."
+        ],
+        "tips": "LLM ghi nhớ/tiết lộ PII (LLM memorizes/reveals PII) từ dữ liệu Huấn luyện/Tinh chỉnh (Training/Fine-tuning data) → Loại bỏ/Ẩn danh PII (Remove/Anonymize PII) khỏi tập dữ liệu đầu vào.\n\nKiểm duyệt nội dung/An toàn nội dung (Content moderation/safety) / Ngăn chặn nội dung độc hại (Block harmful content) ở bước suy luận (inference) → Amazon Bedrock Guardrails.\n\nBảo vệ dữ liệu trên S3/khi truyền tải (on S3/in transit) → Encryption (Mã hóa)."
+      }
+    },
+    {
+      "number": 17,
+      "status": "Skipped",
+      "stem": "A company wants to use a large language model (LLM) to generate product descriptions. The company wants to give the model example descriptions that follow a format. Which prompt engineering technique will generate descriptions that match the format?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Zero-shot prompting"
+        },
+        {
+          "key": "B",
+          "text": "Chain-of-thought prompting"
+        },
+        {
+          "key": "C",
+          "text": "One-shot prompting"
+        },
+        {
+          "key": "D",
+          "text": "Few-shot prompting"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Sử dụng LLM để tạo mô tả sản phẩm (generate product descriptions).\n\nYêu cầu: Muốn cung cấp cho mô hình ví dụ mô tả (example descriptions) tuân theo một định dạng (follow a format).\n\nCâu hỏi: Kỹ thuật prompt engineering nào sẽ tạo ra mô tả khớp với định dạng (match the format)?",
+        "correct": "One-shot prompting\n\n→ One-shot prompting bao gồm một ví dụ duy nhất (một mô tả sản phẩm theo định dạng mong muốn) trong prompt để hướng dẫn LLM. Điều này là đủ để mô hình bắt chước định dạng (mimic the format) cho tác vụ đơn giản này. Few-shot prompting cũng đúng về mặt kỹ thuật, nhưng One-shot là phương án hiệu quả và tối thiểu nhất khi chỉ cần một ví dụ.",
+        "incorrect": [
+          "❌ Zero-shot prompting\n→ Sai. Zero-shot sẽ không đảm bảo rằng mô hình tuân thủ một định dạng cụ thể vì không có ví dụ nào được cung cấp.",
+          "❌ Chain-of-thought prompting\n→ Sai. Chain-of-thought (Chuỗi suy nghĩ) được sử dụng để giải quyết các vấn đề phức tạp đòi hỏi lý luận đa bước (multi-step reasoning), không phải để bắt chước định dạng cho các tác vụ tạo văn bản đơn giản.",
+          "❌ Few-shot prompting\n→ Sai. Few-shot bao gồm nhiều ví dụ (2-3 ví dụ trở lên). Nó cũng đúng, nhưng nếu một ví dụ là đủ (One-shot), thì nó là lựa chọn hiệu quả hơn."
+        ],
+        "tips": "Cung cấp ví dụ (example) + Bắt chước định dạng/phong cách (mimic format/style) → One-shot (1 ví dụ) hoặc Few-shot (vài ví dụ).\n\nKhông có ví dụ (No example) + Mô hình dựa vào kiến thức chung → Zero-shot prompting.\n\nGiải quyết vấn đề phức tạp/Lý luận đa bước (complex problem/multi-step reasoning) → Chain-of-Thought (CoT) prompting."
+      }
+    },
+    {
+      "number": 18,
+      "status": "Skipped",
+      "stem": "A company is making a chatbot. The chatbot uses Amazon Lex and Amazon OpenSearch Service. The chatbot uses the company's private data to answer questions. The company needs to convert the data into a vector representation before storing the data in a database. Which type of foundation model (FM) meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Text embeddings model"
+        },
+        {
+          "key": "B",
+          "text": "Instruction following model"
+        },
+        {
+          "key": "C",
+          "text": "Text completion model"
+        },
+        {
+          "key": "D",
+          "text": "Image generation model"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Tạo chatbot sử dụng Amazon Lex và Amazon OpenSearch Service.\n\nĐặc điểm: Chatbot sử dụng dữ liệu riêng tư của công ty (company's private data) để trả lời câu hỏi.\n\nYêu cầu: Công ty cần chuyển đổi dữ liệu thành biểu diễn vector (convert the data into a vector representation) trước khi lưu trữ trong database (vector database).\n\nCâu hỏi: Loại mô hình nền tảng (FM) nào đáp ứng yêu cầu này?",
+        "correct": "Text embeddings model\n\n→ Text embeddings model (Mô hình nhúng văn bản) được thiết kế đặc biệt để chuyển đổi văn bản (text - dữ liệu riêng tư) thành biểu diễn vector số (vector representation) (hay còn gọi là nhúng - embeddings). Các vector này sau đó được lưu trữ trong cơ sở dữ liệu vector (như OpenSearch Service) để hỗ trợ tìm kiếm ngữ nghĩa (semantic search) trong kỹ thuật RAG.",
+        "incorrect": [
+          "❌ Text completion model\n→ Sai. Mô hình hoàn thành văn bản được dùng để tiếp tục một chuỗi văn bản (ví dụ: tạo mô tả sản phẩm), không phải để chuyển đổi văn bản thành vector.",
+          "❌ Instruction following model\n→ Sai. Mô hình tuân theo chỉ dẫn được tinh chỉnh để làm theo hướng dẫn (follow instructions), không phải để tạo vector nhúng.",
+          "❌ Image generation model\n→ Sai. Mô hình tạo hình ảnh được dùng để tạo hình ảnh (generate images), không liên quan đến việc tạo vector nhúng văn bản."
+        ],
+        "tips": "Chuyển đổi dữ liệu/văn bản (data/text) thành vector (vector representation) / Nhúng (Embeddings) → Text Embeddings Model.\n\nTìm kiếm ngữ nghĩa (Semantic search) + RAG (Retrieval Augmented Generation) → Cần có Text Embeddings Model để tạo vector.\n\nTạo/Tiếp tục chuỗi văn bản (Generate/Continue text) → Text Completion Model (hoặc Generative Model)."
+      }
+    },
+    {
+      "number": 19,
+      "status": "Skipped",
+      "stem": "Which large language model (LLM) parameter controls the number of possible next words or tokens considered at each step of the text generation process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Temperature"
+        },
+        {
+          "key": "B",
+          "text": "Batch size"
+        },
+        {
+          "key": "C",
+          "text": "Top K"
+        },
+        {
+          "key": "D",
+          "text": "Maximum tokens"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Tham số (parameter) nào của LLM kiểm soát số lượng từ/token có thể xảy ra tiếp theo (number of possible next words or tokens considered) ở mỗi bước trong quá trình tạo văn bản (text generation)?",
+        "correct": "Top K\n\n→ Top K là tham số lấy mẫu (sampling) giới hạn việc mô hình chỉ xem xét K từ/token có xác suất cao nhất ở bước hiện tại để tạo ra từ tiếp theo.",
+        "incorrect": [
+          "❌ Maximum tokens\n→ Sai. Maximum tokens (Số lượng token tối đa) kiểm soát độ dài tối đa của phản hồi được tạo ra, không phải số lượng từ/token được xem xét ở mỗi bước.",
+          "❌ Temperature\n→ Sai. Temperature kiểm soát tính ngẫu nhiên (randomness) hoặc tính sáng tạo (creativity) của phản hồi, không phải số lượng từ được xem xét.",
+          "❌ Batch size\n→ Sai. Batch size là tham số được sử dụng trong quá trình huấn luyện (training) hoặc suy luận hàng loạt (batch inference) và không ảnh hưởng đến logic lấy mẫu ở từng bước tạo văn bản."
+        ],
+        "tips": "Kiểm soát số lượng từ/token được xem xét (number of tokens considered) ở mỗi bước → Top K (hoặc Top P/Nucleus Sampling).\n\nKiểm soát độ dài tối đa (maximum length) của đầu ra → Maximum tokens.\n\nKiểm soát tính ngẫu nhiên/sáng tạo (randomness/creativity) → Temperature.\n\nKiểm soát số lượng mẫu/input được xử lý đồng thời (simultaneously) → Batch size."
+      }
+    },
+    {
+      "number": 20,
+      "status": "Skipped",
+      "stem": "Which ML technique uses training data that is labeled with the correct output values?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Supervised learning"
+        },
+        {
+          "key": "B",
+          "text": "Transfer learning"
+        },
+        {
+          "key": "C",
+          "text": "Unsupervised learning"
+        },
+        {
+          "key": "D",
+          "text": "Reinforcement learning"
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "C"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Kỹ thuật ML nào sử dụng dữ liệu huấn luyện có nhãn với giá trị đầu ra chính xác (training data that is labeled with the correct output values)?",
+        "correct": "Supervised learning\n\n→ Học có giám sát là kỹ thuật ML định nghĩa bởi việc sử dụng dữ liệu huấn luyện có nhãn (labeled training data), nơi mỗi điểm dữ liệu đầu vào được ghép nối với giá trị đầu ra chính xác (correct output value) (nhãn).",
+        "incorrect": [
+          "❌ Unsupervised learning\n→ Sai. Học không giám sát sử dụng dữ liệu KHÔNG có nhãn (unlabeled data) để tìm kiếm các mẫu hoặc cấu trúc ẩn (ví dụ: Clustering, Dimensionality Reduction).",
+          "❌ Reinforcement learning\n→ Sai. Học tăng cường sử dụng một Agent tương tác với môi trường để học cách thực hiện các hành động thông qua phần thưởng (rewards) và hình phạt (penalties), không dựa trên dữ liệu có nhãn tĩnh.",
+          "❌ Transfer learning\n→ Sai. Học chuyển giao là một phương pháp sử dụng kiến thức từ một mô hình đã được huấn luyện cho một nhiệm vụ khác, chứ không phải là một kỹ thuật học (learning paradigm) riêng biệt liên quan đến việc sử dụng nhãn."
+        ],
+        "tips": "Dữ liệu có nhãn (Labeled data) + Đầu ra chính xác (Correct output) → Supervised learning (Học có giám sát).\n\nDữ liệu không có nhãn (Unlabeled data) + Tìm kiếm mẫu/Cấu trúc (Find patterns/structure) → Unsupervised learning (Học không giám sát).\n\nAgent + Môi trường (Environment) + Phần thưởng (Rewards) → Reinforcement learning (Học tăng cường)."
+      }
+    },
+    {
+      "number": 21,
+      "status": "Skipped",
+      "stem": "A company has signed up for Amazon Bedrock access to build applications. The company wants to restrict employee access to specific models available on Amazon Bedrock. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use AWS Identity and Access Management (IAM) service roles to restrict model subscription."
+        },
+        {
+          "key": "B",
+          "text": "Use AWS Security Token Service (AWS STS) to generate temporary credentials for model use."
+        },
+        {
+          "key": "C",
+          "text": "Use AWS Identity and Access Management (IAM) policies to restrict model access."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon Inspector to monitor model access."
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Đăng ký quyền truy cập Amazon Bedrock.\n\nYêu cầu: Cần hạn chế (restrict) quyền truy cập của nhân viên vào các mô hình cụ thể (specific models) có sẵn trên Amazon Bedrock.\n\nCâu hỏi: Giải pháp đáp ứng yêu cầu?",
+        "correct": "Use AWS Identity and Access Management (IAM) policies to restrict model access.\n\n→ Việc sử dụng IAM Policies cho phép định nghĩa chi tiết những người dùng/vai trò nào được phép sử dụng các mô hình cụ thể (specific models).",
+        "incorrect": [
+          "❌ Use AWS Security Token Service (AWS STS) to generate temporary credentials\n→ Sai. AWS STS dùng để tạo thông tin xác thực tạm thời (temporary credentials), không phải để định nghĩa (define) và hạn chế (restrict) quyền truy cập.",
+          "❌ Use AWS Identity and Access Management (IAM) service roles to restrict model subscription\n→ Sai. Service roles được dùng để cấp quyền cho dịch vụ thực hiện hành động, không phải để hạn chế người dùng truy cập các mô hình cụ thể.",
+          "❌ Use Amazon Inspector to monitor model access\n→ Sai. Amazon Inspector là dịch vụ đánh giá lỗ hổng (vulnerability assessment), không dùng để quản lý/hạn chế quyền truy cập."
+        ],
+        "tips": "Restrict access / Permissions / Who can do what → IAM Policies\n\nAmazon Bedrock + Access Control → IAM Policies\n\nTemporary credentials (Thông tin xác thực tạm thời) → AWS STS\n\nSecurity/Vulnerability assessment (Đánh giá bảo mật/lỗ hổng) → Amazon Inspector"
+      }
+    },
+    {
+      "number": 22,
+      "status": "Skipped",
+      "stem": "A company has developed a generative AI model for customer segmentation. The model has been deployed in the company's production environment for a long time. The company recently noticed some inconsistency in the model's responses. The company wants to evaluate model bias and drift. Which AWS service or feature meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon SageMaker Model Cards"
+        },
+        {
+          "key": "B",
+          "text": "Amazon SageMaker Feature Store"
+        },
+        {
+          "key": "C",
+          "text": "Amazon SageMaker Clarify"
+        },
+        {
+          "key": "D",
+          "text": "Amazon SageMaker Model Monitor"
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "D"
+      ],
+      "explanation": {
+        "summary": "Mô hình: Generative AI cho phân khúc khách hàng (customer segmentation).\n\nTrạng thái: Đã triển khai trong môi trường end-user (production environment) một thời gian dài (a long time).\n\nVấn đề: Nhận thấy sự không nhất quán (inconsistency) trong phản hồi.\n\nYêu cầu: Cần đánh giá độ thiên lệch (evaluate model bias) và độ trôi dữ liệu (drift data).\n\nCâu hỏi: Dịch vụ hoặc tính năng AWS nào đáp ứng yêu cầu?",
+        "correct": "Amazon SageMaker Model Monitor\n\n→ SageMaker Model Monitor giúp giám sát và đánh giá mô hình sau khi triển khai. Công cụ này có thể phát hiện và cảnh báo khi mô hình không còn hoạt động đúng như mong đợi, chẳng hạn như khi có sự thay đổi trong dữ liệu hoặc các đặc tính dữ liệu thay đổi theo thời gian.",
+        "incorrect": [
+          "❌ Amazon SageMaker Clarify\n→ Sai. Được sử dụng để giải thích lý do tại sao mô hình đưa ra kết quả dự đoán như vậy.",
+          "❌ Amazon SageMaker Model Cards\n→ Sai. Dùng để ghi lại (document) thông tin và đánh giá mô hình, không phải để thực hiện giám sát liên tục.",
+          "❌ Amazon SageMaker Feature Store\n→ Sai. Dùng để lưu trữ các đặc trưng (features) cho huấn luyện và suy luận, không phải để giám sát mô hình."
+        ],
+        "tips": "Evaluate/Monitor + Bias and drift + In production / Deployed model → SageMaker Model Monitor\n\nDetect/Explain + Bias and Explainability (trước/sau training) → SageMaker Clarify\n\nDocument + Model details/metrics → SageMaker Model Cards\n\nStore/Serve + Features → SageMaker Feature Store"
+      }
+    },
+    {
+      "number": 23,
+      "status": "Skipped",
+      "stem": "An ecommerce company receives multiple gigabytes of customer data daily. The company uses the data to train an ML model to forecast future product demand. The company needs a solution to perform inferences once each day. Which inference type meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Real-time inference"
+        },
+        {
+          "key": "B",
+          "text": "Asynchronous inference"
+        },
+        {
+          "key": "C",
+          "text": "Batch inference"
+        },
+        {
+          "key": "D",
+          "text": "Serverless inference"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Đặc điểm dữ liệu: Nhận nhiều gigabyte dữ liệu khách hàng hàng ngày (multiple gigabytes... daily).\n\nMục tiêu: Sử dụng dữ liệu để huấn luyện mô hình ML dự báo nhu cầu sản phẩm.\n\nYêu cầu: Cần giải pháp để thực hiện suy luận (inferences) mỗi ngày một lần (once each day).\n\nCâu hỏi: Loại suy luận nào đáp ứng yêu cầu?",
+        "correct": "Batch inference\n\n→ Batch inference được sử dụng để xử lý một lượng lớn dữ liệu (multiple gigabytes) một cách định kỳ (once each day), nơi độ trễ (latency) không phải là mối quan tâm chính.",
+        "incorrect": [
+          "❌ Asynchronous inference\n→ Sai. Thường được sử dụng cho khối lượng lớn nhưng không cần định kỳ hàng ngày, chi phí sẽ cao hơn sử dụng Batch inference.",
+          "❌ Real-time inference\n→ Sai. Yêu cầu độ trễ thấp (low latency) và thường xử lý các single requests, không phù hợp với việc xử lý nhiều gigabyte dữ liệu một lần mỗi ngày.",
+          "❌ Serverless inference\n→ Sai. Phương pháp triển khai không cần quản lý hạ tầng, dành cho workload không biết trước được số lượng request và không dành cho bài toán suy luận dữ liệu lớn."
+        ],
+        "tips": "Multiple GBs/TBs + Once a day/week/month + Latency not critical → Batch inference (Suy luận theo lô)\n\nSingle request + Real-time + Low latency → Real-time inference (Suy luận thời gian thực)\n\nLarge payload (Payload lớn) + Long processing time (Thời gian xử lý lâu) + Low urgency (Không khẩn cấp) → Asynchronous inference (Suy luận bất đồng bộ)"
+      }
+    },
+    {
+      "number": 24,
+      "status": "Skipped",
+      "stem": "An AI practitioner is evaluating the performance of an Amazon SageMaker model. The AI practitioner must choose a performance metric. The metric must show the ratio of the number of correctly classified items to the total number of correctly and incorrectly classified items. Which metric meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Accuracy"
+        },
+        {
+          "key": "B",
+          "text": "Precision"
+        },
+        {
+          "key": "C",
+          "text": "F1 score"
+        },
+        {
+          "key": "D",
+          "text": "Recall"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Yêu cầu: Chọn chỉ số hiệu suất phải thể hiện tỷ lệ (ratio) giữa số lượng mục được phân loại đúng (correctly classified items) trên tổng số mục được phân loại đúng và sai (total number of correctly and incorrectly classified items).",
+        "correct": "Accuracy\n\n→ Định nghĩa được đưa ra chính xác là định nghĩa của Accuracy:",
+        "incorrect": [
+          "❌ Precision\n→ Sai. Là tỷ lệ giữa số lượng dự đoán Đúng dương (True Positives) trên tổng số dự đoán Dương (Tổng số True Positives + False Positives).",
+          "❌ F1 score\n→ Sai. Là giá trị trung bình điều hòa của Precision và Recall.",
+          "❌ Recall\n→ Sai. Là tỷ lệ giữa số lượng dự đoán Đúng dương (True Positives) trên tổng số thực tế Dương (Tổng số True Positives + False Negatives)."
+        ],
+        "tips": "Correctly classified / Total classified → Accuracy (Độ chính xác)\n\nTrue Positives / Predicted Positives (Trong số những gì mô hình nói là Positive) → Precision\n\nTrue Positives / Actual Positives (Trong số tất cả những gì thực sự là Positive) → Recall\n\nHarmonic mean of Precision and Recall (Trung bình điều hòa P và R) → F1 Score"
+      }
+    },
+    {
+      "number": 25,
+      "status": "Skipped",
+      "stem": "A company is developing an ML model to predict customer churn. Which evaluation metric will assess the model's performance on a binary classification task such as predicting churn?",
+      "options": [
+        {
+          "key": "A",
+          "text": "R-squared"
+        },
+        {
+          "key": "B",
+          "text": "Time used to train the model"
+        },
+        {
+          "key": "C",
+          "text": "Mean squared error (MSE)"
+        },
+        {
+          "key": "D",
+          "text": "F1 score"
+        }
+      ],
+      "correctAnswer": [
+        "D"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Phát triển mô hình ML để dự đoán việc khách hàng bỏ đi (predict customer churn).\n\nĐặc điểm: Đây là tác vụ phân loại nhị phân (binary classification).\n\nCâu hỏi: Chỉ số đánh giá nào sẽ đánh giá hiệu suất của mô hình?",
+        "correct": "F1 score\n\n→ F1 score là chỉ số phù hợp cho các tác vụ phân loại nhị phân (binary classification) như dự đoán churn. Nó là giá trị trung bình điều hòa của Precision và Recall, đặc biệt hữu ích khi các lớp dữ liệu mất cân bằng (imbalanced) (ví dụ: số lượng khách hàng bỏ đi ít hơn nhiều so với khách hàng ở lại).",
+        "incorrect": [
+          "❌ Mean squared error (MSE)\n→ Sai. Là chỉ số đánh giá cho các tác vụ Hồi quy (Regression), không phải Phân loại.",
+          "❌ R-squared\n→ Sai. Là chỉ số đánh giá cho các tác vụ Hồi quy (Regression), không phải Phân loại.",
+          "❌ Time used to train the model\n→ Sai. Là chỉ số về chi phí/hiệu quả tính toán (computational efficiency), không phải chỉ số hiệu suất dự đoán (predictive performance) của mô hình."
+        ],
+        "tips": "Binary Classification (Phân loại nhị phân) / Imbalanced classes (Lớp mất cân bằng) → F1 Score / Precision / Recall / Accuracy / AUC-ROC\n\nRegression (Hồi quy) → MSE / RMSE / MAE / R-squared\n\nPredict customer churn → Thường là Phân loại nhị phân (Binary Classification)"
+      }
+    },
+    {
+      "number": 26,
+      "status": "Skipped",
+      "stem": "A retail company wants to build an ML model to recommend products to customers. The company wants to build the model based on responsible practices. Which practice should the company apply when collecting data to decrease model bias?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ensure that the data is from a publicly available dataset."
+        },
+        {
+          "key": "B",
+          "text": "Ensure that the data is balanced and collected from a diverse group."
+        },
+        {
+          "key": "C",
+          "text": "Collect data from customers who have a past purchase history."
+        },
+        {
+          "key": "D",
+          "text": "Use data from only customers who match the demographics of the company's overall customer base."
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "B"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Xây dựng mô hình ML để gợi ý sản phẩm (recommend products).\n\nYêu cầu: Xây dựng mô hình có trách nhiệm (responsible practices).\n\nMục đích cụ thể: Giảm độ thiên lệch mô hình (decrease model bias) khi thu thập dữ liệu (collecting data).",
+        "correct": "Ensure that the data is balanced and collected from a diverse group.\n\n→ Model bias thường xảy ra khi tập dữ liệu huấn luyện không đồng nhất/tương đồng (unrepresentative) cho toàn bộ tập người dùng hoặc dữ liệu. Để giảm thiểu, phải đảm bảo dữ liệu cân bằng (balanced) và thu thập từ một nhóm người dùng đa dạng (diverse group).",
+        "incorrect": [
+          "❌ Use data from only customers who match the demographics of the company’s overall customer base\n→ Sai. Việc chỉ sử dụng dữ liệu của một nhóm khách hàng có thể bỏ sót các nhóm khác và tăng độ thiên lệch. Mục tiêu là sự đa dạng.",
+          "❌ Collect data from customers who have a past purchase history\n→ Sai. Có thể dẫn đến thiên lệch theo lịch sử mua hàng (past purchase history), bỏ qua khách hàng mới hoặc có hành vi khác.",
+          "❌ Ensure that the data is from a publicly available dataset\n→ Sai. Nguồn dữ liệu công khai có thể không phù hợp hoặc vẫn có độ thiên lệch sẵn có và không phản ánh đúng dữ liệu khách hàng của công ty."
+        ],
+        "tips": "Model bias / Fairness / Responsible AI → Diverse / Balanced data\n\nSageMaker Clarify → Dịch vụ AWS dùng để phát hiện/giảm Model bias và Explainability (Tính giải thích)"
+      }
+    },
+    {
+      "number": 27,
+      "status": "Skipped",
+      "stem": "Which term refers to the instructions given to foundation models (FMs) so that the FMs provide a more accurate response to a question?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prompt"
+        },
+        {
+          "key": "B",
+          "text": "Direction"
+        },
+        {
+          "key": "C",
+          "text": "Translation"
+        },
+        {
+          "key": "D",
+          "text": "Dialog"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Thuật ngữ nào đề cập đến hướng dẫn (instructions) được đưa ra cho mô hình nền tảng (foundation models - FMs) để chúng cung cấp phản hồi chính xác hơn (more accurate response)?",
+        "correct": "Prompt\n\n→ Prompt là thuật ngữ tiêu chuẩn trong Generative AI để chỉ hướng dẫn hoặc đầu vào bằng ngôn ngữ tự nhiên cho mô hình FMs.",
+        "incorrect": [
+          "❌ Direction\n→ Sai. Một từ ngữ chung chung, không phải là thuật ngữ kỹ thuật trong ngữ cảnh AI tạo sinh.",
+          "❌ Dialog\n→ Sai. Là một chuỗi nhiều prompts và phản hồi, không phải là bản thân hướng dẫn đơn lẻ.",
+          "❌ Translation\n→ Sai. Là một loại tác vụ (task) mà mô hình có thể thực hiện, không phải là hướng dẫn đầu vào."
+        ],
+        "tips": "Instructions given to FMs / Text input to LLM → Prompt\n\nProcess of refining the instructions (Quá trình tinh chỉnh hướng dẫn) → Prompt Engineering\n\nImproving accuracy / Changing model behavior with input text → Prompt"
+      }
+    },
+    {
+      "number": 28,
+      "status": "Skipped",
+      "stem": "A company needs to select a generative AI model to build an application. The application must provide responses to users in real time. Which model characteristic should the company consider to meet these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Model complexity"
+        },
+        {
+          "key": "B",
+          "text": "Innovation speed"
+        },
+        {
+          "key": "C",
+          "text": "Inference speed"
+        },
+        {
+          "key": "D",
+          "text": "Training time"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Xây dựng ứng dụng Generative AI\n\nYêu cầu: Cung cấp phản hồi cho người dùng theo thời gian thực (in real time).\n\nCâu hỏi: Đặc tính mô hình cần xem xét?",
+        "correct": "Inference speed\n\n→ Để cung cấp phản hồi theo thời gian thực, điều quan trọng nhất là tốc độ mô hình đưa ra dự đoán hoặc tạo ra phản hồi (Inference - suy luận/dự đoán) phải nhanh. Tốc độ suy luận (Inference speed) là thước đo trực tiếp cho thời gian phản hồi.",
+        "incorrect": [
+          "❌ Model complexity\n→ Sai. Độ phức tạp ảnh hưởng đến tốc độ nhưng không phải là thước đo trực tiếp và cốt lõi cho yêu cầu thời gian thực.",
+          "❌ Innovation speed\n→ Sai. Không liên quan đến hiệu suất hoạt động của ứng dụng đã triển khai.",
+          "❌ Training time\n→ Sai. Chỉ liên quan đến giai đoạn phát triển, không phải hiệu suất hoạt động trong môi trường production."
+        ],
+        "tips": "in real time / live prediction / low latency → Inference speed (Tốc độ suy luận/dự đoán)\n\nTraining time (Thời gian huấn luyện) → Giai đoạn phát triển mô hình\n\nInference time (Thời gian suy luận) → Giai đoạn triển khai / release"
+      }
+    },
+    {
+      "number": 29,
+      "status": "Skipped",
+      "stem": "A company wants to add generative AI functionality to its application by integrating a large language model (LLM). The responses from the LLM must be as deterministic and as stable as possible. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Configure the application to automatically set the temperature parameter to 0 when submitting the prompt to the LLM."
+        },
+        {
+          "key": "B",
+          "text": "Configure the application to automatically add \"make your response deterministic\" at the end of the prompt before submitting the prompt to the LLM."
+        },
+        {
+          "key": "C",
+          "text": "Configure the application to automatically add \"make your response deterministic\" at the beginning of the prompt before submitting the prompt to the LLM."
+        },
+        {
+          "key": "D",
+          "text": "Configure the application to automatically set the temperature parameter to 1 when submitting the prompt to the LLM."
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Thêm chức năng Generative AI bằng cách tích hợp LLM (large language model).\n\nYêu cầu: Phản hồi từ LLM phải xác định (deterministic) và ổn định (stable) nhất có thể.\n\nCâu hỏi: Giải pháp đáp ứng yêu cầu này?",
+        "correct": "Configure the application to automatically set the temperature parameter to 0 when submitting the prompt to the LLM.\n\n→ Trong các mô hình ngôn ngữ lớn (LLM), tham số Temperature kiểm soát tính ngẫu nhiên (randomness) hoặc tính sáng tạo (creativity) của phản hồi. Đặt Temperature = 0 sẽ giảm thiểu tính ngẫu nhiên, làm cho phản hồi xác định (deterministic) và ổn định (stable) hơn.",
+        "incorrect": [
+          "❌ Configure the application to automatically add \"make your response deterministic\" at the end of the prompt before submitting the prompt to the LLM.\n→ Sai. Thêm hướng dẫn vào prompt (Prompt Engineering) có thể hữu ích, nhưng thiết lập tham số mô hình (Temperature = 0) là cách hiệu quả và trực tiếp nhất để đảm bảo tính xác định về mặt kỹ thuật.",
+          "❌ Configure the application to automatically add \"make your response deterministic\" at the beginning of the prompt before submitting the prompt to the LLM.\n→ Sai. Thêm hướng dẫn vào prompt (Prompt Engineering) có thể hữu ích, nhưng thiết lập tham số mô hình (Temperature = 0) là cách hiệu quả và trực tiếp nhất để đảm bảo tính xác định về mặt kỹ thuật.",
+          "❌ Configure the application to automatically set the temperature parameter to 1 when submitting the prompt to the LLM.\n→ Sai. Temperature = 1 (hoặc cao hơn) sẽ làm tăng tính ngẫu nhiên (randomness) và sáng tạo (creativity), đi ngược lại yêu cầu về tính xác định (deterministic)."
+        ],
+        "tips": "Deterministic / Stable / Precise (Chính xác) output → Temperature = 0\n\nCreative / Random / Diverse output → Temperature > 0 (Ví dụ: 0.7 - 1.0)\n\nPrompt Engineering (Thiết kế prompt) → Điều chỉnh hướng dẫn cho mô hình.\n\nTemperature → Kiểm soát tính ngẫu nhiên (Randomness)"
+      }
+    },
+    {
+      "number": 30,
+      "status": "Skipped",
+      "stem": "Which statement correctly describes embeddings in generative AI?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Embeddings represent data as high-dimensional vectors that capture semantic relationships."
+        },
+        {
+          "key": "B",
+          "text": "Embeddings is a technique that searches data to find the most helpful information to answer natural language questions."
+        },
+        {
+          "key": "C",
+          "text": "Embeddings reduce the hardware requirements of a model by using a less precise data type for the weights and activations."
+        },
+        {
+          "key": "D",
+          "text": "Embeddings provide the ability to store and retrieve data for generative AI applications."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Phát biểu nào mô tả đúng về embeddings trong Generative AI?",
+        "correct": "Embeddings represent data as high-dimensional vectors that capture semantic relationships.\n\n→ Vector Embeddings được sử dụng để mã hóa dữ liệu (văn bản, hình ảnh, v.v.) theo cách nắm bắt mối quan hệ ngữ nghĩa (semantic relationships) của chúng. Các mục có ý nghĩa tương tự sẽ có vector gần nhau.",
+        "incorrect": [
+          "❌\n\nEmbeddings is a technique that searches data to find the most helpful information to answer natural language questions.\n→ Sai. Đây là mô tả về tìm kiếm ngữ nghĩa (Semantic Search) hoặc Truy xuất tăng cường (Retrieval-Augmented Generation - RAG).",
+          "❌ Embeddings reduce the hardware requirements of a model by using a less precise data type for the weights and activations.\n→ Sai. Đây là mô tả về kỹ thuật Quantization (Lượng tử hóa), không phải embeddings.",
+          "❌ Embeddings provide the ability to store and retrieve data for generative AI applications.\n→ Sai. Mô tả này thuộc về Vector Database."
+        ],
+        "tips": "Embeddings → High-dimensional vectors + Semantic relationships (Quan hệ ngữ nghĩa) / Represent data (Biểu diễn dữ liệu)\n\nRAG / Semantic Search → Search / Find helpful information / Retrieval\n\nQuantization (Lượng tử hóa) → Reduce hardware requirements / Less precise data type"
+      }
+    },
+    {
+      "number": 31,
+      "status": "Skipped",
+      "stem": "In which stage of the generative AI model lifecycle are tests performed to examine the model's accuracy?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fine-tuning"
+        },
+        {
+          "key": "B",
+          "text": "Evaluation"
+        },
+        {
+          "key": "C",
+          "text": "Data selection"
+        },
+        {
+          "key": "D",
+          "text": "Deployment"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Trong giai đoạn nào của vòng đời mô hình Generative AI (generative AI model lifecycle), các bài kiểm tra được thực hiện để kiểm tra độ chính xác (examine the model's accuracy)?",
+        "correct": "Evaluation\n\n→ Giai đoạn kiểm và có hệ thống để kiểm tra hiệu suất (performance) của mô hình, bao gồm các chỉ số như độ chính xác (accuracy), F1 score, BLEU score, v.v., trước khi triển khai.",
+        "incorrect": [
+          "❌ Deployment\n→ Sai. Là giai đoạn đưa mô hình vào môi trường thực để phục vụ người dùng, không phải giai đoạn kiểm tra độ chính xác ban đầu.",
+          "❌ Data selection\n→ Sai. Là giai đoạn trước khi huấn luyện/tinh chỉnh, tập trung vào việc chuẩn bị dữ liệu.",
+          "❌ Fine-tuning\n→ Sai. Là quá trình huấn luyện mô hình nền tảng trên dữ liệu cụ thể để cải thiện hiệu suất."
+        ],
+        "tips": "Examine model's accuracy / Measure performance / Calculate metrics → Evaluation (Đánh giá)\n\nPut model into production / Serve user requests → Deployment (Triển khai)\n\nTrain model on specific data / Adapt FM to task → Fine-tuning (Tinh chỉnh)"
+      }
+    },
+    {
+      "number": 32,
+      "status": "Skipped",
+      "stem": "An education company waftion. The application will give users the ability to enter text or provide a picture of a question. The application will respond with a written answer and an explanation of the written answer. Which model type meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Computer vision model"
+        },
+        {
+          "key": "B",
+          "text": "Large multi-modal language model"
+        },
+        {
+          "key": "C",
+          "text": "Text-to-speech model"
+        },
+        {
+          "key": "D",
+          "text": "Diffusion model"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Ứng dụng: Cho phép người dùng nhập văn bản hoặc cung cấp hình ảnh.\n\nĐầu ra: Ứng dụng sẽ phản hồi bằng một câu trả lời bằng văn bản (written answer) và một giải thích (explanation).\n\nCâu hỏi: Loại mô hình nào đáp ứng các yêu cầu này?",
+        "correct": "Large multi-modal language model\n\n→ Mô hình khả năng xử lý nhiều phương thức đầu vào (multi-modal input) (văn bản VÀ hình ảnh) và tạo ra đầu ra bằng ngôn ngữ tự nhiên (câu trả lời và giải thích).",
+        "incorrect": [
+          "❌ Computer vision model\n→ Sai. Chỉ xử lý hình ảnh và thường cho ra kết quả phân loại/phát hiện (classification/detection), không phải câu trả lời/giải thích bằng văn bản.",
+          "❌ Diffusion model\n→ Sai. Dùng để tạo hình ảnh từ văn bản (Text-to-Image), không phải để tạo văn bản từ hình ảnh.",
+          "❌ Text-to-speech model\n→ Sai. Chuyển văn bản thành giọng nói, không phải tạo văn bản từ văn bản/hình ảnh."
+        ],
+        "tips": "Input: Text AND Picture / Output: Text → Multi-modal model\n\nInput: Image / Output: Classification/Detection → Computer Vision\n\nInput: Text / Output: Image → Diffusion Model / Text-to-Image"
+      }
+    },
+    {
+      "number": 33,
+      "status": "Skipped",
+      "stem": "A social media company wants to prevent users from posting discriminatory content on the company's application. The company wants to use Amazon Bedrock as part of the solution. How can the company use Amazon Bedrock to meet these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Give users the ability to interact based on user preferences."
+        },
+        {
+          "key": "B",
+          "text": "Provide a variety of responses to select from for user engagement."
+        },
+        {
+          "key": "C",
+          "text": "Block interactions related to predefined topics."
+        },
+        {
+          "key": "D",
+          "text": "Restrict user conversations to predefined topics."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Công ty truyền thông xã hội muốn ngăn chặn (prevent) người dùng đăng tải nội dung phân biệt đối xử (discriminatory content).\n\nCông cụ: Sử dụng Amazon Bedrock làm một phần của giải pháp.\n\nCâu hỏi: Amazon Bedrock có thể được sử dụng như thế nào để đáp ứng yêu cầu?",
+        "correct": "Block interactions related to predefined topics.\n\n→ Amazon Bedrock cung cấp tính năng Guardrails. Guardrails cho phép bạn chặn (block) các đầu vào của người dùng hoặc các phản hồi của mô hình liên quan đến các chủ đề bị cấm (predefined topics) hoặc có nội dung có hại (bao gồm nội dung phân biệt đối xử).",
+        "incorrect": [
+          "❌ Give users the ability to interact based on user preferences\n→ Sai. Liên quan đến cá nhân hóa, không phải an toàn nội dung.",
+          "❌ Restrict user conversations to predefined topics\n→ Sai. Yêu cầu này quá nghiêm ngặt; mục tiêu là chặn nội dung độc hại, không phải giới hạn cuộc trò chuyện chỉ trong một chủ đề hẹp.",
+          "❌ Provide a variety of responses to select from for user engagement\n→ Sai. Liên quan đến chất lượng phản hồi, không phải an toàn nội dung."
+        ],
+        "tips": "Prevent harmful/discriminatory content / AI safety / Content moderation → Guardrails for Amazon Bedrock\n\nBlock interactions / Filter content / Predefined topics → Guardrails for Amazon Bedrock\n\nAmazon Bedrock + Safety/Toxicity → Guardrails"
+      }
+    },
+    {
+      "number": 34,
+      "status": "Skipped",
+      "stem": "An ecommerce company is using a chatbot to automate the customer order submission process. The chatbot is powered by AI and is available to customers directly from the company's website 24 hours a day, 7 days a week. Which option is an AI system input vulnerability that the company needs to resolve before the chatbot is made available?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Concept drift"
+        },
+        {
+          "key": "B",
+          "text": "Large language model (LLM) hallucinations"
+        },
+        {
+          "key": "C",
+          "text": "Prompt injection"
+        },
+        {
+          "key": "D",
+          "text": "Data leakage"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty thương mại điện tử sử dụng chatbot AI để tự động hóa quy trình đặt hàng, hoạt động 24/7.\n\nYêu cầu: Xác định một lỗ hổng đầu vào hệ thống AI (AI system input vulnerability) cần giải quyết trước khi chatbot được công khai.\n\nCâu hỏi: Lỗ hổng nào cần giải quyết?",
+        "correct": "Prompt injection\n\n→ Là một lỗ hổng bảo mật đầu vào (input vulnerability) trong các hệ thống dựa trên LLM/Generative AI. Kẻ tấn công có thể chèn các hướng dẫn độc hại vào đầu vào của người dùng để ghi đè (override) các hướng dẫn của hệ thống (system prompt), khiến mô hình thực hiện các hành vi không mong muốn, như tiết lộ thông tin hoặc thay đổi quy trình đặt hàng.",
+        "incorrect": [
+          "❌ Data leakage\n→ Sai. Liên quan đến việc dữ liệu nhạy cảm bị lộ, không phải là một lỗ hổng đầu vào trực tiếp.",
+          "❌ Large language model (LLM) hallucinations\n→ Sai. Là một vấn đề về đầu ra (output issue) (tạo ra thông tin sai), không phải lỗ hổng đầu vào.",
+          "❌ Concept drift\n→ Sai. Là vấn đề về hiệu suất mô hình theo thời gian (model performance over time), không phải lỗ hổng đầu vào."
+        ],
+        "tips": "AI system input vulnerability / Malicious instruction / Override system prompt → Prompt injection\n\nAI safety / Harmful output / Guardrails → Content filtering\n\nGenerating false information → Hallucinations"
+      }
+    },
+    {
+      "number": 35,
+      "status": "Skipped",
+      "stem": "A company wants to improve its chatbot's responses to match the company's desired tone. The company has 100 examples of high-quality conversations between customer service agents and customers. The company wants to use this data to incorporate company tone into the chatbot's responses. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Create an Amazon Bedrock fine-tuning job."
+        },
+        {
+          "key": "B",
+          "text": "Host the model by using Amazon SageMaker. Use TensorRT for large language model (LLM) deployment."
+        },
+        {
+          "key": "C",
+          "text": "Create an Amazon SageMaker HyperPod pre-training job."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon Personalize to generate responses."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Cải thiện phản hồi (improve its chatbot's responses) để phù hợp với tông giọng mong muốn (match the company's desired tone).\n\nDữ liệu: Có 100 ví dụ về các cuộc hội thoại chất lượng cao.\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu (sử dụng 100 ví dụ để đưa tông giọng công ty (company tone) vào chatbot)?",
+        "correct": "Create an Amazon Bedrock fine-tuning job.\n\n→ Fine-tuning là kỹ thuật thích hợp nhất để điều chỉnh một mô hình nền tảng (FM) đã tồn tại để thích ứng với phong cách hoặc tông giọng cụ thể (adapt to a specific style or tone) của công ty, sử dụng một tập dữ liệu nhãn nhỏ (small labeled dataset) (100 ví dụ). Amazon Bedrock cung cấp khả năng tinh chỉnh các FM có sẵn.",
+        "incorrect": [
+          "❌ Use Amazon Personalize to generate responses\n→ Sai. Amazon Personalize là dịch vụ gợi ý sản phẩm (recommendation), không phải để tạo phản hồi văn bản (text generation) hoặc điều chỉnh tông giọng.",
+          "❌ Create an Amazon SageMaker HyperPod pre-training job\n→ Sai. Pre-training được sử dụng để huấn luyện một mô hình từ đầu (from scratch) trên dữ liệu khổng lồ, không phù hợp cho việc tinh chỉnh tông giọng (tone) với 100 ví dụ.",
+          "❌ Host the model by using Amazon SageMaker. Use TensorRT for large language model (LLM) deployment.\n→ Sai. Đây là giải pháp để triển khai và tối ưu hóa tốc độ suy luận (optimize inference speed), không phải để cải thiện chất lượng phản hồi (improve response quality) hoặc tông giọng (tone)."
+        ],
+        "tips": "Adapt to specific style/tone / Use small labeled dataset / Improve quality → Fine-tuning\n\n100 examples / Small dataset → Phù hợp cho Fine-tuning, không phải Pre-training\n\nRecommendation engine → Amazon Personalize\n\nDeploy/Optimize inference → SageMaker + TensorRT"
+      }
+    },
+    {
+      "number": 36,
+      "status": "Skipped",
+      "stem": "What is the benefit of fine-tuning a foundation model (FM)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fine-tuning uses specific training data to retrain the FM from scratch to adapt to a specific use case."
+        },
+        {
+          "key": "B",
+          "text": "Fine-tuning reduces the FM's size and complexity and enables slower inference."
+        },
+        {
+          "key": "C",
+          "text": "Fine-tuning improves the performance of the FM on a specific task by further training the FM on new labeled data."
+        },
+        {
+          "key": "D",
+          "text": "Fine-tuning keeps the FM's knowledge up to date by pre-training the FM on more recent data."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Lợi ích của việc tinh chỉnh (fine-tuning) một mô hình nền tảng (foundation model - FM) là gì?",
+        "correct": "Fine-tuning improves the performance of the FM on a specific task by further training the FM on new labeled data.\n\n→ Fine-tuning là quá trình huấn luyện tiếp tục một mô hình nền tảng đã được huấn luyện trước (pre-trained) trên một tập dữ liệu nhãn cụ thể (labeled data) để cải thiện hiệu suất (improves the performance) cho một tác vụ cụ thể (specific task).",
+        "incorrect": [
+          "❌ Fine-tuning reduces the FM’s size and complexity and enables slower inference\n→ Sai. Fine-tuning không làm giảm kích thước hoặc độ phức tạp của FM; các kỹ thuật như lượng tử hóa (quantization) mới làm điều đó. Inference thường nhanh hơn sau tinh chỉnh do mô hình tập trung hơn, không phải chậm hơn (slower).",
+          "❌ Fine-tuning uses specific training data to retrain the FM from scratch to adapt to a specific use case.\n→ Sai. Retrain từ đầu là sai.",
+          "❌ Fine-tuning keeps the FM's knowledge up to date by pre-training the FM on more recent data\n→ Sai. Huấn luyện trên dữ liệu gần đây là một chiến lược khác, không phải mô tả về lợi ích tuning-model."
+        ],
+        "tips": "Adapt to specific style/tone / Use small labeled dataset / Improve quality → Fine-tuning\n\n100 examples / Small dataset → Phù hợp cho Fine-tuning, không phải Pre-training\n\nRecommendation engine → Amazon Personalize\n\nDeploy/Optimize inference → SageMaker + TensorRT"
+      }
+    },
+    {
+      "number": 37,
+      "status": "Skipped",
+      "stem": "Which metric is used to evaluate the performance of foundation models (FMs) for text summarization tasks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "F1 score"
+        },
+        {
+          "key": "B",
+          "text": "Bilingual Evaluation Understudy (BLEU) score"
+        },
+        {
+          "key": "C",
+          "text": "Accuracy"
+        },
+        {
+          "key": "D",
+          "text": "Mean squared error (MSE)"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Chỉ số nào được sử dụng để đánh giá hiệu suất (evaluate the performance) của các mô hình nền tảng (FMs) cho các tác vụ tóm tắt văn bản (text summarization tasks)?",
+        "correct": "Bilingual Evaluation Understudy (BLEU) score\n\n→ BLEU score là một chỉ số tiêu chuẩn được sử dụng rộng rãi để đánh giá chất lượng của văn bản được tạo ra (generated text) so với văn bản tham chiếu (reference text), đặc biệt trong các tác vụ dịch máy (machine translation) và tóm tắt văn bản (text summarization).",
+        "incorrect": [
+          "❌ F1 score\n→ Sai. Thường dùng cho các tác vụ Phân loại (Classification), không phải Tạo văn bản (Generation).",
+          "❌ Accuracy\n→ Sai. Thường dùng cho các tác vụ Phân loại (Classification), không phải Tạo văn bản (Generation).",
+          "❌ Mean squared error (MSE)\n→ Sai. Dùng cho các tác vụ Hồi quy (Regression)."
+        ],
+        "tips": "Text Summarization / Machine Translation / Generated text quality → BLEU score (hoặc ROUGE score)\n\nClassification → F1 score / Accuracy\n\nRegression → MSE / RMSE"
+      }
+    },
+    {
+      "number": 38,
+      "status": "Skipped",
+      "stem": "A medical company wants to modernize its onsite information processing application. The company wants to use generative AI to respond to medical questions from patients. Which AWS service should the company use to ensure responsible AI for the application?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Guardrails for Amazon Bedrock"
+        },
+        {
+          "key": "B",
+          "text": "Amazon Inspector"
+        },
+        {
+          "key": "C",
+          "text": "Amazon Rekognition"
+        },
+        {
+          "key": "D",
+          "text": "AWS Trusted Advisor"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty y tế muốn sử dụng Generative AI để trả lời các câu hỏi y tế (respond to medical questions) từ bệnh nhân.\n\nYêu cầu: Dịch vụ AWS nào nên được sử dụng để đảm bảo AI có trách nhiệm (responsible AI) cho ứng dụng?",
+        "correct": "Guardrails for Amazon Bedrock\n\n→ Vì ứng dụng y tế xử lý thông tin nhạy cảm và cần độ chính xác cao, Guardrails for Amazon Bedrock là tính năng được thiết kế để thiết lập ranh giới an toàn (safety boundaries) cho các ứng dụng Generative AI. Nó giúp lọc (filter) nội dung có hại, chặn (block) các chủ đề bị cấm, và điều chỉnh (tune) phản hồi để tuân thủ các nguyên tắc của công ty và đảm bảo AI có trách nhiệm (responsible AI).",
+        "incorrect": [
+          "❌ Amazon Inspector\n→ Sai. Dịch vụ đánh giá lỗ hổng bảo mật, không liên quan trực tiếp đến chất lượng/an toàn đầu ra của AI (AI output quality/safety).",
+          "❌ Amazon Rekognition\n→ Sai. Dịch vụ phân tích hình ảnh và video (image and video analysis), không liên quan đến Generative AI văn bản.",
+          "❌ AWS Trusted Advisor\n→ Sai. Dịch vụ tư vấn về tối ưu hóa chi phí, hiệu suất, bảo mật, v.v., không phải là công cụ thực thi AI có trách nhiệm."
+        ],
+        "tips": "Responsible AI / AI safety / Medical questions / Filtering harmful content → Guardrails for Amazon Bedrock\n\nSafety boundaries / Block undesired topics → Guardrails\n\nSecurity/Vulnerability assessment → Amazon Inspector"
+      }
+    },
+    {
+      "number": 39,
+      "status": "Skipped",
+      "stem": "A financial company uses AWS to host its generative AI models. The company must generate reports to show adherence to international regulations for handling sensitive customer data. Which AWS service meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon Macie"
+        },
+        {
+          "key": "B",
+          "text": "AWS Artifact"
+        },
+        {
+          "key": "C",
+          "text": "AWS Secrets Manager"
+        },
+        {
+          "key": "D",
+          "text": "AWS Config"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Ngữ cảnh: Công ty tài chính sử dụng AWS để lưu trữ mô hình Generative AI.\n\nYêu cầu: Phải tạo báo cáo (generate reports) để chứng minh sự tuân thủ (adherence) các quy định quốc tế (international regulations) về xử lý dữ liệu khách hàng nhạy cảm (sensitive customer data).\n\nCâu hỏi: Dịch vụ AWS nào đáp ứng yêu cầu?",
+        "correct": "AWS Artifact\n\n→ AWS Artifact là cổng thông tin cung cấp quyền truy cập theo yêu cầu vào các báo cáo tuân thủ (compliance reports) của AWS và các thỏa thuận. Khách hàng sử dụng Artifact để lấy bằng chứng về các tiêu chuẩn bảo mật và tuân thủ (ví dụ: ISO, SOC, HIPAA) để đáp ứng các yêu cầu kiểm toán và tuân thủ quy định quốc tế (international regulations).",
+        "incorrect": [
+          "❌ AWS Secrets Manager\n→ Sai. Dùng để manage secrets (mật khẩu, khóa API), không liên quan đến việc tạo báo cáo tuân thủ.",
+          "❌ Amazon Macie\n→ Sai. Là dịch vụ quét dữ liệu nhạy cảm PII (discover and protect sensitive data) trong S3, không phải dịch vụ tạo báo cáo tuân thủ (compliance reports) cho khách hàng.",
+          "❌ AWS Config\n→ Sai. Dùng để đánh giá, kiểm tra và giám sát (assess, audit, and monitor) cấu hình tài nguyên AWS để tuân thủ quy định, không phải là kho lưu trữ báo cáo tuân thủ do AWS tạo ra."
+        ],
+        "tips": "Compliance reports (Báo cáo tuân thủ) / Audit evidence (Bằng chứng kiểm toán) / Adherence to regulations → AWS Artifact\n\nDiscover/Protect sensitive data → Amazon Macie\n\nStore/Rotate/Manage secrets → AWS Secrets Manager"
+      }
+    },
+    {
+      "number": 40,
+      "status": "Skipped",
+      "stem": "A company wants to fine-tune a foundation model (FM) by using AWS services. The company needs to ensure that its data stays private, safe, and secure in the source AWS Region where the data is stored. Which combination of steps will meet these requirements MOST cost-effectively? (Choose two.)",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use the Amazon Bedrock API."
+        },
+        {
+          "key": "B",
+          "text": "Use AWS PrivateLink and a VPC."
+        },
+        {
+          "key": "C",
+          "text": "Host the model on premises by using AWS Outposts."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon CloudWatch logs and metrics."
+        },
+        {
+          "key": "E",
+          "text": "Host the Amazon Bedrock API on premises."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Tinh chỉnh (fine-tune) một FM bằng dịch vụ AWS.\n\nYêu cầu 1: Đảm bảo dữ liệu riêng tư, an toàn, bảo mật (private, safe, and secure).\n\nYêu cầu 2: Dữ liệu source AWS Region, nơi nó được lưu trữ.\n\nYêu cầu 3: Hiệu quả chi phí NHẤT (MOST cost-effectively). (Chọn hai đáp án)",
+        "correct": "Use the Amazon Bedrock API.\n\n→ Sử dụng API Bedrock để tinh chỉnh là cách tiêu chuẩn và hiệu quả chi phí (cost-effective) nhất (so với Outposts).\n\nUse AWS PrivateLink and a VPC\n\n→ AWS PrivateLink cho phép kết nối riêng tư (private) và an toàn (secure) từ VPC của bạn đến các dịch vụ AWS (như Bedrock, SageMaker) mà không cần giao tiếp qua Internet công cộng.",
+        "incorrect": [
+          "❌ Host the model on premises by using AWS Outposts\n→ Sai. AWS Outposts là một giải pháp rất đắt đỏ (không phải MOST cost-effectively) để giữ dữ liệu tại chỗ, và thường không cần thiết khi PrivateLink có thể đáp ứng yêu cầu.",
+          "❌ Host the Amazon Bedrock API on premises\n→ Sai. API Bedrock được lưu trữ trên AWS.",
+          "❌ Use Amazon CloudWatch logs and metrics\n→ Sai. CloudWatch chỉ dùng để giám sát, không liên quan trực tiếp đến việc đảm bảo dữ liệu riêng tư (private data) hoặc data stays in the source Region."
+        ],
+        "tips": "Private/Secure connection + VPC + Stay within AWS network → AWS PrivateLink\n\nFine-tuning + Cost-effective → Amazon Bedrock API (Sử dụng dịch vụ managed)\n\nOn premises + Not cost-effective → AWS Outposts (Thường chỉ dùng cho độ trễ cực thấp/yêu cầu quy định nghiêm ngặt)"
+      }
+    },
+    {
+      "number": 41,
+      "status": "Skipped",
+      "stem": "What is the purpose of vector embeddings in a large language model (LLM)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Providing the ability to mathematically compare texts"
+        },
+        {
+          "key": "B",
+          "text": "Grouping a set of characters to be treated as a single unit"
+        },
+        {
+          "key": "C",
+          "text": "Splitting text into manageable pieces of data"
+        },
+        {
+          "key": "D",
+          "text": "Providing the count of every word in the input"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Mục đích của nhúng vector (vector embeddings) trong Mô hình ngôn ngữ lớn (LLM) là gì?",
+        "correct": "Providing the ability to mathematically compare texts\n\n→ Vector Embeddings là các biểu diễn số (numerical) của văn bản (từ, câu, tài liệu) trong không gian vector, dùng để đo lường sự tương đồng ngữ nghĩa (semantic similarity) giữa các đoạn văn bản khác nhau.",
+        "incorrect": [
+          "❌ Splitting text into manageable pieces of data\n→ Sai.Đây là mục đích của Tokenization hoặc Chunking (chia đoạn), không phải là mục đích của việc tạo Embeddings.",
+          "❌ Grouping a set of characters to be treated as a single unit\n→ Sai. Đây là chức năng của Tokenization, chuyển văn bản thành các token có ý nghĩa.",
+          "❌ Providing the count of every word in the input\n→ Sai. Đây là một kỹ thuật biểu diễn đơn giản như Bag-of-Words, không phải là mục đích chính của các Vector Embeddings."
+        ],
+        "tips": "Vector Embeddings → Numerical representation (Biểu diễn số) + Semantic similarity (Tương đồng ngữ nghĩa) + Mathematically compare (So sánh bằng toán học) + Vector Database.\n\nSplitting text (Chia văn bản) / Grouping characters (Nhóm ký tự) → Tokenization/Chunking."
+      }
+    },
+    {
+      "number": 42,
+      "status": "Skipped",
+      "stem": "Which type of AI model makes numeric predictions?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Multi-modal"
+        },
+        {
+          "key": "B",
+          "text": "Transformer"
+        },
+        {
+          "key": "C",
+          "text": "Regression"
+        },
+        {
+          "key": "D",
+          "text": "Diffusion"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Loại mô hình AI nào tạo ra dự đoán số (numeric predictions)?",
+        "correct": "Regression\n\n→ Hồi quy (Regression) là loại mô hình học máy được thiết kế để dự đoán một giá trị số liên tục (continuous numeric value) (ví dụ: dự đoán giá nhà là 450,000 USD, dự đoán nhiệt độ là 25,5°C).",
+        "incorrect": [
+          "❌ Diffusion\n→ Sai. Diffusion là mô hình sử dụng để tạo ra dữ liệu mới như hình ảnh.",
+          "❌ Transformer\n→ Sai. Transformer là một kiến trúc mô hình (chủ yếu cho các tác vụ trình tự/ngôn ngữ), không phải là loại mô hình theo tác vụ (như Phân loại/Hồi quy).",
+          "❌ Multi-modal\n→ Sai. Multi-modal mô tả một mô hình có thể xử lý nhiều loại đầu vào (ví dụ: văn bản và hình ảnh), không phải là loại mô hình theo tác vụ dự đoán số."
+        ],
+        "tips": "Numeric predictions (Dự đoán số) + Continuous value (Giá trị liên tục) → Regression (Hồi quy).\n\nDiscrete classes (Các lớp rời rạc) → Classification (Phân loại).\n\nGenerate new data (Tạo dữ liệu mới) → Generative/Diffusion Model."
+      }
+    },
+    {
+      "number": 43,
+      "status": "Skipped",
+      "stem": "A hospital wants to use a generative AI solution with speech-to-text functionality to help improve employee skills in dictating clinical notes. Which AWS service meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon Q Developer"
+        },
+        {
+          "key": "B",
+          "text": "Amazon Polly"
+        },
+        {
+          "key": "C",
+          "text": "AWS HealthScribe"
+        },
+        {
+          "key": "D",
+          "text": "Amazon Rekognition"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Tình huống: Bệnh viện muốn sử dụng giải pháp generative AI với chức năng chuyển lời nói thành văn bản (speech-to-text functionality).\n\nMục đích: Cải thiện kỹ năng của nhân viên trong việc đọc chính tả ghi chú lâm sàng (dictating clinical notes).\n\nCâu hỏi: Dịch vụ AWS nào đáp ứng yêu cầu này?",
+        "correct": "AWS HealthScribe\n\n→ AWS HealthScribe là dịch vụ AI được thiết kế đặc biệt cho ngành chăm sóc sức khỏe, tự động tạo ghi chú lâm sàng (clinical notes) từ các cuộc trò chuyện hoặc đọc chính tả (dictation) của bác sĩ/nhân viên y tế, sử dụng khả năng speech-to-text (chuyển lời nói thành văn bản).",
+        "incorrect": [
+          "❌ Amazon Q Developer\n→ Sai. Amazon Q Developer là một trợ lý AI dành cho nhà phát triển để viết code, gỡ lỗi, và kỹ thuật phần mềm, không liên quan đến ghi chú lâm sàng.",
+          "❌ Amazon Polly\n→ Sai. Amazon Polly là dịch vụ chuyển văn bản thành lời nói (text-to-speech), trái ngược với yêu cầu chuyển lời nói thành văn bản (speech-to-text).",
+          "❌ Amazon Rekognition\n→ Sai. Amazon Rekognition là dịch vụ phân tích hình ảnh và video (image and video), không liên quan đến chức năng xử lý giọng nói và tạo ghi chú lâm sàng."
+        ],
+        "tips": "Generative AI + Speech-to-text (Chuyển lời nói thành văn bản) + Clinical Notes (Ghi chú lâm sàng) / Healthcare (Chăm sóc sức khỏe) → AWS HealthScribe.\n\nSpeech-to-text (Lời nói → Văn bản) → Amazon Transcribe hoặc HealthScribe (Y tế).\n\nText-to-speech (Văn bản → Lời nói) → Amazon Polly.\n\nAnalyze images/video (Phân tích hình ảnh/video) → Amazon Rekognition."
+      }
+    },
+    {
+      "number": 44,
+      "status": "Skipped",
+      "stem": "A financial company wants to flag all credit card activity as possibly fraudulent or non-fraudulent based on transaction data. Which type of ML model meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Diffusion"
+        },
+        {
+          "key": "B",
+          "text": "Binary classification"
+        },
+        {
+          "key": "C",
+          "text": "Multi-class classification"
+        },
+        {
+          "key": "D",
+          "text": "Regression"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Gán nhãn tất cả hoạt động thẻ tín dụng là có thể gian lận (possibly fraudulent) HOẶC không gian lận (non-fraudulent).\n\nCâu hỏi: Loại mô hình ML nào đáp ứng yêu cầu này?",
+        "correct": "Binary classification\n\n→ Bài toán yêu cầu phân loại dữ liệu đầu vào (hoạt động thẻ) thành một trong hai lớp đầu ra rời rạc (discrete) và độc quyền (mutually exclusive) (Gian lận hoặc Không gian lận). Đây chính là định nghĩa của bài toán Phân loại nhị phân (Binary Classification).",
+        "incorrect": [
+          "❌ Regression\n→ Sai. Hồi quy được sử dụng để dự đoán một giá trị số liên tục (continuous numeric value) (ví dụ: nhiệt độ, giá nhà), không phải để gán nhãn phân loại (fraud/non-fraud).",
+          "❌ Diffusion\n→ Sai. Diffusion là một loại mô hình GenAI, thường được sử dụng để tạo ra hình ảnh hoặc dữ liệu mới, không phải để phân loại.",
+          "❌ Multi-class classification\n→ Sai. Multi-class classification được sử dụng khi có từ ba lớp trở lên (three or more classes) (ví dụ: phân loại loại trái cây là táo, chuối, cam), không phải dành cho bài toán phân loại nhị phân."
+        ],
+        "tips": "Flag/Label (Gắn cờ/Gán nhãn) + Hai lớp (Two classes) + Rời rạc (Discrete) → Binary Classification (Phân loại nhị phân).\n\nDự đoán giá trị số liên tục (Predict continuous numeric value) → Regression (Hồi quy).\n\nTạo ra dữ liệu mới (Generate new data) → Generative Model (ví dụ: Diffusion).\n\nPhân loại ba lớp trở lên (Classification of three or more classes) → Multi-class classification (Phân loại đa lớp)."
+      }
+    },
+    {
+      "number": 45,
+      "status": "Skipped",
+      "stem": "A manufacturing company has an application that ingests consumer complaints from publicly available sources. The application uses complex hard-coded logic to process the complaints. The company wants to scale this logic across markets and product lines. Which advantage do generative AI models offer for this scenario?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Explainability"
+        },
+        {
+          "key": "B",
+          "text": "Less sensitivity to changes in inputs"
+        },
+        {
+          "key": "C",
+          "text": "Adaptability"
+        },
+        {
+          "key": "D",
+          "text": "Predictability of outputs"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Tình huống: Ứng dụng xử lý phàn nàn của người tiêu dùng (consumer complaints) từ các nguồn công khai, sử dụng logic mã hóa cứng phức tạp (complex hard-coded logic).\n\nYêu cầu: Mở rộng logic này (scale this logic) qua các thị trường và dòng sản phẩm khác nhau.\n\nCâu hỏi: Mô hình generative AI models mang lại lợi thế nào?",
+        "correct": "Adaptability\n\n→ Mô hình Generative AI có khả năng thích ứng (Adaptability) vượt trội so với logic mã hóa cứng truyền thống. Chúng có thể hiểu được các biến thể (variations) và ngữ cảnh (nuances) của các phàn nàn khác nhau từ nhiều thị trường/dòng sản phẩm mà không cần thay đổi code/logic phức tạp cho từng trường hợp, giúp việc mở rộng quy mô trở nên dễ dàng hơn.",
+        "incorrect": [
+          "❌ Predictability of outputs\n→ Sai. Mô hình Generative AI nổi tiếng là kém dự đoán (less predictable) hơn so với logic mã hóa cứng (hard-coded logic). Logic mã hóa cứng sẽ luôn đưa ra cùng một đầu ra cho cùng một đầu vào.",
+          "❌ Less sensitivity to changes in inputs\n→ Sai. Mô hình Generative AI thường rất nhạy cảm (highly sensitive) với các thay đổi nhỏ trong prompts hoặc dữ liệu đầu vào.",
+          "❌ Explainability\n→ Sai. Mô hình Generative AI là hộp đen (black box) và thường khó giải thích (difficult to explain) hơn so với logic mã hóa cứng đơn giản mà con người có thể đọc và hiểu được."
+        ],
+        "tips": "Hard-coded logic (Logic mã hóa cứng) + Scale across markets (Mở rộng quy mô qua các thị trường) + Generative AI → Cần sự linh hoạt/mềm dẻo (flexibility) → Adaptability (Khả năng thích ứng).\n\nHard-coded logic luôn cho thấy High Predictability (Khả năng dự đoán cao) và High Explainability (Khả năng giải thích cao). Generative AI thì ngược lại."
+      }
+    },
+    {
+      "number": 46,
+      "status": "Skipped",
+      "stem": "Which ML technique ensures data compliance and privacy when training AI models on AWS?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Transfer learning"
+        },
+        {
+          "key": "B",
+          "text": "Reinforcement learning"
+        },
+        {
+          "key": "C",
+          "text": "Federated learning"
+        },
+        {
+          "key": "D",
+          "text": "Unsupervised learning"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Đảm bảo tuân thủ dữ liệu (data compliance) và quyền riêng tư (privacy) khi huấn luyện mô hình AI/ML.\n\nCâu hỏi: Kỹ thuật ML nào đáp ứng yêu cầu này?",
+        "correct": "Federated learning\n\n→ Federated learning cho phép huấn luyện mô hình trên các tập dữ liệu phân tán (thường là dữ liệu nhạy cảm) mà không cần di chuyển dữ liệu gốc ra khỏi thiết bị phần cứng hoặc môi trường cục bộ, do đó bảo toàn quyền riêng tư (privacy) và tuân thủ (compliance).",
+        "incorrect": [
+          "❌ Reinforcement learning\n→ Sai. Đây là một kỹ thuật ML tập trung vào việc huấn luyện tác nhân (agent) thông qua tương tác với môi trường và nhận thưởng (rewards), không liên quan trực tiếp đến việc bảo vệ quyền riêng tư dữ liệu phân tán.",
+          "❌ Transfer learning\n→ Sai. Đây là kỹ thuật sử dụng mô hình đã được huấn luyện trước (pre-trained model) cho một tác vụ mới, mục đích là tiết kiệm thời gian và tài nguyên, không phải để đảm bảo quyền riêng tư.",
+          "❌ Unsupervised learning\n→ Sai. Kỹ thuật này tìm kiếm các cấu trúc hoặc mẫu ẩn trong dữ liệu không được gán nhãn, không có cơ chế nào để bảo vệ quyền riêng tư và tuân thủ dữ liệu nhạy cảm."
+        ],
+        "tips": "Privacy (quyền riêng tư) + Compliance (tuân thủ) + Training ML models (huấn luyện mô hình ML) → Federated Learning.\n\nHuấn luyện trên dữ liệu phân tán (Training on distributed data) + Không chia sẻ dữ liệu gốc (No sharing of raw data) → Federated Learning."
+      }
+    },
+    {
+      "number": 47,
+      "status": "Skipped",
+      "stem": "A company wants to fine-tune a foundation model (FM) to answer questions for a specific domain. The company wants to use instruction-based fine-tuning. How should the company prepare the training data?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Collect external company reviews from various online sources. Manually label each review as either positive or negative."
+        },
+        {
+          "key": "B",
+          "text": "Gather company internal documents and industry-specific materials. Merge the documents and materials into a single file."
+        },
+        {
+          "key": "C",
+          "text": "Create few-shot prompts to instruct the model to answer only domain knowledge."
+        },
+        {
+          "key": "D",
+          "text": "Create pairs of questions and answers that specifically address topics related to the company's industry domain."
+        }
+      ],
+      "correctAnswer": [
+        "D"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: tinh chỉnh mô hình nền tảng (fine-tune a foundation model) để trả lời câu hỏi về lĩnh vực cụ thể (specific domain).\n\nKỹ thuật sử dụng: tinh chỉnh dựa trên hướng dẫn (instruction-based fine-tuning).\n\nCâu hỏi: Chuẩn bị dữ liệu huấn luyện như thế nào?",
+        "correct": "Create pairs of questions and answers that specifically address topics related to the company's industry domain.\n\n→ Instruction-based fine-tuning là phương pháp huấn luyện mô hình để tuân theo hướng dẫn (instructions), thường được trình bày dưới dạng cặp câu hỏi và câu trả lời (Question-Answer pairs) hoặc cặp lệnh và phản hồi (Instruction-Response pairs), tập trung vào lĩnh vực cần tinh chỉnh.",
+        "incorrect": [
+          "❌ Gather company internal documents and industry-specific materials. Merge the documents and materials into a single file.\n→ Sai. Đây là bước thu thập dữ liệu nguồn (corpus), nhưng không phải là cách chuẩn bị dữ liệu cho Instruction-based fine-tuning (cần định dạng Q&A), mà phù hợp hơn cho Retrieval-Augmented Generation (RAG) hoặc Pre-training/Continual Pre-training.",
+          "❌ Collect external company reviews from various online sources. Manually label each review as either positive or negative.\n→ Sai. Đây là cách chuẩn bị dữ liệu cho bài toán Phân loại cảm xúc (Sentiment Classification), không liên quan đến việc trả lời câu hỏi theo lĩnh vực.",
+          "❌ Create few-shot prompts to instruct the model to answer only domain knowledge.\n→ Sai. Few-shot prompting là kỹ thuật In-context Learning trong quá trình suy luận (inference), không phải là cách chuẩn bị dữ liệu huấn luyện (training data) cho việc tinh chỉnh mô hình (fine-tuning)."
+        ],
+        "tips": "Instruction-based fine-tuning (tinh chỉnh dựa trên hướng dẫn) → Question-Answer pairs (cặp câu hỏi-câu trả lời) / Instruction-Response pairs (cặp lệnh-phản hồi)."
+      }
+    },
+    {
+      "number": 48,
+      "status": "Skipped",
+      "stem": "Which option is a benefit of using infrastructure as code (IaC) in machine learning operations (MLOps)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "IaC minimizes overall expenses by deploying only low-cost instances."
+        },
+        {
+          "key": "B",
+          "text": "IaC streamlines the deployment of scalable and consistent ML workloads in cloud environments."
+        },
+        {
+          "key": "C",
+          "text": "IaC always provisions powerful compute instances, contributing to the training of more accurate models."
+        },
+        {
+          "key": "D",
+          "text": "IaC eliminates the need for hyperparameter tuning."
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Lợi ích nào của Cơ sở hạ tầng dưới dạng Mã (Infrastructure as Code - IaC) trong Vận hành mô hình ML (MLOps)?",
+        "correct": "IaC streamlines the deployment of scalable and consistent ML workloads in cloud environments.\n\n→ IaC cho phép định nghĩa và cung cấp cơ sở hạ tầng (tính toán, lưu trữ, mạng) theo cách tự động (automatic), lặp lại (repeatable), và nhất quán (consistent), điều này là cốt lõi để triển khai các tải công việc ML có khả năng mở rộng (scalable ML workloads) trong MLOps.",
+        "incorrect": [
+          "❌ IaC eliminates the need for hyperparameter tuning.\n→ Sai. IaC quản lý cơ sở hạ tầng, không liên quan đến việc tối ưu hóa siêu tham số (hyperparameter tuning).",
+          "❌ IaC always provisions powerful compute instances, contributing to the training of more accurate models.\n→ Sai. IaC provisioning những gì được định nghĩa; nó đảm bảo nhất quán (consistency), không phải tự động chọn instance mạnh nhất (most powerful) hoặc chính xác nhất (most accurate).",
+          "❌ IaC minimizes overall expenses by deploying only low-cost instances.\n→ Sai. IaC cho phép quản lý chi phí tốt hơn bằng cách dọn dẹp tài nguyên và sử dụng tài nguyên tối ưu, nhưng mục đích chính là tính nhất quán (consistency) và tự động hóa (automation), không phải là chỉ triển khai các instance chi phí thấp (low-cost)."
+        ],
+        "tips": "IaC (Infrastructure as Code) → Automation (Tự động hóa) + Consistency (Tính nhất quán) + Repeatability (Tính lặp lại) + Scalable Deployment (Triển khai có khả năng mở rộng).\n\nIaC in MLOps → Tự động hóa quy trình triển khai/cơ sở hạ tầng (Automating deployment/infrastructure pipeline)."
+      }
+    },
+    {
+      "number": 49,
+      "status": "Skipped",
+      "stem": "A company is creating an agent for its application by using Amazon Bedrock Agents. The agent is performing well, but the company wants to improve the agent’s accuracy by providing some specific examples. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Modify the advanced prompts for the agent to include the examples."
+        },
+        {
+          "key": "B",
+          "text": "Run a script in AWS Lambda that adds the examples to the training dataset."
+        },
+        {
+          "key": "C",
+          "text": "Create a guardrail for the agent that includes the examples."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon SageMaker Ground Truth to label the examples."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Sử dụng Amazon Bedrock Agents.\n\nYêu cầu: Cải thiện độ chính xác (accuracy) bằng cách cung cấp ví dụ cụ thể (specific examples).\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu này?",
+        "correct": "Modify the advanced prompts for the agent to include the examples.\n\n→ Đối với các mô hình ngôn ngữ lớn (LLM) và các Tác nhân (Agents) như trong Bedrock, việc cung cấp ví dụ cụ thể (specific examples) trong lời nhắc (prompt) được gọi là Few-shot Prompting (hoặc In-context Learning). Đây là cách tiêu chuẩn để cải thiện độ chính xác và hành vi của mô hình/tác nhân mà không cần tinh chỉnh lại (fine-tuning).",
+        "incorrect": [
+          "❌ Create a guardrail for the agent that includes the examples.\n→ Sai. Guardrails được sử dụng để kiểm soát nội dung và hành vi, đảm bảo an toàn, tuân thủ chính sách, không phải là nơi để cung cấp các ví dụ cụ thể (specific examples) nhằm cải thiện độ chính xác về mặt logic/domain.",
+          "❌ Use Amazon SageMaker Ground Truth to label the examples.\n→ Sai. SageMaker Ground Truth dùng để tạo tập dữ liệu gán nhãn (labeled datasets) cho việc huấn luyện (training) mô hình.",
+          "❌ Run a script in AWS Lambda that adds the examples to the training dataset.\n→ Sai. Việc này sẽ đòi hỏi tinh chỉnh lại (re-training/fine-tuning) mô hình nền tảng, một quy trình tốn kém và không cần thiết khi yêu cầu chỉ là cung cấp ví dụ cụ thể (specific examples) để cải thiện độ chính xác của Agent."
+        ],
+        "tips": "Amazon Bedrock Agents + Specific examples + Improve accuracy (cải thiện độ chính xác) → Modify the advanced prompts (Thay đổi lời nhắc nâng cao) (Few-shot Prompting).\n\nExamples + Agent/LLM (Tác nhân/LLM) → Prompt Engineering"
+      }
+    },
+    {
+      "number": 50,
+      "status": "Skipped",
+      "stem": "Which technique involves training AI models on labeled datasets to adapt the models to specific industry terminology and requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Data augmentation"
+        },
+        {
+          "key": "B",
+          "text": "Continuous pre-training"
+        },
+        {
+          "key": "C",
+          "text": "Fine-tuning"
+        },
+        {
+          "key": "D",
+          "text": "Model quantization"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Kỹ thuật nào bao gồm việc huấn luyện mô hình AI (training AI models) trên tập dữ liệu đã gán nhãn (labeled datasets).\n\nMục đích: Thích ứng mô hình (adapt the models) với thuật ngữ và yêu cầu cụ thể của ngành (specific industry terminology and requirements).\n\nCâu hỏi: Kỹ thuật này là gì?",
+        "correct": "Fine-tuning\n\n→ Tinh chỉnh (Fine-tuning) là quá trình huấn luyện một mô hình nền tảng (Foundation Model - FM) đã được huấn luyện trước trên một tập dữ liệu nhỏ hơn, đã gán nhãn (smaller, labeled dataset) để thích ứng (adapt) nó với một tác vụ hoặc lĩnh vực cụ thể (specific domain) (ví dụ: thuật ngữ y tế, tài chính).",
+        "incorrect": [
+          "❌ Data augmentation\n→ Sai. Kỹ thuật này được dùng để tăng kích thước và tính đa dạng (increase size and diversity) của tập dữ liệu huấn luyện, không phải là quá trình thích ứng mô hình.",
+          "❌ Model quantization\n→ Sai. Đây là kỹ thuật nén mô hình (model compression) để giảm kích thước và tăng tốc độ suy luận, không phải là quá trình thích ứng với thuật ngữ ngành.",
+          "❌ Continuous pre-training\n→ Sai. Đây là việc tiếp tục tiền huấn luyện mô hình trên một lượng lớn dữ liệu phi cấu trúc (unlabeled data), thường không sử dụng labeled datasets và mục đích là mở rộng kiến thức chung của mô hình chứ không phải thích ứng với một tác vụ cụ thể."
+        ],
+        "tips": "Adapt model to specific domain/terminology (Thích ứng mô hình với lĩnh vực/thuật ngữ cụ thể) + Labeled datasets (Tập dữ liệu đã gán nhãn) → Fine-tuning (Tinh chỉnh)."
+      }
+    },
+    {
+      "number": 51,
+      "status": "Skipped",
+      "stem": "A company has created a custom model by fine-tuning an existing large language model (LLM) from Amazon Bedrock. The company wants to deploy the model to production and use the model to handle a steady rate of requests each minute. Which solution meets these requirements MOST cost-effectively?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use the model with on-demand throughput on Amazon Bedrock."
+        },
+        {
+          "key": "B",
+          "text": "Deploy the model by using an Amazon EC2 compute optimized instance."
+        },
+        {
+          "key": "C",
+          "text": "Store the model in Amazon S3 and host the model by using AWS Lambda."
+        },
+        {
+          "key": "D",
+          "text": "Purchase Provisioned Throughput for the model on Amazon Bedrock."
+        }
+      ],
+      "correctAnswer": [
+        "D"
+      ],
+      "explanation": {
+        "summary": "Công ty đã tạo mô hình tùy chỉnh (custom model) bằng cách tinh chỉnh (fine-tuning) một LLM từ Amazon Bedrock.\n\nYêu cầu: Triển khai để xử lý tốc độ yêu cầu ổn định (steady rate of requests) mỗi phút, và phải là giải pháp hiệu quả chi phí NHẤT (MOST cost-effectively).\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu này một cách hiệu quả chi phí nhất?",
+        "correct": "Purchase Provisioned Throughput for the model on Amazon Bedrock.\n\n→ Khi có tốc độ yêu cầu ổn định (steady rate), việc mua Provisioned Throughput sẽ cung cấp một mức giá cam kết (committed rate), thường rẻ hơn đáng kể (significantly cheaper) so với việc sử dụng On-Demand cho khối lượng công việc ổn định và có thể dự đoán được. Đây là phương án hiệu quả chi phí nhất cho tải ổn định.",
+        "incorrect": [
+          "❌ Deploy the model by using an Amazon EC2 compute optimized instance.\n→ Sai. Tự host trên EC2 không phải là giải pháp hiệu quả chi phí nhất vì bạn phải quản lý cơ sở hạ tầng và MLOps, làm tăng TCO (Total Cost of Ownership).",
+          "❌ Use the model with on-demand throughput on Amazon Bedrock.\n→ Sai. On-Demand (pay-per-token) sẽ đắt hơn Provisioned Throughput khi xử lý tốc độ ổn định (steady rate) và khối lượng lớn vì bạn không được hưởng lợi từ mức giá cam kết.",
+          "❌ Store the model in Amazon S3 and host the model by using AWS Lambda.\n→ Sai. Lambda không phù hợp để host các mô hình LLM (Large Language Models) vì giới hạn về bộ nhớ và thời gian thực thi (timeout) quá nhỏ so với yêu cầu tính toán của LLM."
+        ],
+        "tips": "Adapt model to specific domain/terminology (Thích ứng mô hình với lĩnh vực/thuật ngữ cụ thể) + Labeled datasets (Tập dữ liệu đã gán nhãn) → Fine-tuning (Tinh chỉnh)."
+      }
+    },
+    {
+      "number": 52,
+      "status": "Skipped",
+      "stem": "Which statement presents an advantage of using Retrieval Augmented Generation (RAG) for natural language processing (NLP) tasks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "RAG is a technique for data augmentation in computer vision tasks."
+        },
+        {
+          "key": "B",
+          "text": "RAG is designed to improve the speed of language model training."
+        },
+        {
+          "key": "C",
+          "text": "RAG can use external knowledge sources to generate more accurate and informative responses."
+        },
+        {
+          "key": "D",
+          "text": "RAG is primarily used for speech recognition tasks."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Phát biểu nào trình bày lợi thế của việc sử dụng Retrieval Augmented Generation (RAG) cho các tác vụ Xử lý ngôn ngữ tự nhiên (NLP)?",
+        "correct": "RAG can use external knowledge sources to generate more accurate and informative responses.\n\n→ Lợi thế cốt lõi của RAG là khả năng truy xuất kiến thức bên ngoài (external knowledge), cho phép mô hình tạo ra các phản hồi chính xác hơn (more accurate), có cơ sở dữ liệu (grounded) và giàu thông tin (informative), đặc biệt là khi kiến thức đó là mới hoặc dành riêng cho miền (domain-specific).",
+        "incorrect": [
+          "❌ RAG is designed to improve the speed of language model training.\n→ Sai. RAG là một kỹ thuật được sử dụng chủ yếu trong quá trình suy luận (inference) để tạo ra phản hồi chất lượng cao; nó không làm tăng tốc độ huấn luyện (training) mô hình ngôn ngữ.",
+          "❌ RAG is primarily used for speech recognition tasks.\n→ Sai. RAG chủ yếu được sử dụng cho các tác vụ Tạo ngôn ngữ tự nhiên (NLG) dựa trên văn bản, không phải nhận dạng giọng nói (speech recognition).",
+          "❌ RAG is a technique for data augmentation in computer vision tasks.\n→ Sai. RAG là một kỹ thuật Generative AI cho NLP, không phải là kỹ thuật tăng cường dữ liệu (data augmentation."
+        ],
+        "tips": "Adapt model to specific domain/terminology (Thích ứng mô hình với lĩnh vực/thuật ngữ cụ thể) + Labeled datasets (Tập dữ liệu đã gán nhãn) → Fine-tuning."
+      }
+    },
+    {
+      "number": 53,
+      "status": "Skipped",
+      "stem": "A hospital developed an AI system to provide personalized treatment recommendations for patients. The AI system must provide the rationale behind the recommendations and make the insights accessible to doctors and patients. Which human-centered design principle does this scenario present?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Explainability"
+        },
+        {
+          "key": "B",
+          "text": "Fairness"
+        },
+        {
+          "key": "C",
+          "text": "Data governance"
+        },
+        {
+          "key": "D",
+          "text": "Privacy and security"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Hệ thống AI đưa ra đề xuất điều trị cá nhân hóa (personalized treatment recommendations).\n\nYêu cầu: Hệ thống phải cung cấp lý do cơ bản (the rationale behind) các đề xuất và cho phép bác sĩ/bệnh nhân truy cập các thông tin chi tiết (insights accessible).\n\nCâu hỏi: Nguyên tắc thiết kế hướng con người nào được thể hiện?",
+        "correct": "Explainability\n\n→ Yêu cầu cung cấp lý do cơ bản (rationale) và làm cho các thông tin chi tiết có thể truy cập (accessible) chính là định nghĩa của Khả năng giải thích (Explainability). Trong bối cảnh y tế, điều này đặc biệt quan trọng để tạo dựng niềm tin (trust) và cho phép các chuyên gia y tế kiểm tra tính hợp lý (sanity check) của các đề xuất AI.",
+        "incorrect": [
+          "❌ Privacy and security\n→ Sai. Đây là về việc bảo vệ dữ liệu cá nhân (PII, hồ sơ bệnh án), không liên quan trực tiếp đến việc giải thích lý do đề xuất.",
+          "❌ Fairness\n→ Sai. Đây là về việc đảm bảo mô hình không thiên vị đối với các nhóm bệnh nhân nhất định, không liên quan đến việc giải thích kết quả.",
+          "❌ Data governance\n→ Sai. Đây là về các chính sách và quy trình quản lý vòng đời dữ liệu, không liên quan đến nguyên tắc thiết kế lấy người dùng làm trung tâm liên quan đến đầu ra mô hình."
+        ],
+        "tips": "Rationale behind recommendations (Lý do đằng sau đề xuất) / Accessible insights (Thông tin chi tiết có thể truy cập) / Trust (Niềm tin) → Explainability (Khả năng giải thích)."
+      }
+    },
+    {
+      "number": 54,
+      "status": "Skipped",
+      "stem": "A company designed an AI-powered agent to answer customer inquiries based on product manuals. Which strategy can improve customer confidence levels in the AI-powered agent's responses?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Training the agent to respond in the company's language style"
+        },
+        {
+          "key": "B",
+          "text": "Writing the confidence level in the response"
+        },
+        {
+          "key": "C",
+          "text": "Including referenced product manual links in the response"
+        },
+        {
+          "key": "D",
+          "text": "Designing an agent avatar that looks like a computer"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Agent AI trả lời các thắc mắc của khách hàng dựa trên product manuals.\n\nCâu hỏi: Chiến lược nào có thể cải thiện mức độ tin cậy của khách hàng (customer confidence levels) vào phản hồi của Agent?",
+        "correct": "Including referenced product manual links in the response\n\n→ Để cải thiện niềm tin (confidence), khách hàng cần có khả năng kiểm tra nguồn thông tin (verify the source). Việc cung cấp referenced product manual links là một hình thức của trích dẫn (citation), cho phép khách hàng xác minh tính chính xác của phản hồi.",
+        "incorrect": [
+          "❌ Writing the confidence level in the response\n→ Sai. Việc hiển thị mức độ tự tin (ví dụ: \"Tôi tin tưởng 95%\") có thể hữu ích, nhưng việc cung cấp bằng chứng có thể xác minh (verifiable evidence) (như liên kết nguồn) có tác động mạnh hơn nhiều đến niềm tin của con người.",
+          "❌ Designing an agent avatar that looks like a computer\n→ Sai. Thiết kế giao diện (avatar) là yếu tố thẩm mỹ, không phải là chiến lược cốt lõi để xây dựng niềm tin vào tính chính xác và nguồn gốc (accuracy and source) của thông tin.",
+          "❌ Training the agent to respond in the company's language style\n→ Sai. Giọng điệu nhất quán là tốt cho thương hiệu, nhưng không giải quyết được mối quan tâm cốt lõi về tính chính xác của dữ liệu (data accuracy)."
+        ],
+        "tips": "Improve customer confidence (Cải thiện niềm tin khách hàng) + AI Agent + Answering based on documents (Trả lời dựa trên tài liệu) → Including referenced links/citations (Bao gồm liên kết/trích dẫn tham chiếu) (Đây là một lợi ích cốt lõi của RAG)."
+      }
+    },
+    {
+      "number": 55,
+      "status": "Skipped",
+      "stem": "A financial company is developing a fraud detection system that flags potential fraud cases in credit card transactions. Employees will evaluate the flagged fraud cases. The company wants to minimize the amount of time the employees spend reviewing flagged fraud cases that are not actually fraudulent. Which evaluation metric meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Precision"
+        },
+        {
+          "key": "B",
+          "text": "Accuracy"
+        },
+        {
+          "key": "C",
+          "text": "Recall"
+        },
+        {
+          "key": "D",
+          "text": "Lift chart"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Phát triển hệ thống phát hiện gian lận (fraud detection).\n\nYêu cầu: Giảm thiểu thời gian (minimize the amount of time) nhân viên xem xét các trường hợp được gắn cờ KHÔNG THỰC SỰ gian lận (not actually fraudulent).\n\nCâu hỏi: Chỉ số đánh giá nào đáp ứng yêu cầu này?",
+        "correct": "Precision\n\n→ Bài toán muốn giảm thiểu số lượng dự đoán gian lận sai (False Positives - FP), tức là các trường hợp mô hình gắn cờ là gian lận nhưng thực tế lại không phải. Precision (Độ chính xác) đo lường tỷ lệ các trường hợp mô hình dự đoán là True Positives trong số tất cả các dự đoán Tích cực (True Positives + False Positives). Precision = True Positives / (True Positives + False Positives). Tối đa hóa Precision sẽ giảm thiểu False Positives.",
+        "incorrect": [
+          "❌ Recall\n→ Sai. Recall đo lường tỷ lệ các trường hợp gian lận thực sự được mô hình tìm thấy. Tối đa hóa Recall sẽ giảm thiểu False Negatives (bỏ sót gian lận), không phải giảm thiểu thời gian xem xét các trường hợp không gian lận (False Positives).",
+          "❌ Accuracy\n→ Sai. Accuracy đo lường tổng thể các dự đoán đúng (cả đúng gian lận và đúng không gian lận). Trong các bài toán mất cân bằng như phát hiện gian lận, Accuracy không phù hợp.",
+          "❌ Lift chart\n→ Sai. Lift chart là một công cụ phân tích để đánh giá hiệu suất của mô hình marketing/khách hàng, cho thấy mô hình tốt hơn bao nhiêu so với việc chọn ngẫu nhiên, không phải là chỉ số cốt lõi để tối ưu hóa False Positives."
+        ],
+        "tips": "Minimize time reviewing NOT fraudulent cases (Giảm thiểu thời gian xem xét trường hợp KHÔNG gian lận) / Minimize False Positives (Giảm thiểu dự đoán sai) → Precision.\n\nMinimize missing fraudulent cases (Giảm thiểu bỏ sót trường hợp gian lận) / Minimize False Negatives (Giảm thiểu bỏ sót tiêu cực) → Recall."
+      }
+    },
+    {
+      "number": 56,
+      "status": "Skipped",
+      "stem": "A company deployed a Retrieval Augmented Generation (RAG) application on Amazon Bedrock that gathers financial news to distribute in daily newsletters. Users have recently reported politically influenced ideas in the newsletters. Which Amazon Bedrock guardrail can identify and filter this content?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Word filters"
+        },
+        {
+          "key": "B",
+          "text": "Content filters"
+        },
+        {
+          "key": "C",
+          "text": "Denied topics"
+        },
+        {
+          "key": "D",
+          "text": "Sensitive information filters"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Ứng dụng RAG trên Amazon Bedrock phân phát bản tin tài chính.\n\nVấn đề: Người dùng báo cáo có ý tưởng bị ảnh hưởng chính trị (politically influenced ideas) trong bản tin.\n\nCâu hỏi: Guardrail nào của Amazon Bedrock có thể xác định và lọc nội dung này?",
+        "correct": "Denied topics\n\n→ Chủ đề bị từ chối (Denied topics) trong Amazon Bedrock Guardrails cho phép người dùng xác định các lĩnh vực nội dung (content domains) mà mô hình không được phép thảo luận hoặc đề cập. Việc định cấu hình một chủ đề bị từ chối liên quan đến chính trị sẽ giúp lọc ra các ý tưởng bị ảnh hưởng chính trị.",
+        "incorrect": [
+          "❌ Word filters\n→ Sai. Bộ lọc từ thường chỉ áp dụng cho các từ/cụm từ cụ thể (ví dụ: tục tĩu), nhưng không hiệu quả trong việc lọc toàn bộ chủ đề (topic) hoặc ý tưởng phức tạp như nội dung bị ảnh hưởng chính trị.",
+          "❌ Sensitive information filters\n→ Sai. Bộ lọc này được thiết kế để phát hiện và làm mờ/ẩn các thực thể cụ thể (specific entities) như PII (thông tin nhận dạng cá nhân), số thẻ tín dụng, v.v., không phải để lọc nội dung theo chủ đề chính trị.",
+          "❌ Content filters\n→ Sai. Bộ lọc nội dung chung (thường được điều chỉnh để lọc Hateful, Insults, Sexual content) có thể không đủ tinh tế để lọc các ý tưởng bị ảnh hưởng chính trị một cách hiệu quả nếu không được định nghĩa rõ ràng. \"Denied topics\" là tính năng cụ thể nhất cho yêu cầu này."
+        ],
+        "tips": "Amazon Bedrock Guardrail + Politically influenced ideas (Ý tưởng bị ảnh hưởng chính trị) / Specific themes or subjects (Chủ đề hoặc đối tượng cụ thể) → Denied topics (Chủ đề bị từ chối).\n\nFilter PII/Credit card numbers (Lọc PII/Số thẻ tín dụng) → Sensitive information filters (Bộ lọc thông tin nhạy cảm)."
+      }
+    },
+    {
+      "number": 57,
+      "status": "Skipped",
+      "stem": "A company is developing an editorial assistant application that uses generative AI. During the pilot phase, usage is low and application performance is not a concern. The company cannot predict application usage after the application is fully deployed and wants to minimize application costs. Which solution will meet these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Use Amazon SageMaker JumpStart."
+        },
+        {
+          "key": "B",
+          "text": "Use Amazon Bedrock with Provisioned Throughput."
+        },
+        {
+          "key": "C",
+          "text": "Use GPU-powered Amazon EC2 instances."
+        },
+        {
+          "key": "D",
+          "text": "Use Amazon Bedrock with On-Demand Throughput."
+        }
+      ],
+      "correctAnswer": [
+        "B",
+        "D"
+      ],
+      "explanation": {
+        "summary": "Ứng dụng: Trợ lý biên tập dùng Generative AI.\n\nTình hình: Sử dụng thấp (usage is low) trong giai đoạn thử nghiệm.\n\nYêu cầu: Không thể dự đoán mức sử dụng (cannot predict application usage) khi triển khai chính thức và muốn giảm thiểu chi phí ứng dụng (minimize application costs).\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu này?",
+        "correct": "Use Amazon Bedrock with On-Demand Throughput.\n\n→ On-Demand Throughput trong Amazon Bedrock cho phép thanh toán dựa trên số lượng token đã xử lý (pay-per-token). Đây là lựa chọn hiệu quả chi phí nhất (MOST cost-effective) khi mức sử dụng thấp (low usage) hoặc không thể dự đoán được (unpredictable), vì bạn chỉ trả tiền cho những gì bạn sử dụng, không cần cam kết dung lượng.",
+        "incorrect": [
+          "❌ Use GPU-powered Amazon EC2 instances.\n→ Sai. Việc tự quản lý và triển khai mô hình trên EC2 GPU đòi hỏi chi phí vận hành (MLOps) và quản lý tài nguyên (Provisioning/Scaling) cao hơn nhiều so với việc sử dụng dịch vụ managed service như Bedrock.",
+          "❌ Use Amazon Bedrock with Provisioned Throughput.\n→ Sai. Provisioned Throughput yêu cầu cam kết (commitment) về một lượng dung lượng xử lý nhất định (thông lượng) và được trả phí theo giờ/tháng. Phương án này phù hợp cho tải ổn định và cao (steady and high load), nhưng sẽ lãng phí (wasteful) và không tối ưu chi phí nếu mức sử dụng là thấp hoặc không thể đoán trước.",
+          "❌ Use Amazon SageMaker JumpStart.\n→ Sai. JumpStart có thể giúp triển khai nhanh, nhưng việc host mô hình trên JumpStart vẫn sẽ tốn chi phí cho các Endpoint, và nếu mức sử dụng thấp và không đoán trước thì On-Demand của Bedrock vẫn là giải pháp Generative AI tiết kiệm chi phí nhất hiện có cho tình huống này."
+        ],
+        "tips": "Minimize costs (Giảm thiểu chi phí) + Low/Unpredictable usage (Sử dụng thấp/Không thể đoán trước) + Generative AI/Bedrock → On-Demand Throughput (Thông lượng theo nhu cầu) (Pay-per-token).\n\nSteady/High rate (Tốc độ ổn định/Cao) + Performance/Latency commitment (Cam kết hiệu suất/Độ trễ) → Provisioned Throughput."
+      }
+    },
+    {
+      "number": 58,
+      "status": "Skipped",
+      "stem": "What is the purpose of chunking in Retrieval Augmented Generation (RAG)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To avoid database storage limitations for large text documents by storing parts or chunks of the text"
+        },
+        {
+          "key": "B",
+          "text": "To improve efficiency by avoiding the need to convert large text into vector embeddings"
+        },
+        {
+          "key": "C",
+          "text": "To decrease the cost of storage by storing parts or chunks of the text"
+        },
+        {
+          "key": "D",
+          "text": "To improve the contextual relevancy of results retrieved from the vector index"
+        }
+      ],
+      "correctAnswer": [
+        "D"
+      ],
+      "explanation": {
+        "summary": "Câu hỏi: Mục đích của phân đoạn (chunking) trong Retrieval Augmented Generation (RAG) là gì?",
+        "correct": "To improve the contextual relevancy of results retrieved from the vector index\n\n→ Phân đoạn (Chunking) chia các tài liệu lớn thành các đoạn nhỏ, có độ dài tối ưu. Điều này đảm bảo khi mô hình truy xuất một đoạn, nó sẽ chứa đủ ngữ cảnh liên quan (contextual relevancy) để trả lời câu hỏi, nhưng không quá lớn để làm cho mô hình ngôn ngữ bị quá tải hoặc tốn kém. Việc chia nhỏ thành các đoạn có liên quan giúp việc tìm kiếm vector chính xác hơn.",
+        "incorrect": [
+          "❌ To avoid database storage limitations for large text documents by storing parts or chunks of the text\n→ Sai. Mặc dù phân đoạn có thể giảm kích thước tổng thể của vector (vì chỉ cần nhúng các đoạn), nhưng mục đích chính không phải là tránh giới hạn lưu trữ cơ sở dữ liệu (thường không phải là vấn đề lớn) mà là tối ưu hóa việc truy xuất (retrieval).",
+          "❌ To improve efficiency by avoiding the need to convert large text into vector embeddings\n→ Sai. Phân đoạn không tránh việc chuyển đổi văn bản thành embeddings; thực tế, nó yêu cầu tạo nhiều embeddings hơn (một embedding cho mỗi đoạn nhỏ), nhưng điều này giúp tăng hiệu suất truy xuất (retrieval efficiency).",
+          "❌ To decrease the cost of storage by storing parts or chunks of the text\n→ Sai. Chi phí lưu trữ không phải là mục đích chính. Mục đích là chất lượng truy xuất (retrieval quality)."
+        ],
+        "tips": "RAG + Chunking (Phân đoạn) → Improve contextual relevancy (Cải thiện sự liên quan về ngữ cảnh) + Optimize retrieval (Tối ưu hóa truy xuất).\n\nChunking giúp đảm bảo chất lượng của đoạn văn bản được chia nhỏ và nhúng (quality of the embedded text segment)."
+      }
+    },
+    {
+      "number": 59,
+      "status": "Skipped",
+      "stem": "A company that uses multiple ML models wants to identify changes in original model quality so that the company can resolve any issues. Which AWS service or feature meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Amazon SageMaker HyperPod"
+        },
+        {
+          "key": "B",
+          "text": "Amazon SageMaker JumpStart"
+        },
+        {
+          "key": "C",
+          "text": "Amazon SageMaker Model Monitor"
+        },
+        {
+          "key": "D",
+          "text": "Amazon SageMaker Data Wrangler"
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Tình huống: Công ty sử dụng nhiều mô hình ML.\n\nYêu cầu: Xác định các thay đổi (identify changes) trong chất lượng mô hình gốc (original model quality) để giải quyết mọi vấn đề.\n\nCâu hỏi: Dịch vụ/tính năng AWS nào đáp ứng yêu cầu này?",
+        "correct": "Amazon SageMaker Model Monitor\n\n→ Amazon SageMaker Model Monitor được thiết kế để liên tục theo dõi các mô hình ML đang hoạt động (in production) để xác định sự trôi dạt dữ liệu (data drift), trôi dạt mô hình (model drift) hoặc các thay đổi khác về chất lượng (quality) và sai lệch (bias) so với mô hình gốc, cho phép công ty giải quyết các vấn đề trước khi chúng ảnh hưởng đến hiệu suất kinh doanh.",
+        "incorrect": [
+          "❌ Amazon SageMaker JumpStart\n→ Sai. JumpStart được sử dụng để triển khai nhanh chóng các mô hình dựng sẵn hoặc mô hình từ Hub, không phải là công cụ để giám sát chất lượng (quality monitoring).",
+          "❌ Amazon SageMaker HyperPod\n→ Sai. HyperPod là một tính năng để tăng tốc độ và độ tin cậy của việc huấn luyện phân tán (distributed training), không phải là công cụ để giám sát chất lượng mô hình sau khi triển khai.",
+          "❌ Amazon SageMaker Data Wrangler\n→ Sai. Data Wrangler là công cụ để tổng hợp và chuẩn bị dữ liệu (aggregate and prepare data) cho việc huấn luyện mô hình, không phải để giám sát mô hình đang hoạt động."
+        ],
+        "tips": "Identify changes in original model quality (Xác định thay đổi chất lượng mô hình gốc) / Data drift/Model drift (Trôi dạt dữ liệu/mô hình) / Resolve issues (Giải quyết vấn đề) → Amazon SageMaker Model Monitor."
+      }
+    },
+    {
+      "number": 60,
+      "status": "Skipped",
+      "stem": "A company wants to collaborate with several research institutes to develop an AI model. The company needs standardized documentation of model version tracking and a record of model development. Which solution meets these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Track the model changes by using Git."
+        },
+        {
+          "key": "B",
+          "text": "Track the model changes by using Amazon Comprehend."
+        },
+        {
+          "key": "C",
+          "text": "Track the model changes by using Amazon Fraud Detector."
+        },
+        {
+          "key": "D",
+          "text": "Track the model changes by using Amazon SageMaker Model Cards."
+        }
+      ],
+      "correctAnswer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": {
+        "summary": "Yêu cầu: Cần tài liệu chuẩn hóa (standardized documentation) về theo dõi phiên bản mô hình (model version tracking) và hồ sơ phát triển mô hình (record of model development).\n\nCâu hỏi: Giải pháp nào đáp ứng yêu cầu này?",
+        "correct": "Track the model changes by using Amazon SageMaker Model Cards.\n\n→ Amazon SageMaker Model Cards là tính năng được xây dựng để cung cấp một nơi tập trung và chuẩn hóa (standardized) để ghi lại thông tin phiên bản (versioning), các tham số, mục đích sử dụng và các chi tiết khác liên quan đến hồ sơ phát triển (record of development) của mô hình ML.",
+        "incorrect": [
+          "❌ Track the model changes by using Git.\n→ Sai. Git theo dõi mã nguồn (source code), nhưng không phải là giải pháp chuẩn để theo dõi high-level documentation and metadata của mô hình ML.",
+          "❌ Track the model changes by using Amazon Fraud Detector.\n→ Sai. Amazon Fraud Detector là dịch vụ phát hiện gian lận (fraud detection), không phải công cụ quản lý tài liệu và phiên bản mô hình.",
+          "❌ Track the model changes by using Amazon Comprehend.\n→ Sai. Amazon Comprehend là dịch vụ NLP (Xử lý ngôn ngữ tự nhiên), không phải là công cụ quản lý vòng đời mô hình."
+        ],
+        "tips": "Standardized documentation (Tài liệu chuẩn hóa) + Model version tracking (Theo dõi phiên bản mô hình) + Record of model development (Hồ sơ phát triển mô hình) → Amazon SageMaker Model Cards."
+      }
+    },
+    {
+      "number": 61,
+      "status": "Skipped",
+      "stem": "An AI practitioner needs to improve the accuracy of a natural language generation model. The model uses rapidly changing inventory data. Which technique will improve the model's accuracy?",
+      "options": [
+        {
+          "key": "A",
+          "text": "One-shot prompting"
+        },
+        {
+          "key": "B",
+          "text": "Retrieval Augmented Generation (RAG)"
+        },
+        {
+          "key": "C",
+          "text": "Federated learning"
+        },
+        {
+          "key": "D",
+          "text": "Transfer learning"
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Mục tiêu: Cải thiện độ chính xác (accuracy) của mô hình Tạo ngôn ngữ tự nhiên (NLG).\n\nVấn đề: Mô hình sử dụng dữ liệu tồn kho thay đổi nhanh chóng (rapidly changing inventory data).\n\nCâu hỏi: Kỹ thuật nào sẽ cải thiện độ chính xác?",
+        "correct": "Retrieval Augmented Generation (RAG)\n\n→ Khi dữ liệu thay đổi nhanh (rapidly changing data), mô hình nền tảng (LLM) sẽ bị cũ kiến thức (stale knowledge). RAG cho phép mô hình truy cập và sử dụng kiến thức bên ngoài/mới nhất (external/up-to-date knowledge) (dữ liệu tồn kho hiện tại) trong quá trình tạo phản hồi, đảm bảo độ chính xác.",
+        "incorrect": [
+          "❌ Transfer learning\n→ Sai. Đây là kỹ thuật dùng mô hình đã huấn luyện trước để bắt đầu, không giải quyết vấn đề cập nhật kiến thức liên tục cho dữ liệu thay đổi nhanh.",
+          "❌ Federated learning\n→ Sai. Kỹ thuật này dùng để bảo vệ quyền riêng tư (privacy) khi huấn luyện trên dữ liệu phân tán, không phải để cập nhật kiến thức nhanh chóng.",
+          "❌ One-shot prompting\n→ Sai. Đây là kỹ thuật Prompting (In-context Learning) để cải thiện hành vi, nhưng không cung cấp quyền truy cập vào lượng lớn dữ liệu bên ngoài (external knowledge base)."
+        ],
+        "tips": "Rapidly changing data (Dữ liệu thay đổi nhanh) / Up-to-date information (Thông tin cập nhật) + Improve accuracy (Cải thiện độ chính xác) → Retrieval Augmented Generation (RAG)."
+      }
+    },
+    {
+      "number": 62,
+      "status": "Skipped",
+      "stem": "Which term describes the numerical representations of real-world objects and concepts that AI and natural language processing (NLP) models use to improve understanding of textual information?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Embeddings"
+        },
+        {
+          "key": "B",
+          "text": "Binaries"
+        },
+        {
+          "key": "C",
+          "text": "Tokens"
+        },
+        {
+          "key": "D",
+          "text": "Models"
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Hỏi về thuật ngữ mô tả biểu diễn số (numerical representations) của các đối tượng hoặc khái niệm.\n\nĐược các mô hình AI và NLP (Xử lý ngôn ngữ tự nhiên) sử dụng để hiểu văn bản.",
+        "correct": "Embeddings\n\n→ Đây là định nghĩa chính xác của \"Embeddings\". Chúng là các vector (dãy số) biểu diễn ngữ nghĩa của từ/câu/khái niệm trong một không gian toán học, cho phép máy tính hiểu được mối quan hệ giữa chúng (ví dụ: \"vua\" - \"đàn ông\" + \"phụ nữ\" = \"nữ hoàng\").",
+        "incorrect": [
+          "❌ Tokens\n→ Sai. Tokens là các đơn vị cơ bản (từ, từ con) mà văn bản được chia nhỏ trước khi chúng được chuyển thành embeddings.",
+          "❌ Models\n→ Sai. Mô hình là thứ sử dụng embeddings, không phải bản thân embeddings.",
+          "❌ Binaries\n→ Sai. Đây là định dạng lưu trữ máy tính (0 và 1), không phải là biểu diễn ngữ nghĩa."
+        ],
+        "tips": "Biểu diễn số (Numerical representation) / Vector của từ/khái niệm → Embeddings (Nhúng)."
+      }
+    },
+    {
+      "number": 63,
+      "status": "Skipped",
+      "stem": "A research company implemented a chatbot by using a foundation model (FM) from Amazon Bedrock. The chatbot searches for answers to questions from a large database of research papers. After multiple prompt engineering attempts, the company notices that the FM is performing poorly because of the complex scientific terms in the research papers. How can the company improve the performance of the chatbot?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Clean the research paper data to remove complex scientific terms."
+        },
+        {
+          "key": "B",
+          "text": "Change the FM inference parameters."
+        },
+        {
+          "key": "C",
+          "text": "Use domain adaptation fine-tuning to adapt the FM to complex scientific terms."
+        },
+        {
+          "key": "D",
+          "text": "Use few-shot prompting to define how the FM can answer the questions."
+        }
+      ],
+      "correctAnswer": [
+        "C"
+      ],
+      "explanation": {
+        "summary": "Chatbot dùng FM (Bedrock) để tìm kiếm trên cơ sở dữ liệu bài báo nghiên cứu (database of research papers).\n\nMô hình hoạt động kém (performing poorly).\n\nLý do: Các thuật ngữ khoa học phức tạp (complex scientific terms).\n\nHỏi: Làm cách nào để cải thiện hiệu suất (improve the performance)?",
+        "correct": "Use domain adaptation fine-tuning to adapt the FM to complex scientific terms.\n\n→ Mô hình cơ sở (base FM) không có kiến thức chuyên sâu về lĩnh vực khoa học này. Để \"dạy\" cho mô hình hiểu và xử lý các thuật ngữ chuyên ngành (domain-specific), phương pháp hiệu quả nhất là tinh chỉnh (fine-tuning) nó với dữ liệu thuộc lĩnh vực đó.",
+        "incorrect": [
+          "❌ Use few-shot prompting to define how the FM can answer the questions.\n→ Sai. Đề bài nói đã thử \"multiple prompt engineering attempts\" (nhiều nỗ lực kỹ thuật prompt) nhưng thất bại. \"Few-shot\" (vài ví dụ) không đủ để dạy mô hình cả một lĩnh vực khoa học.",
+          "❌ Change the FM inference parameters.\n→ Sai. Thay đổi các tham số suy luận (như temperature) chỉ thay đổi cách mô hình tạo ra câu chữ (sáng tạo hay bám sát), chứ không thêm kiến thức mới (thuật ngữ khoa học) cho nó.",
+          "❌ Clean the research paper data to remove complex scientific terms.\n→ Sai. Xóa các thuật ngữ khoa học là xóa đi chính thông tin cốt lõi, làm hỏng dữ liệu."
+        ],
+        "tips": "Kiến thức chuyên ngành (Domain-specific knowledge) / Thuật ngữ phức tạp (Complex terms) / Cải thiện hiệu suất sâu → Tinh chỉnh (Fine-tuning).\n\nThay đổi văn phong/hành vi (Change style/behavior) + Nỗ lực ít (Least effort) → Kỹ thuật Prompt (Prompt Engineering)."
+      }
+    },
+    {
+      "number": 64,
+      "status": "Skipped",
+      "stem": "A company wants to use a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company needs the LLM to produce more consistent responses to the same input prompt. Which adjustment to an inference parameter should the company make to meet these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Decrease the length of output tokens."
+        },
+        {
+          "key": "B",
+          "text": "Decrease the temperature value."
+        },
+        {
+          "key": "C",
+          "text": "Increase the temperature value."
+        },
+        {
+          "key": "D",
+          "text": "Increase the maximum generation length."
+        }
+      ],
+      "correctAnswer": [
+        "B"
+      ],
+      "explanation": {
+        "summary": "Dùng LLM (Bedrock) để phân tích tình cảm (sentiment analysis).\n\nYêu cầu: Mô hình cần tạo ra phản hồi nhất quán hơn (more consistent responses).\n\nHỏi: Điều chỉnh tham số suy luận (inference parameter) nào?",
+        "correct": "Decrease the temperature value.\n\n→ Tham số Temperature kiểm soát tính ngẫu nhiên. Temperature cao (High) = Sáng tạo, ngẫu nhiên, mỗi lần chạy ra kết quả khác nhau. Temperature thấp (Low, gần 0) = Quyết định (deterministic), bám sát, nhất quán, mỗi lần chạy ra kết quả giống nhau.",
+        "incorrect": [
+          "❌ Increase the temperature value\n→ Sai. Tăng Temperature sẽ làm phản hồi kém nhất quán và sáng tạo hơn.",
+          "❌ Decrease the length of output tokens\n→ Sai. Giảm độ dài chỉ làm câu trả lời ngắn hơn, không làm nó nhất quán hơn.",
+          "❌ Increase the maximum generation length\n→ Sai. Tăng độ dài chỉ cho phép câu trả lời dài hơn."
+        ],
+        "tips": "Nhất quán (Consistent) / Bám sát (Deterministic) / Ít sáng tạo (Less creative) → Giảm Temperature (Decrease Temperature).\n\nSáng tạo (Creative) / Đa dạng (Diverse) → Tăng Temperature (Increase Temperature)."
+      }
+    },
+    {
+      "number": 65,
+      "status": "Skipped",
+      "stem": "A company wants to develop a large language model (LLM) application by using Amazon Bedrock and customer data that is uploaded to Amazon S3. The company's security policy states that each team can access data for only the team's own customers. Which solution will meet these requirements?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Create one Amazon Bedrock role that has full Amazon S3 access. Create IAM roles for each team that have access to only each team's customer folders."
+        },
+        {
+          "key": "B",
+          "text": "Redact personal data in Amazon S3. Update the S3 bucket policy to allow team access to customer data."
+        },
+        {
+          "key": "C",
+          "text": "Create a custom service role that has Amazon S3 access. Ask teams to specify the customer name on each Amazon Bedrock request."
+        },
+        {
+          "key": "D",
+          "text": "Create an Amazon Bedrock custom service role for each team that has access to only the team's customer data."
+        }
+      ],
+      "correctAnswer": [
+        "A"
+      ],
+      "explanation": {
+        "summary": "Dùng Bedrock và dữ liệu khách hàng trên S3.\n\nChính sách bảo mật: Mỗi nhóm (each team) chỉ được truy cập dữ liệu của khách hàng của chính nhóm đó (access data for only the team's own customers).",
+        "correct": "Create one Amazon Bedrock role that has full Amazon S3 access. Create IAM roles for each team that have access to only each team's customer folders.\n\n→ Bedrock cần một role để có truy xuất dữ liệu từ S3. Người dùng/Nhóm (Team) sẽ có các IAM role riêng biệt với các chính sách (policies) rất chặt chẽ, chỉ cho phép truy cập vào các đường dẫn S3 cụ thể của họ (ví dụ: s3://.../team-A-data/*).",
+        "incorrect": [
+          "❌ Create an Amazon Bedrock custom service role for each team that has access to only the team's customer data.\n→ Sai. Bạn không tạo Service Role cho mỗi team. Bạn tạo User Role cho mỗi team.",
+          "❌ Create a custom service role that has Amazon S3 access. Ask teams to specify the customer name on each Amazon Bedrock request.\n→ Sai. \"Specify customer name\" không phải là một cơ chế kiểm soát truy cập (access control) của IAM.",
+          "❌ Redact personal data in Amazon S3. Update the S3 bucket policy to allow team access to customer data.\n→ Sai. Che (Redact) dữ liệu là để bảo vệ PII, nó không giải quyết vấn đề kiểm soát truy cập (team A vẫn thấy dữ liệu đã che của team B, điều này là sai)."
+        ],
+        "tips": "Kiểm soát truy cập (Access control) / Mỗi nhóm (Each team) / Thư mục riêng (Own folder) / Nhiều người dùng (Multi-tenant) → Vai trò IAM (IAM Roles) + Chính sách (Policies) dựa trên đường dẫn/thẻ (path-based/tag-based).\n\n< back to result overview\n\n© 2025 Cloud Exam Pro\n\nCourse Review - Cloud Exam Pro"
+      }
+    }
+  ]
+}

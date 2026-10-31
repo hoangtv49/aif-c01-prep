@@ -158,7 +158,54 @@ rLines.forEach(l => {
   }
 });
 
-const data = { domains, decisionMatrix: matrixRows };
+// Load Mock Exams from mock-exams directory
+const MOCK_EXAMS_DIR = path.join(BASE_DIR, "mock-exams");
+const mockExams = [];
+if (fs.existsSync(MOCK_EXAMS_DIR)) {
+  const mockFiles = fs.readdirSync(MOCK_EXAMS_DIR).filter(f => f.startsWith('raw-exam-') && f.endsWith('.json'));
+  mockFiles.forEach(file => {
+    try {
+      const raw = JSON.parse(fs.readFileSync(path.join(MOCK_EXAMS_DIR, file), 'utf8'));
+      const examId = file.replace('raw-exam-', '').replace('.json', '');
+      const transformedQuestions = (raw.questions || []).map(q => {
+        const correctKeys = q.correctAnswer || [];
+        const correctText = correctKeys.map(k => {
+          const opt = (q.options || []).find(o => o.key === k);
+          return opt ? `${k}. ${opt.text}` : k;
+        }).join(', ');
+        const reasonParts = [];
+        if (q.explanation && q.explanation.summary) reasonParts.push(q.explanation.summary);
+        if (q.explanation && q.explanation.correct) reasonParts.push(q.explanation.correct);
+        const distractorParts = (q.explanation && q.explanation.incorrect) ? q.explanation.incorrect : [];
+        const tips = (q.explanation && q.explanation.tips) ? q.explanation.tips : '';
+        return {
+          id: `mock${examId}-q${q.number}`,
+          domainId: 0,
+          number: q.number,
+          isMultiple: correctKeys.length > 1,
+          audioDuration: 0,
+          stem: cleanMath(q.stem || ''),
+          options: (q.options || []).map(o => ({ key: o.key, text: cleanMath(o.text || '') })),
+          correctAnswer: correctText,
+          reason: cleanMath(reasonParts.join('\n\n')),
+          distractor: cleanMath(distractorParts.join('\n\n')),
+          trap: cleanMath(tips)
+        };
+      });
+      mockExams.push({
+        id: `mock${examId}`,
+        name: raw.examName || `Mock Exam ${examId}`,
+        totalQuestions: transformedQuestions.length,
+        questions: transformedQuestions
+      });
+      console.log(`  ✅ Loaded mock exam: ${raw.examName || file} (${transformedQuestions.length} questions)`);
+    } catch (e) {
+      console.warn(`  ⚠️ Failed to load mock exam ${file}:`, e.message);
+    }
+  });
+}
+
+const data = { domains, decisionMatrix: matrixRows, mockExams };
 fs.writeFileSync(path.join(BASE_DIR, "data.json"), JSON.stringify(data, null, 2));
 
 // Define Concept Graph Nodes & Edges
@@ -4079,6 +4126,19 @@ const htmlContent = `<!DOCTYPE html>
 
     <!-- TAB 2: EXAM PRACTICE SIMULATOR -->
     <section id="tab-quiz" class="tab-panel">
+      <!-- Question Set Selector -->
+      <div class="quiz-set-selector" style="display:flex; gap:0.5rem; flex-wrap:wrap; padding:0.75rem 1.25rem; border-bottom:1px solid var(--border); background:var(--bg-panel);">
+        <button id="qset-study" class="mode-btn active exam-mode" onclick="switchQuestionSet('study-guide')" style="font-size:0.82rem;">
+          <span class="mode-dot"></span>
+          <span>📚 Study Guide (57 câu)</span>
+        </button>
+        ${mockExams.map((me, i) => `
+        <button id="qset-${me.id}" class="mode-btn exam-mode" onclick="switchQuestionSet('${me.id}')" style="font-size:0.82rem;">
+          <span class="mode-dot"></span>
+          <span>🎯 ${me.name} (${me.totalQuestions} câu)</span>
+        </button>`).join('')}
+      </div>
+
       <!-- Quiz Setup Controls (Top of Quiz, scrolls naturally) -->
       <div class="quiz-controls-bar">
         <div class="mode-switch-group">
@@ -4477,6 +4537,7 @@ const htmlContent = `<!DOCTYPE html>
     let searchQuery = '';
     let quizMode = 'exam'; // 'exam' | 'study'
     let isShuffled = false;
+    let currentQuestionSet = 'study-guide'; // 'study-guide' | 'mock1' | ...
     let isPaletteOpen = false;
     let paletteFilter = 'all'; // 'all' | 'unanswered' | 'wrong' | 'correct'
     let customQuestionOrder = null;
@@ -7045,10 +7106,19 @@ const htmlContent = `<!DOCTYPE html>
 
     // Flatten all questions with optional shuffle ordering
     function getAllQuestions() {
-      const originalList = [];
-      APP_DATA.domains.forEach(d => {
-        d.questions.forEach(q => originalList.push(q));
-      });
+      let originalList = [];
+      
+      if (currentQuestionSet === 'study-guide') {
+        APP_DATA.domains.forEach(d => {
+          d.questions.forEach(q => originalList.push(q));
+        });
+      } else {
+        // Mock exam
+        const mockExam = (APP_DATA.mockExams || []).find(me => me.id === currentQuestionSet);
+        if (mockExam) {
+          originalList = mockExam.questions;
+        }
+      }
 
       if (!isShuffled || !customQuestionOrder) {
         return originalList;
@@ -7060,6 +7130,47 @@ const htmlContent = `<!DOCTYPE html>
         if (map.has(id)) orderedList.push(map.get(id));
       });
       return orderedList;
+    }
+
+    function switchQuestionSet(setId) {
+      currentQuestionSet = setId;
+      isShuffled = false;
+      customQuestionOrder = null;
+      currentDomainFilter = 'all';
+      searchQuery = '';
+      const searchBox = document.getElementById('quiz-search');
+      if (searchBox) searchBox.value = '';
+      
+      // Update selector buttons
+      document.querySelectorAll('.quiz-set-selector .mode-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('qset-' + setId);
+      if (activeBtn) activeBtn.classList.add('active');
+      
+      // Update filter chips visibility
+      const domainChips = document.querySelectorAll('.filter-chip[data-filter]');
+      const allQs = getAllQuestions();
+      const isMock = setId !== 'study-guide';
+      domainChips.forEach(chip => {
+        const filter = chip.getAttribute('data-filter');
+        if (filter === 'all') {
+          chip.textContent = 'Tất cả (' + allQs.length + ')';
+          chip.classList.add('active');
+        } else if (['1','2','3','4','5'].includes(filter)) {
+          chip.style.display = isMock ? 'none' : '';
+          chip.classList.remove('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+      
+      // Update quiz header
+      const shuffleBtn = document.getElementById('shuffle-btn');
+      const unshuffleBtn = document.getElementById('unshuffle-btn');
+      if (shuffleBtn) shuffleBtn.style.display = '';
+      if (unshuffleBtn) unshuffleBtn.style.display = 'none';
+      
+      renderQuiz();
+      renderPaletteDrawer();
     }
 
     // Shuffle Exam Logic
@@ -7315,8 +7426,10 @@ const htmlContent = `<!DOCTYPE html>
 
         const orderBadgeHtml = (prefix === 'quiz' && isShuffled)
           ? \`<span class="q-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45);">Câu \${idx + 1}</span>
-             <span class="q-badge" style="opacity: 0.75; font-size: 0.7rem;" title="Mã câu hỏi gốc trong giáo trình">Gốc: #D\${q.domainId}-Q\${q.number}</span>\`
-          : \`<span class="q-badge">#D\${q.domainId}-Q\${q.number}</span>\`;
+             <span class="q-badge" style="opacity: 0.75; font-size: 0.7rem;" title="Mã câu hỏi gốc">\${q.domainId > 0 ? 'Gốc: #D' + q.domainId + '-Q' + q.number : 'Gốc: #Q' + q.number}</span>\`
+          : q.domainId > 0
+            ? \`<span class="q-badge">#D\${q.domainId}-Q\${q.number}</span>\`
+            : \`<span class="q-badge" style="background:rgba(99,102,241,0.18);color:#a5b4fc;border-color:rgba(99,102,241,0.4);">#Q\${q.number}</span>\`;
 
         const optionsHtml = q.options.map(opt => {
           const isSelected = userSel.includes(opt.key);
@@ -7338,6 +7451,7 @@ const htmlContent = `<!DOCTYPE html>
           \`;
         }).join('');
 
+        const hasAudio = q.audioDuration && q.audioDuration > 0;
         const qDurSec = q.audioDuration || 50;
         const qDurLabel = q.audioDuration ? ('~' + q.audioDuration + 's') : '~50s';
         const qDurFormatted = String(Math.floor(qDurSec / 60)).padStart(2, '0') + ':' + String(Math.floor(qDurSec % 60)).padStart(2, '0');
@@ -7347,17 +7461,14 @@ const htmlContent = `<!DOCTYPE html>
             <div class="q-meta">
               <div class="q-meta-tags">
                 \${orderBadgeHtml}
-                <span class="q-domain-tag">Domain \${q.domainId}</span>
+                \${q.domainId > 0 ? '<span class="q-domain-tag">Domain ' + q.domainId + '</span>' : '<span class="q-domain-tag" style="background:rgba(99,102,241,0.12);color:#a5b4fc;border-color:rgba(99,102,241,0.35);">Mock Exam</span>'}
                 <span class="q-type-tag">\${q.isMultiple ? '⚠️ Choose TWO' : 'Single Choice'}</span>
               </div>
               <div class="q-meta-actions">
                 <button class="q-toggle-btn" onclick="toggleCardExplanation('\${q.id}', event)" title="Bật/Tắt giải thích riêng cho câu này">
                   \${shouldShowExplanation ? '🙈 Ẩn giải thích' : '👁️ Xem giải thích'}
                 </button>
-                <button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe audio giải thích tình huống (\${qDurLabel})">
-                  <span class="q-audio-icon">🔊</span>
-                  <span class="q-audio-text">Nghe (\${qDurLabel})</span>
-                </button>
+                \${hasAudio ? \`<button class="q-audio-btn" id="btn-audio-\${q.id}" onclick="toggleQuestionAudio('\${q.id}', event)" title="Nghe audio giải thích tình huống (\${qDurLabel})"><span class="q-audio-icon">🔊</span><span class="q-audio-text">Nghe (\${qDurLabel})</span></button>\` : ''}
                 <button class="q-bookmark-btn \${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('\${q.id}', event)" title="\${isBookmarked ? 'Bỏ đánh dấu sao câu hỏi này' : 'Đánh dấu sao câu hỏi này để ôn lại'}">
                   <span>\${isBookmarked ? '⭐' : '☆'}</span>
                 </button>
