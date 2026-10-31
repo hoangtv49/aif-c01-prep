@@ -3,3 +3,8 @@ node_modules/
 *.log
 /tmp/
 .superpowers/
+
+# Raw scraping backups
+aif-c01-study-guide/mock-exams/*-text.txt
+aif-c01-study-guide/mock-exams/*-backup.*
+scripts/extract-cloudexam.js
