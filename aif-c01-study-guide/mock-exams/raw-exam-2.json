@@ -38,7 +38,8 @@
           "❌ Retrieval Augmented Generation (RAG)\n→ Sai. Đây là kỹ thuật truy xuất thông tin từ cơ sở tri thức bên ngoài để bổ sung vào prompt, không phải là chia nhỏ tác vụ."
         ],
         "tips": "Nhiệm vụ phức tạp (Complex task) + Chia nhỏ (Break down) + Tuần tự (Sequentially) → Nối chuỗi prompt (Prompt chaining).\n\nNhiệm vụ phức tạp (Complex task) + Nhiều luồng suy nghĩ (Multiple paths) + Tự đánh giá (Self-evaluation) → Tree of Thoughts (ToT).\n\nCung cấp ví dụ (Provide examples) → Few-shot (nhiều ví dụ), One-shot (1 ví dụ), Zero-shot (0 ví dụ)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 2,
@@ -67,7 +68,8 @@
         }
       ],
       "correctAnswer": [
-        "D"
+        "D",
+        "A"
       ],
       "explanation": {
         "summary": "Công ty có giải pháp RAG.\n\nNội dung mới (New content) được xuất bản hàng ngày.\n\nCần cung cấp trải nghiệm gần thời gian thực (near real-time) cho người dùng.\n\nHỏi: Bước nào trong RAG nên được thực hiện bằng xử lý hàng loạt ngoại tuyến (offline batch processing)? (Chọn hai).",
@@ -78,7 +80,8 @@
           "❌ Response generation for the user\n→ Sai. Đây là bước online cuối cùng. LLM tạo ra câu trả lời cho người dùng ngay lập tức."
         ],
         "tips": "RAG + Offline / Batch / Xử lý nội dung (Content processing) → Tạo embedding cho nội dung (Content embeddings) + Tạo/Cập nhật chỉ mục (Create/Update index).\n\nRAG + Online / Real-time / Xử lý truy vấn (Query processing) → Tạo embedding cho truy vấn (Query embedding) + Truy xuất (Retrieval) + Tạo phản hồi (Response generation)."
-      }
+      },
+      "type": "multi-select-2"
     },
     {
       "number": 3,
@@ -114,7 +117,8 @@
           "❌ Prompt engineering does not ensure that the model will consistently generate highly reliable outputs when working with real-world data.\n→ Sai. Mặc dù câu này đúng (prompting không đảm bảo 100% độ tin cậy), nhưng nó mô tả một hạn chế chung của LLM. Câu B mô tả một rủi ro bảo mật (vulnerability) cụ thể và trực tiếp liên quan đến prompt."
         ],
         "tips": "Rủi ro / Lỗ hổng (Risk / Vulnerability) + Prompt Engineering → Tấn công chèn prompt (Prompt Injection).\n\nRủi ro / Lỗ hổng (Risk / Vulnerability) + Dữ liệu huấn luyện (Training data) → Đầu độc dữ liệu (Data Poisoning)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 4,
@@ -155,7 +159,8 @@
           "❌ Religion\n→ Sai. Religion (Tôn giáo) không phải là các hạng mục độc hại (harmful). Chúng có thể được cấu hình trong phần \"Chủ đề bị từ chối\" (Denied topics), nhưng câu hỏi đang hỏi về các hạng mục lọc nội dung (có hại) chung mà Guardrails cung cấp."
         ],
         "tips": "Bedrock Guardrails + Lọc nội dung độc hại (Harmful content filters) → Nhớ 4 nhóm chính: Hate, Insults, Sexual, Violence (H-I-S-V)."
-      }
+      },
+      "type": "multi-select-2"
     },
     {
       "number": 5,
@@ -191,7 +196,8 @@
           "❌ Local education privacy laws\n→ Sai. Đây là luật về quyền riêng tư trong giáo dục (ví dụ: FERPA ở Mỹ). Không liên quan."
         ],
         "tips": "AI + Quyết định quan trọng (High-stakes decision) (vd: tín dụng, tuyển dụng, y tế) → Trách nhiệm giải trình của thuật toán (Algorithm accountability).\n\nAI + Công bằng (Fairness) + Thiên vị (Bias) + Minh bạch (Explainability) → AI có trách nhiệm (Responsible AI) / Algorithm Accountability."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 6,
@@ -216,10 +222,7 @@
         }
       ],
       "correctAnswer": [
-        "A",
-        "B",
-        "C",
-        "D"
+        "A"
       ],
       "explanation": {
         "summary": "Hỏi: Đâu là đặc điểm (characteristic) của các mô hình ngôn ngữ dựa trên kiến trúc Transformer (transformer-based language models)?",
@@ -230,7 +233,8 @@
           "❌ Transformer-based language models process data sequences one element at a time in cyclic iterations.\n→ Sai. Đây là mô tả của mô hình RNN (Recurrent Neural Networks) (như LSTM/GRU). Transformer được thiết kế để xử lý các token song song (parallel) nhằm khắc phục hạn chế tuần tự này."
         ],
         "tips": "Transformer → Tự chú ý (Self-attention) / Chú ý (Attention) / Xử lý song song (Parallel processing).\n\nRNN / LSTM → Xử lý tuần tự (Sequential / one element at a time).\n\nCNN → Lớp tích chập (Convolutional layers) / Thị giác máy tính (Computer Vision)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 7,
@@ -266,7 +270,8 @@
           "❌ To compress text files\n→ Sai. Đây là nén (compression), dùng để giảm dung lượng lưu trữ."
         ],
         "tips": "Tokenization → Chia văn bản (Break text) / Đơn vị nhỏ (Smaller units) / Từ (Words) / (Sub-words)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 8,
@@ -302,7 +307,8 @@
           "❌ Fine-tune models on Amazon SageMaker Jumpstart\n→ Sai. Jumpstart giúp dễ dàng tinh chỉnh (fine-tune) mô hình, nhưng đây là một quá trình tốn nhiều nỗ lực và chi phí hơn RAG. Hơn nữa, nó không tự giải quyết phần kết nối với cơ sở tri thức."
         ],
         "tips": "LLM + Cơ sở tri thức (Knowledge Base) → RAG (Retrieval Augmented Generation).\n\nRAG + Ít nỗ lực nhất (Least effort) / Dịch vụ quản lý (Managed service) → Amazon Bedrock (cụ thể là Knowledge Bases for Amazon Bedrock).\n\nML trên dữ liệu bảng (Tabular data) + Tự động (Automatic) → SageMaker Autopilot.\n\nTrợ lý code (Coding assistant) → Amazon Q Developer."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 9,
@@ -338,7 +344,8 @@
           "❌ The Top P value is too high\n→ Sai. Giống như Temperature, Top P kiểm soát tính sáng tạo của đầu ra (chọn từ các từ có xác suất cao nhất), không phải khả năng xử lý đầu vào dài."
         ],
         "tips": "Văn bản đầu vào quá dài (long input text) + Thất bại/Lỗi (Fail/Error) → Vượt quá cửa sổ ngữ cảnh (exceed model's context size).\n\nMuốn câu trả lời sáng tạo/đa dạng (creative/diverse) → Tăng Temperature / Top P.\n\nMuốn câu trả lời nhất quán/an toàn (consistent/deterministic) → Giảm Temperature / Top P."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 10,
@@ -374,7 +381,8 @@
           "❌ A method for visualizing high-dimensional data\n→ Sai. Đây là mô tả của các kỹ thuật như t-SNE hoặc PCA. Các kỹ thuật này thường được áp dụng lên embeddings để trực quan hóa chúng, chứ không phải là bản thân embeddings."
         ],
         "tips": "Embeddings → Biểu diễn bằng số (Numerical representation) / Biểu diễn bằng vector (Vector representation) / Không gian ít chiều hơn (Reduced dimensionality space) / Biểu diễn ngữ nghĩa (Semantic representation)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 11,
@@ -410,7 +418,8 @@
           "❌ Implement Amazon Kendra to provide a searchable index for medical records. Use a template-based system to format summaries.\n→ Sai. Kendra là dịch vụ tìm kiếm (search) thông minh. Nó giúp tìm tài liệu, không phải trích xuất thông tin chi tiết bên trong tài liệu để tạo tóm tắt."
         ],
         "tips": "Y tế (Medical) + Trích xuất văn bản (Extract text/entities) → Amazon Comprehend Medical.\n\nẢnh quét (Scanned) / PDF / Chữ viết tay (Handwriting) + Trích xuất văn bản → Amazon Textract.\n\nTìm kiếm (Search) + Ngữ nghĩa (Semantic) + Hỏi đáp (Q&A) → Amazon Kendra.\n\nGợi ý (Recommendation) + Cá nhân hóa (Personalization) → Amazon Personalize."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 12,
@@ -446,7 +455,8 @@
           "❌ Forecasting revenue for certain products\n→ Sai. Đây là dự báo (forecasting) hoặc hồi quy (regression), một tác vụ ML dự đoán truyền thống."
         ],
         "tips": "AI Tạo sinh (Generative AI) → Tạo nội dung (Create content) / Tóm tắt (Summarize) / Dịch (Translate) / Tạo ảnh (Generate image) / Viết code (Write code).\n\nML Truyền thống (Traditional ML) / AI Phân biệt (Discriminative AI) → Phân loại (Classify) / Dự báo (Forecast) / Phân cụm (Segment)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 13,
@@ -471,7 +481,6 @@
         }
       ],
       "correctAnswer": [
-        "B",
         "D"
       ],
       "explanation": {
@@ -483,7 +492,8 @@
           "❌ Amazon Lex\n→ Sai. Dịch vụ xây dựng chatbot."
         ],
         "tips": "Minh bạch (Transparency) + Giải thích (Explanations) + Tài liệu (Documentation) + Quản trị (Governance) → Amazon SageMaker Model Cards.\n\nGiải thích (Explainability) (ở mức độ kỹ thuật, vd: SHAP values) + Thiên vị (Bias) → Amazon SageMaker Clarify."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 14,
@@ -519,7 +529,8 @@
           "❌ Amazon Polly\n→ Sai. Polly là dịch vụ Text-to-Speech (văn bản thành giọng nói)."
         ],
         "tips": "Nhiều ngôn ngữ (Multiple languages) / Dịch (Translate) → Amazon Translate.\n\nGiọng nói (Speech / Audio) → Văn bản (Text) → Amazon Transcribe.\n\nVăn bản (Text) → Giọng nói (Speech / Audio) → Amazon Polly."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 15,
@@ -555,7 +566,8 @@
           "❌ Amazon Rekognition\n→ Sai. Là dịch vụ Computer Vision để phân tích hình ảnh/video (face detection, object recognition), không phải tool để explain model outputs hay provide transparency."
         ],
         "tips": "Transparency + Explain model outputs → SageMaker Model Cards\n\nModel documentation + Governance → SageMaker Model Cards\n\nModel lineage + Audit trail → SageMaker Model Cards\n\nConversational AI + Chatbot → Amazon Lex\n\nText analysis + NLP → Amazon Comprehend\n\nImage/Video analysis → Amazon Rekognition\n\nModel explainability + Feature importance → SageMaker Clarify (tool khác nhưng integrate với Model Cards)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 16,
@@ -591,7 +603,8 @@
           "❌ Amazon Comprehend\n→ Sai. Đây là dịch vụ AI cấp cao cho NLP."
         ],
         "tips": "Giám sát (Monitor / Observe) + Trôi (Drift) + Production → Amazon SageMaker Model Monitor.\n\nThiên vị (Bias) + Giải thích (Explainability) → Amazon SageMaker Clarify."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 17,
@@ -627,7 +640,8 @@
           "❌ Use Amazon Polly to monitor comments\n→ Sai. Polly là dịch vụ Text-to-Speech (chuyển văn bản thành giọng nói), không liên quan đến việc phân tích văn bản."
         ],
         "tips": "Phân tích (Analyze) + Văn bản (Text) + Độc hại (Harmful/Toxicity) + Không cần huấn luyện (No labeled data) → Amazon Comprehend.\n\nPhân tích (Analyze) + Hình ảnh/Video (Image/Video) + Độc hại (Harmful) → Amazon Rekognition Moderation.\n\nVăn bản (Text) → Giọng nói (Speech) → Amazon Polly.\n\nGiọng nói (Speech) → Văn bản (Text) → Amazon Transcribe."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 18,
@@ -663,7 +677,8 @@
           "❌ Train a new FM\n→ Sai. Tương tự như huấn luyện lại, việc này siêu đắt đỏ."
         ],
         "tips": "Cải thiện chính xác (Improve accuracy) + Hiệu quả chi phí nhất (Most cost-effectively) → Kỹ thuật prompt (Prompt engineering).\n\nCải thiện chính xác (Improve accuracy) + Nhiệm vụ chuyên biệt (Specific task) + Dữ liệu riêng (Own data) → Tinh chỉnh (Fine-tuning) (đắt hơn prompt engineering)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 19,
@@ -692,7 +707,8 @@
         }
       ],
       "correctAnswer": [
-        "E"
+        "E",
+        "D"
       ],
       "explanation": {
         "summary": "Cần giám sát liên tục (continuously monitor) ứng dụng ML.\n\nMục tiêu: Đảm bảo tuân thủ chính sách (policies) và quy định (regulations).\n\nHỏi: Dịch vụ AWS nào giúp đánh giá tuân thủ (assess compliance)? (Chọn hai).",
@@ -703,7 +719,8 @@
           "❌ AWS CloudTrail\n→ Sai. CloudTrail ghi lại lịch sử lệnh gọi API (ai đã làm gì). Nó là nguồn bằng chứng cho Audit Manager, nhưng bản thân nó không đánh giá tuân thủ."
         ],
         "tips": "Tuân thủ (Compliance) + Kiểm toán (Audit) / Quy định (Regulations) → AWS Audit Manager.\n\nTuân thủ (Compliance) + Cấu hình (Configuration) / Chính sách (Policies) → AWS Config.\n\nLỗ hổng bảo mật (Vulnerability) → Amazon Inspector.\n\nHiệu suất (Performance) / Logs → Amazon CloudWatch."
-      }
+      },
+      "type": "multi-select-2"
     },
     {
       "number": 20,
@@ -739,7 +756,8 @@
           "❌ Transparency\n→ Sai. Tính minh bạch (Transparency) là về việc công khai thông tin về cách mô hình được xây dựng và hoạt động."
         ],
         "tips": "Dữ liệu không đại diện (Not representative) / Thiên vị (Bias) / Các nhóm (Demographics / Groups) → Tính công bằng (Fairness).\n\nTại sao (Why) + Quyết định của mô hình (Model's decision) → Tính giải thích được (Explainability)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 21,
@@ -775,7 +793,8 @@
           "❌ Pre-train and benchmark the model by using context data.\n→ Sai. \"Pre-train\" (tiền huấn luyện) là đắt nhất và không khả thi."
         ],
         "tips": "LLM + Dữ liệu thay đổi (Changing data) / Dữ liệu mới (New data) + Hiệu quả chi phí (Cost-effective) → RAG.\n\nLLM + Dữ liệu chuyên biệt (Specialized data) + Cần độ chính xác cao cho tác vụ cụ thể → Tinh chỉnh (Fine-tuning) (đắt hơn RAG)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 22,
@@ -811,7 +830,8 @@
           "❌ Energy efficiency of the model's computations\n→ Sai. Đây là hiệu suất tính toán của thiết bị phần cứng sử dụng cho mô hình."
         ],
         "tips": "F1 Score → Precision + Recall.\n\nPrecision (Độ chính xác) → Trong số những cái mô hình dự đoán là ĐÚNG, có bao nhiêu cái ĐÚNG thật? (Ít báo động giả).\n\nRecall → Trong số tất cả những cái ĐÚNG thật, mô hình tìm thấy được bao nhiêu cái? (Ít bỏ sót)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 23,
@@ -847,7 +867,8 @@
           "❌ Physically storing models for archival purposes.\n→ Sai. Model Card lưu siêu dữ liệu (metadata) về mô hình, không phải bản thân tệp tin (binary) của mô hình."
         ],
         "tips": "SageMaker Model Cards → Tài liệu (Documentation) / Tiêu chuẩn hóa (Standardizing) / Minh bạch (Transparency) / Quản trị (Governance)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 24,
@@ -883,7 +904,8 @@
           "❌ Ask the customers to avoid sharing sensitive information in their email messages.\n→ Sai. Đây là một chính sách, không phải giải pháp kỹ thuật tự động."
         ],
         "tips": "Dữ liệu nhạy cảm (Sensitive data / PII) + S3 + Tự động (Automated) / Ít nỗ lực (Least effort) → Amazon Macie."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 25,
@@ -919,7 +941,8 @@
           "❌ Amazon Textract\n→ Sai. Đây là dịch vụ OCR (trích xuất văn bản từ hình ảnh/PDF)."
         ],
         "tips": "Mô hình nền tảng (Foundation Models / FMs) / LLM + Dịch vụ quản lý (Managed Service) / API → Amazon Bedrock."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 26,
@@ -955,7 +978,8 @@
           "❌ Use Provisioned Throughput for the LLM\n→ Sai. Provisioned Throughput dùng để đảm bảo hiệu suất (số token/giây) cho ứng dụng, không liên quan đến trí nhớ hay trạng thái của cuộc trò chuyện."
         ],
         "tips": "LLM + Nhớ (Remember) / Lịch sử trò chuyện (Conversation History) / Nhiều lượt (Multi-turn) → Stateless → Phải thêm lịch sử vào prompt (Add history to prompt).\n\nĐảm bảo hiệu suất (Guaranteed performance) / TPS cao (High TPS) + Bedrock → Provisioned Throughput."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 27,
@@ -991,7 +1015,8 @@
           "❌ Use a foundation model (FM) that is trained to not hallucinate\n→ Sai. Không có mô hình nào \"được huấn luyện để không ảo giác\". Ảo giác là một hạn chế cố hữu của tất cả các LLM hiện tại."
         ],
         "tips": "Giảm ảo giác (Decrease hallucinations) / Giảm sáng tạo (Decrease creativity) / Muốn câu trả lời an toàn (Deterministic) → Decrease Temperature.\n\nTăng sáng tạo (Increase creativity) / Đa dạng (Diverse) → Increase Temperature."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 28,
@@ -1027,7 +1052,8 @@
           "❌ Support vector machine\n→ Sai. Đây là thuật toán phân loại (classification) (học có giám sát)."
         ],
         "tips": "Tìm nhóm (Find groups) / Phân nhóm (Segment) / Không có nhãn (No labels) / Học không giám sát (Unsupervised) → Phân cụm (Clustering) → K-means.\n\nDự đoán (Predict) / Có nhãn (Labels exist) / Học có giám sát (Supervised) → Phân loại (Classification) → k-NN, Decision Tree, SVM, Logistic Regression."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 29,
@@ -1063,7 +1089,8 @@
           "❌ Cost for each customer conversation\n→ Sai. Đây là một chỉ số tài chính, nhưng AHT (D) là chỉ số vận hành gốc rễ dẫn đến việc giảm chi phí này. Đo lường AHT giúp bạn hiểu tại sao chi phí giảm."
         ],
         "tips": "Chatbot + Hỗ trợ khách hàng (Customer support) + Ảnh hưởng tài chính (Financial effect) → Thời gian xử lý trung bình (Average Handled Time - AHT) / Tỷ lệ giải quyết trong lần gọi đầu (First Call Resolution - FCR)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 30,
@@ -1099,7 +1126,8 @@
           "❌ Overcoming challenges to drive business transformation and growth\n→ Sai. Đây là lợi ích của việc áp dụng AI, không phải là khuôn khổ quản trị."
         ],
         "tips": "Quản trị AI (AI Governance) → Chính sách (Policies) / Hướng dẫn (Guidelines) / Trách nhiệm (Responsible AI) / Tuân thủ (Compliance) / Rủi ro (Risk)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 31,
@@ -1135,7 +1163,8 @@
           "❌ Latent training\n→ Sai. Đây không phải là một thuật ngữ tiêu chuẩn trong bối cảnh này."
         ],
         "tips": "Cập nhật (Update) + Mô hình nền (FM) + Kiến thức mới (Recent data/knowledge) → Tiền huấn luyện liên tục (Continuous pre-training).\n\nCập nhật (Update) + Tác vụ cụ thể (Specific task) / Dữ liệu riêng → Tinh chỉnh (Fine-tuning)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 32,
@@ -1171,7 +1200,8 @@
           "❌ Directional stimulus prompting\n→ Sai. Đây là một thuật ngữ ít phổ biến, không phải là thuật ngữ tiêu chuẩn cho \"lý luận từng bước\" như CoT."
         ],
         "tips": "Lý luận phức tạp (Complex reasoning) + Từng bước (Step-by-step) → Chain-of-thought (CoT).\n\nCung cấp ví dụ (Provide examples) → Few-shot (vài ví dụ) / One-shot (1 ví dụ)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 33,
@@ -1207,7 +1237,8 @@
           "❌ Build custom models for image classification and recognition.\n→ Sai. Đây là phân tích hình ảnh, hoàn toàn không liên quan (ứng dụng cho người khiếm thị)."
         ],
         "tips": "Nghe (Hear) / Giọng nói → Văn bản (Speech-to-Text) → Nhận dạng giọng nói (Speech Recognition) → (Dịch vụ: Amazon Transcribe).\n\nPhản hồi giọng nói (Voice response) / Văn bản → Giọng nói (Text-to-Speech) → Tổng hợp giọng nói (Speech Synthesis) → (Dịch vụ: Amazon Polly)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 34,
@@ -1243,7 +1274,8 @@
           "❌ Amazon Comprehend\n→ Sai. Dịch vụ NLP truyền thống (phân tích văn bản, không phải tạo sinh)."
         ],
         "tips": "Cung cấp (Makes available) + Mô hình nền (Foundation Models / FMs) / LLM API → Amazon Bedrock."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 35,
@@ -1279,7 +1311,8 @@
           "❌ Prompt templating\n→ Sai. Đây là kỹ thuật dùng biến (variables) trong prompt (ví dụ: Xin chào, {tên_khách_hàng})."
         ],
         "tips": "\"Explain step by step\" / \"Show your work\" / \"Think step by step\" → Chain-of-thought (CoT).\n\nTấn công (Attack) / Lừa đảo (Trick) + Prompt → Prompt Injection."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 36,
@@ -1315,7 +1348,8 @@
           "❌ AWS Config\n→ Sai. Đây là dịch vụ giám sát thay đổi cấu hình (configuration changes), không phải hiệu suất."
         ],
         "tips": "Giám sát (Monitor) + Hiệu suất (Performance) / Logs / Metrics (Chỉ số) → Amazon CloudWatch.\n\nGiám sát (Monitor) + API (Ai làm gì) → AWS CloudTrail.\n\nGiám sát (Monitor) + Cấu hình (Configuration) → AWS Config."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 37,
@@ -1351,7 +1385,8 @@
           "❌ Data enrichment\n→ Sai. Làm giàu dữ liệu là việc thêm thông tin vào dữ liệu."
         ],
         "tips": "Dữ liệu + Không rời khỏi quốc gia (Not leave the country) / Vị trí địa lý (Geographic location) / Tuân thủ (Compliance) → Data Residency."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 38,
@@ -1387,7 +1422,8 @@
           "❌ Amazon Transcribe\n→ Sai. Dịch vụ Speech-to-Text (giọng nói thành văn bản)."
         ],
         "tips": "Gợi ý (Recommendation) / Cá nhân hóa (Personalization) / Ecommerce → Amazon Personalize.\n\nTìm kiếm (Search) / Hỏi đáp (Q&A) + Tài liệu (Documents) → Amazon Kendra."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 39,
@@ -1416,7 +1452,8 @@
         }
       ],
       "correctAnswer": [
-        "A"
+        "A",
+        "B"
       ],
       "explanation": {
         "summary": "Một công ty cần ghi lại tất cả các yêu cầu gửi đến API Amazon Bedrock của mình.\n\nCông ty phải lưu trữ logs một cách an toàn trong 5 năm với chi phí thấp nhất có thể.\n\nCâu hỏi: Chọn 2 dịch vụ phù hợp nhất?",
@@ -1427,7 +1464,8 @@
           "❌ Amazon S3 Standard\n→ Sai. Đây là lớp lưu trữ đắt (để truy cập thường xuyên). Lưu 5 năm trên S3 Standard sẽ rất tốn kém, vi phạm yêu cầu \"chi phí thấp nhất\"."
         ],
         "tips": "Log + API (Ghi log ai gọi API gì) / Kiểm toán (Audit) → AWS CloudTrail.\n\nLưu trữ (Storage) + Lâu dài (Long-term) + Chi phí thấp nhất (Lowest cost) + Tự động (Automatic) → Amazon S3 Intelligent-Tiering."
-      }
+      },
+      "type": "multi-select-2"
     },
     {
       "number": 40,
@@ -1463,7 +1501,8 @@
           "❌ Pre-train a new LLM with more diverse training data.\n→ Sai. Pre-train một LLM mới là cực kỳ đắt đỏ (hàng triệu USD), không phải là \"hiệu quả chi phí nhất\"."
         ],
         "tips": "Thiên vị (Bias) / Không công bằng (Fairness) / Nhân khẩu học (Demographic) → Lỗi do Dữ liệu huấn luyện (Training data).\n\nSửa lỗi Thiên vị (Fix Bias) + Hiệu quả chi phí nhất (Most cost-effective) → Bổ sung dữ liệu đa dạng (Diverse data) + Tinh chỉnh lại (Re-fine-tune).\n\n(Tránh xa: Pre-train khi thấy \"cost-effective\")."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 41,
@@ -1499,7 +1538,8 @@
           "❌ Adversarial training\n→ Sai. Huấn luyện đối kháng. Đây là kỹ thuật diễn ra trong lúc huấn luyện (during training)."
         ],
         "tips": "Sau xử lý (Post-processing) + Đánh giá / Lọc đầu ra (Review / Filter output) + Giảm độc hại (Reduce toxicity) → Human-in-the-loop (HITL)\n\nTrước khi huấn luyện (Pre-processing) / Dữ liệu huấn luyện (Training data) → Data augmentation / Feature engineering"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 42,
@@ -1535,7 +1575,8 @@
           "❌ Amazon Comprehend\n→ Sai. Dịch vụ NLP (phân tích văn bản), không phải nền tảng ML tổng quát."
         ],
         "tips": "Xây dựng / Huấn luyện / Triển khai ML (Build / Train / Deploy ML) → Amazon SageMaker\n\nTinh chỉnh tự động (Automated tuning) / Tối ưu siêu tham số (Hyperparameter optimization) → Amazon SageMaker (cụ thể là Automatic Model Tuning)\n\nTruy vấn SQL (SQL query) → Amazon Athena"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 43,
@@ -1571,7 +1612,8 @@
           "❌ Image processing\n→ Sai. \"Xử lý ảnh\" (Image processing) là một kỹ thuật (ví dụ: làm nét ảnh, xoay ảnh). \"Thị giác máy tính\" (Computer vision) là lĩnh vực ứng dụng rộng hơn, bao gồm cả việc \"hiểu\" nội dung ảnh (như phát hiện lỗi). \"Computer vision\" là đáp án chính xác và bao hàm hơn."
         ],
         "tips": "Phân tích hình ảnh (Analyze images) / Video / Phát hiện vật thể (Object detection) / Phát hiện lỗi (Defect detection) → Thị giác máy tính (Computer vision)\n\nPhân tích văn bản (Analyze text) / Chatbot / Dịch thuật (Translation) → Xử lý ngôn ngữ tự nhiên (Natural language processing - NLP)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 44,
@@ -1596,8 +1638,7 @@
         }
       ],
       "correctAnswer": [
-        "C",
-        "D"
+        "C"
       ],
       "explanation": {
         "summary": "Phát triển ứng dụng AI cho nhân viên.\n\nChức năng: kiểm tra khiếu nại (check claims), xác định chi tiết (identify details), và truy cập tài liệu (access documents) cho một khiếu nại.",
@@ -1608,7 +1649,8 @@
           "❌ Use Amazon SageMaker to build the application by training a new ML model.\n→ Sai. Tự xây dựng mô hình (training a new model) từ đầu bằng SageMaker là một giải pháp rất phức tạp (custom ML). Sử dụng Generative AI (Bedrock Agents) cho tác vụ này sẽ nhanh và hiệu quả hơn nhiều."
         ],
         "tips": "GenAI + Truy cập dữ liệu riêng / tài liệu (Access private data / documents) → Bedrock Knowledge Bases (RAG)\n\nGenAI + Thực hiện hành động / Gọi API (Perform actions / Call APIs) → Agents for Amazon Bedrock\n\nHệ thống gợi ý (Recommendation system) → Amazon Personalize\n\nPhát hiện gian lận (Fraud detection) → Amazon Fraud Detector"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 45,
@@ -1633,7 +1675,6 @@
         }
       ],
       "correctAnswer": [
-        "C",
         "D"
       ],
       "explanation": {
@@ -1645,7 +1686,8 @@
           "❌ Deploy the model by using Amazon CloudFront with an Amazon S3 integration.\n→ Sai. Đây là giải pháp để phân phối nội dung web tĩnh (static content). Nó không thể thực thi (run) một mô hình ML để đưa ra dự đoán."
         ],
         "tips": "Triển khai ML (Deploy ML) + Không quản lý máy chủ / Serverless (without managing servers) → Amazon SageMaker endpoint\n\nTriển khai ML (Deploy ML) + Cần kiểm soát HĐH (OS control) → Amazon EC2\n\nPhân phối nội dung web/video (Deliver web/video) + Tốc độ nhanh (Fast) → Amazon CloudFront"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 46,
@@ -1681,7 +1723,8 @@
           "❌ Use Amazon Rekognition to optimize the model.\n→ Sai. Rekognition là dịch vụ thị giác máy tính (computer vision), không liên quan đến bài toán dự đoán doanh thu/lãng phí này."
         ],
         "tips": "Cải thiện liên tục (Continuously improve) / Huấn luyện lại (Retrain) / Lặp lại (Iterate) / MLOps → Amazon SageMaker (cụ thể là SageMaker Pipelines)\n\nGiám sát (Monitor) / Logs / Metrics / Báo động (Alarms) → Amazon CloudWatch"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 47,
@@ -1717,7 +1760,8 @@
           "❌ Data collection\n→ Sai. Thu thập dữ liệu. Bạn phải biết các yêu cầu pháp lý trước khi thu thập dữ liệu (ví dụ: không được thu thập dữ liệu nhạy cảm)."
         ],
         "tips": "Vấn đề kinh doanh (Business problem) / Mục tiêu (Goal) / Tuân thủ (Compliance) / Pháp lý (Regulatory) → Xác định mục tiêu kinh doanh (Business goal identification) (Giai đoạn đầu tiên)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 48,
@@ -1742,8 +1786,7 @@
         }
       ],
       "correctAnswer": [
-        "A",
-        "B"
+        "A"
       ],
       "explanation": {
         "summary": "Huấn luyện mô hình ML để phân loại ảnh (classify images).\n\nCông ty có một bộ dữ liệu lớn gồm các ảnh đã được dán nhãn (large dataset of labeled images).\n\nCông ty sẽ không dán nhãn thêm (will not label more data).",
@@ -1754,7 +1797,8 @@
           "❌ Active learning\n→ Sai. Active learning là kỹ thuật mà mô hình chủ động yêu cầu con người dán nhãn thêm cho dữ liệu. Điều này mâu thuẫn với yêu cầu \"sẽ không dán nhãn thêm\"."
         ],
         "tips": "Dữ liệu đã dán nhãn (Labeled data) / Dự đoán (Prediction) / Phân loại (Classification) → Học có giám sát (Supervised learning)\n\nDữ liệu không nhãn (Unlabeled data) / Gom cụm (Clustering) / Giảm chiều (Dimensionality reduction) → Học không giám sát (Unsupervised learning)\n\nTác nhân (Agent) / Môi trường (Environment) / Thưởng/Phạt (Reward/Penalty) → Học tăng cường (Reinforcement learning)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 49,
@@ -1790,7 +1834,8 @@
           "❌ Measure the computational resources required for model deployment.\n→ Sai. Đây là đo lường về chi phí (cost) hoặc hiệu quả vận hành (operational efficiency), không phải là hiệu quả đáp ứng mục tiêu (effectiveness)."
         ],
         "tips": "Mục tiêu kinh doanh (Business objectives) → Trường hợp sử dụng cụ thể (Specific use cases)\n\nHiệu suất kỹ thuật (Technical performance) → Bộ dữ liệu benchmark (Benchmark datasets)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 50,
@@ -1826,7 +1871,8 @@
           "❌ Neural network\n→ Sai. Giống như Deep Learning, đây là mô hình \"hộp đen\", không thể xem và điều chỉnh trọng số một cách đơn giản."
         ],
         "tips": "Xem / Diễn giải / Điều chỉnh trọng số (View / Interpret / Adjust weights) → Hồi quy tuyến tính / Hồi quy logistic (Linear / Logistic Regression)\n\nMô hình \"hộp đen\" (Black box) / Phức tạp (Complex) / Độ chính xác cao (High accuracy) → Mạng nơ-ron / Học sâu (Neural Network / Deep Learning)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 51,
@@ -1851,8 +1897,7 @@
         }
       ],
       "correctAnswer": [
-        "B",
-        "D"
+        "B"
       ],
       "explanation": {
         "summary": "Công ty dược phẩm muốn phân tích đánh giá (analyze user reviews) (dạng văn bản).\n\nMục tiêu: Cung cấp một tổng quan ngắn gọn (concise overview) cho mỗi loại thuốc.",
@@ -1863,7 +1908,8 @@
           "❌ Create medication review summaries by using Amazon Rekognition.\n→ Sai. Amazon Rekognition dùng để phân tích hình ảnh và video (image/video), không phải văn bản."
         ],
         "tips": "Tổng quan ngắn gọn (Concise overview) / Tóm tắt (Summaries) / Phân tích văn bản (Analyze reviews) → Tóm tắt văn bản (Text Summarization) → Amazon Bedrock (LLMs)\n\nPhân tích hình ảnh / video (Analyze images / videos) → Amazon Rekognition\n\nHệ thống gợi ý (Recommendation system) → Amazon Personalize"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 52,
@@ -1899,7 +1945,8 @@
           "❌ Deployment time\n→ Sai. Thời gian triển khai là một chỉ số vận hành, không liên quan đến logic bên trong của mô hình."
         ],
         "tips": "Khả năng giải thích (Explainability) / Khả năng diễn giải (Interpretability) → Tỷ lệ nghịch với Độ phức tạp của mô hình (Model complexity)\n\n\"Hộp trắng\" (White box) / Có thể giải thích được → Linear/Logistic Regression, Decision Trees\n\n\"Hộp đen\" (Black box) / Khó giải thích → Neural Networks, Deep Learning, Foundation Models"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 53,
@@ -1935,7 +1982,8 @@
           "❌ Amazon EMR\n→ Sai. Nền tảng xử lý Big Data (Spark, Hadoop), không phải CSDL."
         ],
         "tips": "Lưu trữ / Truy vấn (Store / Query) + Embeddings / Vectors → Cơ sở dữ liệu Vector (Vector Database)\n\nDịch vụ AWS cho CSDL Vector → Amazon Aurora PostgreSQL (với pgvector) HOẶC Amazon OpenSearch Service (với k-NN)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 54,
@@ -1971,7 +2019,8 @@
           "❌ Train the model for more epochs.\n→ Sai. Huấn luyện lâu hơn (more epochs) thường làm mô hình \"học thuộc\" dữ liệu training kỹ hơn, làm overfitting tệ hơn."
         ],
         "tips": "Tốt trên tập Train / Kém trên tập Test (Good on Train / Bad on Test) → Quá khớp (Overfitting)\n\nGiải pháp cho Overfitting → Tăng Regularization (Increase Regularization) HOẶC Giảm độ phức tạp (Decrease Complexity)\n\nKém trên cả tập Train & Test → Chưa khớp (Underfitting) → Giải pháp: Tăng độ phức tạp (Increase Complexity) / Giảm Regularization (Decrease Regularization)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 55,
@@ -2007,7 +2056,8 @@
           "❌ Include a diverse range of product features in each prompt to generate creative and unique descriptions.\n→ Sai. Điều này có thể khiến mô hình bối rối hoặc tạo ra các mô tả \"sáng tạo\" (creative) nhưng không \"chính xác\" (precise) cho từng sản phẩm."
         ],
         "tips": "Đầu ra (Output) Cụ thể / Chi tiết / Chính xác (Specific / Detailed / Precise) → Cần Prompt (Input) Cụ thể / Chi tiết / Chính xác"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 56,
@@ -2043,7 +2093,8 @@
           "❌ Use ambiguous prompts.\n→ Sai. Prompt ambiguous sẽ làm tăng số lượng ảnh không liên quan, làm vấn đề tệ hơn."
         ],
         "tips": "Tạo ảnh (Image generation) + Loại bỏ (Remove) / Tránh (Avoid) / Giảm (Decrease) + Nội dung không mong muốn (Unwanted content) → Prompt phủ định (Negative prompts)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 57,
@@ -2079,7 +2130,8 @@
           "❌ Latency of the text generation\n→ Sai. Độ trễ (Latency) là chỉ số về tốc độ / hiệu suất (speed / performance), không phải chất lượng / độ chính xác (quality / accuracy) của văn bản."
         ],
         "tips": "So sánh (Compare) + Văn bản được tạo (Generated text) VỚI Văn bản tham chiếu (Reference text) → ROUGE Score (cho tóm tắt) HOẶC BLEU Score (cho dịch thuật)\n\nTốc độ (Speed) / Thời gian phản hồi (Response time) → Độ trễ (Latency)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 58,
@@ -2115,7 +2167,8 @@
           "❌ Text classification\n→ Sai. Phân loại là gán nhãn cho văn bản (ví dụ: \"spam\", \"không spam\")."
         ],
         "tips": "Tạo (Produce / Generate) + Code / Bài luận / Email → Tạo văn bản (Text generation)\n\nTạo bản tóm tắt (Create summary) → Tóm tắt văn bản (Text summarization)\n\nGán nhãn (Assign label) / Phân loại (Categorize) → Phân loại văn bản (Text classification)"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 59,
@@ -2151,7 +2204,8 @@
           "❌ AWS Secrets Manager\n→ Sai. Dịch vụ lưu trữ các bí mật (store secrets) như mật khẩu CSDL, khóa API. Nó sử dụng KMS để mã hóa các bí mật, nhưng bản thân nó không phải là dịch vụ quản lý khóa."
         ],
         "tips": "Mã hóa (Encrypt / Encryption) + Khóa do khách hàng/công ty quản lý (Customer / Company Managed Key) → AWS Key Management Service (AWS KMS)\n\nLưu trữ mật khẩu / khóa API (Store passwords / API keys) → AWS Secrets Manager\n\nQuét lỗ hổng (Vulnerability scanning) → Amazon Inspector\n\nTìm dữ liệu nhạy cảm (Find sensitive data) → Amazon Macie"
-      }
+      },
+      "type": "single"
     },
     {
       "number": 60,
@@ -2187,7 +2241,8 @@
           "❌ Implement Amazon SageMaker Model Monitor to detect data drift and receive alerts when model quality degrades.\n→ Sai. Model Monitor dùng để phát hiện data drift (trôi dạt dữ liệu) hoặc suy giảm chất lượng mô hình, không phải để lọc PII."
         ],
         "tips": "Lọc nội dung (Filter content) / Ngăn chặn PII (Prevent PII) / AI có trách nhiệm (Responsible AI) cho Bedrock → Guardrails for Amazon Bedrock.\n\nThông báo (Notification) / Cảnh báo (Alarms) → Amazon CloudWatch."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 61,
@@ -2223,7 +2278,8 @@
           "❌ Amazon Transcribe\n→ Sai. Đây là dịch vụ chuyển giọng nói thành văn bản (speech-to-text)."
         ],
         "tips": "Trích xuất văn bản từ PDF/Ảnh (Extract text from PDF/Image) / OCR → Amazon Textract.\n\nChuyển giọng nói (Speech) → Amazon Transcribe.\n\nChatbot → Amazon Lex.\n\nHệ thống đề xuất (Recommendation) → Amazon Personalize."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 62,
@@ -2259,7 +2315,8 @@
           "❌ Summarize the response text depending on the age of the user so that younger users receive shorter responses.\n→ Sai. Tóm tắt chỉ làm câu trả lời ngắn hơn, không nhất thiết thay đổi văn phong (style) cho đơn giản và phù hợp với độ tuổi."
         ],
         "tips": "Nỗ lực ít nhất (Least effort) / Thay đổi văn phong (Change style) / Thay đổi hành vi (Change behavior) → Kỹ thuật Prompt (Prompt Engineering).\n\nKiến thức mới (New knowledge) / Nhiệm vụ chuyên biệt (Specific task) → Tinh chỉnh (Fine-tuning)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 63,
@@ -2295,7 +2352,8 @@
           "❌ Assess the color accuracy of images processed by the model.\n→ Sai. Độ chính xác màu sắc là vấn đề của chất lượng dữ liệu đầu vào, không phải là chỉ số đánh giá của mô hình phân loại (mô hình quan tâm \"là chó hay mèo\", không phải \"màu lông chó có chuẩn không\")."
         ],
         "tips": "Đánh giá độ chính xác (Evaluate accuracy) → Tập dữ liệu Benchmark (Benchmark dataset) / Tập dữ liệu kiểm thử (Test dataset) / Confusion Matrix."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 64,
@@ -2331,7 +2389,8 @@
           "❌ Hyperparameter tuning\n→ Sai. Đây là bước diễn ra sau khi mô hình đã được huấn luyện, để tối ưu hóa hiệu suất."
         ],
         "tips": "Ma trận tương quan (Correlation matrix) / Trực quan hóa (Visualizing) / Thống kê (Statistics) / Hiểu dữ liệu (Understand data) → Khám phá và phân tích dữ liệu (Exploratory Data Analysis - EDA)."
-      }
+      },
+      "type": "single"
     },
     {
       "number": 65,
@@ -2367,7 +2426,8 @@
           "❌ Prescriptive ML models\n→ Sai. Dùng để đề xuất một hành động (ví dụ: \"nên tăng giá\" hoặc \"nên bảo trì máy\")."
         ],
         "tips": "Điền từ vào chỗ trống (Fill in missing text) / Dự đoán từ bị che (Masked Language Modeling) → BERT.\n\n< back to result overview\n\n© 2025 Cloud Exam Pro"
-      }
+      },
+      "type": "single"
     }
   ]
 }
