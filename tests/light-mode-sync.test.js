@@ -79,6 +79,22 @@ test("Light mode synchronizes 3D flashcards and audio toolbar states", () => {
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-audio-toolbar\.is-playing\s*\{[^}]*background:\s*#f0f9ff/);
 });
 
+test("Mobile responsive media query preserves Light mode styles for topic subtabs and view subtabs", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Mobile media query must contain light mode overrides for subtabs
+  const mobileMediaMatch = html.match(/@media\s*\(max-width:\s*768px\)\s*\{([\s\S]*?)\n\s*\}\s*<\/style>/);
+  expect(mobileMediaMatch).not.toBeNull();
+  const mobileCss = mobileMediaMatch ? mobileMediaMatch[1] : "";
+
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.topic-subtab-bar\s*\{[^}]*background:\s*rgba\(255,\s*255,\s*255/);
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.topic-subtab-btn\s*\{[^}]*background:\s*#f8fafc/);
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.topic-subtab-btn\.active\s*\{[^}]*background:\s*#ffffff/);
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.view-subtabs-group\s*\{[^}]*background:\s*#f1f5f9/);
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.view-subtab-btn\.active\s*\{[^}]*background:\s*#ffffff/);
+  expect(mobileCss).toMatch(/\[data-theme=["']light["']\]\s+\.graph-inspector\s*\{[^}]*background:\s*rgba\(255,\s*255,\s*255/);
+});
+
 test("Section titles and table terms do not use hardcoded inline color: #fff", () => {
   const html = fs.readFileSync("index.html", "utf8");
 

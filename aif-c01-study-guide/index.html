@@ -3867,10 +3867,6 @@
         padding: 0.35rem 0.55rem;
         font-size: 0.95rem;
       }
-      [data-theme="light"] .stats-pill.is-active {
-        background: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
-      }
       .stats-pill.is-active {
         width: 100% !important;
         display: flex !important;
@@ -3883,6 +3879,11 @@
         background: #111a2e !important;
         border: 1px solid #1e293b !important;
         border-radius: 8px !important;
+      }
+      [data-theme="light"] .stats-pill.is-active {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #0f172a !important;
       }
       .stat-item {
         display: flex;
@@ -3962,6 +3963,27 @@
         border-color: #38bdf8 !important;
         color: #fff !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+      [data-theme="light"] .topic-subtab-bar {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+      }
+      [data-theme="light"] .topic-subtab-btn {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #475569 !important;
+      }
+      [data-theme="light"] .topic-subtab-btn:hover {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+      }
+      [data-theme="light"] .topic-subtab-btn.active {
+        background: #ffffff !important;
+        border: 1px solid #0284c7 !important;
+        border-color: #0284c7 !important;
+        color: #0284c7 !important;
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.16) !important;
       }
       .table-header-bar {
         flex-direction: column;
@@ -4355,6 +4377,19 @@
         border-color: rgba(56, 189, 248, 0.45) !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
       }
+      [data-theme="light"] .view-subtabs-group {
+        background: #f1f5f9 !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+      [data-theme="light"] .view-subtab-btn {
+        color: #475569 !important;
+      }
+      [data-theme="light"] .view-subtab-btn.active {
+        background: #ffffff !important;
+        color: #0284c7 !important;
+        border-color: #cbd5e1 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+      }
       .q-card {
         padding: 1.15rem 0.85rem;
       }
@@ -4522,6 +4557,17 @@
         padding: 0.85rem 1rem !important;
         box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 164, 228, 0.25) !important;
         z-index: 1000 !important;
+      }
+      [data-theme="light"] .graph-inspector {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 1.5px solid #0284c7 !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.12), 0 0 20px rgba(2, 132, 199, 0.15) !important;
+      }
+      [data-theme="light"] .graph-inspector .inspector-title {
+        color: #0f172a !important;
+      }
+      [data-theme="light"] .graph-inspector .inspector-desc {
+        color: #334155 !important;
       }
       .inspector-title-row {
         gap: 0.4rem !important;
