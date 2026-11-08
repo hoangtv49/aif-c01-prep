@@ -1,0 +1,28 @@
+scripts/build-web.bun.js
+  s_d3547bce869f64::t_08f9feed80eacb 4334,5008-5018
+  s_d3547bce869f64::t_2ddad1af3cb773 4330-4333
+  s_d3547bce869f64::t_d8bdf49ef4fbfe 4827-4839
+  s_d3547bce869f64::t_58b68e0ee36c03 4414-4434
+tests/light-mode-sync.test.js
+  s_d3547bce869f64::t_084e07ad4ea0b8 82-97
+index.html
+  s_d3547bce869f64::t_75ba381ddbdf75 3883-3887,3967-3987,4380-4392,4561-4571
+aif-c01-study-guide/index.html
+  s_d3547bce869f64::t_75ba381ddbdf75 3883-3887,3967-3987,4380-4392,4561-4571
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4ca97f3dee865813c8fb6fc4dc45d70fa793089b",
+  "prompts": {},
+  "sessions": {
+    "s_d3547bce869f64": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e4442addaffecSq7dMwn4Se37o",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
