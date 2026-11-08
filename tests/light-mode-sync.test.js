@@ -65,6 +65,20 @@ test("Light mode overrides .graph-container, .topic-subtab-btn, speed buttons, m
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.cram-filter-chip\s*\{[^}]*background:\s*#f1f5f9/);
 });
 
+test("Light mode synchronizes 3D flashcards and audio toolbar states", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // Flashcards toolbar and controls
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.fc-toolbar\s*\{[^}]*background:\s*#ffffff/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.fc-nav-btn\s*\{[^}]*background:\s*#ffffff/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.fc-master-btn\s*\{[^}]*background:\s*#ecfdf5/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.fc-back-title\s*\{[^}]*color:\s*#0f172a/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.fc-progress-track\s*\{[^}]*background:\s*#e2e8f0/);
+
+  // Audio toolbar light active state
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-audio-toolbar\.is-playing\s*\{[^}]*background:\s*#f0f9ff/);
+});
+
 test("Section titles and table terms do not use hardcoded inline color: #fff", () => {
   const html = fs.readFileSync("index.html", "utf8");
 

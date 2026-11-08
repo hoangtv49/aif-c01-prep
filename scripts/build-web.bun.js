@@ -3815,8 +3815,14 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     [data-theme="light"] .theory-audio-toolbar {
-      background: #f8fafc;
-      border-color: #e2e8f0;
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .theory-audio-toolbar.is-playing {
+      background: #f0f9ff !important;
+      border-color: #0284c7 !important;
+      box-shadow: 0 0 16px rgba(2, 132, 199, 0.15) !important;
     }
     [data-theme="light"] .theory-play-btn {
       background: #0284c7 !important;
@@ -3958,32 +3964,87 @@ const htmlContent = `<!DOCTYPE html>
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
     }
 
-    [data-theme="light"] .flashcard-face {
-      background: #ffffff;
-      border-color: #e2e8f0;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    [data-theme="light"] .fc-toolbar {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
     }
-    [data-theme="light"] .flashcard-back {
-      background: #f8fafc;
-      border-color: #e2e8f0;
+    [data-theme="light"] .fc-counter {
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .fc-mastery-badge {
+      color: #047857 !important;
+      background: #ecfdf5 !important;
+      border-color: #a7f3d0 !important;
+    }
+    [data-theme="light"] .fc-progress-track {
+      background: #e2e8f0 !important;
+    }
+    [data-theme="light"] .fc-face {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
     }
     [data-theme="light"] .fc-front {
       background: #ffffff !important;
-      border-color: #cbd5e1 !important;
+      border: 2px solid #e2e8f0 !important;
     }
-    [data-theme="light"] .fc-back {
-      background: #f8fafc !important;
+    [data-theme="light"] .fc-front:hover {
       border-color: #0284c7 !important;
     }
     [data-theme="light"] .fc-front-term { color: #0f172a !important; }
     [data-theme="light"] .fc-front-hint { color: #64748b !important; }
-    [data-theme="light"] .fc-term-display { color: #0f172a; }
-    [data-theme="light"] .fc-definition-display { color: #0369a1; }
-    [data-theme="light"] .fc-note-display { color: #334155; }
-    [data-theme="light"] .fc-btn {
-      background: #ffffff;
-      border-color: #cbd5e1;
-      color: #0f172a;
+    [data-theme="light"] .fc-flip-indicator {
+      color: #0284c7 !important;
+      background: #f0f9ff !important;
+      border: 1px solid #bae6fd !important;
+    }
+    [data-theme="light"] .fc-back {
+      background: #ffffff !important;
+      border: 2px solid #0284c7 !important;
+    }
+    [data-theme="light"] .fc-back-title {
+      color: #0f172a !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+    }
+    [data-theme="light"] .fc-back-definition {
+      color: #0369a1 !important;
+      background: #f0f9ff !important;
+      border-left: 3px solid #0284c7 !important;
+    }
+    [data-theme="light"] .fc-back-section-label {
+      color: #64748b !important;
+    }
+    [data-theme="light"] .fc-back-keywords {
+      color: #b45309 !important;
+    }
+    [data-theme="light"] .fc-back-note {
+      color: #334155 !important;
+    }
+    [data-theme="light"] .fc-nav-btn {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    }
+    [data-theme="light"] .fc-nav-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .fc-master-btn {
+      background: #ecfdf5 !important;
+      border: 1px solid #10b981 !important;
+      color: #047857 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    }
+    [data-theme="light"] .fc-master-btn:hover {
+      background: #d1fae5 !important;
+      border-color: #059669 !important;
+      color: #065f46 !important;
+    }
+    [data-theme="light"] .fc-master-btn.mastered {
+      background: #10b981 !important;
+      border-color: #10b981 !important;
+      color: #ffffff !important;
     }
 
     [data-theme="light"] .palette-container {
