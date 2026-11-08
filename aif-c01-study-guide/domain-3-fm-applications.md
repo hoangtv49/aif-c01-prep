@@ -440,3 +440,50 @@ A developer is configuring an autonomous AI agent in Amazon Bedrock to automate 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Công thức cốt lõi để xây dựng **Bedrock Agent Action Group**:
   $$\text{Action Group} = \text{OpenAPI Schema (định nghĩa API)} + \text{AWS Lambda (thực thi API)}$$
+
+---
+
+### Question 13
+A company has a generative AI application that uses a pre-trained foundation model on Amazon Bedrock. The company wants the foundation model to include more contextual domain knowledge by referencing private company documents stored in Amazon S3. Which solution meets these requirements MOST cost-effectively?
+- A. Choose a different foundation model on Amazon Bedrock.
+- B. Deploy a custom model from scratch on Amazon SageMaker.
+- C. Use Amazon Bedrock Knowledge Bases.
+- D. Use Amazon Bedrock Agents.
+
+**Đáp án đúng:** **C. Use Amazon Bedrock Knowledge Bases.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"include more contextual domain knowledge by referencing private company documents"*, *"MOST cost-effectively"*.
+- **Amazon Bedrock Knowledge Bases** cung cấp giải pháp RAG (Retrieval-Augmented Generation) được quản lý hoàn toàn. Giải pháp này tự động phân tích cú pháp, chia đoạn (chunking), tạo embedding và lưu trữ vector để trích xuất ngữ cảnh liên quan mà không cần tốn chi phí đào tạo lại hay tinh chỉnh mô hình.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Choose different FM):** Đổi mô hình nền tảng khác không giải quyết được việc thiếu hụt dữ liệu độc quyền nội bộ của công ty.
+- **Loại B (Deploy custom model):** Huấn luyện mô hình từ đầu (from scratch) tốn kém hàng triệu USD và mất nhiều tháng, đi ngược lại tiêu chí "tiết kiệm chi phí nhất".
+- **Loại D (Amazon Bedrock Agents):** Dùng để lập kế hoạch và gọi các hành động đa bước (orchestrate multi-step actions/APIs), không phải công cụ cốt lõi đơn thuần để bổ sung kho dữ liệu tĩnh.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Supplement FM with company private documents cost-effectively"* $\rightarrow$ Luôn chọn **Amazon Bedrock Knowledge Bases (RAG)**.
+
+---
+
+### Question 14
+A commercial bank plans to fine-tune a foundation model on Amazon Bedrock to assist customer support agents with loan inquiries. The bank's security policy requires that the model must not memorize or reveal any customer personal information during customer interactions. Which solution meets these requirements?
+- A. Encrypt the customer dataset in Amazon S3 before starting model fine-tuning.
+- B. Increase the Top K parameter of the foundation model during inference.
+- C. Remove personally identifiable information (PII) from the customer dataset before fine-tuning the model.
+- D. Configure Amazon Bedrock Guardrails during inference without modifying training data.
+
+**Đáp án đúng:** **C. Remove personally identifiable information (PII) from the customer dataset before fine-tuning the model.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"fine-tune foundation model"*, *"model must not memorize or reveal private customer personal information"*.
+- Trong quá trình tinh chỉnh (Fine-tuning), mô hình có thể học vẹt và ghi nhớ sâu các chuỗi ký tự cụ thể trong tập dữ liệu huấn luyện. Do đó, biện pháp căn bản và triệt để nhất để ngăn ngừa rò rỉ dữ liệu là **làm sạch và loại bỏ hoàn toàn PII (anonymize / redact PII)** khỏi tập dữ liệu đầu vào trước khi tiến hành đào tạo.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Encrypt in S3):** Mã hóa lưu trữ (Encryption at rest) bảo vệ dữ liệu trên ổ cứng nhưng không ngăn được mô hình học thông tin PII khi dữ liệu đã được giải mã trong quá trình đọc huấn luyện.
+- **Loại B (Increase Top K):** Top K chỉ là tham số suy luận điều chỉnh độ ngẫu nhiên của từ ngữ, không ngăn chặn việc rò rỉ dữ liệu đã bị ghi nhớ.
+- **Loại D (Bedrock Guardrails only):** Guardrails hỗ trợ lọc nội dung độc hại lúc suy luận nhưng không thể thay thế cho việc loại bỏ PII tại gốc trong dữ liệu tinh chỉnh.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Prevent model memorizing / leaking sensitive customer data during fine-tuning"* $\rightarrow$ Luôn chọn **Remove / Anonymize PII before fine-tuning**.
+

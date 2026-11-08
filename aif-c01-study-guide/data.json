@@ -542,6 +542,66 @@
           "reason": "- Đề bài yêu cầu: *\"determine customer sentiment based on written reviews\"* bằng cả *\"pre-trained NLP services\"* và *\"generative AI foundation models\"*.\n- **Amazon Comprehend** là dịch vụ AI được quản lý sẵn (pre-trained NLP service) có API phân tích cảm xúc (Sentiment Analysis) chuyên dụng, trả về trực tiếp nhãn `POSITIVE`, `NEGATIVE`, `NEUTRAL` hoặc `MIXED`.\n- **Amazon Bedrock** cung cấp quyền truy cập các mô hình nền tảng (LLMs như Claude, Llama, Titan) có thể thực hiện phân tích cảm xúc chi tiết thông qua câu lệnh prompt.",
           "distractor": "- **Loại A (Amazon Lex):** Dịch vụ xây dựng giao diện đàm thoại (chatbot theo kịch bản), không phải dịch vụ phân tích sắc thái hàng loạt cho văn bản tĩnh.\n- **Loại C (Amazon Polly):** Chuyển văn bản thành giọng nói (Text-to-Speech).\n- **Loại E (Amazon Rekognition):** Dịch vụ thị giác máy tính (Computer Vision), không xử lý văn bản đánh giá sản phẩm.",
           "trap": "- Câu hỏi dạng *\"Choose two\"* kiểm tra sự kết hợp giữa **Traditional AI Managed Services** (Comprehend) và **Generative AI Services** (Bedrock) cho cùng một bài toán NLP."
+        },
+        {
+          "id": "d1-q12",
+          "domainId": 1,
+          "number": 12,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "An ecommerce company wants to group customers based on their purchase history and preferences to personalize the user experience of the company's application. The company does not have historical category labels for customer segments. Which machine learning technique should the company use?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Classification"
+            },
+            {
+              "key": "B",
+              "text": "Clustering"
+            },
+            {
+              "key": "C",
+              "text": "Content generation"
+            },
+            {
+              "key": "D",
+              "text": "Regression"
+            }
+          ],
+          "correctAnswer": "B. Clustering",
+          "reason": "- Đề bài yêu cầu: *\"group customers based on purchase history and preferences\"*, *\"does not have historical category labels\"*.\n- **Clustering (Phân cụm)** là kỹ thuật học máy không giám sát (Unsupervised Learning) cốt lõi dùng để tìm cấu trúc tự nhiên và nhóm các mẫu dữ liệu tương đồng mà không cần nhãn định sẵn.",
+          "distractor": "- **Loại A (Classification):** Kỹ thuật học có giám sát (Supervised Learning) dự đoán nhãn rời rạc đã biết từ trước, đòi hỏi dữ liệu huấn luyện phải có nhãn sẵn.\n- **Loại C (Content generation):** Tác vụ của Generative AI để tạo nội dung mới, không dùng để phân khúc nhóm khách hàng từ dữ liệu số và hành vi.\n- **Loại D (Regression):** Kỹ thuật học có giám sát dự đoán một giá trị số liên tục (ví dụ dự đoán doanh thu), không phân chia tập dữ liệu thành các nhóm.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Group data / segment users without prior labels\"*  &rarr;  Luôn chọn **Clustering (Unsupervised Learning)**."
+        },
+        {
+          "id": "d1-q13",
+          "domainId": 1,
+          "number": 13,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "A financial company has deployed a machine learning model to predict customer churn. The model has been running in production for one month. The dataset is imbalanced because only a small fraction of customers actually churn. Which evaluation metric should the company use to evaluate model performance effectively?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Return on investment (ROI)"
+            },
+            {
+              "key": "B",
+              "text": "Root mean squared error (RMSE)"
+            },
+            {
+              "key": "C",
+              "text": "F1 score"
+            },
+            {
+              "key": "D",
+              "text": "Bilingual Evaluation Understudy (BLEU) score"
+            }
+          ],
+          "correctAnswer": "C. F1 score",
+          "reason": "- Đề bài yêu cầu: *\"predict customer churn\"*, *\"imbalanced dataset where only a small fraction churns\"*.\n- **F1 score** là trung bình điều hòa giữa Precision và Recall. Đây là chỉ số chuẩn mực để đánh giá các bài toán phân loại nhị phân khi dữ liệu bị mất cân bằng lớp (imbalanced classes).",
+          "distractor": "- **Loại A (ROI):** Chỉ số đo lường hiệu quả kinh doanh, không phải thước đo đánh giá thống kê kỹ thuật của mô hình học máy.\n- **Loại B (RMSE):** Thước đo sai số dùng cho các bài toán hồi quy (Regression), không áp dụng cho bài toán phân loại nhãn rời rạc (Classification).\n- **Loại D (BLEU score):** Thước đo đánh giá chất lượng sinh văn bản và dịch máy trong NLP, không dùng cho bài toán phân loại nhị phân.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Classification metric for imbalanced data (churn, fraud)\"*  &rarr;  Luôn chọn **F1 score** (hoặc Precision/Recall)."
         }
       ],
       "theoryDuration": 465
@@ -1006,6 +1066,66 @@
           "reason": "- So sánh cốt lõi giữa **RAG** và **Fine-Tuning**:\n  1. **Tích hợp dữ liệu động tức thì (A)**: RAG chỉ cần lưu trữ và lập chỉ mục tài liệu vào vector store. Khi tài liệu nội bộ thay đổi, RAG cập nhật ngay lập tức mà **không cần đào tạo lại mô hình (no model retraining)**.\n  2. **Minh bạch trích dẫn nguồn (C)**: RAG đính kèm đoạn văn gốc vào prompt, cho phép LLM chỉ ra chính xác tài liệu, trang hoặc liên kết nguồn (**source citations**), giúp giảm ảo giác và tăng độ tin cậy.",
           "distractor": "- **Loại B:** RAG **không bao giờ thay đổi trọng số** của mô hình nền tảng. Thay đổi trọng số (weights modification) là định nghĩa của Fine-Tuning.\n- **Loại D:** Để dạy mô hình tuân thủ định dạng cú pháp đặc biệt hoặc phong cách hành văn chuyên sâu, **Fine-Tuning** hiệu quả hơn nhiều so với RAG.\n- **Loại E:** RAG phụ thuộc trực tiếp vào mô hình Embedding và Vector Database để truy xuất thông tin, do đó khẳng định \"loại bỏ vector database\" là hoàn toàn sai.",
           "trap": "- Trong các câu hỏi *\"Choose two: Advantages of RAG\"*:\n  - Luôn chọn: **Dữ liệu mới không cần train lại (Dynamic data without retraining)** + **Dẫn nguồn minh bạch (Source citation / Grounding)**."
+        },
+        {
+          "id": "d2-q12",
+          "domainId": 2,
+          "number": 12,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "An AI practitioner wants to generate more diverse and more creative outputs from a large language model (LLM) deployed on Amazon Bedrock. How should the AI practitioner adjust the inference parameters?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Increase the temperature value."
+            },
+            {
+              "key": "B",
+              "text": "Decrease the Top K value."
+            },
+            {
+              "key": "C",
+              "text": "Increase the response length."
+            },
+            {
+              "key": "D",
+              "text": "Decrease the prompt length."
+            }
+          ],
+          "correctAnswer": "A. Increase the temperature value.",
+          "reason": "- Đề bài yêu cầu: *\"generate more diverse and more creative outputs\"*.\n- **Temperature** là tham số kiểm soát mức độ ngẫu nhiên của phân phối xác suất khi sinh token. Tăng giá trị Temperature sẽ làm phẳng phân phối xác suất, giúp mô hình có cơ hội lựa chọn các từ ngữ ít thông dụng hơn, tạo ra kết quả phong phú và sáng tạo hơn.",
+          "distractor": "- **Loại B (Decrease Top K):** Giảm giá trị Top K sẽ giới hạn tập token ứng viên xuống mức hẹp hơn, khiến kết quả dự đoán trở nên an toàn và ít đa dạng hơn.\n- **Loại C (Increase response length):** Tăng độ dài tối đa chỉ kéo dài văn bản trả về, không quyết định độ sáng tạo của nội dung.\n- **Loại D (Decrease prompt length):** Rút ngắn câu lệnh prompt không phải là cơ chế điều chỉnh tính ngẫu nhiên của bộ sinh từ.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"More creative / diverse / imaginative output\"*  &rarr;  Luôn chọn **Increase Temperature** (hoặc Increase Top P).\n- Ngược lại: *\"Deterministic / factual / consistent responses\"*  &rarr;  Luôn chọn **Decrease Temperature** (tiệm cận 0)."
+        },
+        {
+          "id": "d2-q13",
+          "domainId": 2,
+          "number": 13,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "Which large language model (LLM) parameter controls the number of possible next words or tokens considered at each step of the text generation process?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Temperature"
+            },
+            {
+              "key": "B",
+              "text": "Batch size"
+            },
+            {
+              "key": "C",
+              "text": "Top K"
+            },
+            {
+              "key": "D",
+              "text": "Maximum tokens"
+            }
+          ],
+          "correctAnswer": "C. Top K",
+          "reason": "- Đề bài yêu cầu: *\"parameter that controls the number of possible next words or tokens considered at each step\"*.\n- **Top K** là tham số lấy mẫu (sampling parameter) giới hạn mô hình chỉ xét đúng **K token có xác suất cao nhất** ở mỗi bước giải mã để chọn từ tiếp theo.",
+          "distractor": "- **Loại A (Temperature):** Điều chỉnh độ ngẫu nhiên tổng thể bằng cách chia logit xác suất, không giới hạn một số lượng cụ thể các ứng viên.\n- **Loại B (Batch size):** Tham số xác định số lượng mẫu dữ liệu được xử lý đồng thời trong một chu kỳ huấn luyện hoặc suy luận hàng loạt.\n- **Loại D (Maximum tokens):** Giới hạn cận trên của tổng số lượng token mà mô hình được phép sinh ra trong một lượt phản hồi.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Fixed count of candidate tokens at each step\"*  &rarr;  Luôn chọn **Top K**.\n- Cụm từ: *\"Cumulative probability threshold of tokens\"*  &rarr;  Luôn chọn **Top P (Nucleus Sampling)**."
         }
       ],
       "theoryDuration": 452
@@ -1518,6 +1638,66 @@
           "reason": "- Kiến trúc của **Amazon Bedrock Agents Action Groups**:\n  1. **OpenAPI Schema (A)**: Bản đặc tả API chuẩn (JSON/YAML) lưu trên Amazon S3, định nghĩa danh sách các hàm/API mà Agent có thể gọi, mô tả rõ các tham số đầu vào và kiểu dữ liệu trả về để Agent hiểu khi nào và làm thế nào để gọi.\n  2. **AWS Lambda Function (C)**: Mã nguồn thực thi logic nghiệp vụ. Khi Agent phân tích yêu cầu của người dùng và quyết định thực hiện hành động, Bedrock Agent sẽ truyền các tham số đã trích xuất vào hàm Lambda này để đọc/ghi dữ liệu trong hệ thống backend.",
           "distractor": "- **Loại B (SageMaker Studio notebook):** Môi trường phát triển ML truyền thống, không phải thành phần cấu hình Action Group trong Bedrock Agent.\n- **Loại D (Amazon Rekognition custom moderation):** Dịch vụ kiểm duyệt hình ảnh, không liên quan đến việc thực thi logic nghiệp vụ API của Agent.\n- **Loại E (AWS Glue ETL crawler):** Công cụ quét metadata cho catalog dữ liệu, không tham gia vào luồng thực thi action thời gian thực của Agent.",
           "trap": "- Công thức cốt lõi để xây dựng **Bedrock Agent Action Group**:\n  $<code class=\"math-tag\">Action Group = OpenAPI Schema (định nghĩa API) + AWS Lambda (thực thi API)</code>$"
+        },
+        {
+          "id": "d3-q13",
+          "domainId": 3,
+          "number": 13,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "A company has a generative AI application that uses a pre-trained foundation model on Amazon Bedrock. The company wants the foundation model to include more contextual domain knowledge by referencing private company documents stored in Amazon S3. Which solution meets these requirements MOST cost-effectively?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Choose a different foundation model on Amazon Bedrock."
+            },
+            {
+              "key": "B",
+              "text": "Deploy a custom model from scratch on Amazon SageMaker."
+            },
+            {
+              "key": "C",
+              "text": "Use Amazon Bedrock Knowledge Bases."
+            },
+            {
+              "key": "D",
+              "text": "Use Amazon Bedrock Agents."
+            }
+          ],
+          "correctAnswer": "C. Use Amazon Bedrock Knowledge Bases.",
+          "reason": "- Đề bài yêu cầu: *\"include more contextual domain knowledge by referencing private company documents\"*, *\"MOST cost-effectively\"*.\n- **Amazon Bedrock Knowledge Bases** cung cấp giải pháp RAG (Retrieval-Augmented Generation) được quản lý hoàn toàn. Giải pháp này tự động phân tích cú pháp, chia đoạn (chunking), tạo embedding và lưu trữ vector để trích xuất ngữ cảnh liên quan mà không cần tốn chi phí đào tạo lại hay tinh chỉnh mô hình.",
+          "distractor": "- **Loại A (Choose different FM):** Đổi mô hình nền tảng khác không giải quyết được việc thiếu hụt dữ liệu độc quyền nội bộ của công ty.\n- **Loại B (Deploy custom model):** Huấn luyện mô hình từ đầu (from scratch) tốn kém hàng triệu USD và mất nhiều tháng, đi ngược lại tiêu chí \"tiết kiệm chi phí nhất\".\n- **Loại D (Amazon Bedrock Agents):** Dùng để lập kế hoạch và gọi các hành động đa bước (orchestrate multi-step actions/APIs), không phải công cụ cốt lõi đơn thuần để bổ sung kho dữ liệu tĩnh.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Supplement FM with company private documents cost-effectively\"*  &rarr;  Luôn chọn **Amazon Bedrock Knowledge Bases (RAG)**."
+        },
+        {
+          "id": "d3-q14",
+          "domainId": 3,
+          "number": 14,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "A commercial bank plans to fine-tune a foundation model on Amazon Bedrock to assist customer support agents with loan inquiries. The bank's security policy requires that the model must not memorize or reveal any customer personal information during customer interactions. Which solution meets these requirements?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Encrypt the customer dataset in Amazon S3 before starting model fine-tuning."
+            },
+            {
+              "key": "B",
+              "text": "Increase the Top K parameter of the foundation model during inference."
+            },
+            {
+              "key": "C",
+              "text": "Remove personally identifiable information (PII) from the customer dataset before fine-tuning the model."
+            },
+            {
+              "key": "D",
+              "text": "Configure Amazon Bedrock Guardrails during inference without modifying training data."
+            }
+          ],
+          "correctAnswer": "C. Remove personally identifiable information (PII) from the customer dataset before fine-tuning the model.",
+          "reason": "- Đề bài yêu cầu: *\"fine-tune foundation model\"*, *\"model must not memorize or reveal private customer personal information\"*.\n- Trong quá trình tinh chỉnh (Fine-tuning), mô hình có thể học vẹt và ghi nhớ sâu các chuỗi ký tự cụ thể trong tập dữ liệu huấn luyện. Do đó, biện pháp căn bản và triệt để nhất để ngăn ngừa rò rỉ dữ liệu là **làm sạch và loại bỏ hoàn toàn PII (anonymize / redact PII)** khỏi tập dữ liệu đầu vào trước khi tiến hành đào tạo.",
+          "distractor": "- **Loại A (Encrypt in S3):** Mã hóa lưu trữ (Encryption at rest) bảo vệ dữ liệu trên ổ cứng nhưng không ngăn được mô hình học thông tin PII khi dữ liệu đã được giải mã trong quá trình đọc huấn luyện.\n- **Loại B (Increase Top K):** Top K chỉ là tham số suy luận điều chỉnh độ ngẫu nhiên của từ ngữ, không ngăn chặn việc rò rỉ dữ liệu đã bị ghi nhớ.\n- **Loại D (Bedrock Guardrails only):** Guardrails hỗ trợ lọc nội dung độc hại lúc suy luận nhưng không thể thay thế cho việc loại bỏ PII tại gốc trong dữ liệu tinh chỉnh.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Prevent model memorizing / leaking sensitive customer data during fine-tuning\"*  &rarr;  Luôn chọn **Remove / Anonymize PII before fine-tuning**."
         }
       ],
       "theoryDuration": 510
@@ -1952,6 +2132,40 @@
           "reason": "- Mục tiêu: *\"ensure fair and impartial outcomes across all demographic user groups (Responsible AI & Fairness)\"*.\n  1. **Đa dạng hóa dữ liệu huấn luyện (A)**: Đảm bảo tập dữ liệu bao quát đầy đủ và cân bằng các nhóm nhân khẩu học khác nhau, ngăn chặn việc mô hình bị sai lệch do mất cân bằng dữ liệu lịch sử (Data Bias / Representation Bias).\n  2. **Đo lường thiên vị với SageMaker Clarify (C)**: Sử dụng Clarify để phát hiện và định lượng các chỉ số thiên vị (như Class Imbalance, DPPL, Disparate Impact) trên các thuộc tính nhạy cảm (tuổi tác, giới tính, chủng tộc) ở cả giai đoạn trước và sau khi huấn luyện.",
           "distractor": "- **Loại B (Obfuscate logs and benchmarks):** Che giấu tài liệu và log vi phạm nghiêm trọng trụ cột **Minh bạch (Transparency)** của Responsible AI.\n- **Loại D (Remove all human reviewers):** Loại bỏ hoàn toàn sự giám sát của con người vi phạm trụ cột **Quản trị & Trách nhiệm giải trình (Governance & Accountability)**; các hệ thống AI có trách nhiệm luôn khuyến khích cơ chế Human-in-the-Loop.\n- **Loại E (Only train on historical data):** Dữ liệu lịch sử thường mang sẵn định kiến xã hội cũ (Historical bias), nếu không cập nhật sẽ làm trầm trọng thêm thiên kiến của mô hình.",
           "trap": "- Hai hành động tiêu chuẩn để đảm bảo **Fairness trong AI**:\n  - Dữ liệu đầu vào: **Đa dạng và có tính đại diện (Demographically diverse data)**.\n  - Công cụ kỹ thuật: **Đo lường chỉ số bias với Amazon SageMaker Clarify**."
+        },
+        {
+          "id": "d4-q12",
+          "domainId": 4,
+          "number": 12,
+          "isMultiple": true,
+          "audioDuration": 60,
+          "stem": "A company is integrating AI into its employee recruitment and candidate hiring platform. The company wants to mitigate bias risks and follow responsible AI practices while prioritizing equitable hiring recommendations. Which core dimensions of responsible AI should the company consider? (Choose two.)",
+          "options": [
+            {
+              "key": "A",
+              "text": "Transparency"
+            },
+            {
+              "key": "B",
+              "text": "Open source"
+            },
+            {
+              "key": "C",
+              "text": "Flexibility"
+            },
+            {
+              "key": "D",
+              "text": "Tolerance"
+            },
+            {
+              "key": "E",
+              "text": "Fairness"
+            }
+          ],
+          "correctAnswer": "A. Transparency** và **E. Fairness",
+          "reason": "- Đề bài yêu cầu: *\"mitigate bias risks\"*, *\"responsible AI practices\"*, *\"equitable hiring recommendations\"*.\n- **Fairness (Tính công bằng)**: Là trụ cột cốt lõi đảm bảo các quyết định của hệ thống AI không phân biệt đối xử hay tạo ra kết quả bất lợi bất công cho bất kỳ nhóm ứng viên nào.\n- **Transparency (Tính minh bạch)**: Cung cấp khả năng giải thích và thông tin rõ ràng về cách thức thuật ngữ hoặc mô hình phân tích hồ sơ, giúp ứng viên và chuyên viên tuyển dụng hiểu được căn cứ của các quyết định.",
+          "distractor": "- **Loại B (Open source):** Mô hình mã nguồn mở là một lựa chọn cấp phép phần mềm, không phải là một nguyên tắc hay trụ cột của Responsible AI.\n- **Loại C (Flexibility):** Tính linh hoạt là đặc tính kỹ thuật kiến trúc, không thuộc các trụ cột đạo đức AI.\n- **Loại D (Tolerance):** Khái niệm chung không nằm trong bộ tiêu chuẩn 6 trụ cột Responsible AI của AWS hay NIST.",
+          "trap": "- Các trụ cột cốt lõi của **Responsible AI** theo chuẩn AWS:\n  - **Fairness (Công bằng)**, **Explainability / Transparency (Minh bạch)**, **Privacy & Security (Bảo mật & Riêng tư)**, **Robustness (Độ tin cậy)**, **Governance (Quản trị)**."
         }
       ],
       "theoryDuration": 369
@@ -2446,6 +2660,36 @@
           "reason": "- Theo **Mô hình trách nhiệm chia sẻ (AWS Shared Responsibility Model)** đối với dịch vụ AI Managed / Serverless như **Amazon Bedrock**:\n  1. **Khách hàng quản lý bảo mật TRONG đám mây (Security IN the cloud)**:\n     - Quản lý và bảo vệ dữ liệu khách hàng: Mã hóa dữ liệu lưu trữ bằng khóa do khách hàng quản lý (**AWS KMS CMKs**) và bảo vệ nội dung prompt (**B**).\n     - Quản lý danh tính và quyền truy cập: Thiết lập các chính sách **AWS IAM** tuân thủ nguyên tắc quyền tối thiểu (Least Privilege) để kiểm soát ai được gọi API Bedrock nào (**D**).\n  2. **AWS quản lý bảo mật CỦA đám mây (Security OF the cloud)**:\n     - Cơ sở hạ tầng vật lý, an ninh data center, nguồn điện, phần cứng máy chủ GPU (A, E).\n     - Bản vá hệ điều hành, hypervisor và virtualization layer của dịch vụ serverless Bedrock (C).",
           "distractor": "- **Loại A và E:** An ninh vật lý trung tâm dữ liệu và phần cứng máy chủ luôn là trách nhiệm 100% của AWS.\n- **Loại C:** Bản vá hệ điều hành của dịch vụ serverless Bedrock do AWS tự động xử lý, khách hàng không có quyền truy cập vào máy chủ bên dưới.",
           "trap": "- Bất kể dịch vụ đám mây nào:\n  - **Dữ liệu (Data), Mã hóa (KMS), Quyền truy cập (IAM)**  &rarr;  Luôn là trách nhiệm của **Khách hàng (Customer)**.\n  - **Hạ tầng vật lý, Phần cứng GPU, Bản vá OS máy chủ managed**  &rarr;  Luôn là trách nhiệm của **AWS**."
+        },
+        {
+          "id": "d5-q13",
+          "domainId": 5,
+          "number": 13,
+          "isMultiple": false,
+          "audioDuration": 60,
+          "stem": "A multinational financial institution uses AWS to host its generative AI foundation models and customer service applications. The company's compliance department must generate formal audit reports to demonstrate adherence to international security standards (such as ISO/IEC 27001, SOC 2, and HIPAA) for handling sensitive customer financial data. Which AWS service meets these requirements?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Amazon Macie"
+            },
+            {
+              "key": "B",
+              "text": "AWS Artifact"
+            },
+            {
+              "key": "C",
+              "text": "AWS Secrets Manager"
+            },
+            {
+              "key": "D",
+              "text": "AWS Config"
+            }
+          ],
+          "correctAnswer": "B. AWS Artifact",
+          "reason": "- Đề bài yêu cầu: *\"generate formal audit reports to demonstrate adherence to international security standards (ISO, SOC, HIPAA)\"*.\n- **AWS Artifact** là cổng thông tin tự phục vụ trung tâm của AWS cung cấp quyền truy cập theo yêu cầu vào các báo cáo bảo mật, thỏa thuận tuân thủ và chứng chỉ kiểm toán độc lập của AWS.",
+          "distractor": "- **Loại A (Amazon Macie):** Dịch vụ bảo mật dữ liệu sử dụng ML để tự động phát hiện và phân loại thông tin định danh cá nhân (PII) trong Amazon S3, không phát hành các báo cáo tuân thủ chứng chỉ đám mây quốc tế.\n- **Loại C (AWS Secrets Manager):** Dịch vụ lưu trữ, quản lý và xoay vòng mật khẩu, khóa API và token truy cập.\n- **Loại D (AWS Config):** Dịch vụ đánh giá và giám sát cấu hình tài nguyên đám mây để đảm bảo tuân thủ các quy tắc cấu hình nội bộ, không cung cấp báo cáo kiểm toán bảo mật cơ sở hạ tầng của AWS.",
+          "trap": "- Cụm từ trong đề tiếng Anh: *\"Download compliance reports / audit certifications (SOC, ISO, HIPAA)\"*  &rarr;  Luôn chọn **AWS Artifact**.\n- Cụm từ: *\"Scan and discover sensitive data / PII in S3\"*  &rarr;  Luôn chọn **Amazon Macie**."
         }
       ],
       "theoryDuration": 406

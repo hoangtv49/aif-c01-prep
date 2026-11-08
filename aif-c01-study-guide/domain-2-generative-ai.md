@@ -403,3 +403,52 @@ A company is designing a generative AI application that uses an open-source foun
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Trong các câu hỏi *"Choose two: Advantages of RAG"*:
   - Luôn chọn: **Dữ liệu mới không cần train lại (Dynamic data without retraining)** + **Dẫn nguồn minh bạch (Source citation / Grounding)**.
+
+---
+
+### Question 12
+An AI practitioner wants to generate more diverse and more creative outputs from a large language model (LLM) deployed on Amazon Bedrock. How should the AI practitioner adjust the inference parameters?
+- A. Increase the temperature value.
+- B. Decrease the Top K value.
+- C. Increase the response length.
+- D. Decrease the prompt length.
+
+**Đáp án đúng:** **A. Increase the temperature value.**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"generate more diverse and more creative outputs"*.
+- **Temperature** là tham số kiểm soát mức độ ngẫu nhiên của phân phối xác suất khi sinh token. Tăng giá trị Temperature sẽ làm phẳng phân phối xác suất, giúp mô hình có cơ hội lựa chọn các từ ngữ ít thông dụng hơn, tạo ra kết quả phong phú và sáng tạo hơn.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Decrease Top K):** Giảm giá trị Top K sẽ giới hạn tập token ứng viên xuống mức hẹp hơn, khiến kết quả dự đoán trở nên an toàn và ít đa dạng hơn.
+- **Loại C (Increase response length):** Tăng độ dài tối đa chỉ kéo dài văn bản trả về, không quyết định độ sáng tạo của nội dung.
+- **Loại D (Decrease prompt length):** Rút ngắn câu lệnh prompt không phải là cơ chế điều chỉnh tính ngẫu nhiên của bộ sinh từ.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"More creative / diverse / imaginative output"* $\rightarrow$ Luôn chọn **Increase Temperature** (hoặc Increase Top P).
+- Ngược lại: *"Deterministic / factual / consistent responses"* $\rightarrow$ Luôn chọn **Decrease Temperature** (tiệm cận 0).
+
+---
+
+### Question 13
+Which large language model (LLM) parameter controls the number of possible next words or tokens considered at each step of the text generation process?
+- A. Temperature
+- B. Batch size
+- C. Top K
+- D. Maximum tokens
+
+**Đáp án đúng:** **C. Top K**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"parameter that controls the number of possible next words or tokens considered at each step"*.
+- **Top K** là tham số lấy mẫu (sampling parameter) giới hạn mô hình chỉ xét đúng **K token có xác suất cao nhất** ở mỗi bước giải mã để chọn từ tiếp theo.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Temperature):** Điều chỉnh độ ngẫu nhiên tổng thể bằng cách chia logit xác suất, không giới hạn một số lượng cụ thể các ứng viên.
+- **Loại B (Batch size):** Tham số xác định số lượng mẫu dữ liệu được xử lý đồng thời trong một chu kỳ huấn luyện hoặc suy luận hàng loạt.
+- **Loại D (Maximum tokens):** Giới hạn cận trên của tổng số lượng token mà mô hình được phép sinh ra trong một lượt phản hồi.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Fixed count of candidate tokens at each step"* $\rightarrow$ Luôn chọn **Top K**.
+- Cụm từ: *"Cumulative probability threshold of tokens"* $\rightarrow$ Luôn chọn **Top P (Nucleus Sampling)**.
+

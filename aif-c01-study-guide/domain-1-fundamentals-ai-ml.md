@@ -500,3 +500,50 @@ An e-commerce company wants to build a solution to determine customer sentiment 
 
 **Cảnh báo bẫy phòng thi (Trap Alert):**
 - Câu hỏi dạng *"Choose two"* kiểm tra sự kết hợp giữa **Traditional AI Managed Services** (Comprehend) và **Generative AI Services** (Bedrock) cho cùng một bài toán NLP.
+
+---
+
+### Question 12
+An ecommerce company wants to group customers based on their purchase history and preferences to personalize the user experience of the company's application. The company does not have historical category labels for customer segments. Which machine learning technique should the company use?
+- A. Classification
+- B. Clustering
+- C. Content generation
+- D. Regression
+
+**Đáp án đúng:** **B. Clustering**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"group customers based on purchase history and preferences"*, *"does not have historical category labels"*.
+- **Clustering (Phân cụm)** là kỹ thuật học máy không giám sát (Unsupervised Learning) cốt lõi dùng để tìm cấu trúc tự nhiên và nhóm các mẫu dữ liệu tương đồng mà không cần nhãn định sẵn.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Classification):** Kỹ thuật học có giám sát (Supervised Learning) dự đoán nhãn rời rạc đã biết từ trước, đòi hỏi dữ liệu huấn luyện phải có nhãn sẵn.
+- **Loại C (Content generation):** Tác vụ của Generative AI để tạo nội dung mới, không dùng để phân khúc nhóm khách hàng từ dữ liệu số và hành vi.
+- **Loại D (Regression):** Kỹ thuật học có giám sát dự đoán một giá trị số liên tục (ví dụ dự đoán doanh thu), không phân chia tập dữ liệu thành các nhóm.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Group data / segment users without prior labels"* $\rightarrow$ Luôn chọn **Clustering (Unsupervised Learning)**.
+
+---
+
+### Question 13
+A financial company has deployed a machine learning model to predict customer churn. The model has been running in production for one month. The dataset is imbalanced because only a small fraction of customers actually churn. Which evaluation metric should the company use to evaluate model performance effectively?
+- A. Return on investment (ROI)
+- B. Root mean squared error (RMSE)
+- C. F1 score
+- D. Bilingual Evaluation Understudy (BLEU) score
+
+**Đáp án đúng:** **C. F1 score**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"predict customer churn"*, *"imbalanced dataset where only a small fraction churns"*.
+- **F1 score** là trung bình điều hòa giữa Precision và Recall. Đây là chỉ số chuẩn mực để đánh giá các bài toán phân loại nhị phân khi dữ liệu bị mất cân bằng lớp (imbalanced classes).
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (ROI):** Chỉ số đo lường hiệu quả kinh doanh, không phải thước đo đánh giá thống kê kỹ thuật của mô hình học máy.
+- **Loại B (RMSE):** Thước đo sai số dùng cho các bài toán hồi quy (Regression), không áp dụng cho bài toán phân loại nhãn rời rạc (Classification).
+- **Loại D (BLEU score):** Thước đo đánh giá chất lượng sinh văn bản và dịch máy trong NLP, không dùng cho bài toán phân loại nhị phân.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Classification metric for imbalanced data (churn, fraud)"* $\rightarrow$ Luôn chọn **F1 score** (hoặc Precision/Recall).
+

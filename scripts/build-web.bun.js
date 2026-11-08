@@ -115,7 +115,7 @@ function parseDomainFile(filename) {
 
     const qId = `d${domainId}-q${qNum}`;
     const qAudio = questionsManifest[qId];
-    const audioDuration = qAudio ? qAudio.duration : 0;
+    const audioDuration = (qAudio && qAudio.duration > 0) ? qAudio.duration : 60;
 
     questions.push({
       id: qId,
@@ -439,6 +439,11 @@ const graphData = {
     { from: "diffusion", to: "bedrock", label: "Image Gen (Titan Image / SD)" }
   ]
 };
+
+const totalStudyQuestions = domains.reduce((acc, d) => acc + d.questions.length, 0);
+const totalMockQuestions = mockExams.reduce((acc, me) => acc + me.totalQuestions, 0);
+const totalAllQuestions = totalStudyQuestions + totalMockQuestions;
+const totalSTETerms = domains.reduce((acc, d) => acc + d.steTerms.length, 0);
 
 const htmlContent = `<!DOCTYPE html>
 <html lang="vi">
@@ -3336,6 +3341,31 @@ const htmlContent = `<!DOCTYPE html>
       color: #fff;
     }
 
+    .section-title-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+    .ste-term-name {
+      color: #fff;
+      font-size: 0.95rem;
+    }
+    .ste-def-cell {
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .ste-kw-cell {
+      color: #fbbf24;
+      font-size: 0.85rem;
+    }
+    .ste-note-cell {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+
     /* ==================== LIGHT MODE THEME OVERRIDES ==================== */
     [data-theme="light"] body {
       background-color: var(--bg);
@@ -3388,6 +3418,15 @@ const htmlContent = `<!DOCTYPE html>
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     }
 
+    [data-theme="light"] .topic-domain-header {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .topic-domain-title {
+      color: #0f172a !important;
+    }
+
     [data-theme="light"] .topic-subtab-bar {
       background: rgba(255, 255, 255, 0.96);
       border-color: #e2e8f0;
@@ -3403,6 +3442,11 @@ const htmlContent = `<!DOCTYPE html>
       background: #f1f5f9;
       color: #0369a1;
       border-color: #cbd5e1;
+    }
+    [data-theme="light"] .reading-time-pill.accent {
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+      border-color: #fde68a !important;
     }
 
     [data-theme="light"] .search-box {
@@ -3486,7 +3530,6 @@ const htmlContent = `<!DOCTYPE html>
       border-bottom-color: #e2e8f0;
     }
     [data-theme="light"] .topic-sec-title { color: #0f172a; }
-    [data-theme="light"] .topic-domain-title { color: #0f172a; }
 
     [data-theme="light"] .theory-content { color: #334155; }
     [data-theme="light"] .theory-content h3 {
@@ -3550,6 +3593,16 @@ const htmlContent = `<!DOCTYPE html>
       color: #0284c7;
       border-color: #cbd5e1;
     }
+    [data-theme="light"] .q-domain-tag {
+      background: #e0e7ff !important;
+      color: #4338ca !important;
+      border-color: #c7d2fe !important;
+    }
+    [data-theme="light"] .q-type-tag {
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+      border-color: #fde68a !important;
+    }
     [data-theme="light"] .q-stem { color: #0f172a; }
     [data-theme="light"] .option-item {
       background: #f8fafc;
@@ -3564,6 +3617,45 @@ const htmlContent = `<!DOCTYPE html>
       color: #334155;
     }
     [data-theme="light"] .opt-text { color: #1e293b; }
+
+    /* Light Mode Option State Contrast Fix */
+    [data-theme="light"] .option-item.selected-correct {
+      background: #dcfce7 !important;
+      border-color: #16a34a !important;
+    }
+    [data-theme="light"] .option-item.selected-correct .opt-key {
+      background: #16a34a !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .option-item.selected-correct .opt-text {
+      color: #065f46 !important;
+      font-weight: 600;
+    }
+    [data-theme="light"] .option-item.selected-wrong {
+      background: #fee2e2 !important;
+      border-color: #dc2626 !important;
+    }
+    [data-theme="light"] .option-item.selected-wrong .opt-key {
+      background: #dc2626 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .option-item.selected-wrong .opt-text {
+      color: #991b1b !important;
+      font-weight: 600;
+    }
+    [data-theme="light"] .option-item.highlight-correct {
+      background: #f0fdf4 !important;
+      border-color: #22c55e !important;
+    }
+    [data-theme="light"] .option-item.highlight-correct .opt-key {
+      background: #22c55e !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .option-item.highlight-correct .opt-text {
+      color: #065f46 !important;
+      font-weight: 600;
+    }
+
     [data-theme="light"] .explanation-drawer {
       background: #f8fafc;
       border-color: #e2e8f0;
@@ -3571,6 +3663,106 @@ const htmlContent = `<!DOCTYPE html>
     [data-theme="light"] .exp-body { color: #334155; }
     [data-theme="light"] .exp-body strong { color: #0f172a; }
     [data-theme="light"] .exp-body em { color: #1e293b; }
+
+    [data-theme="light"] .playlist-toolbar {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .playlist-title {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .playlist-badge {
+      background: #f0f9ff !important;
+      border-color: #bae6fd !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .playlist-btn {
+      background: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .playlist-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .playlist-btn.primary {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .auto-next-label {
+      color: #475569 !important;
+    }
+
+    [data-theme="light"] .exam-timer-widget {
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
+    }
+    [data-theme="light"] .exam-timer-widget.warning {
+      background: #fffbeb !important;
+      border-color: #f59e0b !important;
+    }
+    [data-theme="light"] .exam-timer-widget.danger {
+      background: #fef2f2 !important;
+      border-color: #ef4444 !important;
+    }
+    [data-theme="light"] .timer-digits {
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .timer-action-btn {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .timer-action-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .timer-action-btn.primary {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .timer-divider {
+      background: #e2e8f0 !important;
+    }
+
+    [data-theme="light"] .action-btn {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .action-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .action-btn.retry-btn {
+      background: #fee2e2 !important;
+      border-color: #fca5a5 !important;
+      color: #dc2626 !important;
+    }
+    [data-theme="light"] .action-btn.retry-btn:hover {
+      background: #fecaca !important;
+      color: #b91c1c !important;
+    }
+    [data-theme="light"] .action-btn.shuffle-active {
+      background: #fef3c7 !important;
+      border-color: #f59e0b !important;
+      color: #b45309 !important;
+    }
+    [data-theme="light"] .quiz-controls-bar {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+    }
+    [data-theme="light"] .quiz-set-selector {
+      background: #f8fafc !important;
+      border-bottom-color: #e2e8f0 !important;
+    }
 
     [data-theme="light"] .theory-audio-toolbar {
       background: #f8fafc;
@@ -3639,6 +3831,24 @@ const htmlContent = `<!DOCTYPE html>
       color: #92400e;
     }
 
+    [data-theme="light"] .view-subtabs-group {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
+    [data-theme="light"] .view-subtab-btn {
+      color: #475569 !important;
+    }
+    [data-theme="light"] .view-subtab-btn:hover {
+      color: #0f172a !important;
+      background: rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .view-subtab-btn.active {
+      color: #0284c7 !important;
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    }
+
     [data-theme="light"] .flashcard-face {
       background: #ffffff;
       border-color: #e2e8f0;
@@ -3648,6 +3858,16 @@ const htmlContent = `<!DOCTYPE html>
       background: #f8fafc;
       border-color: #e2e8f0;
     }
+    [data-theme="light"] .fc-front {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
+    [data-theme="light"] .fc-back {
+      background: #f8fafc !important;
+      border-color: #0284c7 !important;
+    }
+    [data-theme="light"] .fc-front-term { color: #0f172a !important; }
+    [data-theme="light"] .fc-front-hint { color: #64748b !important; }
     [data-theme="light"] .fc-term-display { color: #0f172a; }
     [data-theme="light"] .fc-definition-display { color: #0369a1; }
     [data-theme="light"] .fc-note-display { color: #334155; }
@@ -3676,11 +3896,36 @@ const htmlContent = `<!DOCTYPE html>
       background: #f8fafc;
       border-color: #e2e8f0;
     }
+    [data-theme="light"] .graph-svg-wrapper {
+      background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%) !important;
+      border-color: #cbd5e1 !important;
+    }
+    [data-theme="light"] .graph-edge {
+      stroke: #cbd5e1 !important;
+    }
     [data-theme="light"] .node-rect {
-      fill: #ffffff;
+      fill: #ffffff !important;
       stroke-width: 1.5;
     }
-    [data-theme="light"] .node-text { fill: #0f172a; }
+    [data-theme="light"] .node-group:hover .node-rect {
+      fill: #f0f9ff !important;
+      stroke: #0284c7 !important;
+    }
+    [data-theme="light"] .node-group.selected .node-rect {
+      fill: #e0f2fe !important;
+      stroke: #0284c7 !important;
+    }
+    [data-theme="light"] .node-text {
+      fill: #0f172a !important;
+      font-weight: 600;
+    }
+    [data-theme="light"] .node-group:hover .node-text,
+    [data-theme="light"] .node-group.selected .node-text {
+      fill: #0284c7 !important;
+    }
+    [data-theme="light"] .legend-item {
+      color: #334155 !important;
+    }
     [data-theme="light"] .graph-inspector {
       background: #ffffff;
       border-color: #e2e8f0;
@@ -3712,6 +3957,17 @@ const htmlContent = `<!DOCTYPE html>
     [data-theme="light"] .domain-progress-track { background: #e2e8f0; }
     [data-theme="light"] .domain-bars-header { color: #0f172a; }
 
+    [data-theme="light"] .cram-header {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .cram-title {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .cram-subtitle {
+      color: #64748b !important;
+    }
     [data-theme="light"] .cram-card {
       background: #ffffff;
       border-color: #e2e8f0;
@@ -3738,6 +3994,22 @@ const htmlContent = `<!DOCTYPE html>
       background: rgba(220, 38, 38, 0.08);
       color: #dc2626;
       border-color: rgba(220, 38, 38, 0.2);
+    }
+
+    [data-theme="light"] .section-title-heading {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .ste-term-name {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .ste-def-cell {
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .ste-kw-cell {
+      color: #b45309 !important;
+    }
+    [data-theme="light"] .ste-note-cell {
+      color: #334155 !important;
     }
 
     [data-theme="light"] .bottom-nav-bar {
@@ -4550,7 +4822,7 @@ const htmlContent = `<!DOCTYPE html>
           <span class="brand-badge">AIF-C01</span>
           <span class="brand-title">AWS AI Practitioner Mastery Studio</span>
         </div>
-        <div class="brand-subtitle">Hệ thống hóa 252 Câu hỏi & Đề thi • 111 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
+        <div class="brand-subtitle">Hệ thống hóa ${totalAllQuestions} Câu hỏi & Đề thi • ${totalSTETerms} Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
       </div>
 
       <div class="header-actions">
@@ -4564,7 +4836,7 @@ const htmlContent = `<!DOCTYPE html>
           <div class="stat-item">
             <span class="stat-label stat-label-full">Đã làm:</span>
             <span class="stat-label stat-label-short" title="Số câu đã làm">📝</span>
-            <span class="stat-value" id="stats-attempted">0/57</span>
+            <span class="stat-value" id="stats-attempted">0/${totalStudyQuestions}</span>
           </div>
           <div class="stat-item">
             <span class="stat-label stat-label-full">Đúng:</span>
@@ -4673,7 +4945,7 @@ const htmlContent = `<!DOCTYPE html>
       <div class="graph-container">
         <div class="graph-header">
           <div>
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Bản đồ Liên kết Khái niệm (Concept Knowledge Graph)</h2>
+            <h2 class="section-title-heading">Bản đồ Liên kết Khái niệm (Concept Knowledge Graph)</h2>
             <p style="font-size: 0.85rem; color: var(--text-muted);">Di chuột hoặc nhấp vào từng node để làm sáng các đường kết nối liên quan giữa các dịch vụ trong đề thi.</p>
           </div>
           <div class="graph-legend">
@@ -4740,7 +5012,7 @@ const htmlContent = `<!DOCTYPE html>
       <div class="quiz-set-selector" style="display:flex; gap:0.5rem; flex-wrap:wrap; padding:0.75rem 1.25rem; border-bottom:1px solid var(--border); background:var(--bg-panel);">
         <button id="qset-study" class="mode-btn active exam-mode" onclick="switchQuestionSet('study-guide')" style="font-size:0.82rem;">
           <span class="mode-dot"></span>
-          <span>📚 Study Guide (57 câu)</span>
+          <span>📚 Study Guide (${totalStudyQuestions} câu)</span>
         </button>
         ${mockExams.map((me, i) => `
         <button id="qset-${me.id}" class="mode-btn exam-mode" onclick="switchQuestionSet('${me.id}')" style="font-size:0.82rem;">
@@ -4810,14 +5082,14 @@ const htmlContent = `<!DOCTYPE html>
       <div id="quiz-sticky-bar" class="smart-sticky-bar">
         <div class="quiz-sticky-inner">
           <div class="filter-group quiz-filters">
-            <button class="filter-chip active" data-filter="all" onclick="filterDomain('all')">Tất cả (57)</button>
+            <button class="filter-chip active" data-filter="all" onclick="filterDomain('all')">Tất cả (${totalStudyQuestions})</button>
             <button class="filter-chip filter-wrong-chip" data-filter="wrong" id="chip-filter-wrong" onclick="filterDomain('wrong')">🔴 Câu sai (<span id="wrong-count-badge">0</span>)</button>
             <button class="filter-chip filter-star-chip" data-filter="bookmarks" id="chip-filter-bookmarks" onclick="filterDomain('bookmarks')">⭐ Đã lưu (<span id="star-count-badge">0</span>)</button>
-            <button class="filter-chip" data-filter="1" onclick="filterDomain(1)">D1: ML Basics (11)</button>
-            <button class="filter-chip" data-filter="2" onclick="filterDomain(2)">D2: GenAI FMs (11)</button>
-            <button class="filter-chip" data-filter="3" onclick="filterDomain(3)">D3: Applications (12)</button>
-            <button class="filter-chip" data-filter="4" onclick="filterDomain(4)">D4: Responsible AI (11)</button>
-            <button class="filter-chip" data-filter="5" onclick="filterDomain(5)">D5: Security (12)</button>
+            <button class="filter-chip" data-filter="1" onclick="filterDomain(1)">D1: ML Basics (${domains[0].questions.length})</button>
+            <button class="filter-chip" data-filter="2" onclick="filterDomain(2)">D2: GenAI FMs (${domains[1].questions.length})</button>
+            <button class="filter-chip" data-filter="3" onclick="filterDomain(3)">D3: Applications (${domains[2].questions.length})</button>
+            <button class="filter-chip" data-filter="4" onclick="filterDomain(4)">D4: Responsible AI (${domains[3].questions.length})</button>
+            <button class="filter-chip" data-filter="5" onclick="filterDomain(5)">D5: Security (${domains[4].questions.length})</button>
           </div>
           <div class="quiz-sticky-right">
             <div class="search-input-box">
@@ -4865,7 +5137,7 @@ const htmlContent = `<!DOCTYPE html>
     <section id="tab-matrix" class="tab-panel">
       <div style="margin-bottom: 2rem;">
         <div class="matrix-title-header" style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bảng Quyết Định Dịch Vụ & Cặp Dễ Nhầm Lẫn</h2>
+          <h2 class="section-title-heading">Bảng Quyết Định Dịch Vụ & Cặp Dễ Nhầm Lẫn</h2>
           <p style="font-size: 0.85rem; color: var(--text-muted);">Gặp từ khóa tình huống trong đề thi &rarr; Nhận diện ngay dịch vụ AWS chính xác và né các phương án gây nhiễu.</p>
         </div>
 
@@ -4927,8 +5199,8 @@ const htmlContent = `<!DOCTYPE html>
     <section id="tab-ste" class="tab-panel">
       <div style="margin-bottom: 2rem;">
         <div class="ste-title-header" style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;">Bộ Từ Điển Thuật Ngữ Cốt Lõi (82 Thuật Ngữ)</h2>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">82 định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
+          <h2 class="section-title-heading">Bộ Từ Điển Thuật Ngữ Cốt Lõi (${totalSTETerms} Thuật Ngữ)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">${totalSTETerms} định nghĩa tiếng Anh kỹ thuật đơn giản (&le; 25 từ/câu, thể chủ động, một ý/câu) kèm từ khóa đề thi và chú giải tiếng Việt.</p>
         </div>
 
         <!-- Subtab View Switcher: Table vs 3D Flashcards -->
@@ -4941,8 +5213,8 @@ const htmlContent = `<!DOCTYPE html>
           </button>
           <button id="subtab-ste-cards-btn" class="view-subtab-btn" onclick="setDictView('cards')">
             <span>🗂️ </span>
-            <span class="subtab-text-full">Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/82 đã thuộc)</span>
-            <span class="subtab-text-short">Flashcards (<span id="fc-mastered-count-subtab-short">0</span>/82)</span>
+            <span class="subtab-text-full">Luyện thẻ 3D Flashcards (<span id="fc-mastered-count-subtab">0</span>/${totalSTETerms} đã thuộc)</span>
+            <span class="subtab-text-short">Flashcards (<span id="fc-mastered-count-subtab-short">0</span>/${totalSTETerms})</span>
             <span class="reading-time-pill" style="font-size:0.7rem; padding:0.12rem 0.45rem;">⏱️ ~20p</span>
           </button>
         </div>
@@ -4956,10 +5228,10 @@ const htmlContent = `<!DOCTYPE html>
                 <input type="text" id="ste-search" class="search-box sticky-search" placeholder="Tìm thuật ngữ, định nghĩa, từ khóa..." oninput="handleSTESearch(this.value)">
                 <button id="ste-search-clear" class="search-clear-btn" onclick="clearSTESearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
               </div>
-              <span id="ste-count" class="search-count-badge">82/82 thuật ngữ</span>
+              <span id="ste-count" class="search-count-badge">${totalSTETerms}/${totalSTETerms} thuật ngữ</span>
             </div>
             <div class="filter-group ste-filters" style="margin-top: 0.5rem;">
-              <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (82)</button>
+              <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (${totalSTETerms})</button>
               <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (22)</button>
               <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (15)</button>
               <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (18)</button>
@@ -4990,21 +5262,21 @@ const htmlContent = `<!DOCTYPE html>
           <div class="flashcard-wrapper">
             <div class="fc-toolbar">
               <div class="fc-meta-row">
-                <div class="fc-counter">Thẻ <span id="fc-current-idx">1</span> / <span id="fc-total-count">82</span></div>
-                <div class="fc-mastery-badge">⭐ Đã thuộc: <span id="fc-mastered-stat">0</span>/<span id="fc-total-stat">82</span> (<span id="fc-pct-stat">0%</span>)</div>
+                <div class="fc-counter">Thẻ <span id="fc-current-idx">1</span> / <span id="fc-total-count">${totalSTETerms}</span></div>
+                <div class="fc-mastery-badge">⭐ Đã thuộc: <span id="fc-mastered-stat">0</span>/<span id="fc-total-stat">${totalSTETerms}</span> (<span id="fc-pct-stat">0%</span>)</div>
               </div>
               <div class="fc-progress-track">
                 <div id="fc-progress-fill" class="fc-progress-fill" style="width: 0%;"></div>
               </div>
               <div class="filter-group fc-filters" style="margin-top: 0.35rem;">
-                <button class="filter-chip active fc-filter-chip" data-fc-filter="all" onclick="filterFlashcardDomain('all')">Tất cả (82)</button>
+                <button class="filter-chip active fc-filter-chip" data-fc-filter="all" onclick="filterFlashcardDomain('all')">Tất cả (${totalSTETerms})</button>
                 <button class="filter-chip fc-filter-chip" data-fc-filter="unmastered" onclick="filterFlashcardDomain('unmastered')">🔴 Cần ôn lại</button>
                 <button class="filter-chip fc-filter-chip" data-fc-filter="mastered" onclick="filterFlashcardDomain('mastered')">⭐ Đã thuộc</button>
-                <button class="filter-chip fc-filter-chip" data-fc-filter="1" onclick="filterFlashcardDomain(1)">D1 (22)</button>
-                <button class="filter-chip fc-filter-chip" data-fc-filter="2" onclick="filterFlashcardDomain(2)">D2 (15)</button>
-                <button class="filter-chip fc-filter-chip" data-fc-filter="3" onclick="filterFlashcardDomain(3)">D3 (18)</button>
-                <button class="filter-chip fc-filter-chip" data-fc-filter="4" onclick="filterFlashcardDomain(4)">D4 (12)</button>
-                <button class="filter-chip fc-filter-chip" data-fc-filter="5" onclick="filterFlashcardDomain(5)">D5 (15)</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="1" onclick="filterFlashcardDomain(1)">D1 (${domains[0].steTerms.length})</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="2" onclick="filterFlashcardDomain(2)">D2 (${domains[1].steTerms.length})</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="3" onclick="filterFlashcardDomain(3)">D3 (${domains[2].steTerms.length})</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="4" onclick="filterFlashcardDomain(4)">D4 (${domains[3].steTerms.length})</button>
+                <button class="filter-chip fc-filter-chip" data-fc-filter="5" onclick="filterFlashcardDomain(5)">D5 (${domains[4].steTerms.length})</button>
               </div>
             </div>
 
@@ -7190,10 +7462,10 @@ const htmlContent = `<!DOCTYPE html>
       // STE terms table rows
       const steRows = d.steTerms.map(t => \`
         <tr>
-          <td><strong style="color: #fff; font-size: 0.95rem;">\${t.term}</strong></td>
-          <td style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.85rem; line-height:1.5;">\${t.definition}</td>
-          <td style="color: #fbbf24; font-size: 0.85rem;">\${t.keywords}</td>
-          <td style="color: #cbd5e1; font-size: 0.85rem;">\${t.note}</td>
+          <td><strong class="ste-term-name">\${t.term}</strong></td>
+          <td class="ste-def-cell">\${t.definition}</td>
+          <td class="ste-kw-cell">\${t.keywords}</td>
+          <td class="ste-note-cell">\${t.note}</td>
         </tr>
       \`).join('');
 
@@ -7456,13 +7728,13 @@ const htmlContent = `<!DOCTYPE html>
         <tr>
           <td>
             <div style="display:flex; flex-direction:column; gap:0.35rem;">
-              <strong style="color: #fff; font-size: 0.95rem;">\${t.term}</strong>
+              <strong class="ste-term-name">\${t.term}</strong>
               <span class="q-domain-tag" style="align-self:flex-start; font-size:0.7rem; padding:0.15rem 0.45rem;">Domain \${t.domainId}</span>
             </div>
           </td>
-          <td style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.85rem; line-height:1.5;">\${t.definition}</td>
-          <td style="color: #fbbf24; font-size: 0.85rem;">\${t.keywords}</td>
-          <td style="color: #cbd5e1; font-size: 0.85rem;">\${t.note}</td>
+          <td class="ste-def-cell">\${t.definition}</td>
+          <td class="ste-kw-cell">\${t.keywords}</td>
+          <td class="ste-note-cell">\${t.note}</td>
         </tr>
       \`).join('');
     }

@@ -420,3 +420,28 @@ A company wants to deploy a conversational chatbot to answer customer questions 
 - Bất kể dịch vụ đám mây nào:
   - **Dữ liệu (Data), Mã hóa (KMS), Quyền truy cập (IAM)** $\rightarrow$ Luôn là trách nhiệm của **Khách hàng (Customer)**.
   - **Hạ tầng vật lý, Phần cứng GPU, Bản vá OS máy chủ managed** $\rightarrow$ Luôn là trách nhiệm của **AWS**.
+
+---
+
+### Question 13
+A multinational financial institution uses AWS to host its generative AI foundation models and customer service applications. The company's compliance department must generate formal audit reports to demonstrate adherence to international security standards (such as ISO/IEC 27001, SOC 2, and HIPAA) for handling sensitive customer financial data. Which AWS service meets these requirements?
+- A. Amazon Macie
+- B. AWS Artifact
+- C. AWS Secrets Manager
+- D. AWS Config
+
+**Đáp án đúng:** **B. AWS Artifact**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"generate formal audit reports to demonstrate adherence to international security standards (ISO, SOC, HIPAA)"*.
+- **AWS Artifact** là cổng thông tin tự phục vụ trung tâm của AWS cung cấp quyền truy cập theo yêu cầu vào các báo cáo bảo mật, thỏa thuận tuân thủ và chứng chỉ kiểm toán độc lập của AWS.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại A (Amazon Macie):** Dịch vụ bảo mật dữ liệu sử dụng ML để tự động phát hiện và phân loại thông tin định danh cá nhân (PII) trong Amazon S3, không phát hành các báo cáo tuân thủ chứng chỉ đám mây quốc tế.
+- **Loại C (AWS Secrets Manager):** Dịch vụ lưu trữ, quản lý và xoay vòng mật khẩu, khóa API và token truy cập.
+- **Loại D (AWS Config):** Dịch vụ đánh giá và giám sát cấu hình tài nguyên đám mây để đảm bảo tuân thủ các quy tắc cấu hình nội bộ, không cung cấp báo cáo kiểm toán bảo mật cơ sở hạ tầng của AWS.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Cụm từ trong đề tiếng Anh: *"Download compliance reports / audit certifications (SOC, ISO, HIPAA)"* $\rightarrow$ Luôn chọn **AWS Artifact**.
+- Cụm từ: *"Scan and discover sensitive data / PII in S3"* $\rightarrow$ Luôn chọn **Amazon Macie**.
+

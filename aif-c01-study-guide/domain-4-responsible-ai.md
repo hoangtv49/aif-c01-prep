@@ -365,3 +365,30 @@ A company wants to implement responsible AI principles for its machine learning 
 - Hai hành động tiêu chuẩn để đảm bảo **Fairness trong AI**:
   - Dữ liệu đầu vào: **Đa dạng và có tính đại diện (Demographically diverse data)**.
   - Công cụ kỹ thuật: **Đo lường chỉ số bias với Amazon SageMaker Clarify**.
+
+---
+
+### Question 12
+A company is integrating AI into its employee recruitment and candidate hiring platform. The company wants to mitigate bias risks and follow responsible AI practices while prioritizing equitable hiring recommendations. Which core dimensions of responsible AI should the company consider? (Choose two.)
+- A. Transparency
+- B. Open source
+- C. Flexibility
+- D. Tolerance
+- E. Fairness
+
+**Đáp án đúng:** **A. Transparency** và **E. Fairness**
+
+**Lý do chọn (Root Cause & Keyword Triggers):**
+- Đề bài yêu cầu: *"mitigate bias risks"*, *"responsible AI practices"*, *"equitable hiring recommendations"*.
+- **Fairness (Tính công bằng)**: Là trụ cột cốt lõi đảm bảo các quyết định của hệ thống AI không phân biệt đối xử hay tạo ra kết quả bất lợi bất công cho bất kỳ nhóm ứng viên nào.
+- **Transparency (Tính minh bạch)**: Cung cấp khả năng giải thích và thông tin rõ ràng về cách thức thuật ngữ hoặc mô hình phân tích hồ sơ, giúp ứng viên và chuyên viên tuyển dụng hiểu được căn cứ của các quyết định.
+
+**Phân tích bẫy và lý do loại các phương án sai (Distractor Analysis):**
+- **Loại B (Open source):** Mô hình mã nguồn mở là một lựa chọn cấp phép phần mềm, không phải là một nguyên tắc hay trụ cột của Responsible AI.
+- **Loại C (Flexibility):** Tính linh hoạt là đặc tính kỹ thuật kiến trúc, không thuộc các trụ cột đạo đức AI.
+- **Loại D (Tolerance):** Khái niệm chung không nằm trong bộ tiêu chuẩn 6 trụ cột Responsible AI của AWS hay NIST.
+
+**Cảnh báo bẫy phòng thi (Trap Alert):**
+- Các trụ cột cốt lõi của **Responsible AI** theo chuẩn AWS:
+  - **Fairness (Công bằng)**, **Explainability / Transparency (Minh bạch)**, **Privacy & Security (Bảo mật & Riêng tư)**, **Robustness (Độ tin cậy)**, **Governance (Quản trị)**.
+
