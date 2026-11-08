@@ -31,10 +31,39 @@
      - **Decoder-only (như GPT, Llama, Titan Text, Claude)**: Chuyên biệt cho bài toán sinh văn bản tự hồi quy (Autoregressive Text Generation).
      - **Encoder-Decoder (như T5, BART)**: Phù hợp cho dịch máy (Translation) và tóm tắt văn bản (Summarization).
 2. **Mô hình khuếch tán (Diffusion Models)**:
-   - Quá trình huấn luyện: Thêm nhiễu Gauss ngẫu nhiên vào ảnh từng bước cho đến khi thành nhiễu trắng hoàn toàn (Forward Process), sau đó huấn luyện mạng nơ-ron khử nhiễu từng bước để tái tạo lại ảnh mới từ văn bản mô tả (Reverse Process).
+   - Quá trình huấn luyện: Thêm nhiễu Gauss ngẫu nhiên vào ảnh từng bước cho đến khi thành nhiễu trắng hoàn toàn (**Forward Process**), sau đó huấn luyện mạng nơ-ron khử nhiễu từng bước để tái tạo lại ảnh mới từ văn bản mô tả (**Reverse Denoising Process**).
    - Ứng dụng: Stable Diffusion, Amazon Titan Image Generator.
-3. **Mạng nơ-ron tích chập (CNNs)**: Dành riêng cho xử lý lưới pixel ảnh và trích xuất đặc trưng không gian.
-4. **Mô hình đa phương thức (Multimodal FMs)**: Xử lý và liên kết đồng thời nhiều kiểu dữ liệu khác nhau (Text-to-Image, Image-to-Text, Audio-to-Text).
+3. **Mạng đối nghịch tạo sinh (Generative Adversarial Networks - GANs)**:
+   - Gồm hai mạng nơ-ron đối nghịch thi đấu trực tiếp (zero-sum minimax game):
+     - **Generator (Bộ tạo sinh)**: Cố gắng sinh ra dữ liệu/ảnh giả giống hệt dữ liệu thật để đánh lừa Discriminator.
+     - **Discriminator (Bộ phân biệt)**: Phân loại xem dữ liệu đầu vào là ảnh thật từ tập dữ liệu hay ảnh giả do Generator tạo ra.
+     - *Keyword đề thi*: *"Two competing neural networks, generator and discriminator"*.
+4. **Mô hình biến phân tự mã hóa (Variational Autoencoders - VAEs)**:
+   - Nén dữ liệu đầu vào thành phân phối xác suất trong không gian tiềm ẩn (**Latent Space**), sau đó giải mã tái tạo dữ liệu mới từ không gian này.
+5. **Mô hình đa phương thức (Multimodal FMs)**: Xử lý và liên kết đồng thời nhiều kiểu dữ liệu khác nhau (Text-to-Image, Image-to-Text, Audio-to-Text).
+
+#### Các siêu tham số then chốt khi điều khiển mô hình tạo ảnh (Diffusion Parameters)
+
+Trong các bài thi thực tế AIF-C01, các câu hỏi về Amazon Titan Image Generator hoặc Diffusion models thường kiểm tra 4 tham số sau:
+
+| Siêu tham số | Bản chất kỹ thuật & Cơ chế hoạt động | Tác động khi tăng / giảm giá trị | Tình huống bài toán đề thi |
+| :--- | :--- | :--- | :--- |
+| **CFG Scale (Classifier-Free Guidance Scale)** | Điều chỉnh mức độ mô hình bám sát chặt chẽ vào câu lệnh prompt văn bản đầu vào. | **Tăng CFG**: Ảnh bám sát tuyệt đối vào từng chi tiết của prompt (nhưng nếu quá cao ảnh sẽ bị gắt màu/biến dạng).<br>**Giảm CFG**: Mô hình tự do sáng tạo, bay bổng hơn so với prompt. | Muốn hình ảnh sinh ra **tuân thủ chính xác nhất** theo mô tả của người dùng $\rightarrow$ **Increase CFG Scale**. |
+| **Generation / Denoising Steps** | Số chu kỳ lặp mà mạng nơ-ron thực hiện việc bóc tách và khử nhiễu từ ảnh nhiễu ngẫu nhiên. | **Tăng Steps**: Ảnh sắc nét, chi tiết hoàn thiện hơn rất nhiều (tuy nhiên thời gian sinh ảnh lâu hơn và tốn tài nguyên hơn).<br>**Giảm Steps**: Tạo ảnh nhanh nhưng có thể còn vệt mờ hoặc chi tiết thô. | Cải thiện độ sắc nét và chất lượng hoàn thiện của ảnh kết quả $\rightarrow$ **Increase generation steps**. |
+| **Negative Prompt** | Danh sách các đối tượng, đặc điểm hoặc phong cách mà người dùng **KHÔNG** muốn xuất hiện trong ảnh kết quả. | Loại bỏ các chi tiết không mong muốn khỏi ảnh sinh ra (Ví dụ: `blurry, low quality, extra fingers, text, watermark`). | Muốn đảm bảo ảnh không bị mờ nhòe, không dính logo hay chữ viết $\rightarrow$ **Dùng Negative Prompt**. |
+| **Seed (Random Seed)** | Giá trị số nguyên khởi tạo ma trận nhiễu ngẫu nhiên ban đầu cho quá trình khuếch tán. | Cùng Prompt + Cùng CFG + Cùng Seed sẽ **tái lập chính xác 100%** bức ảnh đã tạo ở lần trước. Thay đổi Seed sẽ tạo ra một biến thể mới hoàn toàn. | Cần tạo lại một bức ảnh giống hệt để kiểm thử tính nhất quán $\rightarrow$ **Cố định Seed (Fix seed value)**. |
+
+#### Tokenization, Khả năng thích ứng (Adaptability) và Bản chất Stateless của LLM
+
+1. **Token và Tokenization**:
+   - Token là đơn vị cơ bản nhỏ nhất mà LLM sử dụng để xử lý ngôn ngữ. Một token có thể là một từ, một phần của từ (subword) hoặc một ký tự (1 token $\approx$ 0.75 từ tiếng Anh hoặc $\approx$ 4 ký tự).
+   - Mô hình không hiểu trực tiếp từ ngữ, văn bản được chuyển qua bộ **Tokenizer** thành dãy số Token ID trước khi đưa vào embedding vector.
+2. **Khả năng thích ứng vượt trội (Adaptability) so với Luật mã hóa cứng (Hard-coded Logic)**:
+   - Các ứng dụng truyền thống dựa vào chuỗi quy tắc `if-else` cứng nhắc (*hard-coded logic*) rất khó mở rộng và dễ sụp đổ khi ngôn ngữ người dùng thay đổi.
+   - Foundation Models sở hữu **Tính thích ứng cao (Adaptability)**: Có khả năng hiểu và phản hồi linh hoạt trước vô số biến thể ngôn ngữ tự nhiên, ngữ cảnh phức tạp và mở rộng sang nhiều thị trường/sản phẩm mà không cần viết lại mã nguồn.
+3. **Bản chất không lưu trạng thái (Stateless Nature) của LLMs**:
+   - Mỗi lệnh gọi API đến Bedrock hay LLM là hoàn toàn **độc lập và không lưu trạng thái (Stateless)**; mô hình không hề nhớ bất kỳ câu hỏi nào bạn đã hỏi ở các lượt trước.
+   - *Cách giải quyết trong Chatbot đàm thoại nhiều lượt (Multi-turn conversations)*: Ứng dụng phía máy khách (Client application) phải lưu trữ lịch sử cuộc đối thoại và **truyền toàn bộ chuỗi hội thoại trước đó (Conversation History)** kèm theo câu hỏi mới vào Prompt trong mỗi lần gọi API, miễn là tổng số token không vượt quá **Context Window**.
 
 ---
 
@@ -75,8 +104,8 @@ Tăng chi phí, thời gian và độ phức tạp kỹ thuật  ===============
   - *Biện pháp*: Áp dụng RAG để neo câu trả lời vào tài liệu thực tế, hạ thấp tham số Temperature về gần 0, sử dụng Prompt cấm bịa đặt (*"Chỉ trả lời dựa trên tài liệu được cung cấp, nếu không có hãy nói Tôi không biết"*).
 - **Tính độc hại và thiên kiến (Toxicity & Bias)**: Tạo ra nội dung kích động thù địch, phân biệt đối xử.
   - *Biện pháp*: Thiết lập Guardrails (Amazon Bedrock Guardrails) để lọc nội dung độc hại.
-- **Xâm phạm bản quyền (IP & Copyright Infringement)**: Tái tạo lại đoạn văn hoặc hình ảnh có bản quyền tác giả.
-  - *Biện pháp*: Dùng mô hình có cam kết bồi hoàn bản quyền (AWS IP indemnity) hoặc lọc nguồn dữ liệu huấn luyện.
+- **Xâm phạm bản quyền và đạo văn (Plagiarism & IP Infringement)**: Mô hình có thể vô tình sinh ra đoạn văn bản hoặc mã nguồn trùng lặp nguyên văn (*verbatim reproduction*) từ tập dữ liệu huấn luyện có bản quyền.
+  - *Biện pháp*: Dùng RAG để trích dẫn nguồn rõ ràng, sử dụng mô hình có cam kết bồi hoàn bản quyền (AWS IP indemnity), nhúng watermark kỹ thuật số (Titan Image Generator), hoặc lọc nguồn dữ liệu huấn luyện.
 - **Rò rỉ dữ liệu (Data Leakage)**: Người dùng nhập bí mật kinh doanh vào prompt và dữ liệu đó bị dùng để huấn luyện mô hình công cộng.
   - *Biện pháp*: Sử dụng dịch vụ cam kết không lưu trữ hay tái huấn luyện như Amazon Bedrock; mã hóa và che giấu PII.
 
@@ -101,6 +130,11 @@ Tăng chi phí, thời gian và độ phức tạp kỹ thuật  ===============
 | **Transfer Learning** | Transfer learning uses knowledge from an earlier task. It applies this knowledge to solve a new task. | Pre-trained knowledge, adaptation, saves training time, downstream tasks. | Phương pháp tái sử dụng tri thức từ mô hình đã học trước đó để giải quyết bài toán mới. |
 | **Embedding** | An embedding is a numerical vector that represents data. It preserves semantic meaning in vector space. | Vector representation, semantic similarity, high-dimensional vector. | Biểu diễn dữ liệu (từ, câu, ảnh) dưới dạng một chuỗi số thực vector giữ nguyên ý nghĩa ngữ nghĩa. |
 | **Vector Database** | A vector database indexes and searches high-dimensional vector embeddings quickly. It uses similarity search algorithms. | High-dimensional index, similarity search, nearest neighbors, RAG storage. | Cơ sở dữ liệu chuyên dụng để lưu trữ và tìm kiếm vector tương đồng (ví dụ: OpenSearch, pgvector). |
+| **Classifier-Free Guidance Scale** | Classifier-free guidance scale controls prompt adherence in diffusion models. Higher values force the model to follow the prompt closely. | CFG scale, prompt adherence, image fidelity, Titan Image Generator. | Hệ số định hướng trong mô hình khuếch tán, giá trị càng cao thì hình ảnh sinh ra càng bám sát prompt. |
+| **Generative Adversarial Network** | A generative adversarial network trains two neural networks together. A generator creates synthetic data while a discriminator detects fake data. | Two competing networks, generator and discriminator, minimax game. | Mạng nơ-ron đối nghịch gồm bộ tạo sinh và bộ phân biệt thi đấu để sinh dữ liệu nhân tạo chân thực. |
+| **Negative Prompt** | A negative prompt specifies content that the model must not generate. It removes unwanted objects and styles from generated images. | Exclude unwanted features, avoid blurry images, unwanted elements. | Câu lệnh cấm chỉ định các chi tiết, khuyết tật hoặc phong cách không được phép xuất hiện trong ảnh. |
+| **Tokenization** | Tokenization splits input text into smaller units called tokens. Models convert tokens into numerical vectors for processing. | Splitting text, subwords, token representation, context length. | Quá trình bóc tách chuỗi văn bản thành các đơn vị từ hoặc cụm từ nhỏ (tokens) để mô hình xử lý. |
+| **Random Seed** | A random seed is an integer that initializes randomness. The same seed and prompt produce identical outputs across generations. | Reproducibility, deterministic output, fixed seed value. | Giá trị số nguyên khởi tạo ma trận nhiễu, giúp tái lập chính xác 100% hình ảnh đã tạo ở các lần sinh sau. |
 
 ---
 

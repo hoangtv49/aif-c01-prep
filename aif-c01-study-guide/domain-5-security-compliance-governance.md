@@ -33,10 +33,17 @@ AWS áp dụng nguyên tắc: **AWS chịu trách nhiệm bảo mật CỦA đá
 1. **Mã hóa dữ liệu (Data Encryption)**:
    - **Mã hóa khi lưu trữ (Encryption at Rest)**: Sử dụng **AWS Key Management Service (AWS KMS)**. Khách hàng nên sử dụng khóa do khách hàng quản lý (**Customer Managed Keys - CMKs**) để toàn quyền kiểm soát vòng đời khóa, phân quyền và thu hồi quyền giải mã dữ liệu huấn luyện, vector database và custom models.
    - **Mã hóa khi truyền tải (Encryption in Transit)**: Bắt buộc sử dụng giao thức **TLS 1.2+** cho mọi lệnh gọi API đến các dịch vụ AI của AWS.
-2. **Cô lập mạng riêng tư với AWS PrivateLink**:
-   - Để ngăn chặn hoàn toàn việc dữ liệu huấn luyện hoặc câu lệnh prompt truyền qua mạng Internet công cộng, ứng dụng trong VPC phải kết nối tới Amazon Bedrock hoặc Amazon S3 thông qua **VPC Interface Endpoints (AWS PrivateLink)**.
-   - Mọi lưu lượng dữ liệu chỉ lưu chuyển hoàn toàn bên trong mạng backbone bảo mật của AWS.
-3. **Nguyên tắc quyền tối thiểu (Principle of Least Privilege)**:
+2. **Kiến trúc mạng riêng biệt và Cô lập hạ tầng (VPC Networking & Isolation)**:
+   - **Gateway VPC Endpoint**: Điểm cuối định tuyến gắn trực tiếp vào Route Table của VPC, hoàn toàn miễn phí, dành riêng cho **Amazon S3** và **Amazon DynamoDB**. Dùng để truy cập các S3 buckets chứa dữ liệu huấn luyện hoặc kết quả suy luận mà không cần Internet Gateway hay NAT Gateway.
+   - **Interface VPC Endpoint (AWS PrivateLink)**: Cấp phát card mạng ảo ENI kèm IP riêng (Private IP) trong subnet. Dùng để kết nối an toàn từ VPC tới **Amazon Bedrock API** và **SageMaker API/Runtime** mà không đi qua Internet công cộng.
+   - **SageMaker Network Isolation (`EnableNetworkIsolation = True`)**:
+     - Khi kích hoạt cờ cấu hình này trên SageMaker Training Job hoặc Inference Endpoint, container thực thi sẽ bị **ngắt hoàn toàn kết nối mạng ra bên ngoài (No internet access)** và bị cấm tuyệt đối giao tiếp với các container khác.
+     - Đây là biện pháp bắt buộc khi huấn luyện các mô hình chứa dữ liệu tối mật nhằm ngăn ngừa tuyệt đối nguy cơ dữ liệu bị rò rỉ ra ngoài (*Data Exfiltration*).
+3. **Kỹ thuật học máy bảo vệ quyền riêng tư: Federated Learning (Học liên kết)**:
+   - Phương pháp huấn luyện mô hình phân tán trên dữ liệu cục bộ nằm tại nhiều tổ chức, thiết bị hoặc chi nhánh khác nhau.
+   - **Nguyên lý then chốt**: **Dữ liệu thô (raw data) không bao giờ rời khỏi thiết bị cục bộ**. Các bên chỉ chia sẻ các tham số cập nhật trọng số mô hình (*model weight updates / gradients*) về máy chủ trung tâm để tổng hợp.
+   - Thường được áp dụng trong các ngành ngân hàng hoặc y tế nhằm tuân thủ nghiêm ngặt quy định bảo mật và quyền riêng tư dữ liệu.
+4. **Nguyên tắc quyền tối thiểu (Principle of Least Privilege)**:
    - Sử dụng **AWS IAM Policies** để cấp đúng quyền cần thiết cho các vai trò (IAM Roles). Ví dụ: Ứng dụng chỉ được phép gọi hành động `bedrock:InvokeModel` trên một Model ARN cụ thể thay vì quyền `bedrock:*`.
 
 ---
@@ -71,8 +78,21 @@ AWS áp dụng nguyên tắc: **AWS chịu trách nhiệm bảo mật CỦA đá
 | **AWS Artifact** | Cổng thông tin tự phục vụ theo yêu cầu, cho phép **tải về các báo cáo kiểm toán tuân thủ (SOC, PCI DSS)** và thỏa thuận pháp lý (BAA cho HIPAA) của chính AWS. | On-demand access to compliance reports, download SOC 2 reports, AWS compliance agreements. |
 | **AWS Audit Manager** | **Tự động thu thập bằng chứng kỹ thuật** từ tài khoản AWS để đánh giá việc tuân thủ liên tục đối với các khung quy định (GDPR, HIPAA, Generative AI Framework). | Automated evidence collection, continuous compliance audits, pre-built frameworks. |
 | **AWS Config** | Theo dõi và ghi lại **lịch sử thay đổi cấu hình tài nguyên**, đánh giá cấu hình hiện tại so với các quy tắc tuân thủ mong muốn và cảnh báo khi có sai lệch. | Configuration history, compliance rules, resource drift, evaluate resource configurations. |
-| **AWS CloudTrail** | Ghi lại toàn bộ **lịch sử các lệnh gọi API** trong tài khoản (Ai đã gọi API gì, lúc mấy giờ, từ địa chỉ IP nào) để phục vụ điều tra truy vết. | API call auditing, user activity tracking, forensic investigations, governance. |
+| **AWS CloudTrail** | Ghi lại toàn bộ **lịch sử các lệnh gọi API** trong tài khoản (Ai đã gọi API gì, lúc mấy giờ, từ địa chỉ IP nào) để phục vụ điều tra truy vết. Không ghi lại nội dung prompt hoặc kết quả suy luận. | API call auditing, user activity tracking, forensic investigations, governance. |
+| **Amazon Bedrock Model Invocation Logging** | Ghi lại chi tiết **toàn bộ nội dung prompt và câu trả lời hoàn chỉnh (full text payload)** cùng siêu dữ liệu vào Amazon S3 hoặc CloudWatch Logs để phục vụ kiểm toán tuân thủ. | Full prompt text logging, model response auditing, compliance review, S3 bucket logs. |
 | **Amazon Inspector** | Dịch vụ tự động **quét và phát hiện lỗ hổng bảo mật** (CVEs) và sai lệch cấu hình trên máy chủ EC2 và kho chứa container images (ECR). | Automated vulnerability scanning, CVE detection, container image scans. |
+
+#### Quy trình xử lý sự cố rò rỉ dữ liệu mật vào Custom Model (Training Data Leakage Remediation)
+
+Trong đề thi, khi xảy ra sự cố dữ liệu bí mật/nhạy cảm vô tình bị đưa vào tập dữ liệu huấn luyện của Custom Model trên Amazon Bedrock hoặc SageMaker, trọng số mô hình (weights) đã bị nhiễm thông tin. Quy trình xử lý chuẩn xác nhất gồm 3 bước:
+1. **Xóa bỏ mô hình tùy chỉnh (Delete the custom model)**: Hủy bỏ ngay lập tức mô hình đã huấn luyện để ngăn chặn việc người dùng khác khai thác qua prompt.
+2. **Làm sạch tập dữ liệu huấn luyện (Sanitize & clean training dataset on S3)**: Rà soát và xóa bỏ hoàn toàn các thông tin nhạy cảm, bí mật kinh doanh ra khỏi file dữ liệu huấn luyện trên S3.
+3. **Huấn luyện lại mô hình mới từ đầu (Retrain a new custom model)**: Sử dụng tập dữ liệu sạch để huấn luyện lại mô hình thay thế.
+*(Lưu ý: Không được sử dụng prompt engineering hay filter để che đậy kết quả vì trọng số mô hình vẫn chứa rủi ro rò rỉ)*.
+
+#### Yêu cầu cư trú dữ liệu và chủ quyền dữ liệu (Data Residency & Data Sovereignty)
+- Nhiều khung pháp lý (GDPR, ngân hàng quốc gia) yêu cầu dữ liệu khách hàng, quá trình huấn luyện và kết quả suy luận **không được rời khỏi biên giới địa lý (Single-Region deployment)**.
+- Khi thiết kế kiến trúc AI trên AWS, phải đảm bảo S3 bucket, Bedrock inference endpoint và CloudWatch Logs cùng nằm trong **chính xác một AWS Region** được phê duyệt pháp lý.
 
 ---
 
@@ -95,6 +115,11 @@ AWS áp dụng nguyên tắc: **AWS chịu trách nhiệm bảo mật CỦA đá
 | **EU AI Act** | The EU AI Act regulates artificial intelligence by risk tiers. It prohibits unacceptable systems and enforces high-risk rules. | European regulation, risk-based classification, unacceptable risk, high-risk. | Đạo luật quản lý AI của Liên minh Châu Âu phân loại rủi ro từ cấm tuyệt đối đến rủi ro tối thiểu. |
 | **ISO/IEC 27002** | ISO/IEC 27002 provides information security control guidelines. It establishes best practices for data management security. | Global security standard, information security controls, best practices. | Tiêu chuẩn quốc tế hướng dẫn các biện pháp thực hành bảo mật thông tin và quản lý dữ liệu. |
 | **NIST 800-53** | NIST 800-53 catalog provides security controls for federal systems. It establishes a benchmark for robust organizational security. | Federal security benchmark, security controls catalog, federal compliance. | Bộ tiêu chuẩn các biện pháp kiểm soát an ninh nghiêm ngặt thường dùng cho các cơ quan chính phủ. |
+| **Network Isolation** | Network isolation disconnects training and inference containers from internet access. It prevents data exfiltration and external communication. | No internet access, enable network isolation, prevent data exfiltration. | Chế độ ngắt hoàn toàn kết nối mạng ra bên ngoài cho container huấn luyện ML để chống rò rỉ dữ liệu. |
+| **Model Invocation Logging** | Model invocation logging captures full prompt text and model responses. It saves audit logs to S3 or CloudWatch for compliance reviews. | Full prompt logging, completion audit, Bedrock invocation log. | Tính năng ghi lại toàn bộ nội dung prompt và câu trả lời hoàn chỉnh để phục vụ kiểm toán tuân thủ. |
+| **Federated Learning** | Federated learning trains models across decentralized devices without moving raw data. Devices share only model weight updates to protect privacy. | Decentralized training, privacy-preserving ML, keep data local. | Phương pháp huấn luyện học máy phân tán bảo vệ quyền riêng tư, dữ liệu thô giữ tại chỗ và chỉ chia sẻ trọng số. |
+| **Gateway VPC Endpoint** | A gateway VPC endpoint routes private traffic to S3 directly without traversing internet networks. It uses VPC route table entries without cost. | Route table entry, free endpoint, private S3 access. | Điểm cuối mạng VPC kết nối riêng tư trực tiếp tới Amazon S3 qua bảng định tuyến mà không tốn phí. |
+| **Data Residency** | Data residency specifies legal requirements for storing data within a geographic region. Organizations configure single-region deployments to maintain compliance. | Geographic data storage, regulatory compliance, single-region deployment. | Quy định pháp lý bắt buộc dữ liệu và xử lý AI phải lưu trữ trong biên giới một khu vực địa lý nhất định. |
 
 ---
 

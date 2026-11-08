@@ -23,6 +23,15 @@
 - **Các nguồn gốc sinh ra Bias trong AI**:
   - *Data Bias / Historical Bias*: Dữ liệu lịch sử chứa đựng định kiến sẵn có của xã hội (ví dụ: tập dữ liệu tuyển dụng quá khứ có 85% nhân sự là nam giới).
   - *Measurement Bias*: Công cụ đo lường hoặc cách gán nhãn dữ liệu bị sai lệch giữa các nhóm người.
+- **Kỹ thuật xử lý mất cân bằng lớp (Class Imbalance Mitigation)**:
+  - Hiện tượng tập dữ liệu có một lớp chiếm tỷ lệ áp đảo (ví dụ: 99.5% không gian lận, 0.5% gian lận).
+  - *Biện pháp kỹ thuật*:
+    1. **Tái lấy mẫu (Resampling)**: Tăng cường mẫu cho lớp thiểu số (**Oversampling** - kỹ thuật SMOTE) hoặc giảm bớt mẫu của lớp đa số (**Undersampling**).
+    2. **Trọng số lớp (Class Weights)**: Thiết lập trọng số phạt cao hơn khi mô hình đoán sai lớp thiểu số trong hàm mất mát (Loss Function).
+    3. **Chọn chỉ số đánh giá phù hợp**: Tuyệt đối không dùng Accuracy; bắt buộc chuyển sang dùng **F1-Score** hoặc **Precision-Recall AUC**.
+- **Sự đánh đổi giữa Độ phức tạp và Khả năng giải thích (Complexity vs Explainability Trade-Off)**:
+  - *Mô hình đơn giản (Linear/Logistic Regression, Decision Trees)*: Thuộc dạng "hộp trắng" (White-box), con người dễ dàng hiểu trọng số tham số (Interpretable weights), nhưng năng lực biểu diễn các mối quan hệ phi tuyến tính phức tạp bị giới hạn.
+  - *Mô hình phức tạp (Deep Neural Networks, Ensemble, LLMs)*: Thuộc dạng "hộp đen" (Black-box), năng lực học và độ chính xác rất cao nhưng con người không thể tự đọc hiểu hàng triệu/hàng tỷ trọng số. Bắt buộc phải dùng công cụ giải thích hậu nghiệm (**Post-hoc Explainability via SHAP**).
 - **Vai trò của Amazon SageMaker Clarify**:
   1. **Đo lường Bias trước khi huấn luyện (Pre-training Bias)**: Phân tích tập dữ liệu để phát hiện sự mất cân bằng giữa các nhóm (Class Imbalance, Difference in Positive Proportions in Labels - DPPL).
   2. **Đo lường Bias sau khi huấn luyện (Post-training Bias)**: Kiểm tra xem mô hình có đưa ra tỷ lệ chấp thuận chênh lệch bất công giữa các nhóm nhạy cảm hay không (Disparate Impact).
@@ -33,13 +42,16 @@
 
 ---
 
-### 3. Tài liệu minh bạch: AWS AI Service Cards
-- **Định nghĩa**: Là tài liệu chính thức do AWS biên soạn và công bố công khai cho từng dịch vụ AI được quản lý (như Amazon Rekognition, Amazon Textract, Amazon Transcribe).
-- **Mục đích cốt lõi trong đề thi**: Giúp khách hàng hiểu rõ về việc triển khai AI có trách nhiệm và đưa ra quyết định sáng suốt khi sử dụng dịch vụ của AWS.
-- **3 Nội dung chính trong mỗi Service Card**:
-  1. **Mục đích sử dụng dự kiến (Intended Use Cases)**: Nêu rõ các bài toán và tình huống nghiệp vụ mà dịch vụ được thiết kế tối ưu nhất.
-  2. **Giới hạn kỹ thuật và môi trường (Limitations)**: Cảnh báo các trường hợp dịch vụ có thể hoạt động kém chính xác (ví dụ: ảnh quá mờ, góc chụp nghiêng, điều kiện thiếu sáng hoặc tiếng ồn môi trường quá lớn).
-  3. **Nguyên tắc thiết kế có trách nhiệm (Responsible Design Principles)**: Mô tả cách thức AWS áp dụng để giảm thiểu sai lệch, bảo vệ quyền riêng tư và đảm bảo tính công bằng trong quá trình huấn luyện dịch vụ.
+### 3. Tài liệu minh bạch: AWS AI Service Cards vs Amazon SageMaker Model Cards
+
+Đề thi AIF-C01 phân biệt rất rõ ràng phạm vi sử dụng giữa hai loại thẻ tài liệu hóa:
+
+| Tiêu chí | AWS AI Service Cards | Amazon SageMaker Model Cards |
+| :--- | :--- | :--- |
+| **Đối tượng áp dụng** | Các **Dịch vụ AI được quản lý sẵn của AWS** (AWS Managed AI Services như Rekognition, Textract, Transcribe). | Các **Mô hình học máy tùy chỉnh (Custom ML Models)** do chính tổ chức/khách hàng huấn luyện và triển khai. |
+| **Bên chịu trách nhiệm tạo lập** | Do chính đội ngũ kỹ sư và chuyên gia AI của **AWS biên soạn và công bố công khai**. | Do **nhà khoa học dữ liệu (Data Scientists) hoặc đội ngũ kỹ thuật của doanh nghiệp** tạo và quản lý trong SageMaker. |
+| **Mục đích cốt lõi trong đề thi** | Hướng dẫn khách hàng hiểu rõ phạm vi sử dụng có trách nhiệm, hạn chế kỹ thuật và đạo đức của dịch vụ AWS có sẵn. | **Tiêu chuẩn hóa tài liệu quản trị nội bộ**: Ghi nhận mục đích (*model purpose*), kiến trúc, siêu tham số, chỉ số đánh giá (*performance*), và giới hạn (*limitations*). |
+| **Nội dung cấu thành chính** | 1. Mục đích dự kiến (Intended Use Cases).<br>2. Giới hạn kỹ thuật và môi trường (Limitations).<br>3. Nguyên tắc thiết kế có trách nhiệm (Responsible Design). | 1. Metadata mô hình, tác giả, phiên bản.<br>2. Ý định kinh doanh & phạm vi áp dụng.<br>3. Dữ liệu huấn luyện & siêu tham số.<br>4. Kết quả đánh giá định lượng & quan sát đạo đức. |
 
 ---
 
@@ -80,6 +92,9 @@ User Prompt  ====>  [ Bedrock Guardrails ]  ====>  Foundation Model
 | **Bedrock Guardrails** | Bedrock Guardrails applies configurable safety boundaries to generative applications. It filters harmful content and sensitive data. | Safety boundaries, content filter, PII masking, denied topics. | Hàng rào bảo vệ an toàn cho ứng dụng GenAI, lọc nội dung độc hại và che giấu dữ liệu PII. |
 | **PII Redaction** | PII redaction masks or removes sensitive personal information automatically. It protects customer identity and private data. | Masking sensitive data, redacting SSN, customer privacy. | Kỹ thuật tự động phát hiện và che giấu thông tin cá nhân nhạy cảm để bảo vệ quyền riêng tư. |
 | **Contextual Grounding** | Contextual grounding checks model answers against source reference documents. It detects and blocks hallucinations. | Hallucination detection, source validation, grounding score. | Cơ chế kiểm tra đối chiếu câu trả lời của LLM với văn bản nguồn để chặn đứng thông tin bịa đặt. |
+| **SageMaker Model Cards** | SageMaker Model Cards standardize documentation for custom machine learning models. They record model purpose, performance, limitations, and governance metadata. | Model documentation, intended use, limitations, model governance. | Thẻ tài liệu chuẩn hóa ghi nhận mục đích, hiệu năng, giới hạn và phả hệ của mô hình tùy chỉnh. |
+| **Class Imbalance** | Class imbalance happens when one target category outnumbers another category significantly. Teams use resampling and F1 scores to address imbalance. | Imbalanced datasets, minority class, resampling, class weights. | Hiện tượng số lượng mẫu giữa các lớp chênh lệch nghiêm trọng, cần xử lý bằng tái lấy mẫu hoặc F1-Score. |
+| **Denied Topics** | Denied topics are custom subjects blocked in foundation model interactions. Organizations specify prohibited topics using natural language instructions. | Denied topics, custom restrictions, prohibited subjects. | Bộ lọc chủ đề cấm do tổ chức tự định nghĩa bằng ngôn ngữ tự nhiên trong Bedrock Guardrails. |
 
 ---
 

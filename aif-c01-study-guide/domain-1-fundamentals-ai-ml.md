@@ -31,18 +31,31 @@
 ### 2. Các phương pháp học máy (Learning Paradigms)
 1. **Học có giám sát (Supervised Learning)**:
    - Dữ liệu huấn luyện có nhãn (**Labeled Data** - gồm Input $X$ và Ground Truth Label $Y$).
-   - Hai bài toán chính:
-     - **Phân loại (Classification)**: Dự đoán nhãn rời rạc (Ví dụ: Email Spam hay Not Spam, phát hiện gian lận Yes/No, phân loại bệnh án).
-     - **Hồi quy (Regression)**: Dự đoán giá trị số liên tục (Ví dụ: Dự đoán giá nhà, dự báo doanh thu, nhiệt độ ngày mai).
+   - Các bài toán chính:
+     - **Phân loại nhị phân (Binary Classification)**: Nhãn đầu ra chỉ có đúng 2 lựa chọn rời rạc (Ví dụ: Gian lận hay Không gian lận, Khách rời bỏ hay Ở lại, Thư rác hay Không).
+     - **Phân loại đa lớp (Multi-class Classification)**: Có 3 lớp trở lên, mỗi mẫu chỉ thuộc về 1 lớp duy nhất (Ví dụ: Phân loại loại hoa Iris thành 3 loài).
+     - **Phân loại đa nhãn (Multi-label Classification)**: Một mẫu có thể đồng thời mang nhiều nhãn khác nhau (Ví dụ: Bài báo vừa thuộc "Công nghệ" vừa thuộc "Tài chính").
+     - **Hồi quy (Regression)**: Dự đoán giá trị số thực liên tục (Ví dụ: Dự đoán giá nhà, dự báo doanh thu, nhiệt độ ngày mai).
 2. **Học không giám sát (Unsupervised Learning)**:
    - Dữ liệu không có nhãn (**Unlabeled Data**). Mô hình tự tìm kiếm cấu trúc tiềm ẩn, mẫu hình (patterns) hoặc nhóm tương đồng.
    - Các bài toán chính:
-     - **Phân cụm (Clustering)**: Gom nhóm khách hàng có hành vi tương tự (K-Means).
+     - **Phân cụm (Clustering)**: Gom nhóm khách hàng có hành vi tương tự mà không có nhãn trước (K-Means).
      - **Giảm số chiều (Dimensionality Reduction)**: Nén đặc trưng nhưng giữ nguyên thông tin quan trọng (PCA).
      - **Phát hiện dị thường (Anomaly Detection)**: Tìm các điểm dữ liệu bất thường.
 3. **Học tăng cường (Reinforcement Learning - RL)**:
    - Tác tử (**Agent**) tương tác với môi trường (**Environment**), thực hiện hành động (**Action**) để tối đa hóa phần thưởng tích lũy (**Cumulative Reward**) thông qua thử và sai (Trial and Error).
    - Ứng dụng: Robot tự hành, điều phối kho hàng, game, và RLHF trong tinh chỉnh LLM.
+
+#### Bảng tra cứu thuật toán học máy kinh điển trong đề thi AIF-C01
+
+| Thuật toán / Kỹ thuật | Trường phái ML | Bản chất toán học & Tình huống đề thi | Keyword nhận diện đề thi |
+| :--- | :--- | :--- | :--- |
+| **k-Nearest Neighbors (k-NN)** | Supervised (Classification / Regression) | Phân loại nhãn dựa trên đa số $k$ điểm lân cận gần nhất trong không gian đặc trưng. | *Predict flower species from petal measurements, instance-based learning.* |
+| **Linear Regression** | Supervised (Regression) | Tìm đường thẳng/mặt phẳng tối ưu biểu diễn quan hệ tuyến tính để dự đoán giá trị số liên tục. | *Predict house price, continuous numeric value, linear relationship.* |
+| **Logistic Regression** | Supervised (Classification) | Sử dụng hàm Sigmoid để ánh xạ đầu ra thành xác suất từ 0 đến 1 cho bài toán phân loại nhị phân. White-box, dễ điều chỉnh trọng số. | *Binary classification, interpretable weights, probability output.* |
+| **K-Means Clustering** | Unsupervised (Clustering) | Phân chia $N$ mẫu dữ liệu thành $K$ cụm dựa trên khoảng cách tới tâm cụm (centroids). | *Group customers without labels, discover segments, unlabeled data.* |
+| **ARIMA** | Time-Series Forecasting | Mô hình chuỗi thời gian thống kê cổ điển kết hợp tự hồi quy và trung bình trượt. | *Univariate time-series, historical sequence forecasting.* |
+| **SageMaker DeepAR** | Time-Series (Deep Learning) | Thuật toán học sâu tích hợp sẵn của SageMaker để dự báo chuỗi thời gian đa biến phức tạp. | *Predict product demand for next weeks, multiple related time-series.* |
 
 ### 3. Vấn đề Overfitting vs Underfitting
 - **Underfitting (High Bias)**: Mô hình quá đơn giản, không học được quy luật ngay trên tập huấn luyện $\rightarrow$ Sai số cao trên cả tập Training và Validation.
@@ -50,19 +63,41 @@
 - **Overfitting (High Variance)**: Mô hình học vẹt (ghi nhớ cả nhiễu của tập huấn luyện) $\rightarrow$ Điểm rất cao trên tập Training nhưng dự đoán kém trên tập dữ liệu mới (Validation/Test).
   - *Cách khắc phục*: Bổ sung thêm dữ liệu huấn luyện, áp dụng Regularization, Dropout, giảm bớt đặc trưng thừa (Feature Selection), Early Stopping.
 
-### 4. Quy trình phát triển ML (ML Lifecycle) và Amazon SageMaker
-Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn gói bởi **Amazon SageMaker**:
-1. **Chuẩn bị dữ liệu (Data Preparation)**:
-   - **SageMaker Data Wrangler**: Trực quan hóa, làm sạch và biến đổi dữ liệu tabular/image với hơn 300 phép biến đổi tích hợp sẵn, xuất code chỉ với vài click.
-   - **SageMaker Feature Store**: Kho lưu trữ tập trung, chia sẻ và quản lý các đặc trưng (features) cho cả real-time inference và offline training.
-   - **SageMaker Ground Truth**: Gán nhãn dữ liệu chất lượng cao tự động hoặc qua lực lượng lao động (human annotators).
-2. **Xây dựng mô hình (Model Building & Training)**:
-   - **SageMaker Studio**: Môi trường phát triển tích hợp (IDE) trên web cho toàn bộ quy trình ML.
-   - **SageMaker Autopilot**: Nền tảng AutoML tự động khám phá dữ liệu, lựa chọn thuật toán tốt nhất, huấn luyện và tinh chỉnh siêu tham số (Hyperparameter Tuning).
-   - **SageMaker JumpStart**: Thư viện chứa hàng trăm mô hình pre-trained nguồn mở và giải pháp mẫu (built-in algorithms), sẵn sàng triển khai ngay lập tức.
-3. **Triển khai & Vận hành (Deployment & MLOps)**:
-   - **SageMaker Model Registry**: Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata mô hình trước khi lên Production.
-   - **SageMaker Endpoints**: Triển khai dự đoán Real-time, Serverless Inference, Asynchronous Inference hoặc Batch Transform.
+### 4. Quy trình phát triển ML chuẩn Well-Architected & Nền tảng Amazon SageMaker
+
+Vòng đời học máy gồm 4 bước chuẩn hóa theo quy chuẩn **AWS Well-Architected ML Lens**:
+
+```
+[1. Define Goal & Frame Problem] -> [2. Develop Model] -> [3. Deploy Model] -> [4. Monitor Model]
+```
+
+1. **Bước 1: Xác định mục tiêu kinh doanh & Đóng khung bài toán ML (Define Business Goal & Frame ML Problem)**:
+   - Xác định rõ tiêu chí thành công và KPI kinh doanh cần đạt được.
+   - Chuyển đổi yêu cầu nghiệp vụ thành bài toán ML cụ thể (Phân loại nhị phân/đa lớp, Hồi quy, hay Phân cụm).
+   - **Xác định các yêu cầu về pháp lý, bảo mật dữ liệu và tuân thủ (Compliance & Regulatory Requirements)** ngay từ bước khởi tạo đầu tiên.
+2. **Bước 2: Phát triển mô hình (Develop Model)**:
+   - **Thu thập & Phân tích khám phá dữ liệu (EDA - Exploratory Data Analysis)**: Tính toán thống kê mô tả (mean, median, standard deviation), lập ma trận tương quan (*correlation matrix*) và trực quan hóa phân phối dữ liệu để hiểu cấu trúc trước khi làm sạch.
+   - **Tiền xử lý & Kỹ thuật đặc trưng (Data Prep & Feature Engineering)**:
+     - **SageMaker Data Wrangler**: Trực quan hóa, làm sạch và biến đổi dữ liệu tabular/image với hơn 300 phép biến đổi tích hợp.
+     - **Data Augmentation (Tăng cường dữ liệu)**: Tạo ra các mẫu dữ liệu mới tổng hợp từ tập dữ liệu có nhãn hạn chế để mở rộng số lượng mẫu và ngăn chặn Overfitting.
+     - **SageMaker Feature Store**: Kho lưu trữ tập trung quản lý và tái sử dụng đặc trưng cho cả online inference và offline training.
+     - **SageMaker Ground Truth**: Gán nhãn dữ liệu chất lượng cao có con người tham gia (Human-in-the-loop).
+   - **Xây dựng, huấn luyện và tối ưu mô hình (Training & Tuning)**:
+     - **SageMaker Canvas**: Giao diện trực quan kéo-thả **No-Code** dành cho **Business Analysts (không có kỹ năng lập trình)** tự xây dựng mô hình ML và dự báo nhu cầu (Demand Forecasting).
+     - **SageMaker Autopilot**: Nền tảng **AutoML** tự động thử nghiệm nhiều thuật toán và siêu tham số, đồng thời **tự động sinh mã nguồn Python notebooks minh bạch** cho Data Scientists/Developers.
+     - **SageMaker JumpStart**: Thư viện mô hình pre-trained nguồn mở và giải pháp mẫu (built-in algorithms) triển khai 1-click.
+3. **Bước 3: Triển khai mô hình (Deploy Model)**:
+   - **SageMaker Model Registry**: Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata phả hệ (lineage) trước khi đưa lên Production.
+   - **4 Chế độ triển khai suy luận (SageMaker Inference Modes)**:
+     - **Real-Time Inference**: Endpoint trực tuyến 24/7, độ trễ mili-giây, payload $\le$ 6MB. Dành cho chatbot, web/mobile API tương tác trực tiếp.
+     - **Serverless Inference**: Tự động scale về 0 khi không có lưu lượng truy cập để tiết kiệm chi phí; chấp nhận độ trễ cold start vài giây. Dành cho traffic ngắt quãng, thất thường.
+     - **Asynchronous Inference**: Xếp hàng đợi qua Amazon S3/SNS, xử lý payload lớn tới 1GB và thời gian thực thi lâu (15 - 60 phút). Tự động scale instance về 0 khi hàng đợi trống. Dành cho xử lý video, ảnh phân giải cao.
+     - **Batch Transform**: Xử lý ngoại tuyến (offline) trên tập dữ liệu tĩnh khổng lồ (hàng Gigabytes/Terabytes) theo lịch định kỳ (hàng ngày hoặc **cuối tuần - on weekends**). Xử lý xong tự động giải phóng tài nguyên.
+4. **Bước 4: Giám sát mô hình trong môi trường Production (Monitor Model)**:
+   - **SageMaker Model Monitor**: Tự động theo dõi chất lượng mô hình đang chạy trên endpoints để phát hiện sự suy giảm so với mô hình gốc:
+     - *Data Drift / Data Quality Drift*: Phân phối dữ liệu thực tế đầu vào bị lệch so với dữ liệu huấn luyện cơ sở (baseline).
+     - *Model Quality Drift (Concept Drift)*: Các chỉ số hiệu năng (Accuracy, F1-score) suy giảm theo thời gian.
+     - *Bias Drift & Feature Attribution Drift*: Mức độ thiên vị gia tăng hoặc trọng số đóng góp của đặc trưng (SHAP) thay đổi.
 
 ### 5. Đánh giá mô hình học máy: Confusion Matrix, Precision, Recall và F1-Score
 
@@ -110,6 +145,21 @@ Ma trận 2x2 biểu diễn kết quả dự đoán của mô hình so với nh�
      2. **Cần cân bằng hài hòa**: Khi bài toán yêu cầu vừa hạn chế báo động giả (FP), vừa hạn chế bỏ sót (FN).
      3. **Extractive Q&A trong Generative AI**: Đánh giá mức độ trùng lặp token/từ (word overlap) giữa câu trả lời do LLM trích xuất và câu trả lời mẫu (Ground Truth).
 
+#### c. Các chỉ số đo lường cho bài toán Hồi quy (Regression Metrics)
+- **Mean Squared Error (MSE)**: Trung bình bình phương các sai số. Do có lũy thừa bậc hai, MSE phạt rất nặng các sai số lớn (outliers).
+- **Root Mean Squared Error (RMSE)**: Căn bậc hai của MSE. Có cùng đơn vị đo lường với biến mục tiêu ban đầu, trực quan hơn MSE.
+- **Mean Absolute Error (MAE)**: Trung bình giá trị tuyệt đối của sai số. Đo lường sai số tuyến tính, không phạt quá mức các điểm ngoại lai.
+- **R-squared ($R^2$ - Coefficient of Determination)**: Hệ số xác định (giá trị từ 0 đến 1), đo lường mức độ mà các biến độc lập giải thích được sự biến thiên của biến phụ thuộc.
+
+#### d. Bảng phân loại 4 nhóm chỉ số AI/ML trong vận hành doanh nghiệp
+
+| Nhóm chỉ số | Mục đích đo lường | Chỉ số tiêu biểu | Tình huống đề thi đặc trưng |
+| :--- | :--- | :--- | :--- |
+| **1. Business KPIs (Kinh doanh)** | Đo lường tác động tài chính và hiệu quả nghiệp vụ thực tế. | **Average Call Duration** (Thời lượng cuộc gọi), **First Contact Resolution (FCR)**, CSAT, NPS, Tỷ lệ chuyển đổi. | Chatbot hỗ trợ tổng đài giúp giảm tải thao tác nhân viên $\rightarrow$ Đo bằng **Average Call Duration** / **AHT**. |
+| **2. Runtime / Operational Efficiency (Vận hành)** | Đo lường hiệu năng kỹ thuật khi mô hình đang phục vụ suy luận thực tế. | **Average Response Time (Latency)**, Throughput (TPS/RPS), GPU/CPU Memory Utilization. | Đo lường hiệu năng thời gian chạy khi vận hành mô hình $\rightarrow$ **Average Response Time / Latency**. |
+| **3. Training Efficiency (Huấn luyện)** | Đo lường tốc độ học và độ hội tụ trong quá trình huấn luyện. | **Epochs** (số chu kỳ duyệt qua dữ liệu), Training Loss, Convergence Rate. | Nâng cao độ chính xác của mô hình lúc huấn luyện đạt ngưỡng $\rightarrow$ **Increase epochs** (không chọn tham số suy luận như Temperature). |
+| **4. Model Predictive Quality (Toán học)** | Đo lường độ chuẩn xác toán học của dự đoán trên tập kiểm thử. | Accuracy, Precision, Recall, F1-Score, AUC-ROC, MSE, RMSE, ROUGE, BLEU. | Đánh giá năng lực của thuật toán trên tập Test. |
+
 ---
 
 ### 6. Bảng so sánh các dịch vụ AWS Core AI Managed Services
@@ -118,7 +168,9 @@ Ma trận 2x2 biểu diễn kết quả dự đoán của mô hình so với nh�
 | :--- | :--- | :--- | :--- | :--- |
 | **Amazon Rekognition** | Computer Vision: Nhận diện vật thể, khuôn mặt, text trong ảnh, kiểm duyệt nội dung nhạy cảm. | Hình ảnh, Video (S3 / stream) | Labels, Bounding boxes, Face match, Moderation labels | Kiểm tra hình ảnh đại diện, kiểm duyệt nội dung người dùng tải lên, phát hiện người nổi tiếng. |
 | **Amazon Textract** | Trích xuất văn bản có cấu trúc (bảng biểu, form, hóa đơn) bằng OCR thông minh. | File scan, PDF, ảnh chứng từ | Khóa - giá trị (Key-Value), Dữ liệu bảng (Tables), Dòng văn bản | Trích xuất thông tin hóa đơn tài chính, hồ sơ bảo hiểm, form biểu mẫu có kẻ khung. |
-| **Amazon Comprehend** | Xử lý ngôn ngữ tự nhiên (NLP): Phân tích cảm xúc, trích xuất thực thể, phát hiện PII. | Văn bản phi cấu trúc (Text) | Sentiment (Positive/Negative), Entities, Key phrases, PII tags | Phân tích đánh giá của khách hàng, gắn nhãn email khiếu nại, phát hiện số thẻ tín dụng trong văn bản. |
+| **Amazon Comprehend** | Xử lý ngôn ngữ tự nhiên (NLP): Phân tích cảm xúc, trích xuất thực thể, phát hiện PII, **Toxicity Detection** (phát hiện ngôn ngữ độc hại mà không cần dữ liệu có nhãn). | Văn bản phi cấu trúc (Text) | Sentiment, Entities, PII tags, Toxicity labels | Phân tích đánh giá khách hàng, phát hiện nội dung thù ghét/xúc phạm trên mạng xã hội không cần train. |
+| **Amazon Comprehend Medical** | NLP chuyên sâu cho ngành y tế/chăm sóc sức khỏe tuân thủ HIPAA. | Bệnh án, hồ sơ lâm sàng | Medical Entities (thuốc, liều lượng, bệnh lý, giải phẫu) | Trích xuất thông tin y tế chuyên biệt và mối quan hệ lâm sàng từ ghi chú bác sĩ. |
+| **AWS HealthScribe** | Dịch vụ Generative AI chuyên biệt y tế kết hợp Speech-to-Text và LLMs để tạo ghi chú lâm sàng. | Âm thanh cuộc đối thoại giữa bác sĩ và bệnh nhân | Tóm tắt ghi chú lâm sàng (Clinical Notes) có cấu trúc | Bác sĩ đọc ghi chú bệnh án hoặc đối thoại khám bệnh $\rightarrow$ Tự động sinh báo cáo lâm sàng. |
 | **Amazon Translate** | Dịch thuật máy móc thần kinh (Neural Machine Translation) đa ngôn ngữ. | Văn bản nguồn | Văn bản dịch chuẩn xác | Bản địa hóa website theo thời gian thực, dịch tài liệu sang ngôn ngữ khác. |
 | **Amazon Polly** | Chuyển văn bản thành giọng nói tự nhiên (Text-to-Speech - TTS) với giọng đọc sống động. | Văn bản, SSML | File âm thanh (MP3, OGG, PCM) | Đọc báo tự động cho người khiếm thị, tạo giọng thuyết minh cho video đào tạo. |
 | **Amazon Transcribe** | Chuyển giọng nói thành văn bản (Speech-to-Text - STT) hỗ trợ nhận diện từng người nói. | File âm thanh cuộc gọi, Audio stream | Văn bản kèm timestamp, nhãn người nói (speaker diarization) | Ghi biên bản cuộc họp, chép lời cuộc gọi tổng đài chăm sóc khách hàng. |
@@ -126,6 +178,20 @@ Ma trận 2x2 biểu diễn kết quả dự đoán của mô hình so với nh�
 | **Amazon Personalize** | Công cụ gợi ý cá nhân hóa (Recommendation engine) theo thời gian thực dựa trên hành vi người dùng. | Lịch sử tương tác, Dữ liệu người dùng, Danh mục sản phẩm | Danh sách sản phẩm/nội dung gợi ý xếp hạng | Gợi ý sản phẩm nên mua tiếp theo trên sàn thương mại điện tử, gợi ý phim tương tự trên app streaming. |
 | **Amazon Forecast** | Dự báo chuỗi thời gian (Time-series forecasting) kết hợp dữ liệu lịch sử và yếu tố ngoại cảnh. | Dữ liệu thời gian chuỗi (CSV/S3), yếu tố thời tiết/ngày lễ | Dự báo giá trị tương lai theo các phân vị (P10, P50, P90) | Dự báo nhu cầu tồn kho hàng hóa, dự báo nhu cầu năng lượng điện của thành phố. |
 | **Amazon Fraud Detector** | Nền tảng tự động phát hiện các hành vi gian lận trực tuyến tiềm ẩn bằng học máy. | Dữ liệu giao dịch, IP, Thiết bị, Email | Điểm số rủi ro (Risk score), Kết quả quy tắc (Rule outcomes) | Phát hiện tạo tài khoản giả mạo, thanh toán bằng thẻ tín dụng bị đánh cắp. |
+
+---
+
+### 7. Phần cứng tăng tốc AWS Custom Silicon: Trainium vs Inferentia
+
+Khi triển khai các mô hình AI/ML quy mô lớn, AWS cung cấp các dòng chip xử lý chuyên dụng (ASICs) tối ưu vượt trội về chi phí và tính bền vững (**Sustainability**):
+- **AWS Trainium (EC2 Trn series - Trn1, Trn2)**:
+  - Tối ưu hóa chuyên sâu cho giai đoạn **Huấn luyện mô hình học sâu và LLMs (Model Training)**.
+  - Mang lại hiệu suất tính toán trên mỗi Watt điện cao nhất, tiết kiệm năng lượng và **ít tác động môi trường nhất (LEAST environmental effect / Carbon footprint)** so với GPU truyền thống.
+- **AWS Inferentia (EC2 Inf series - Inf1, Inf2)**:
+  - Tối ưu hóa chuyên biệt cho giai đoạn **Suy luận mô hình (Model Inference)** với chi phí thấp nhất và độ trễ cực thấp (lowest latency, highest throughput per dollar).
+- *Quy tắc phòng thi*:
+  - Huấn luyện LLM + Ít ảnh hưởng môi trường / Tiết kiệm năng lượng $\rightarrow$ Chọn **Amazon EC2 Trn series (Trainium)**.
+  - Suy luận LLM + Chi phí rẻ nhất / Độ trễ thấp $\rightarrow$ Chọn **Amazon EC2 Inf series (Inferentia)**.
 
 ---
 
@@ -159,6 +225,13 @@ Ma trận 2x2 biểu diễn kết quả dự đoán của mô hình so với nh�
 | **Precision** | Precision measures correct positive predictions. It divides true positives by all positive predictions. | Minimize False Positives, spam filter, avoid false alarms. | Tỷ lệ dự đoán đúng trong các ca mô hình báo Dương tính. Tối ưu khi cần tránh báo động nhầm. |
 | **Recall** | Recall measures identified positive cases. It divides true positives by all actual positives. | Minimize False Negatives, cancer detection, avoid missing fraud. | Tỷ lệ tìm thấy trong tất cả các ca thực tế Dương tính. Tối ưu khi việc bỏ sót gây hậu quả nghiêm trọng. |
 | **F1 Score** | F1 score is the harmonic mean of precision and recall. It evaluates models on imbalanced datasets. | Harmonic mean, balanced metric, imbalanced classes, churn prediction, extractive QA. | Trung bình điều hòa giữa Precision và Recall. Chỉ số tối ưu cho dữ liệu mất cân bằng (như churn, gian lận) hoặc Extractive Q&A. |
+| **Root Mean Squared Error** | Root mean squared error measures differences between predicted and actual values. It uses the same scale as the target variable. | Regression metric, continuous numeric error, penalizes outliers. | Căn bậc hai sai số toàn phương trung bình, chỉ số đo lường lỗi cho mô hình hồi quy. |
+| **AWS Trainium** | AWS Trainium is a purpose-built ML chip. It optimizes deep learning model training with the lowest environmental impact. | Purpose-built chip, model training, lower cost, sustainability. | Chip ASIC chuyên dụng của AWS tối ưu cho huấn luyện mô hình học sâu và tiết kiệm năng lượng. |
+| **AWS Inferentia** | AWS Inferentia is a purpose-built ML chip. It provides low-cost and low-latency inference for deep learning models. | Low-cost inference, high throughput, low latency endpoints. | Chip ASIC chuyên biệt của AWS giúp suy luận mô hình thời gian thực với chi phí rẻ nhất. |
+| **AWS HealthScribe** | AWS HealthScribe uses speech recognition and generative AI. It generates structured clinical notes from doctor and patient conversations. | Clinical notes, healthcare conversation, physician consultation. | Dịch vụ GenAI chuyên biệt ngành y tế chuyển cuộc trò chuyện khám bệnh thành tóm tắt lâm sàng. |
+| **Amazon Comprehend Medical** | Amazon Comprehend Medical extracts medical information from clinical text. It identifies conditions, dosages, and test results securely. | HIPAA eligible, clinical entities, medical condition extraction. | Dịch vụ NLP chuyên sâu y tế trích xuất tên thuốc, liều dùng, bệnh lý từ bệnh án. |
+| **Exploratory Data Analysis** | Exploratory data analysis calculates summary statistics and correlation matrices. It visualizes data distributions before model training. | Summary statistics, correlation matrix, data distribution, EDA. | Phân tích khám phá dữ liệu ban đầu bằng thống kê mô tả và ma trận tương quan trước khi train. |
+| **Batch Transform** | Batch transform runs offline predictions on large datasets. It processes non-real-time data and releases compute resources after completion. | Offline predictions, static datasets, weekend batch processing. | Chế độ suy luận ngoại tuyến trên tập dữ liệu tĩnh lớn theo chu kỳ, tự động giải phóng tài nguyên sau khi xong. |
 
 ---
 
