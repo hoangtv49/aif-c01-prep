@@ -158,6 +158,42 @@ rLines.forEach(l => {
   }
 });
 
+function sortDistractors(incorrectItems, options) {
+  if (!incorrectItems || !Array.isArray(incorrectItems) || incorrectItems.length === 0) return [];
+  const mapped = incorrectItems.map(item => {
+    const firstLine = item.replace(/^❌\s*/, '').split('\n')[0].trim().toLowerCase();
+    const letterMatch = firstLine.match(/^([a-f])[\.\:\s\-]/i);
+    let matchedKey = letterMatch ? letterMatch[1].toUpperCase() : null;
+    
+    if (!matchedKey) {
+      let bestScore = 0;
+      for (const opt of options) {
+        const optText = opt.text.trim().toLowerCase();
+        if (firstLine === optText) {
+          matchedKey = opt.key;
+          break;
+        }
+        if (firstLine.includes(optText) || optText.includes(firstLine)) {
+          const score = Math.min(firstLine.length, optText.length);
+          if (score > bestScore) {
+            bestScore = score;
+            matchedKey = opt.key;
+          }
+        }
+      }
+    }
+    
+    let formattedItem = item;
+    if (matchedKey) {
+      const rest = item.replace(/^❌\s*([A-F][\.\:\s\-]\s*)?/i, '').trim();
+      formattedItem = `❌ ${matchedKey}. ${rest}`;
+    }
+    return { key: matchedKey || 'Z', text: formattedItem };
+  });
+  mapped.sort((a, b) => a.key.localeCompare(b.key));
+  return mapped.map(m => m.text);
+}
+
 // Load Mock Exams from mock-exams directory
 const MOCK_EXAMS_DIR = path.join(BASE_DIR, "mock-exams");
 const mockExams = [];
@@ -176,7 +212,8 @@ if (fs.existsSync(MOCK_EXAMS_DIR)) {
         const reasonParts = [];
         if (q.explanation && q.explanation.summary) reasonParts.push(q.explanation.summary);
         if (q.explanation && q.explanation.correct) reasonParts.push(q.explanation.correct);
-        const distractorParts = (q.explanation && q.explanation.incorrect) ? q.explanation.incorrect : [];
+        const rawDistractors = (q.explanation && q.explanation.incorrect) ? q.explanation.incorrect : [];
+        const distractorParts = sortDistractors(rawDistractors, q.options || []);
         const tips = (q.explanation && q.explanation.tips) ? q.explanation.tips : '';
         return {
           id: `mock${examId}-q${q.number}`,
@@ -4547,6 +4584,7 @@ const htmlContent = `<!DOCTYPE html>
     const revealedCards = new Set();
     const userAnswers = {}; // { qId: ['A', 'B'] }
     let bookmarkedQuestions = new Set();
+    const retryingQuestionIds = new Set();
     let examTimeRemaining = 85 * 60; // 85 mins in seconds = 5100
     let timerInterval = null;
     let isTimerPaused = true;
@@ -5200,18 +5238,21 @@ const htmlContent = `<!DOCTYPE html>
 
     function retryWrongQuestions() {
       const allQs = getAllQuestions();
-      let clearedCount = 0;
-      allQs.forEach(q => {
-        if (isQuestionWrong(q)) {
-          delete userAnswers[q.id];
-          revealedCards.delete(q.id);
-          clearedCount++;
-        }
+      const wrongQs = allQs.filter(q => isQuestionWrong(q));
+      if (wrongQs.length === 0) {
+        showToast('ℹ️ Bạn không có câu hỏi nào làm sai trong danh sách!');
+        return;
+      }
+      retryingQuestionIds.clear();
+      wrongQs.forEach(q => {
+        retryingQuestionIds.add(q.id);
+        delete userAnswers[q.id];
+        revealedCards.delete(q.id);
       });
       saveStateToStorage();
       updateStats();
       filterDomain('wrong');
-      showToast('🔄 Đã làm mới ' + clearedCount + ' câu hỏi sai để bạn luyện lại!');
+      showToast('🔄 Đã mở lại ' + wrongQs.length + ' câu hỏi sai để bạn luyện lại!');
     }
 
     function submitExam() {
@@ -5220,6 +5261,7 @@ const htmlContent = `<!DOCTYPE html>
       let wrongCount = 0;
       let unattemptedCount = 0;
 
+      const isMock = currentQuestionSet !== 'study-guide';
       const domainScores = {
         1: { name: 'Domain 1: ML Fundamentals', weight: 20, total: 0, correct: 0 },
         2: { name: 'Domain 2: Generative AI & FMs', weight: 24, total: 0, correct: 0 },
@@ -5229,13 +5271,17 @@ const htmlContent = `<!DOCTYPE html>
       };
 
       allQs.forEach(q => {
-        domainScores[q.domainId].total++;
+        if (domainScores[q.domainId]) {
+          domainScores[q.domainId].total++;
+        }
         const sel = userAnswers[q.id] || [];
         if (sel.length === 0) {
           unattemptedCount++;
         } else if (isQuestionCorrect(q)) {
           correctCount++;
-          domainScores[q.domainId].correct++;
+          if (domainScores[q.domainId]) {
+            domainScores[q.domainId].correct++;
+          }
         } else {
           wrongCount++;
         }
@@ -5247,23 +5293,51 @@ const htmlContent = `<!DOCTYPE html>
       const modalBody = document.getElementById('scoreboard-body');
       if (!modalBody) return;
 
-      let domainBarsHtml = Object.keys(domainScores).map(dId => {
-        const d = domainScores[dId];
-        const pct = d.total > 0 ? Math.round((d.correct / d.total) * 100) : 0;
-        const isPassDomain = pct >= 70;
-        const fillColor = isPassDomain ? '#10b981' : '#f87171';
-        return \`
-          <div class="domain-bar-row">
-            <div class="domain-bar-meta">
-              <span>\${d.name} (\${d.weight}% trọng số)</span>
-              <span style="font-weight:700; color:\${fillColor};">\${d.correct}/\${d.total} (\${pct}%)</span>
+      let breakdownHtml = '';
+      if (!isMock) {
+        let domainBarsHtml = Object.keys(domainScores).map(dId => {
+          const d = domainScores[dId];
+          const pct = d.total > 0 ? Math.round((d.correct / d.total) * 100) : 0;
+          const isPassDomain = pct >= 70;
+          const fillColor = isPassDomain ? '#10b981' : '#f87171';
+          return \`
+            <div class="domain-bar-row">
+              <div class="domain-bar-meta">
+                <span>\${d.name} (\${d.weight}% trọng số)</span>
+                <span style="font-weight:700; color:\${fillColor};">\${d.correct}/\${d.total} (\${pct}%)</span>
+              </div>
+              <div class="domain-progress-track">
+                <div class="domain-progress-fill" style="width:\${pct}%; background:\${fillColor};"></div>
+              </div>
             </div>
-            <div class="domain-progress-track">
-              <div class="domain-progress-fill" style="width:\${pct}%; background:\${fillColor};"></div>
+          \`;
+        }).join('');
+        breakdownHtml = \`
+          <div class="domain-bars-header">📈 Phân tích kết quả theo 5 Domain:</div>
+          <div class="domain-bars-container">
+            \${domainBarsHtml}
+          </div>
+        \`;
+      } else {
+        const curMock = (APP_DATA.mockExams || []).find(m => m.id === currentQuestionSet);
+        const examName = curMock ? curMock.name : 'Đề thi thử';
+        const pct = allQs.length > 0 ? Math.round((correctCount / allQs.length) * 100) : 0;
+        const fillColor = isPassed ? '#10b981' : '#f87171';
+        breakdownHtml = \`
+          <div class="domain-bars-header">📈 Phân tích kết quả \${examName}:</div>
+          <div class="domain-bars-container">
+            <div class="domain-bar-row">
+              <div class="domain-bar-meta">
+                <span>Tỷ lệ câu trả lời đúng</span>
+                <span style="font-weight:700; color:\${fillColor};">\${correctCount}/\${allQs.length} (\${pct}%)</span>
+              </div>
+              <div class="domain-progress-track">
+                <div class="domain-progress-fill" style="width:\${pct}%; background:\${fillColor};"></div>
+              </div>
             </div>
           </div>
         \`;
-      }).join('');
+      }
 
       modalBody.innerHTML = \`
         <div class="score-hero">
@@ -5274,7 +5348,7 @@ const htmlContent = `<!DOCTYPE html>
           <p class="score-desc">
             \${isPassed
               ? 'Điểm số của bạn vượt ngưỡng 700 điểm chuẩn của kỳ thi AWS Certified AI Practitioner. Bạn đã sẵn sàng đi thi thật!'
-              : 'Điểm số của bạn chưa đạt ngưỡng tối thiểu 700/1000 điểm. Hãy kiểm tra các Domain yếu bên dưới và ôn lại các câu sai!'}
+              : 'Điểm số của bạn chưa đạt ngưỡng tối thiểu 700/1000 điểm. Hãy kiểm tra lại và ôn lại các câu sai!'}
           </p>
         </div>
 
@@ -5293,10 +5367,7 @@ const htmlContent = `<!DOCTYPE html>
           </div>
         </div>
 
-        <div class="domain-bars-header">📈 Phân tích kết quả theo 5 Domain:</div>
-        <div class="domain-bars-container">
-          \${domainBarsHtml}
-        </div>
+        \${breakdownHtml}
 
         <div class="modal-actions">
           \${wrongCount > 0 ? '<button class="modal-btn primary" onclick="reviewWrongFromModal()">🔴 Xem và sửa các câu làm sai</button>' : ''}
@@ -6429,7 +6500,7 @@ const htmlContent = `<!DOCTYPE html>
       });
 
       const pillsHtml = filteredItems.map(item => \`
-        <button class="palette-pill \${item.status}" onclick="scrollToQuestion('\${item.id}')" title="Câu \${item.num} (Domain \${item.domainId})">
+        <button class="palette-pill \${item.status}" onclick="scrollToQuestion('\${item.id}')" title="Câu \${item.num}\${item.domainId > 0 ? ' (Domain ' + item.domainId + ')' : ''}">
           \${item.num}
         </button>
       \`).join('');
@@ -6437,7 +6508,7 @@ const htmlContent = `<!DOCTYPE html>
       drawer.innerHTML = \`
         <div class="palette-header">
           <div class="palette-title">
-            <span>🔢 Bản đồ 57 câu hỏi (\${answeredCount}/\${allQs.length} đã làm)</span>
+            <span>🔢 Bản đồ câu hỏi (\${answeredCount}/\${allQs.length} đã làm)</span>
           </div>
           <div class="palette-filters">
             <button class="palette-filter-btn \${paletteFilter === 'all' ? 'active' : ''}" onclick="setPaletteFilter('all')">
@@ -7169,19 +7240,28 @@ const htmlContent = `<!DOCTYPE html>
       if (shuffleBtn) shuffleBtn.style.display = '';
       if (unshuffleBtn) unshuffleBtn.style.display = 'none';
       
+      retryingQuestionIds.clear();
+      updateStats();
       renderQuiz();
-      renderPaletteDrawer();
+      renderPalette();
     }
 
     // Shuffle Exam Logic
     function shuffleQuestions() {
-      const allQs = [];
-      APP_DATA.domains.forEach(d => {
-        d.questions.forEach(q => allQs.push(q));
-      });
+      let baseList = [];
+      if (currentQuestionSet === 'study-guide') {
+        APP_DATA.domains.forEach(d => {
+          d.questions.forEach(q => baseList.push(q));
+        });
+      } else {
+        const mockExam = (APP_DATA.mockExams || []).find(me => me.id === currentQuestionSet);
+        if (mockExam) {
+          baseList = mockExam.questions;
+        }
+      }
 
       // Fisher-Yates shuffle
-      const shuffled = [...allQs];
+      const shuffled = [...baseList];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -7192,7 +7272,7 @@ const htmlContent = `<!DOCTYPE html>
       updateShuffleButtons();
       renderQuiz();
       renderPalette();
-      showToast('🔀 Đã xáo trộn ngẫu nhiên thứ tự 57 câu hỏi!');
+      showToast('🔀 Đã xáo trộn ngẫu nhiên thứ tự ' + baseList.length + ' câu hỏi!');
     }
 
     function unshuffleQuestions() {
@@ -7201,7 +7281,7 @@ const htmlContent = `<!DOCTYPE html>
       updateShuffleButtons();
       renderQuiz();
       renderPalette();
-      showToast('↩️ Đã khôi phục thứ tự chuẩn theo Domain!');
+      showToast(currentQuestionSet === 'study-guide' ? '↩️ Đã khôi phục thứ tự chuẩn theo Domain!' : '↩️ Đã khôi phục thứ tự gốc của đề thi!');
     }
 
     function updateShuffleButtons() {
@@ -7307,6 +7387,7 @@ const htmlContent = `<!DOCTYPE html>
     function resetQuiz() {
       for (const k in userAnswers) delete userAnswers[k];
       revealedCards.clear();
+      retryingQuestionIds.clear();
       isTimerStarted = false;
       isTimerPaused = true;
       examTimeRemaining = 85 * 60;
@@ -7377,7 +7458,7 @@ const htmlContent = `<!DOCTYPE html>
 
     function updateStats() {
       const allQs = getAllQuestions();
-      const attemptedIds = Object.keys(userAnswers).filter(id => userAnswers[id] && userAnswers[id].length > 0);
+      const attemptedCount = allQs.filter(q => (userAnswers[q.id] || []).length > 0).length;
       let correctCount = 0;
       let wrongCount = 0;
 
@@ -7393,10 +7474,10 @@ const htmlContent = `<!DOCTYPE html>
       });
 
       const attEl = document.getElementById('stats-attempted');
-      if (attEl) attEl.textContent = \`\${attemptedIds.length}/\${allQs.length}\`;
+      if (attEl) attEl.textContent = \`\${attemptedCount}/\${allQs.length}\`;
       const corEl = document.getElementById('stats-correct');
       if (corEl) corEl.textContent = correctCount;
-      const pct = attemptedIds.length > 0 ? Math.round((correctCount / attemptedIds.length) * 100) : 0;
+      const pct = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
       const accEl = document.getElementById('stats-accuracy');
       if (accEl) accEl.textContent = pct + '%';
 
@@ -7531,7 +7612,7 @@ const htmlContent = `<!DOCTYPE html>
 
       const filtered = allQs.filter(q => {
         if (currentDomainFilter === 'wrong') {
-          return isQuestionWrong(q);
+          return isQuestionWrong(q) || retryingQuestionIds.has(q.id);
         }
         if (currentDomainFilter === 'bookmarks') {
           return bookmarkedQuestions.has(q.id);

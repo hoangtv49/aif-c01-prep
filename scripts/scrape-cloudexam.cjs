@@ -123,10 +123,14 @@ const OUTPUT_DIR = path.resolve(__dirname, '../aif-c01-study-guide/mock-exams');
       const correctMatch = explanationRaw.match(/✅ Đáp án đúng:\s*\n\n([\s\S]*?)(?=\nCác đáp án sai:|$)/);
       if (correctMatch) {
         explanation.correct = correctMatch[1].trim();
-        const correctText = correctMatch[1].trim().split('\n')[0].trim();
+        const correctLines = correctMatch[1].trim().split('\n').map(l => l.trim()).filter(Boolean);
+        const firstLine = correctLines[0] || '';
         for (const opt of options) {
-          if (correctText.toLowerCase().includes(opt.text.toLowerCase().substring(0, 20)) ||
-              opt.text.toLowerCase().includes(correctText.toLowerCase().substring(0, 20))) {
+          const optClean = opt.text.toLowerCase().trim();
+          const firstClean = firstLine.toLowerCase().trim();
+          if (optClean === firstClean || 
+              (optClean.length > 25 && firstClean.includes(optClean)) || 
+              (firstClean.length > 25 && optClean.includes(firstClean))) {
             correctAnswer.push(opt.key);
           }
         }

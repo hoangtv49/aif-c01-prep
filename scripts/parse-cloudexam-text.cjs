@@ -81,10 +81,14 @@ for (const block of blocks) {
   if (correctMatch) {
     explanation.correct = correctMatch[1].trim();
     // Extract the answer text to map back to option key
-    const correctText = correctMatch[1].trim().split('\n')[0].trim();
+    const correctLines = correctMatch[1].trim().split('\n').map(l => l.trim()).filter(Boolean);
+    const firstLine = correctLines[0] || '';
     for (const opt of options) {
-      if (correctText.toLowerCase().includes(opt.text.toLowerCase().substring(0, 20)) ||
-          opt.text.toLowerCase().includes(correctText.toLowerCase().substring(0, 20))) {
+      const optClean = opt.text.toLowerCase().trim();
+      const firstClean = firstLine.toLowerCase().trim();
+      if (optClean === firstClean || 
+          (optClean.length > 25 && firstClean.includes(optClean)) || 
+          (firstClean.length > 25 && optClean.includes(firstClean))) {
         correctAnswer.push(opt.key);
       }
     }
