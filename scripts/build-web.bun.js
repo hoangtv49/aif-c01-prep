@@ -452,6 +452,16 @@ const htmlContent = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script id="theme-preload">
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('aif_theme');
+        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = savedTheme ? savedTheme : (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <style>
     :root {
       --bg: #090d16;
@@ -475,6 +485,28 @@ const htmlContent = `<!DOCTYPE html>
       --text-dim: #64748b;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-panel: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-highlight: #0284c7;
+      --primary: #0284c7;
+      --primary-glow: rgba(2, 132, 199, 0.15);
+      --indigo: #4f46e5;
+      --indigo-glow: rgba(79, 70, 229, 0.12);
+      --success: #059669;
+      --success-bg: rgba(5, 150, 105, 0.1);
+      --error: #dc2626;
+      --error-bg: rgba(220, 38, 38, 0.1);
+      --warning: #d97706;
+      --warning-bg: rgba(217, 119, 6, 0.1);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -611,11 +643,47 @@ const htmlContent = `<!DOCTYPE html>
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
+    /* Header Actions & Theme Toggle Button */
+    .header-actions {
+      order: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-left: auto;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #162032;
+      border: 1px solid var(--border);
+      color: #f1f5f9;
+      padding: 0.42rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      white-space: nowrap;
+    }
+    .theme-toggle-btn:hover {
+      border-color: #38bdf8;
+      background: #1e293b;
+      transform: translateY(-1px);
+    }
+    .theme-toggle-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .theme-toggle-label {
+      font-size: 0.825rem;
+      font-weight: 600;
+    }
+
     /* Stats Pill */
     .stats-pill {
-      order: 2;
       display: none;
-      margin-left: auto;
       align-items: center;
       gap: 1rem;
       background: #162032;
@@ -3268,6 +3336,424 @@ const htmlContent = `<!DOCTYPE html>
       color: #fff;
     }
 
+    /* ==================== LIGHT MODE THEME OVERRIDES ==================== */
+    [data-theme="light"] body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    [data-theme="light"] .app-header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="light"] .brand-title { color: #0f172a; }
+    [data-theme="light"] .brand-badge { background: #0284c7; color: #ffffff; }
+    [data-theme="light"] .brand-subtitle { color: #64748b; }
+
+    [data-theme="light"] .theme-toggle-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="light"] .theme-toggle-btn:hover {
+      border-color: #0284c7;
+      background: #f8fafc;
+    }
+
+    [data-theme="light"] .nav-tabs {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .tab-btn { color: #475569; }
+    [data-theme="light"] .tab-btn:hover { color: #0f172a; background: rgba(0, 0, 0, 0.04); }
+    [data-theme="light"] .tab-btn.active {
+      color: #0284c7;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .stats-pill {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="light"] .stat-label { color: #64748b; }
+    [data-theme="light"] .stat-value { color: #0f172a; }
+
+    [data-theme="light"] .smart-sticky-bar {
+      background: rgba(255, 255, 255, 0.94);
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .topic-subtab-bar {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .subtab-btn { color: #475569; }
+    [data-theme="light"] .subtab-btn:hover { color: #0f172a; background: rgba(0, 0, 0, 0.04); }
+    [data-theme="light"] .subtab-btn.active {
+      color: #0284c7;
+      background: #f1f5f9;
+    }
+    [data-theme="light"] .reading-time-pill {
+      background: #f1f5f9;
+      color: #0369a1;
+      border-color: #cbd5e1;
+    }
+
+    [data-theme="light"] .search-box {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+    [data-theme="light"] .search-box::placeholder { color: #94a3b8; }
+    [data-theme="light"] .search-box:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    [data-theme="light"] .search-count-badge {
+      background: #f1f5f9;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .search-clear-btn { color: #94a3b8; }
+    [data-theme="light"] .search-clear-btn:hover { color: #0f172a; }
+
+    [data-theme="light"] .filter-chip {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+    [data-theme="light"] .filter-chip:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .filter-chip.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+    }
+    [data-theme="light"] .filter-chip.badge-wrong {
+      background: #fee2e2;
+      color: #b91c1c;
+      border-color: #fca5a5;
+    }
+    [data-theme="light"] .mode-btn {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+    [data-theme="light"] .mode-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .mode-btn.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .topic-domain-btn {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .topic-domain-btn:hover:not(.active) {
+      border-color: #0284c7;
+      background: #f8fafc;
+    }
+    [data-theme="light"] .topic-domain-btn.active {
+      background: #f0f9ff;
+      border-color: #0284c7;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+    }
+    [data-theme="light"] .topic-domain-name { color: #0f172a; }
+    [data-theme="light"] .topic-domain-weight {
+      background: #f1f5f9;
+      color: #0369a1;
+    }
+
+    [data-theme="light"] .topic-section-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .topic-sec-header {
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .topic-sec-title { color: #0f172a; }
+    [data-theme="light"] .topic-domain-title { color: #0f172a; }
+
+    [data-theme="light"] .theory-content { color: #334155; }
+    [data-theme="light"] .theory-content h3 {
+      color: #0f172a;
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .theory-content h4 { color: #0284c7; }
+    [data-theme="light"] .theory-content strong { color: #0f172a; }
+    [data-theme="light"] .theory-content pre {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0369a1;
+    }
+    [data-theme="light"] .theory-content code:not(pre code) {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #0284c7;
+    }
+    [data-theme="light"] .math-tag {
+      background: rgba(2, 132, 199, 0.08);
+      color: #0284c7;
+      border-color: rgba(2, 132, 199, 0.25);
+    }
+    [data-theme="light"] .theory-content .table-container,
+    [data-theme="light"] .table-container {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .theory-content th,
+    [data-theme="light"] .matrix-table th {
+      background: #f8fafc;
+      color: #475569;
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .theory-content td,
+    [data-theme="light"] .matrix-table td {
+      color: #1e293b;
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .theory-content th:first-child,
+    [data-theme="light"] .theory-content td:first-child {
+      color: #0f172a;
+    }
+    [data-theme="light"] .theory-content tr:hover td,
+    [data-theme="light"] .matrix-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    [data-theme="light"] .q-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .q-card:hover {
+      border-color: #0284c7;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.1);
+    }
+    [data-theme="light"] .q-badge {
+      background: #f1f5f9;
+      color: #0284c7;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .q-stem { color: #0f172a; }
+    [data-theme="light"] .option-item {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .option-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .opt-key {
+      background: #e2e8f0;
+      color: #334155;
+    }
+    [data-theme="light"] .opt-text { color: #1e293b; }
+    [data-theme="light"] .explanation-drawer {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .exp-body { color: #334155; }
+    [data-theme="light"] .exp-body strong { color: #0f172a; }
+    [data-theme="light"] .exp-body em { color: #1e293b; }
+
+    [data-theme="light"] .theory-audio-toolbar {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .theory-play-btn,
+    [data-theme="light"] .theory-ctrl-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+    [data-theme="light"] .theory-speed-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+    [data-theme="light"] .theory-speed-btn.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+    }
+    [data-theme="light"] .q-mini-player {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .q-audio-btn {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #0284c7;
+    }
+    [data-theme="light"] .q-toggle-btn {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+    [data-theme="light"] .q-bookmark-btn {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #64748b;
+    }
+
+    [data-theme="light"] .versus-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .versus-title { color: #0f172a; }
+    [data-theme="light"] .versus-col.service-a {
+      background: #f0f9ff;
+      border-color: #bae6fd;
+    }
+    [data-theme="light"] .versus-col.service-b {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+    [data-theme="light"] .versus-col.service-a .versus-svc-name { color: #0369a1; }
+    [data-theme="light"] .versus-col.service-b .versus-svc-name { color: #b45309; }
+    [data-theme="light"] .versus-difference-box {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #334155;
+    }
+    [data-theme="light"] .versus-trap-box {
+      background: #fffbeb;
+      border-color: #fef3c7;
+      color: #92400e;
+    }
+
+    [data-theme="light"] .flashcard-face {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    [data-theme="light"] .flashcard-back {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .fc-term-display { color: #0f172a; }
+    [data-theme="light"] .fc-definition-display { color: #0369a1; }
+    [data-theme="light"] .fc-note-display { color: #334155; }
+    [data-theme="light"] .fc-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .quiz-palette-panel {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
+    }
+    [data-theme="light"] .palette-header {
+      border-bottom-color: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .palette-pill {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+
+    [data-theme="light"] #concept-graph-container {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .node-rect {
+      fill: #ffffff;
+      stroke-width: 1.5;
+    }
+    [data-theme="light"] .node-text { fill: #0f172a; }
+    [data-theme="light"] .graph-inspector {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
+    }
+    [data-theme="light"] .inspector-title { color: #0f172a; }
+    [data-theme="light"] .inspector-desc { color: #334155; }
+
+    [data-theme="light"] .scoreboard-card {
+      background: #ffffff;
+      border-color: #0284c7;
+      color: #0f172a;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    [data-theme="light"] .scoreboard-header {
+      border-bottom-color: #e2e8f0;
+      color: #0f172a;
+    }
+    [data-theme="light"] .score-hero {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .score-big-num { color: #0284c7; }
+    [data-theme="light"] .domain-bar-row {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .domain-bar-meta { color: #334155; }
+    [data-theme="light"] .domain-progress-track { background: #e2e8f0; }
+    [data-theme="light"] .domain-bars-header { color: #0f172a; }
+
+    [data-theme="light"] .cram-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="light"] .cram-card-title { color: #0f172a; }
+    [data-theme="light"] .cram-card-header { border-bottom-color: #e2e8f0; }
+    [data-theme="light"] .cram-rule-item {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .cram-rule-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .cram-trigger { color: #334155; }
+    [data-theme="light"] .cram-trigger strong { color: #0f172a; }
+    [data-theme="light"] .cram-service {
+      background: rgba(2, 132, 199, 0.08);
+      color: #0284c7;
+      border-color: rgba(2, 132, 199, 0.25);
+    }
+    [data-theme="light"] .cram-trap-warn {
+      background: rgba(220, 38, 38, 0.08);
+      color: #dc2626;
+      border-color: rgba(220, 38, 38, 0.2);
+    }
+
+    [data-theme="light"] .bottom-nav-bar {
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid #e2e8f0;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="light"] .bottom-nav-item { color: #64748b; }
+    [data-theme="light"] .bottom-nav-item.active { color: #0284c7; }
+    [data-theme="light"] .back-to-top-btn {
+      background: #ffffff;
+      border-color: #0284c7;
+      color: #0284c7;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
     /* Desktop Responsive Header & Layout */
     @media (min-width: 769px) and (max-width: 1200px) {
       .header-inner {
@@ -3319,6 +3805,17 @@ const htmlContent = `<!DOCTYPE html>
       }
       .stats-pill {
         display: none !important;
+      }
+      .theme-toggle-label {
+        display: none !important;
+      }
+      .theme-toggle-btn {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.95rem;
+      }
+      [data-theme="light"] .stats-pill.is-active {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
       }
       .stats-pill.is-active {
         width: 100% !important;
@@ -4053,7 +4550,38 @@ const htmlContent = `<!DOCTYPE html>
           <span class="brand-badge">AIF-C01</span>
           <span class="brand-title">AWS AI Practitioner Mastery Studio</span>
         </div>
-        <div class="brand-subtitle">Hệ thống hóa 252 Câu hỏi & Đề thi • 86 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
+        <div class="brand-subtitle">Hệ thống hóa 252 Câu hỏi & Đề thi • 111 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Chuyển chế độ sáng/tối (Dark / Light mode)" aria-label="Chuyển chế độ sáng/tối">
+          <span class="theme-toggle-icon" id="theme-toggle-icon">☀️</span>
+          <span class="theme-toggle-label" id="theme-toggle-label">Giao diện sáng</span>
+        </button>
+
+        <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
+        <div class="stats-pill" id="header-stats-pill">
+          <div class="stat-item">
+            <span class="stat-label stat-label-full">Đã làm:</span>
+            <span class="stat-label stat-label-short" title="Số câu đã làm">📝</span>
+            <span class="stat-value" id="stats-attempted">0/57</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label stat-label-full">Đúng:</span>
+            <span class="stat-label stat-label-short" title="Số câu đúng">✅</span>
+            <span class="stat-value" id="stats-correct" style="color: #34d399;">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label stat-label-full">Độ chính xác:</span>
+            <span class="stat-label stat-label-short" title="Độ chính xác">🎯</span>
+            <span class="stat-value" id="stats-accuracy">0%</span>
+          </div>
+          <div class="stat-item" id="header-timer-stat">
+            <span class="stat-label stat-label-full">Thời gian:</span>
+            <span class="stat-label stat-label-short" title="Thời gian còn lại">⏱️</span>
+            <span class="stat-value" id="header-timer-display" style="color: #38bdf8;">01:25:00</span>
+          </div>
+        </div>
       </div>
 
       <nav class="nav-tabs">
@@ -4064,30 +4592,6 @@ const htmlContent = `<!DOCTYPE html>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
         <button class="tab-btn" onclick="switchTab('cram')">⚡ Cram Sheet (10 Phút)</button>
       </nav>
-
-      <!-- Exam Live Progress Pill (Only shown when practicing Quiz) -->
-      <div class="stats-pill" id="header-stats-pill">
-        <div class="stat-item">
-          <span class="stat-label stat-label-full">Đã làm:</span>
-          <span class="stat-label stat-label-short" title="Số câu đã làm">📝</span>
-          <span class="stat-value" id="stats-attempted">0/57</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label stat-label-full">Đúng:</span>
-          <span class="stat-label stat-label-short" title="Số câu đúng">✅</span>
-          <span class="stat-value" id="stats-correct" style="color: #34d399;">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label stat-label-full">Độ chính xác:</span>
-          <span class="stat-label stat-label-short" title="Độ chính xác">🎯</span>
-          <span class="stat-value" id="stats-accuracy">0%</span>
-        </div>
-        <div class="stat-item" id="header-timer-stat">
-          <span class="stat-label stat-label-full">Thời gian:</span>
-          <span class="stat-label stat-label-short" title="Thời gian còn lại">⏱️</span>
-          <span class="stat-value" id="header-timer-display" style="color: #38bdf8;">01:25:00</span>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -4635,6 +5139,51 @@ const htmlContent = `<!DOCTYPE html>
     // Embedded Data
     const APP_DATA = ${JSON.stringify(data)};
     const GRAPH_DATA = ${JSON.stringify(graphData)};
+
+    // Theme Management Logic
+    function getTheme() {
+      if (typeof document !== 'undefined' && document.documentElement && typeof document.documentElement.getAttribute === 'function') {
+        return document.documentElement.getAttribute('data-theme') || 'dark';
+      }
+      return 'dark';
+    }
+
+    function setTheme(theme) {
+      if (typeof document !== 'undefined' && document.documentElement && typeof document.documentElement.setAttribute === 'function') {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    }
+
+    function initTheme() {
+      const currentTheme = getTheme();
+      updateThemeButtonUI(currentTheme);
+    }
+
+    function toggleTheme() {
+      const currentTheme = getTheme();
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      try {
+        localStorage.setItem('aif_theme', newTheme);
+      } catch (e) {}
+      updateThemeButtonUI(newTheme);
+      showToast(newTheme === 'light' ? '☀️ Đã chuyển sang Giao diện sáng!' : '🌙 Đã chuyển sang Giao diện tối!');
+    }
+
+    function updateThemeButtonUI(theme) {
+      const icon = document.getElementById('theme-toggle-icon');
+      const label = document.getElementById('theme-toggle-label');
+      const btn = document.getElementById('theme-toggle-btn');
+      if (theme === 'light') {
+        if (icon) icon.textContent = '🌙';
+        if (label) label.textContent = 'Giao diện tối';
+        if (btn) btn.setAttribute('title', 'Chuyển sang Giao diện tối (Dark mode)');
+      } else {
+        if (icon) icon.textContent = '☀️';
+        if (label) label.textContent = 'Giao diện sáng';
+        if (btn) btn.setAttribute('title', 'Chuyển sang Giao diện sáng (Light mode)');
+      }
+    }
 
     // State
     let currentTopicDomain = 1;
@@ -6246,6 +6795,7 @@ const htmlContent = `<!DOCTYPE html>
 
     // Init App
     window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
       loadStoredState();
       syncHeaderHeight();
       renderTopicDomain(currentTopicDomain);
