@@ -47,9 +47,11 @@ test("Light mode overrides .graph-container, .topic-subtab-btn, speed buttons, m
   // .topic-subtab-btn must be styled for light mode
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.topic-subtab-btn\.active\s*\{[^}]*background:\s*#ffffff/);
 
-  // Audio speed buttons
-  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-speed-group\s*\{[^}]*background:\s*#f1f5f9/);
+  // Audio speed buttons & seek controls
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-speed-chips\s*\{[^}]*background:\s*#f1f5f9/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-ctrl-btn\s*\{[^}]*background:\s*#ffffff/);
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.q-speed-btn\s*\{[^}]*background:\s*#f1f5f9/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.q-ctrl-btn\s*\{[^}]*background:\s*#ffffff/);
 
   // Mode switcher group
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.mode-switch-group\s*\{[^}]*background:\s*#f1f5f9/);

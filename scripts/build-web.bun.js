@@ -3818,24 +3818,36 @@ const htmlContent = `<!DOCTYPE html>
       background: #f8fafc;
       border-color: #e2e8f0;
     }
-    [data-theme="light"] .theory-play-btn,
-    [data-theme="light"] .theory-ctrl-btn {
-      background: #ffffff;
-      border-color: #cbd5e1;
-      color: #0f172a;
+    [data-theme="light"] .theory-play-btn {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
     }
-    [data-theme="light"] .theory-speed-group {
+    [data-theme="light"] .theory-play-btn:hover {
+      background: #0369a1 !important;
+    }
+    [data-theme="light"] .theory-ctrl-btn {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .theory-ctrl-btn:hover {
       background: #f1f5f9 !important;
-      border-color: #e2e8f0 !important;
+      border-color: #0284c7 !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .theory-speed-chips {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
     }
     [data-theme="light"] .theory-speed-btn {
       background: transparent !important;
-      border-color: transparent !important;
+      border: none !important;
       color: #475569 !important;
     }
     [data-theme="light"] .theory-speed-btn:hover {
       color: #0f172a !important;
-      background: rgba(0, 0, 0, 0.05) !important;
+      background: #e2e8f0 !important;
     }
     [data-theme="light"] .theory-speed-btn.active {
       background: #0284c7 !important;
@@ -3846,6 +3858,24 @@ const htmlContent = `<!DOCTYPE html>
       background: #f8fafc !important;
       border-color: #e2e8f0 !important;
     }
+    [data-theme="light"] .q-ctrl-btn {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .q-ctrl-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .q-ctrl-btn.play-pause {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .q-ctrl-btn.play-pause:hover {
+      background: #0369a1 !important;
+    }
     [data-theme="light"] .q-speed-btn {
       background: #f1f5f9 !important;
       border-color: #cbd5e1 !important;
@@ -3854,21 +3884,12 @@ const htmlContent = `<!DOCTYPE html>
     [data-theme="light"] .q-speed-btn:hover {
       background: #e2e8f0 !important;
       color: #0f172a !important;
+      border-color: #94a3b8 !important;
     }
     [data-theme="light"] .q-speed-btn.active {
       background: #0284c7 !important;
       border-color: #0284c7 !important;
       color: #ffffff !important;
-    }
-    [data-theme="light"] .q-ctrl-btn {
-      background: #ffffff !important;
-      border-color: #cbd5e1 !important;
-      color: #334155 !important;
-    }
-    [data-theme="light"] .q-ctrl-btn:hover {
-      background: #f1f5f9 !important;
-      border-color: #0284c7 !important;
-      color: #0f172a !important;
     }
     [data-theme="light"] .q-player-time {
       color: #64748b !important;
