@@ -1,0 +1,48 @@
+tests/table-responsive.test.js
+  s_d3547bce869f64::t_b4a8389f97cbeb 1-42
+aif-c01-study-guide/data.json
+  s_3a67b678509f60::t_965c1b4dc2f741 3694,4525,4542,4947,5221,7306,7606
+  s_d3547bce869f64::t_53fda7a8c8011f 6,552,1016,1528,1962
+aif-c01-study-guide/mock-exams/raw-exam-2.json
+  s_3a67b678509f60::t_fc6b2b5c9c1785 490-492
+scripts/build-web.bun.js
+  s_3a67b678509f60::t_39c0a0bcee02b4 173-195,200,203-204,208-209
+  s_d3547bce869f64::t_fcfa112ca9a58c 3442-3450
+  s_d3547bce869f64::t_066e82a293e6bf 5-14
+  s_d3547bce869f64::t_f72d83d85ad56a 1661,1665-1685,1691,1695,1697-1700,1703,1708-1717
+aif-c01-study-guide/index.html
+  s_d3547bce869f64::t_53fda7a8c8011f 1219,1223-1243,1249,1253,1255-1258,1261,1266-1275,3000-3008,4202
+tests/flashcards.test.js
+  s_3a67b678509f60::t_402a31b943106f 60,83-84,93-97
+aif-c01-study-guide/mock-exams/raw-exam-3.json
+  s_3a67b678509f60::t_43ff28b8e2c175 1369-1370
+  s_3a67b678509f60::t_5b98a8647d881f 2358
+index.html
+  s_d3547bce869f64::t_53fda7a8c8011f 1219,1223-1243,1249,1253,1255-1258,1261,1266-1275,3000-3008,4202
+tests/e2e-simulation.test.js
+  s_3a67b678509f60::t_f88d69c3d4d44d 192
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bdfba3aba1862680010a06a2f70166fd2d0687f0",
+  "prompts": {},
+  "sessions": {
+    "s_3a67b678509f60": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e442726bcffeoJkG6IIO77LwUx",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    },
+    "s_d3547bce869f64": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e4442addaffecSq7dMwn4Se37o",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
