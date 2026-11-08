@@ -2981,15 +2981,17 @@
     }
 
     [data-theme="light"] .topic-subtab-bar {
-      background: rgba(255, 255, 255, 0.96);
-      border-color: #e2e8f0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
     }
-    [data-theme="light"] .subtab-btn { color: #475569; }
-    [data-theme="light"] .subtab-btn:hover { color: #0f172a; background: rgba(0, 0, 0, 0.04); }
-    [data-theme="light"] .subtab-btn.active {
-      color: #0284c7;
-      background: #f1f5f9;
+    [data-theme="light"] .topic-subtab-btn { color: #475569 !important; }
+    [data-theme="light"] .topic-subtab-btn:hover { color: #0f172a !important; background: rgba(0, 0, 0, 0.04) !important; }
+    [data-theme="light"] .topic-subtab-btn.active {
+      color: #0284c7 !important;
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
     }
     [data-theme="light"] .reading-time-pill {
       background: #f1f5f9;
@@ -3034,24 +3036,72 @@
       border-color: #0284c7;
       color: #ffffff;
     }
-    [data-theme="light"] .filter-chip.badge-wrong {
-      background: #fee2e2;
-      color: #b91c1c;
-      border-color: #fca5a5;
+    [data-theme="light"] .filter-chip.badge-wrong,
+    [data-theme="light"] .filter-chip.filter-wrong-chip {
+      background: #fee2e2 !important;
+      color: #b91c1c !important;
+      border-color: #fca5a5 !important;
+    }
+    [data-theme="light"] .filter-chip.filter-wrong-chip:hover {
+      background: #fecaca !important;
+      color: #991b1b !important;
+    }
+    [data-theme="light"] .filter-chip.filter-wrong-chip.active {
+      background: #dc2626 !important;
+      border-color: #dc2626 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .filter-chip.filter-star-chip {
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+      border-color: #fde68a !important;
+    }
+    [data-theme="light"] .filter-chip.filter-star-chip:hover {
+      background: #fde68a !important;
+      color: #92400e !important;
+    }
+    [data-theme="light"] .filter-chip.filter-star-chip.active {
+      background: #d97706 !important;
+      border-color: #d97706 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .cram-filter-chip {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+      color: #475569 !important;
+    }
+    [data-theme="light"] .cram-filter-chip:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    [data-theme="light"] .cram-filter-chip.active {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .mode-switch-group {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
     }
     [data-theme="light"] .mode-btn {
-      background: #f1f5f9;
-      border-color: #e2e8f0;
-      color: #475569;
+      color: #475569 !important;
     }
     [data-theme="light"] .mode-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+      color: #0f172a !important;
+      background: rgba(0, 0, 0, 0.04) !important;
     }
-    [data-theme="light"] .mode-btn.active {
-      background: #0284c7;
-      border-color: #0284c7;
-      color: #ffffff;
+    [data-theme="light"] .mode-btn.active.exam-mode {
+      background: #ffffff !important;
+      color: #0284c7 !important;
+      border-color: #bae6fd !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    }
+    [data-theme="light"] .mode-btn.active.study-mode {
+      background: #ffffff !important;
+      color: #059669 !important;
+      border-color: #a7f3d0 !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
     }
 
     [data-theme="light"] .topic-domain-btn {
@@ -3327,19 +3377,57 @@
       border-color: #cbd5e1;
       color: #0f172a;
     }
+    [data-theme="light"] .theory-speed-group {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
     [data-theme="light"] .theory-speed-btn {
-      background: #ffffff;
-      border-color: #cbd5e1;
-      color: #475569;
+      background: transparent !important;
+      border-color: transparent !important;
+      color: #475569 !important;
+    }
+    [data-theme="light"] .theory-speed-btn:hover {
+      color: #0f172a !important;
+      background: rgba(0, 0, 0, 0.05) !important;
     }
     [data-theme="light"] .theory-speed-btn.active {
-      background: #0284c7;
-      border-color: #0284c7;
-      color: #ffffff;
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
     }
     [data-theme="light"] .q-mini-player {
-      background: #f8fafc;
-      border-color: #e2e8f0;
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+    }
+    [data-theme="light"] .q-speed-btn {
+      background: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      color: #475569 !important;
+    }
+    [data-theme="light"] .q-speed-btn:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .q-speed-btn.active {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .q-ctrl-btn {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .q-ctrl-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .q-player-time {
+      color: #64748b !important;
+    }
+    [data-theme="light"] .q-player-slider {
+      background: #e2e8f0 !important;
     }
     [data-theme="light"] .q-audio-btn {
       background: #f1f5f9;
@@ -3430,24 +3518,78 @@
       color: #0f172a;
     }
 
-    [data-theme="light"] .quiz-palette-panel {
-      background: #ffffff;
-      border-color: #e2e8f0;
-      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
+    [data-theme="light"] .palette-container {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
     }
-    [data-theme="light"] .palette-header {
-      border-bottom-color: #e2e8f0;
-      color: #0f172a;
+    [data-theme="light"] .palette-title {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .palette-filters {
+      background: transparent !important;
+    }
+    [data-theme="light"] .palette-filter-btn {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+      color: #475569 !important;
+    }
+    [data-theme="light"] .palette-filter-btn:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .palette-filter-btn.active {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
     }
     [data-theme="light"] .palette-pill {
-      background: #f1f5f9;
-      border-color: #e2e8f0;
-      color: #475569;
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      color: #334155 !important;
+    }
+    [data-theme="light"] .palette-pill:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .palette-pill.answered {
+      background: #e0f2fe !important;
+      border-color: #7dd3fc !important;
+      color: #0369a1 !important;
+    }
+    [data-theme="light"] .palette-pill.correct-q {
+      background: #dcfce7 !important;
+      border-color: #86efac !important;
+      color: #15803d !important;
+    }
+    [data-theme="light"] .palette-pill.wrong-q {
+      background: #fee2e2 !important;
+      border-color: #fca5a5 !important;
+      color: #b91c1c !important;
+    }
+    [data-theme="light"] .palette-pill.active-q {
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.4) !important;
+      border-color: #0284c7 !important;
+      font-weight: 700 !important;
+    }
+    [data-theme="light"] .palette-quick-btn {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0284c7 !important;
+    }
+    [data-theme="light"] .palette-quick-btn:hover {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
     }
 
-    [data-theme="light"] #concept-graph-container {
-      background: #f8fafc;
-      border-color: #e2e8f0;
+    [data-theme="light"] .graph-container {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    [data-theme="light"] .graph-header p {
+      color: #64748b !important;
     }
     [data-theme="light"] .graph-svg-wrapper {
       background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%) !important;
@@ -3520,6 +3662,11 @@
     }
     [data-theme="light"] .cram-subtitle {
       color: #64748b !important;
+    }
+    [data-theme="light"] .cram-badge {
+      background: #fef3c7 !important;
+      border-color: #fde68a !important;
+      color: #b45309 !important;
     }
     [data-theme="light"] .cram-card {
       background: #ffffff;
@@ -4793,11 +4940,11 @@
             </div>
             <div class="filter-group ste-filters" style="margin-top: 0.5rem;">
               <button class="filter-chip active ste-filter-chip" onclick="filterSTEDomain('all')">Tất cả (111)</button>
-              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (22)</button>
-              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (15)</button>
-              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (18)</button>
-              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (12)</button>
-              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (15)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(1)">D1: ML Basics (33)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(2)">D2: GenAI FMs (20)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(3)">D3: Applications (23)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(4)">D4: Responsible AI (15)</button>
+              <button class="filter-chip ste-filter-chip" onclick="filterSTEDomain(5)">D5: Security (20)</button>
             </div>
           </div>
           

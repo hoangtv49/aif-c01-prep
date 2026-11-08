@@ -38,6 +38,31 @@ test("Light mode overrides .view-subtabs-group and .cram-header", () => {
   expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.cram-header\s*\{[^}]*background:\s*#ffffff/);
 });
 
+test("Light mode overrides .graph-container, .topic-subtab-btn, speed buttons, mode switcher, and question palette", () => {
+  const html = fs.readFileSync("index.html", "utf8");
+
+  // .graph-container must be white in light mode
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.graph-container\s*\{[^}]*background:\s*#ffffff/);
+
+  // .topic-subtab-btn must be styled for light mode
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.topic-subtab-btn\.active\s*\{[^}]*background:\s*#ffffff/);
+
+  // Audio speed buttons
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.theory-speed-group\s*\{[^}]*background:\s*#f1f5f9/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.q-speed-btn\s*\{[^}]*background:\s*#f1f5f9/);
+
+  // Mode switcher group
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.mode-switch-group\s*\{[^}]*background:\s*#f1f5f9/);
+
+  // Palette quick button and palette container
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.palette-quick-btn\s*\{[^}]*background:\s*#ffffff/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.palette-container\s*\{[^}]*background:\s*#ffffff/);
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.palette-filter-btn\s*\{[^}]*background:\s*#f1f5f9/);
+
+  // Cram filter chips
+  expect(html).toMatch(/\[data-theme=["']light["']\]\s+\.cram-filter-chip\s*\{[^}]*background:\s*#f1f5f9/);
+});
+
 test("Section titles and table terms do not use hardcoded inline color: #fff", () => {
   const html = fs.readFileSync("index.html", "utf8");
 
