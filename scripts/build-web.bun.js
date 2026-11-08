@@ -2,6 +2,16 @@ import fs from "fs";
 import path from "path";
 import { marked } from "marked";
 
+// Custom renderer to wrap all markdown tables in responsive .table-container
+marked.use({
+  renderer: {
+    table(token) {
+      const defaultTable = marked.Renderer.prototype.table.call(this, token);
+      return `<div class="table-container">\n${defaultTable}</div>\n`;
+    }
+  }
+});
+
 const BASE_DIR = path.resolve("aif-c01-study-guide");
 
 const THEORY_MANIFEST_PATH = path.resolve("audio/theory/manifest.json");
@@ -160,21 +170,43 @@ rLines.forEach(l => {
 
 function sortDistractors(incorrectItems, options) {
   if (!incorrectItems || !Array.isArray(incorrectItems) || incorrectItems.length === 0) return [];
-  const mapped = incorrectItems.map(item => {
-    const firstLine = item.replace(/^❌\s*/, '').split('\n')[0].trim().toLowerCase();
+
+  // Flatten items in case multiple items were bundled together
+  const flatItems = [];
+  incorrectItems.forEach(item => {
+    const subParts = item.split(/\n\s*(?=❌)/);
+    subParts.forEach(p => {
+      if (p.trim()) flatItems.push(p.trim());
+    });
+  });
+
+  function normalizeDistractorText(s) {
+    return s
+      .replace(/[‘’]/g, "'")
+      .replace(/[“”]/g, '"')
+      .replace(/classi\s*cation/g, "classification")
+      .replace(/\s+/g, " ")
+      .replace(/[\.\,\:\;\s]+$/, "")
+      .trim()
+      .toLowerCase();
+  }
+
+  const mapped = flatItems.map(item => {
+    const firstLine = item.replace(/^❌\s*/, '').split('\n')[0].trim();
     const letterMatch = firstLine.match(/^([a-f])[\.\:\s\-]/i);
     let matchedKey = letterMatch ? letterMatch[1].toUpperCase() : null;
     
     if (!matchedKey) {
+      const normFirstLine = normalizeDistractorText(firstLine);
       let bestScore = 0;
       for (const opt of options) {
-        const optText = opt.text.trim().toLowerCase();
-        if (firstLine === optText) {
+        const normOpt = normalizeDistractorText(opt.text);
+        if (normFirstLine === normOpt) {
           matchedKey = opt.key;
           break;
         }
-        if (firstLine.includes(optText) || optText.includes(firstLine)) {
-          const score = Math.min(firstLine.length, optText.length);
+        if (normFirstLine.includes(normOpt) || normOpt.includes(normFirstLine)) {
+          const score = Math.min(normFirstLine.length, normOpt.length);
           if (score > bestScore) {
             bestScore = score;
             matchedKey = opt.key;
@@ -1626,35 +1658,63 @@ const htmlContent = `<!DOCTYPE html>
       color: #38bdf8;
       line-height: 1.5;
     }
+    .theory-content .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin: 1.5rem 0;
+      background: #0d1522;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+    .theory-content .table-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .theory-content .table-container::-webkit-scrollbar-thumb {
+      background: #243047;
+      border-radius: 9999px;
+    }
     .theory-content table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
-      background: #0d1522;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      display: block;
-      overflow-x: auto;
-      max-width: 100%;
-      -webkit-overflow-scrolling: touch;
+      min-width: 640px;
+      margin: 0;
+      background: transparent;
+      border: none;
+      display: table;
     }
     .theory-content th {
       background: #111a2e;
       color: #94a3b8;
       font-size: 0.8rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       text-align: left;
-      padding: 0.85rem 1rem;
+      padding: 0.9rem 1.15rem;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
     .theory-content td {
-      padding: 0.85rem 1rem;
+      padding: 0.9rem 1.15rem;
       font-size: 0.875rem;
       border-bottom: 1px solid var(--border);
       color: #e2e8f0;
       vertical-align: top;
+      line-height: 1.6;
+    }
+    .theory-content th:first-child,
+    .theory-content td:first-child {
+      min-width: 140px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .theory-content tr:last-child td {
+      border-bottom: none;
     }
     .theory-content tr:hover td {
       background: #162238;
@@ -3378,6 +3438,15 @@ const htmlContent = `<!DOCTYPE html>
       .topic-section-card {
         padding: 1.25rem 0.85rem;
         margin-bottom: 1.5rem;
+      }
+      .theory-content .table-container {
+        margin: 1.1rem 0;
+        border-radius: 10px;
+      }
+      .theory-content th,
+      .theory-content td {
+        padding: 0.75rem 0.9rem;
+        font-size: 0.825rem;
       }
       .theory-audio-toolbar {
         padding: 0.65rem 0.75rem;

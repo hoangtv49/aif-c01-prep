@@ -1366,7 +1366,8 @@
         "correct": "Amazon EC2 Trn series\n\n→ \"Tác động môi trường ít nhất\" đồng nghĩa với \"hiệu quả sử dụng năng lượng cao nhất\". Dòng Trn (Trainium) là các instance sử dụng chip AWS Trainium, một loại chip tăng tốc (accelerator) được AWS thiết kế đặc biệt và tối ưu cho việc huấn luyện (Training) các mô hình học sâu. Do được tối ưu cho mục đích chuyên biệt, chúng mang lại hiệu suất trên mỗi watt điện (performance-per-watt) tốt hơn so với các GPU đa dụng, do đó tiêu thụ ít năng lượng hơn cho cùng một tác vụ huấn luyện.",
         "incorrect": [
           "❌ B. Amazon EC2 P series\n→ Sai. Đây là dòng GPU hiệu năng cao (dùng GPU NVIDIA), rất tốt cho huấn luyện. Tuy nhiên, Trn series (chip tùy chỉnh) được thiết kế chuyên biệt nên sẽ hiệu quả về năng lượng hơn cho tác vụ huấn luyện.",
-          "❌ D. Amazon EC2 C series\n→ Sai. Đây là dòng tối ưu cho CPU (Compute). Huấn luyện LLM bằng CPU là cực kỳ chậm và không hiệu quả, khiến máy phải chạy lâu hơn và tiêu thụ tổng năng lượng nhiều hơn.\n\n❌Amazon EC2 G series\n→ Sai. Đây là dòng GPU đồ họa, thường dùng cho suy luận (inference) quy mô nhỏ hoặc các tác vụ đồ họa, không phải là lựa chọn tối ưu cho huấn luyện LLM quy mô lớn."
+          "❌ C. Amazon EC2 G series\n→ Sai. Đây là dòng GPU đồ họa, thường dùng cho suy luận (inference) quy mô nhỏ hoặc các tác vụ đồ họa, không phải là lựa chọn tối ưu cho huấn luyện LLM quy mô lớn.",
+          "❌ D. Amazon EC2 C series\n→ Sai. Đây là dòng tối ưu cho CPU (Compute). Huấn luyện LLM bằng CPU là cực kỳ chậm và không hiệu quả, khiến máy phải chạy lâu hơn và tiêu thụ tổng năng lượng nhiều hơn."
         ],
         "tips": "Huấn luyện (Training) + Tối ưu / Hiệu quả / Môi trường → Trn series (Trainium).\n\nSuy luận (Inference) + Tối ưu / Hiệu quả → Inf series (Inferentia).\n\nHuấn luyện đa dụng (General Purpose Training) / GPU NVIDIA → P series.\n\nSuy luận (Inference) / Đồ họa (Graphics) → G series."
       },
@@ -2354,7 +2355,7 @@
       "options": [
         {
           "key": "A",
-          "text": "Create classi cation labels by using Amazon Comprehend."
+          "text": "Create classification labels by using Amazon Comprehend."
         },
         {
           "key": "B",

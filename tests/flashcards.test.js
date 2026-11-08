@@ -57,7 +57,7 @@ function setupDomMocks() {
   };
 }
 
-test("Flashcard deck data from index.html loads all 82 terms across 5 domains", () => {
+test("Flashcard deck data from index.html loads all 111 terms across 5 domains", () => {
   setupDomMocks();
   const html = fs.readFileSync("index.html", "utf8");
   const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/);
@@ -80,8 +80,8 @@ test("Flashcard deck data from index.html loads all 82 terms across 5 domains", 
   `);
   const app = fn();
 
-  expect(app.allFlashcardsList.length).toBe(82);
-  expect(app.activeFlashcardDeck.length).toBe(82);
+  expect(app.allFlashcardsList.length).toBe(111);
+  expect(app.activeFlashcardDeck.length).toBe(111);
 
   // Check domain distribution
   const d1 = app.allFlashcardsList.filter(t => t.domainId === 1);
@@ -90,11 +90,11 @@ test("Flashcard deck data from index.html loads all 82 terms across 5 domains", 
   const d4 = app.allFlashcardsList.filter(t => t.domainId === 4);
   const d5 = app.allFlashcardsList.filter(t => t.domainId === 5);
 
-  expect(d1.length).toBe(22);
-  expect(d2.length).toBe(15);
-  expect(d3.length).toBe(18);
-  expect(d4.length).toBe(12);
-  expect(d5.length).toBe(15);
+  expect(d1.length).toBe(33);
+  expect(d2.length).toBe(20);
+  expect(d3.length).toBe(23);
+  expect(d4.length).toBe(15);
+  expect(d5.length).toBe(20);
 });
 
 test("Flashcard navigation bounds and index wrapping", () => {

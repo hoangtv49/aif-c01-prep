@@ -189,7 +189,7 @@ test("Full End-to-End simulation of all 3 study boost features in generated inde
   `);
   const fcState = fcFn();
   expect(fcState.dictView).toBe("cards");
-  expect(fcState.allFlashcardsList.length).toBe(82);
+  expect(fcState.allFlashcardsList.length).toBe(111);
   expect(fcState.masteredFlashcardIds.size).toBeGreaterThanOrEqual(1);
   const savedFc = JSON.parse(localStorage.getItem("aif_flashcard_mastered"));
   expect(savedFc.length).toBeGreaterThanOrEqual(1);

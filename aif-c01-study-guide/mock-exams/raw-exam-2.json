@@ -487,9 +487,9 @@
         "summary": "Triển khai mô hình AI/ML.\n\nCần cung cấp tính minh bạch (transparency) về quy trình ra quyết định.\n\nCần cung cấp giải thích (provide explanations) cho đầu ra của mô hình.",
         "correct": "Amazon SageMaker Model Cards\n\n→ SageMaker Model Cards hoạt động như một \"thẻ thông tin dinh dưỡng\" cho mô hình. Nó là một tài liệu tập trung, cung cấp sự minh bạch bằng cách ghi lại mọi thông tin về mô hình (mục đích, dữ liệu huấn luyện, thuật toán, hiệu suất, giới hạn...) cho các bên liên quan, giúp giải thích mô hình ở mức độ tổng quan.",
         "incorrect": [
-          "❌ Amazon Rekognition\n→ Sai. Dịch vụ AI cho hình ảnh.",
-          "❌ Amazon Comprehend\n→ Sai. Dịch vụ AI cho văn bản.",
-          "❌ Amazon Lex\n→ Sai. Dịch vụ xây dựng chatbot."
+          "❌ A. Amazon SageMaker JumpStart\n→ Sai. Cung cấp các mô hình nền tảng tiền huấn luyện (pretrained models) và giải pháp mẫu để triển khai nhanh chóng, không phải công cụ ghi chép dữ liệu quản trị và báo cáo.",
+          "❌ B. Amazon SageMaker Model Monitor\n→ Sai. Giám sát độ lệch dữ liệu (data drift) và chất lượng mô hình đang chạy thực tế trong production, không chuyên về lập tài liệu quản trị và báo cáo tổng thể.",
+          "❌ C. Amazon SageMaker Debugger\n→ Sai. Dùng để theo dõi và gỡ lỗi trong quá trình huấn luyện (training metrics, tensor bugs), không phải công cụ ghi nhận tài liệu quản trị."
         ],
         "tips": "Minh bạch (Transparency) + Giải thích (Explanations) + Tài liệu (Documentation) + Quản trị (Governance) → Amazon SageMaker Model Cards.\n\nGiải thích (Explainability) (ở mức độ kỹ thuật, vd: SHAP values) + Thiên vị (Bias) → Amazon SageMaker Clarify."
       },
