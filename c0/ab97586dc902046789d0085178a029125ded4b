@@ -1,0 +1,30 @@
+scripts/build-web.bun.js
+  s_d3547bce869f64::t_87d658c4db1b97 6108
+  s_d3547bce869f64::t_f82fca26f717c4 3987,3992
+  s_d3547bce869f64::t_93610da36ac1eb 4255
+aif-c01-study-guide/domain-1-fundamentals-ai-ml.md
+  s_d3547bce869f64::t_2915097643ccd7 158-161
+  s_d3547bce869f64::t_f832a1c5493065 67-112,115
+aif-c01-study-guide/data.json
+  s_d3547bce869f64::t_b73d4f0a298ed9 6,139-162
+aif-c01-study-guide/index.html
+  s_d3547bce869f64::t_b73d4f0a298ed9 3577,3582,3853,4165,5706
+index.html
+  s_d3547bce869f64::t_b73d4f0a298ed9 3577,3582,3853,4165,5706
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c0ab97586dc902046789d0085178a029125ded4b",
+  "prompts": {},
+  "sessions": {
+    "s_d3547bce869f64": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e4442addaffecSq7dMwn4Se37o",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
