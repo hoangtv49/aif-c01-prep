@@ -64,9 +64,55 @@ Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn g�
    - **SageMaker Model Registry**: Quản lý phiên bản mô hình, phê duyệt và theo dõi metadata mô hình trước khi lên Production.
    - **SageMaker Endpoints**: Triển khai dự đoán Real-time, Serverless Inference, Asynchronous Inference hoặc Batch Transform.
 
+### 5. Đánh giá mô hình học máy: Confusion Matrix, Precision, Recall và F1-Score
+
+Trong các bài toán phân loại (Classification), việc lựa chọn chỉ số đánh giá là kiến thức trọng tâm của kỳ thi AIF-C01.
+
+#### a. Ma trận nhầm lẫn (Confusion Matrix)
+Ma trận 2x2 biểu diễn kết quả dự đoán của mô hình so với nhãn thực tế:
+- **True Positive (TP)**: Thực tế Dương, Mô hình đoán Dương (Dự đoán đúng).
+- **True Negative (TN)**: Thực tế Âm, Mô hình đoán Âm (Dự đoán đúng).
+- **False Positive (FP - Lỗi Loại I / Type I Error)**: Thực tế Âm, Mô hình đoán Dương (Báo động giả / Nhầm lẫn).
+- **False Negative (FN - Lỗi Loại II / Type II Error)**: Thực tế Dương, Mô hình đoán Âm (Bỏ sót nguy hiểm).
+
+```
+                 +-----------------------+-----------------------+
+                 | Thực tế DƯƠNG (Pos)   | Thực tế ÂM (Neg)      |
++----------------+-----------------------+-----------------------+
+| Đoán DƯƠNG (+) |  True Positive (TP)   |  False Positive (FP)  |
+| Đoán ÂM (-)    |  False Negative (FN)  |  True Negative (TN)   |
++----------------+-----------------------+-----------------------+
+```
+
+#### b. Các chỉ số đo lường cốt lõi
+1. **Accuracy (Độ chính xác tổng quát)**:
+   - Công thức: $\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$.
+   - *Hạn chế chí mạng*: Vô nghĩa khi dữ liệu **mất cân bằng lớp (Class Imbalance)**. Ví dụ: Trong 1,000 giao dịch chỉ có 5 giao dịch gian lận (0.5%), nếu mô hình luôn đoán "Không gian lận", Accuracy vẫn đạt 99.5% dù bỏ sót 100% các vụ gian lận.
+
+2. **Precision (Độ chuẩn xác)**:
+   - Công thức: $\text{Precision} = \frac{TP}{TP + FP}$.
+   - *Ý nghĩa*: Trong tất cả các trường hợp mô hình dự đoán là Dương tính, có bao nhiêu trường hợp thực sự đúng?
+   - *Mục tiêu*: **Giảm thiểu False Positives (FP)** (Hạn chế tối đa việc báo động giả).
+   - *Tình huống đề thi*: Khi việc "báo nhầm" gây phiền hà hoặc tổn thất cho người dùng. Ví dụ: Bộ lọc thư rác (Spam Filter - không được đánh dấu nhầm email quan trọng thành spam); Khóa tài khoản ngân hàng nhầm của khách hàng VIP.
+
+3. **Recall / Sensitivity (Độ nhạy / Tỷ lệ phát hiện)**:
+   - Công thức: $\text{Recall} = \frac{TP}{TP + FN}$.
+   - *Ý nghĩa*: Trong tất cả các trường hợp thực tế là Dương tính, mô hình tìm ra được bao nhiêu trường hợp?
+   - *Mục tiêu*: **Giảm thiểu False Negatives (FN)** (Hạn chế tối đa việc bỏ sót).
+   - *Tình huống đề thi*: Khi việc "bỏ sót" gây ra hậu quả thảm họa, nguy hiểm tính mạng hoặc thiệt hại lớn. Ví dụ: Phát hiện khối u ác tính trong chẩn đoán y tế; Phát hiện gian lận thẻ tín dụng; Phát hiện mã độc an ninh mạng.
+
+4. **F1-Score (Trung bình điều hòa giữa Precision và Recall)**:
+   - Công thức: $\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$.
+   - *Bản chất toán học*: Sử dụng **Trung bình điều hòa (Harmonic Mean)** thay vì trung bình cộng thông thường. Nếu một trong hai chỉ số (Precision hoặc Recall) quá thấp, F1-Score sẽ bị kéo tụt xuống rất mạnh.
+   - *Tại sao cần F1-Score?*: Precision và Recall thường có sự đánh đổi (Trade-off). Tăng Recall thường làm giảm Precision và ngược lại. F1-Score giúp đo lường một con số duy nhất thể hiện sự cân bằng tốt giữa hai chỉ số này.
+   - *Quy tắc vàng khi chọn F1-Score trong đề thi AIF-C01*:
+     1. **Dữ liệu mất cân bằng (Imbalanced Datasets)**: Khi lớp mục tiêu chiếm tỷ lệ rất nhỏ (ví dụ: Churn prediction - dự đoán khách hàng rời bỏ; Fraud detection). F1-Score là thước đo chuẩn xác hơn Accuracy rất nhiều.
+     2. **Cần cân bằng hài hòa**: Khi bài toán yêu cầu vừa hạn chế báo động giả (FP), vừa hạn chế bỏ sót (FN).
+     3. **Extractive Q&A trong Generative AI**: Đánh giá mức độ trùng lặp token/từ (word overlap) giữa câu trả lời do LLM trích xuất và câu trả lời mẫu (Ground Truth).
+
 ---
 
-### 5. Bảng so sánh các dịch vụ AWS Core AI Managed Services
+### 6. Bảng so sánh các dịch vụ AWS Core AI Managed Services
 
 | Dịch vụ AWS | Chức năng chính | Đầu vào (Input) | Đầu ra (Output) | Tình huống đề thi đặc trưng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -109,6 +155,10 @@ Vòng đời ML gồm 4 giai đoạn chuẩn hóa, được hỗ trợ trọn g�
 | **Amazon Personalize** | Amazon Personalize generates real-time product recommendations. It uses customer interaction data to rank items. | Recommendation engine, personalized items, user ranking. | Dịch vụ gợi ý sản phẩm cá nhân hóa theo thời gian thực dựa trên lịch sử người dùng. |
 | **Amazon Forecast** | Amazon Forecast delivers accurate time-series forecasts. It predicts future values with machine learning algorithms. | Time-series forecasting, future demand, inventory planning. | Dịch vụ dự báo chuỗi thời gian kết hợp học máy và dữ liệu lịch sử. |
 | **Amazon Fraud Detector** | Amazon Fraud Detector identifies potentially fraudulent online activities automatically. It generates risk scores for transactions. | Online fraud detection, stolen credit cards, fake account risk. | Dịch vụ tự động phát hiện các giao dịch gian lận và đánh giá điểm rủi ro. |
+| **Confusion Matrix** | A confusion matrix is a table that shows classification performance. It compares predicted values with actual values. | TP, FP, TN, FN, Type I error, Type II error. | Bảng ma trận thể hiện 4 khả năng dự đoán: Dương thật (TP), Âm thật (TN), Dương giả (FP) và Âm giả (FN). |
+| **Precision** | Precision measures correct positive predictions. It divides true positives by all positive predictions. | Minimize False Positives, spam filter, avoid false alarms. | Tỷ lệ dự đoán đúng trong các ca mô hình báo Dương tính. Tối ưu khi cần tránh báo động nhầm. |
+| **Recall** | Recall measures identified positive cases. It divides true positives by all actual positives. | Minimize False Negatives, cancer detection, avoid missing fraud. | Tỷ lệ tìm thấy trong tất cả các ca thực tế Dương tính. Tối ưu khi việc bỏ sót gây hậu quả nghiêm trọng. |
+| **F1 Score** | F1 score is the harmonic mean of precision and recall. It evaluates models on imbalanced datasets. | Harmonic mean, balanced metric, imbalanced classes, churn prediction, extractive QA. | Trung bình điều hòa giữa Precision và Recall. Chỉ số tối ưu cho dữ liệu mất cân bằng (như churn, gian lận) hoặc Extractive Q&A. |
 
 ---
 

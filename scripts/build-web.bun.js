@@ -3984,12 +3984,12 @@ const htmlContent = `<!DOCTYPE html>
           <span class="brand-badge">AIF-C01</span>
           <span class="brand-title">AWS AI Practitioner Mastery Studio</span>
         </div>
-        <div class="brand-subtitle">Hệ thống hóa 57 Đề thi • 82 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
+        <div class="brand-subtitle">Hệ thống hóa 252 Câu hỏi & Đề thi • 86 Thuật ngữ cốt lõi • Bản đồ liên kết động</div>
       </div>
 
       <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('topics')">📚 Ôn tập theo chủ đề</button>
-        <button class="tab-btn" onclick="switchTab('quiz')">📝 Luyện đề 57 Câu</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">📝 Luyện đề thi thử</button>
         <button class="tab-btn" onclick="switchTab('graph')">🧭 Bản đồ Khái niệm</button>
         <button class="tab-btn" onclick="switchTab('matrix')">⚡ Bảng Quyết định & Bẫy</button>
         <button class="tab-btn" onclick="switchTab('ste')">📖 Từ điển thuật ngữ</button>
@@ -4252,7 +4252,7 @@ const htmlContent = `<!DOCTYPE html>
               <input type="text" id="quiz-search" class="search-box sticky-search" placeholder="Tìm câu hỏi, từ khóa, dịch vụ..." oninput="handleSearch(this.value)">
               <button id="quiz-search-clear" class="search-clear-btn" onclick="clearQuizSearch()" style="display:none;" title="Xóa tìm kiếm">✕</button>
             </div>
-            <button id="toggle-palette-btn" class="palette-quick-btn" onclick="togglePalette()" title="Mở bảng 57 câu hỏi để nhảy nhanh">
+            <button id="toggle-palette-btn" class="palette-quick-btn" onclick="togglePalette()" title="Mở bản đồ câu hỏi để nhảy nhanh">
               <span class="palette-btn-icon">🔢</span>
               <span class="palette-btn-text">Bảng câu hỏi</span>
             </button>
@@ -6105,7 +6105,7 @@ const htmlContent = `<!DOCTYPE html>
           document.title = '📚 ' + dTitle + ' | ' + baseTitle;
           break;
         case 'quiz':
-          document.title = '📝 Luyện đề 57 Câu | ' + baseTitle;
+          document.title = '📝 Luyện đề thi thử | ' + baseTitle;
           break;
         case 'graph':
           document.title = '🧭 Bản đồ Khái niệm | ' + baseTitle;
