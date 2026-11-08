@@ -1,0 +1,48 @@
+aif-c01-study-guide/domain-3-fm-applications.md
+  s_d3547bce869f64::t_3f7ba0b232f305 35-37,57,60,62
+  s_d3547bce869f64::t_df9a07bd0d1fab 148-152
+  s_d3547bce869f64::t_980d57213dfacf 118-119,121-122
+  s_d3547bce869f64::t_4f7f39f2261c08 80-90
+aif-c01-study-guide/domain-5-security-compliance-governance.md
+  s_d3547bce869f64::t_08ff84cdad9214 118-122
+  s_d3547bce869f64::t_ef665ec296d996 81-82,85-95
+  s_d3547bce869f64::t_f0af257f81dfd8 36-46
+  s_d3547bce869f64::t_1dcd40dafaafb0 96
+aif-c01-study-guide/index.html
+  s_d3547bce869f64::t_f5c75f1a0ce2c7 4165
+aif-c01-study-guide/domain-1-fundamentals-ai-ml.md
+  s_d3547bce869f64::t_6f7afa5fc31118 148-162
+  s_d3547bce869f64::t_867d6ddbb9b17f 34-38,42,49-58
+  s_d3547bce869f64::t_9f7aefb5c9adfc 184-197
+  s_d3547bce869f64::t_3751cad2908eb0 228-234
+  s_d3547bce869f64::t_2d6b026a9dcc9e 171-173
+  s_d3547bce869f64::t_0177aa738d3916 66-100
+  s_d3547bce869f64::t_833955917bd409 59
+aif-c01-study-guide/data.json
+  s_d3547bce869f64::t_f5c75f1a0ce2c7 6,163-204,552,643-672,1016,1125-1154,1528,1601-1618,1962,2053-2082
+aif-c01-study-guide/domain-2-generative-ai.md
+  s_d3547bce869f64::t_9746fb04ead570 107-108
+  s_d3547bce869f64::t_d57b502dd1f7c8 133-137
+  s_d3547bce869f64::t_05af315f14c573 34,36-66
+aif-c01-study-guide/domain-4-responsible-ai.md
+  s_d3547bce869f64::t_4c442d96cbbd5e 26-34,45-54
+  s_d3547bce869f64::t_90f9e4e1df34dc 95-97
+index.html
+  s_d3547bce869f64::t_f5c75f1a0ce2c7 4165
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3fd14be41d2361761eb98fd44fa443ba4f9eec1a",
+  "prompts": {},
+  "sessions": {
+    "s_d3547bce869f64": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e4442addaffecSq7dMwn4Se37o",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
