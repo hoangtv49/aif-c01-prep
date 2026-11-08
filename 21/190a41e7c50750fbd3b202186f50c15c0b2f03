@@ -1,0 +1,39 @@
+tests/theme-toggle.test.js
+  s_d3547bce869f64::t_82f5efc8fe0044 1-14,16-33
+  s_d3547bce869f64::t_5e8ddb5ff68074 15
+scripts/build-web.bun.js
+  s_d3547bce869f64::t_58366571b5add4 3339-3756
+  s_d3547bce869f64::t_2c5af03154e7a2 4553-4584
+  s_d3547bce869f64::t_d27d12cd4e27ab 510,5143,5157,5159-5162,5164,5166-5187
+  s_d3547bce869f64::t_66104195635b9c 5144-5156,5158,5163,5165
+  s_d3547bce869f64::t_2caf4baab0eb1e 455
+  s_d3547bce869f64::t_ec63291e6eaf1d 6798
+  s_d3547bce869f64::t_64125fcd5bb1c3 3809-3819
+  s_d3547bce869f64::t_20ea71fe921cb8 456-464,490-509
+  s_d3547bce869f64::t_182817549ca6f8 646-683
+  s_d3547bce869f64::t_1b4710b99a7ef5 511
+aif-c01-study-guide/index.html
+  s_d3547bce869f64::t_021db53992cf25 14-22,48-69,204-241,2897-3314,3367-3377,4111-4142,4709,4723,4725-4728,4730,4732-4753,6364
+  s_d3547bce869f64::t_152b27d37c3bae 13
+  s_d3547bce869f64::t_5bffe4efad37bd 4710-4722,4724,4729,4731
+index.html
+  s_d3547bce869f64::t_021db53992cf25 14-22,48-69,204-241,2897-3314,3367-3377,4111-4142,4709,4723,4725-4728,4730,4732-4753,6364
+  s_d3547bce869f64::t_5bffe4efad37bd 4710-4722,4724,4729,4731
+  s_d3547bce869f64::t_152b27d37c3bae 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "21190a41e7c50750fbd3b202186f50c15c0b2f03",
+  "prompts": {},
+  "sessions": {
+    "s_d3547bce869f64": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e4442addaffecSq7dMwn4Se37o",
+        "model": "unknown"
+      },
+      "human_author": "hoangtv <hoangtv@local>"
+    }
+  }
+}
